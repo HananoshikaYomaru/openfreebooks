@@ -14,7 +14,9 @@ Free, open-source textbooks for every learner — from elementary school through
 | JS build | [Bun](https://bun.sh/) + [Vite](https://vite.dev/) |
 | Hosting | Cloudflare Workers (static assets via Wrangler) |
 
-Book content will use Markdown. Canvas features will follow the [JSON Canvas](https://jsoncanvas.org/) standard (Obsidian-compatible).
+Chapter content is **HTML partials** in the theme today (not Markdown). Canvas maps use the [JSON Canvas](https://jsoncanvas.org/) standard (Obsidian-compatible) via [json-canvas-viewer](https://github.com/Hesprs/JSON-Canvas-Viewer).
+
+**Contributing curriculum, subjects, or chapters?** See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Prerequisites
 
@@ -25,8 +27,9 @@ Book content will use Markdown. Canvas features will follow the [JSON Canvas](ht
 ## Project layout
 
 ```
-content/                 # Pages and sections (Markdown)
-static/                  # Site assets copied to public/ (favicons, manifest)
+content/                 # Pages and sections (Markdown front matter)
+data/                    # Catalog + per-subject curriculum JSON
+static/                  # Site assets copied to public/ (favicons, _redirects)
 themes/openfreebooks/    # Zola theme
   templates/             # HTML (Tera)
   sass/                  # Stylesheets (compiled to main.css)
@@ -82,6 +85,49 @@ Site-wide settings live in `zola.toml`:
 The visual design is inspired by [manlung.work](https://manlung.work/): paper background with grain, Instrument Serif headings, warm ochre accent (`#9a6b2e`), and light/dark mode (system preference plus a toggle).
 
 **Keep `themes/openfreebooks/static/` clean.** Only committed built assets belong there (currently `js/bundle.js`). Do not copy Zola’s `public/` output into the theme `static/` folder — that pollutes `public/js/` on the next build.
+
+## Contributor experience — known friction (task list)
+
+These issues make contributions harder than they should be. PRs that fix any item are welcome.
+
+### Catalog & data
+
+- [ ] **Auto-wire subjects in `catalog.html`** — stop hardcoding `if subject.id == "math"`; load `data/{id}-curriculum.json` by subject `id` convention.
+- [ ] **Single source for subjects** — merge `catalog.json` subject stubs and `{subject}-curriculum.json` or generate one from the other at build time.
+- [ ] **`scripts/validate-curriculum.ts`** — JSON schema check: slugs, `curriculums` ⊆ global list, live chapters have `content/`, `graph.edges` acyclic.
+- [ ] **Document or script new curriculum labels** — today requires `catalog.json`, Sass badge, and TS `curriculumBadgeClass()` mapping.
+
+### Chapters & content
+
+- [ ] **Generic chapter template** — drop per-chapter `{% if chapter_id %}` branches; load `partials/{subject}/{slug}-content.html` by convention.
+- [ ] **Strand kicker from data** — chapter header still hardcodes “Number & Algebra”; should come from strand in curriculum JSON.
+- [ ] **Subject-agnostic chapter template** — breadcrumb/catalog URL and `load_data` path should use section path, not `math` only.
+- [ ] **Markdown chapters (optional)** — README/spec disagree on format; if staying HTML, document clearly everywhere.
+- [ ] **Defuddle “copy as Markdown”** — spec calls for it on every page; not implemented.
+
+### Site & discoverability
+
+- [ ] **Data-driven homepage cards** — “Browse by subject” / featured blocks duplicate manual edits in `index.html`.
+- [ ] **Pagefind search** — spec mentions search; `build_search_index = false` and no index step in build.
+- [ ] **CONTRIBUTING wizard or checklist in CI** — fail PR if live chapter missing partial or catalog entry.
+
+### Build & repo hygiene
+
+- [ ] **Prevent stale theme `static/**/*.html`** — committed copies under `themes/openfreebooks/static/` override Zola output (index, catalog, math); add CI check or pre-commit.
+- [ ] **Clarify package manager** — project uses **Bun** (`bun run build`); align docs/tooling if pnpm is preferred elsewhere.
+- [ ] **`dev` one-liner** — e.g. `bun run dev` running `vite build --watch` + `zola serve` together.
+
+### New subject onboarding
+
+- [ ] **Subject scaffold command** — e.g. `bun run scaffold:subject science` creating `data/science-curriculum.json`, `content/science/_index.md`, and catalog entry.
+- [ ] **Redirect template generic** — `math-redirect.html` → `subject-redirect.html` using `?subject=` from section path.
+
+## Agent skills
+
+| Skill | Path | Use |
+|-------|------|-----|
+| **OFB (this project)** | [.agents/skills/ofb/SKILL.md](.agents/skills/ofb/SKILL.md) | Catalog, curriculum JSON, chapters, product rules |
+| **Zola + Solid** | [.agents/skills/zola/SKILL.md](.agents/skills/zola/SKILL.md) | Templates, Sass, bundle, `zola serve` |
 
 ## License
 

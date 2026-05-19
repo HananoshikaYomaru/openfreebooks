@@ -1,5 +1,18 @@
-import { createMemo, createSignal, For, Show } from "solid-js";
-import type { CatalogChapter, CatalogData, CatalogStrand, CatalogSubject } from "../../../data/catalog.types";
+import { createMemo, createSignal, For, lazy, onCleanup, onMount, Show, Suspense } from "solid-js";
+import { subjectToCanvas } from "../lib/catalog-to-canvas";
+import { watchSiteTheme } from "../lib/catalog-canvas-theme";
+import { CatalogChapterCard } from "./catalog-chapter-card";
+import type {
+  CatalogChapter,
+  CatalogData,
+  CatalogStrand,
+  CatalogSubject,
+  CatalogViewMode,
+} from "../../../data/catalog.types";
+
+const CatalogCanvasView = lazy(() =>
+  import("./catalog-canvas-view").then((m) => ({ default: m.CatalogCanvasView }))
+);
 
 function readCatalogData(): CatalogData | null {
   const el = document.getElementById("catalog-data");
@@ -16,15 +29,9 @@ function initialSubjectId(subjects: CatalogSubject[]): string {
   return subjects[0]?.id ?? "math";
 }
 
-function curriculumBadgeClass(curriculum: string): string {
-  const map: Record<string, string> = {
-    DSE: "catalog-badge--dse",
-    IB: "catalog-badge--ib",
-    "A-Level": "catalog-badge--a-level",
-    AP: "catalog-badge--ap",
-    IGCSE: "catalog-badge--igcse",
-  };
-  return map[curriculum] ?? "catalog-badge--default";
+function initialViewMode(): CatalogViewMode {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("view") === "tree" ? "tree" : "linear";
 }
 
 function chapterMatchesFilters(chapter: CatalogChapter, activeFilters: Set<string>): boolean {
@@ -38,9 +45,14 @@ function countVisibleChapters(subject: CatalogSubject, activeFilters: Set<string
   }, 0);
 }
 
-function syncSubjectUrl(subjectId: string) {
+function syncUrl(subjectId: string, viewMode: CatalogViewMode) {
   const url = new URL(window.location.href);
   url.searchParams.set("subject", subjectId);
+  if (viewMode === "tree") {
+    url.searchParams.set("view", "tree");
+  } else {
+    url.searchParams.delete("view");
+  }
   window.history.replaceState(null, "", url);
 }
 
@@ -52,6 +64,17 @@ export function CatalogApp() {
 
   const [currentSubjectId, setCurrentSubjectId] = createSignal(initialSubjectId(data.subjects));
   const [activeFilters, setActiveFilters] = createSignal<Set<string>>(new Set());
+  const [viewMode, setViewMode] = createSignal<CatalogViewMode>(initialViewMode());
+  const [canvasThemeTick, setCanvasThemeTick] = createSignal(0);
+  const [mapLayoutReady, setMapLayoutReady] = createSignal(!document.fonts);
+
+  onMount(() => {
+    const stopThemeWatch = watchSiteTheme(() => setCanvasThemeTick((tick) => tick + 1));
+    if (document.fonts) {
+      void document.fonts.ready.then(() => setMapLayoutReady(true));
+    }
+    onCleanup(stopThemeWatch);
+  });
 
   const currentSubject = createMemo(
     () => data.subjects.find((s) => s.id === currentSubjectId()) ?? data.subjects[0]
@@ -60,6 +83,28 @@ export function CatalogApp() {
   const visibleCount = createMemo(() => countVisibleChapters(currentSubject(), activeFilters()));
 
   const hasChapterTree = createMemo(() => currentSubject().strands.length > 0);
+
+  const chapterFilter = createMemo(
+    () => (chapter: CatalogChapter) => chapterMatchesFilters(chapter, activeFilters())
+  );
+
+  const canvasData = createMemo(() => {
+    canvasThemeTick();
+    if (!mapLayoutReady()) return undefined;
+    return subjectToCanvas(currentSubject(), chapterFilter());
+  });
+
+  const visibleChapters = createMemo(() => {
+    const map: Record<string, CatalogChapter> = {};
+    for (const strand of currentSubject().strands) {
+      for (const chapter of strand.chapters) {
+        if (chapterFilter()(chapter)) {
+          map[chapter.slug] = chapter;
+        }
+      }
+    }
+    return map;
+  });
 
   const statsLabel = createMemo(() => {
     const count = visibleCount();
@@ -71,7 +116,12 @@ export function CatalogApp() {
 
   const selectSubject = (subjectId: string) => {
     setCurrentSubjectId(subjectId);
-    syncSubjectUrl(subjectId);
+    syncUrl(subjectId, viewMode());
+  };
+
+  const setCatalogView = (mode: CatalogViewMode) => {
+    setViewMode(mode);
+    syncUrl(currentSubjectId(), mode);
   };
 
   const toggleFilter = (curriculum: string) => {
@@ -129,34 +179,59 @@ export function CatalogApp() {
             <h1 class="catalog-header__title">{currentSubject().name}</h1>
             <p class="catalog-header__stats">{statsLabel()}</p>
           </div>
-          <div class="catalog-filters-wrap">
-            <p class="catalog-filters__label">Filter by curriculum</p>
-            <div class="catalog-filters" role="group" aria-label="Curriculum filters">
+          <div class="catalog-header__controls">
+            <div class="catalog-view-toggle" role="tablist" aria-label="Chapter layout">
               <button
                 type="button"
-                class="catalog-filter-btn"
-                classList={{ "is-active": activeFilters().size === 0 }}
-                onClick={() => toggleFilter("ALL")}
+                class="catalog-view-toggle__btn"
+                role="tab"
+                aria-selected={viewMode() === "linear" ? "true" : "false"}
+                onClick={() => setCatalogView("linear")}
               >
-                All
+                List
               </button>
-              <For each={data.curriculums}>
-                {(curriculum) => (
-                  <button
-                    type="button"
-                    class="catalog-filter-btn"
-                    classList={{ "is-active": activeFilters().has(curriculum) }}
-                    onClick={() => toggleFilter(curriculum)}
-                  >
-                    {curriculum}
-                  </button>
-                )}
-              </For>
+              <button
+                type="button"
+                class="catalog-view-toggle__btn"
+                role="tab"
+                aria-selected={viewMode() === "tree" ? "true" : "false"}
+                onClick={() => setCatalogView("tree")}
+              >
+                Map
+              </button>
+            </div>
+            <div class="catalog-filters-wrap">
+              <p class="catalog-filters__label">Filter by curriculum</p>
+              <div class="catalog-filters" role="group" aria-label="Curriculum filters">
+                <button
+                  type="button"
+                  class="catalog-filter-btn"
+                  classList={{ "is-active": activeFilters().size === 0 }}
+                  onClick={() => toggleFilter("ALL")}
+                >
+                  All
+                </button>
+                <For each={data.curriculums}>
+                  {(curriculum) => (
+                    <button
+                      type="button"
+                      class="catalog-filter-btn"
+                      classList={{ "is-active": activeFilters().has(curriculum) }}
+                      onClick={() => toggleFilter(curriculum)}
+                    >
+                      {curriculum}
+                    </button>
+                  )}
+                </For>
+              </div>
             </div>
           </div>
         </header>
 
-        <div class="catalog-content">
+        <div
+          class="catalog-content"
+          classList={{ "catalog-content--tree": viewMode() === "tree" }}
+        >
           <Show
             when={hasChapterTree() && visibleCount() > 0}
             fallback={
@@ -172,64 +247,55 @@ export function CatalogApp() {
               </div>
             }
           >
-            <For each={filteredStrands()}>
-              {(strand: CatalogStrand) => (
-                <section class="catalog-strand" aria-labelledby={`strand-${strand.id}`}>
-                  <h2 id={`strand-${strand.id}`} class="catalog-strand__title">
-                    <span class="catalog-strand__marker" aria-hidden="true">
-                      ✦
-                    </span>
-                    {strand.title}
-                  </h2>
-                  <ol class="catalog-tree">
-                    <For each={strand.chapters}>
-                      {(chapter, index) => (
-                        <li class="catalog-tree__item">
-                          <ChapterCard chapter={chapter} index={index()} />
-                        </li>
-                      )}
-                    </For>
-                  </ol>
-                </section>
-              )}
-            </For>
+            <Show
+              when={viewMode() === "tree"}
+              fallback={
+                <For each={filteredStrands()}>
+                  {(strand: CatalogStrand) => (
+                    <section class="catalog-strand" aria-labelledby={`strand-${strand.id}`}>
+                      <h2 id={`strand-${strand.id}`} class="catalog-strand__title">
+                        <span class="catalog-strand__marker" aria-hidden="true">
+                          ✦
+                        </span>
+                        {strand.title}
+                      </h2>
+                      <ol class="catalog-tree">
+                        <For each={strand.chapters}>
+                          {(chapter, index) => (
+                            <li class="catalog-tree__item">
+                              <CatalogChapterCard
+                                chapter={chapter}
+                                index={index()}
+                                subjectId={currentSubjectId()}
+                                variant="list"
+                              />
+                            </li>
+                          )}
+                        </For>
+                      </ol>
+                    </section>
+                  )}
+                </For>
+              }
+            >
+              <Show
+                when={canvasData()}
+                fallback={<p class="catalog-canvas-loading">Loading chapter map…</p>}
+              >
+                {(canvas) => (
+                  <Suspense fallback={<p class="catalog-canvas-loading">Loading chapter map…</p>}>
+                    <CatalogCanvasView
+                      canvas={canvas()}
+                      subjectId={currentSubjectId()}
+                      chapters={visibleChapters()}
+                    />
+                  </Suspense>
+                )}
+              </Show>
+            </Show>
           </Show>
         </div>
       </div>
     </div>
-  );
-}
-
-function ChapterCard(props: { chapter: CatalogChapter; index: number }) {
-  const number = () => String(props.index + 1).padStart(2, "0");
-
-  const inner = (
-    <>
-      <div class="catalog-chapter-card__main">
-        <span class="catalog-chapter-card__number">{number()}</span>
-        <span class="catalog-chapter-card__title">{props.chapter.title}</span>
-      </div>
-      <div class="catalog-chapter-card__meta">
-        <For each={props.chapter.curriculums}>
-          {(curriculum) => (
-            <span class={`catalog-badge ${curriculumBadgeClass(curriculum)}`}>{curriculum}</span>
-          )}
-        </For>
-        <Show when={props.chapter.status === "planned"}>
-          <span class="book-chapter-badge book-chapter-badge--planned">Coming soon</span>
-        </Show>
-      </div>
-    </>
-  );
-
-  return (
-    <Show
-      when={props.chapter.status === "live"}
-      fallback={<div class="catalog-chapter-card catalog-chapter-card--planned">{inner}</div>}
-    >
-      <a class="catalog-chapter-card" href={`/math/${props.chapter.slug}/`}>
-        {inner}
-      </a>
-    </Show>
   );
 }

@@ -1,6 +1,7 @@
 export type CatalogChapter = {
   slug: string;
   title: string;
+  description: string;
   status: "live" | "planned";
   curriculums: string[];
 };
@@ -11,10 +12,21 @@ export type CatalogStrand = {
   chapters: CatalogChapter[];
 };
 
+export type CatalogGraphEdge = {
+  from: string;
+  to: string;
+  label?: string;
+};
+
+export type CatalogGraph = {
+  edges: CatalogGraphEdge[];
+};
+
 export type CatalogSubject = {
   id: string;
   name: string;
   strands: CatalogStrand[];
+  graph?: CatalogGraph;
 };
 
 export type CatalogData = {
@@ -23,3 +35,5 @@ export type CatalogData = {
   curriculums: string[];
   subjects: CatalogSubject[];
 };
+
+export type CatalogViewMode = "linear" | "tree";

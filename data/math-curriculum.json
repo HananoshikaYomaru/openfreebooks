@@ -2,6 +2,14 @@
   "title": "Mathematics",
   "subtitle": "Secondary level (S4–S6)",
   "intro": "Structured around three core strands. Chapters marked as available can be read now; others are on the roadmap.",
+  "graph": {
+    "edges": [
+      { "from": "quadratic-equations", "to": "sequences" },
+      { "from": "quadratic-equations", "to": "functions-graphs" },
+      { "from": "sequences", "to": "linear-programming" },
+      { "from": "functions-graphs", "to": "linear-programming" }
+    ]
+  },
   "strands": [
     {
       "id": "number-algebra",
@@ -10,24 +18,28 @@
         {
           "slug": "quadratic-equations",
           "title": "Quadratic equations",
+          "description": "Solve quadratics by factorising, completing the square, and the formula. Model real problems with parabolas and roots.",
           "status": "live",
           "curriculums": ["DSE"]
         },
         {
           "slug": "sequences",
           "title": "Sequences & series",
+          "description": "Work with arithmetic and geometric sequences, sigma notation, and simple convergence ideas.",
           "status": "planned",
           "curriculums": ["DSE"]
         },
         {
           "slug": "functions-graphs",
           "title": "Functions & graphs",
+          "description": "Study domains, ranges, transformations, and graphs of common functions including quadratics and rationals.",
           "status": "planned",
           "curriculums": ["DSE"]
         },
         {
           "slug": "linear-programming",
           "title": "Linear programming",
+          "description": "Graph linear inequalities, identify feasible regions, and optimise objective functions in two variables.",
           "status": "planned",
           "curriculums": ["DSE"]
         }
@@ -40,24 +52,28 @@
         {
           "slug": "trigonometry",
           "title": "Advanced trigonometry",
+          "description": "Use radians, identities, and laws of sines and cosines to solve triangles and model periodic phenomena.",
           "status": "planned",
           "curriculums": ["DSE"]
         },
         {
           "slug": "coordinate-geometry",
           "title": "Coordinate geometry of circles",
+          "description": "Find equations of circles, tangents, and intersections using coordinate methods and distance.",
           "status": "planned",
           "curriculums": ["DSE"]
         },
         {
           "slug": "circle-properties",
           "title": "Properties of circles",
+          "description": "Apply chord, tangent, and angle theorems in circles to prove results and solve geometry problems.",
           "status": "planned",
           "curriculums": ["DSE"]
         },
         {
           "slug": "loci",
           "title": "Loci",
+          "description": "Describe and construct loci in the plane, linking geometric constraints to algebraic equations.",
           "status": "planned",
           "curriculums": ["DSE"]
         }
@@ -70,24 +86,28 @@
         {
           "slug": "dispersion",
           "title": "Measures of dispersion",
+          "description": "Interpret range, interquartile range, variance, and standard deviation for comparing data sets.",
           "status": "planned",
           "curriculums": ["DSE"]
         },
         {
           "slug": "probability",
           "title": "Permutations, combinations & probability",
+          "description": "Count outcomes with permutations and combinations, then compute probabilities in finite sample spaces.",
           "status": "planned",
           "curriculums": ["DSE"]
         },
         {
           "slug": "normal-distribution",
           "title": "Normal distribution & z-scores",
+          "description": "Model continuous data with the normal curve, standardise with z-scores, and read probabilities from tables.",
           "status": "planned",
           "curriculums": ["DSE"]
         },
         {
           "slug": "statistical-literacy",
           "title": "Statistical literacy",
+          "description": "Evaluate claims in media and research: sampling bias, correlation versus causation, and misleading charts.",
           "status": "planned",
           "curriculums": ["DSE"]
         }

@@ -66,6 +66,13 @@ if (particleRoot && !window.matchMedia("(prefers-reduced-motion: reduce)").match
   });
 }
 
+const copyPageRoot = document.getElementById("copy-page-button");
+if (copyPageRoot) {
+  void import("./components/copy-page-button").then(({ CopyPageButton }) => {
+    render(() => <CopyPageButton />, copyPageRoot);
+  });
+}
+
 const quadraticRoot = document.getElementById("quadratic-explorer");
 if (quadraticRoot) {
   void Promise.all([

@@ -24,11 +24,14 @@
 
     <article class="book-chapter">
       <header class="book-chapter__header">
-        <p class="section-kicker">Number &amp; Algebra</p>
-        <h1 class="section-title">{{ section.title }}</h1>
-        {% if section.description %}
-        <p class="book-chapter__lead">{{ section.description }}</p>
-        {% endif %}
+        <div class="book-chapter__header-main">
+          <p class="section-kicker">Number &amp; Algebra</p>
+          <h1 class="section-title">{{ section.title }}</h1>
+          {% if section.description %}
+          <p class="book-chapter__lead">{{ section.description }}</p>
+          {% endif %}
+        </div>
+        <div id="copy-page-button" class="book-chapter__actions"></div>
       </header>
 
       {% if section.extra.chapter_id == "quadratic-equations" %}

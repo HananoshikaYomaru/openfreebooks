@@ -18,7 +18,8 @@
     {
       "id": {{ subject.id | json_encode() | safe }},
       "name": {{ subject.name | json_encode() | safe }},
-      "strands": {% if subject.id == "math" %}{{ math_catalog.strands | json_encode() | safe }}{% else %}[]{% endif %}
+      "strands": {% if subject.id == "math" %}{{ math_catalog.strands | json_encode() | safe }}{% else %}[]{% endif %}{% if subject.id == "math" and math_catalog.graph %},
+      "graph": {{ math_catalog.graph | json_encode() | safe }}{% endif %}
     }{% if not loop.last %},{% endif %}
     {% endfor %}
   ]

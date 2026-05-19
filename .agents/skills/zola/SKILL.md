@@ -21,14 +21,14 @@ Static site: **Zola** + custom theme `openfreebooks`. Output goes to `public/` (
 | `static/` | Copied to site root (`favicons`, `icons/`, etc.) |
 | `themes/openfreebooks/templates/` | Tera HTML, partials, macros |
 | `themes/openfreebooks/sass/` | Source styles → compiled `public/main.css` |
-| `themes/openfreebooks/static/` | **Only** committed build artifact: `js/bundle.js` |
+| `themes/openfreebooks/static/js/` | Vite output: `bundle.js` (site chrome) + hashed chunks (`catalog-app-*.js`, `catalog-canvas-view-*.js`, …) |
 
 See [reference.md](reference.md) for Tera pitfalls and build checks.
 
 ## Commands
 
 ```bash
-bun run build:js   # Vite → themes/openfreebooks/static/js/bundle.js
+bun run build:js   # Vite → themes/openfreebooks/static/js/ (bundle.js + lazy chunks)
 zola serve         # dev at http://127.0.0.1:1111
 bun run build      # build:js + zola build → public/
 ```
@@ -66,9 +66,21 @@ On Zola 0.22+, use the `data/…` path (not bare `contributors.json` at repo roo
 
 ## Solid.js
 
-Client behavior (header, marquee, scroll reveal, dialogs, theme toggle) lives in `frontend/` and mounts from `base.html` via `js/bundle.js`.
+Client behavior lives in `frontend/` and mounts from `base.html`:
+
+| Entry | Mount | Notes |
+|-------|--------|--------|
+| `js/bundle.js` | `main.tsx` | Header, theme, homepage, chapter widgets |
+| `js/catalog-app-*.js` | `#catalog-app` on `/catalog/` | Lazy-loaded with `catalog-canvas-view-*.js` for Map view |
 
 **When changing `frontend/` or adding interactivity**, read [zola-solid.md](zola-solid.md) before editing JS.
+
+### Catalog page
+
+- `content/catalog.md` → `template = "catalog.html"`
+- `templates/catalog.html` — empty `#catalog-app` + `#catalog-data` JSON embed (merged subject curricula at build time)
+- `sass/_catalog.scss` — list + map styles; map card title link underline lives under `.catalog-canvas`
+- Run `bun run build:js` after any `frontend/src/components/catalog-*` or `frontend/src/lib/catalog-*` change
 
 ## Verify
 
