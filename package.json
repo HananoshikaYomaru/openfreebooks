@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build:js": "vite build",
-    "build": "bun run build:js && zola build",
+    "build": "rm -f themes/openfreebooks/static/main.css public/main.css && bun run build:js && zola build",
     "dev:js": "vite build --watch",
     "scan:size": "bun scripts/scan-output-size.ts"
   },
