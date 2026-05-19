@@ -159,7 +159,7 @@
   background: var(--card-bg);
   overflow: visible;
   position: relative;
-  z-index: 2;
+  z-index: 10;
 }
 
 .catalog-header__head {
@@ -370,7 +370,7 @@
   position: absolute;
   right: 20px;
   top: 20px;
-  z-index: 4;
+  z-index: 2;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;

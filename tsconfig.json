@@ -10,5 +10,6 @@
     "noEmit": true,
     "skipLibCheck": true
   },
-  "include": ["frontend/src"]
+  "include": ["frontend/src"],
+  "exclude": ["frontend/src/**/*.test.ts"]
 }

@@ -3,6 +3,7 @@ import { curriculumBadgeClass, tierBadgeLabel } from "./catalog-badge";
 
 export type MermaidCatalogDiagram = {
   source: string;
+  rootNodeId: string | null;
 };
 
 function collectVisibleChapters(
@@ -61,6 +62,37 @@ function classListNodeIds(
   return ids;
 }
 
+function selectRootSlug(
+  subject: CatalogSubject,
+  visible: Map<string, CatalogChapter>,
+  edges: CatalogGraphEdge[]
+): string | null {
+  const indegree = new Map<string, number>();
+  for (const slug of visible.keys()) {
+    indegree.set(slug, 0);
+  }
+  for (const edge of edges) {
+    indegree.set(edge.to, (indegree.get(edge.to) ?? 0) + 1);
+  }
+
+  const rootCandidates = new Set<string>();
+  for (const [slug, degree] of indegree) {
+    if (degree === 0) {
+      rootCandidates.add(slug);
+    }
+  }
+
+  for (const strand of subject.strands) {
+    for (const chapter of strand.chapters) {
+      if (rootCandidates.has(chapter.slug)) {
+        return chapter.slug;
+      }
+    }
+  }
+
+  return visible.keys().next().value ?? null;
+}
+
 function chapterNodeLabel(chapter: CatalogChapter): string {
   const title = `<h3 class='catalog-mermaid-node__title'>${escapeLabel(chapter.title)}</h3>`;
   const description = chapter.description
@@ -93,6 +125,7 @@ export function subjectToMermaid(
   if (visible.size === 0) return null;
 
   const edges = buildEdgeList(subject, visible);
+  const rootSlug = selectRootSlug(subject, visible, edges);
   const lines: string[] = ["flowchart TB"];
 
   for (const strand of subject.strands) {
@@ -132,5 +165,8 @@ export function subjectToMermaid(
   lines.push("  classDef liveNode stroke-width:2px;");
   lines.push("  classDef plannedNode stroke-dasharray: 5 3;");
 
-  return { source: lines.join("\n") };
+  return {
+    source: lines.join("\n"),
+    rootNodeId: rootSlug ? nodeId(rootSlug) : null,
+  };
 }

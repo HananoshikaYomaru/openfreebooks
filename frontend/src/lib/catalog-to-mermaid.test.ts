@@ -52,6 +52,7 @@ describe("subjectToMermaid", () => {
     const diagram = subjectToMermaid(subject, () => true, "math");
     expect(diagram).not.toBeNull();
     const source = diagram!.source;
+    expect(diagram!.rootNodeId).toBe("chapter_a");
 
     expect(source).toContain("flowchart TB");
     expect(source.match(/chapter_a --> chapter_c/g)?.length).toBe(1);
