@@ -2,6 +2,7 @@ import { createMemo, createSignal, For, lazy, onCleanup, onMount, Show, Suspense
 import { subjectToCanvas } from "../lib/catalog-to-canvas";
 import { watchSiteTheme } from "../lib/catalog-canvas-theme";
 import { CatalogChapterCard } from "./catalog-chapter-card";
+import { CatalogFiltersMenu } from "./catalog-filters-menu";
 import type {
   CatalogChapter,
   CatalogData,
@@ -151,7 +152,10 @@ export function CatalogApp() {
   });
 
   return (
-    <div class="catalog-shell">
+    <div
+      class="catalog-shell"
+      classList={{ "catalog-shell--tree": viewMode() === "tree" }}
+    >
       <aside class="catalog-sidebar" aria-label="Subjects">
         <div class="catalog-sidebar__header">
           <p class="catalog-sidebar__kicker">{data.title}</p>
@@ -175,11 +179,11 @@ export function CatalogApp() {
 
       <div class="catalog-main">
         <header class="catalog-header">
-          <div class="catalog-header__intro">
-            <h1 class="catalog-header__title">{currentSubject().name}</h1>
-            <p class="catalog-header__stats">{statsLabel()}</p>
-          </div>
-          <div class="catalog-header__controls">
+          <div class="catalog-header__head">
+            <div class="catalog-header__intro">
+              <h1 class="catalog-header__title">{currentSubject().name}</h1>
+              <p class="catalog-header__stats">{statsLabel()}</p>
+            </div>
             <div class="catalog-view-toggle" role="tablist" aria-label="Chapter layout">
               <button
                 type="button"
@@ -200,31 +204,13 @@ export function CatalogApp() {
                 Map
               </button>
             </div>
-            <div class="catalog-filters-wrap">
-              <p class="catalog-filters__label">Filter by curriculum</p>
-              <div class="catalog-filters" role="group" aria-label="Curriculum filters">
-                <button
-                  type="button"
-                  class="catalog-filter-btn"
-                  classList={{ "is-active": activeFilters().size === 0 }}
-                  onClick={() => toggleFilter("ALL")}
-                >
-                  All
-                </button>
-                <For each={data.curriculums}>
-                  {(curriculum) => (
-                    <button
-                      type="button"
-                      class="catalog-filter-btn"
-                      classList={{ "is-active": activeFilters().has(curriculum) }}
-                      onClick={() => toggleFilter(curriculum)}
-                    >
-                      {curriculum}
-                    </button>
-                  )}
-                </For>
-              </div>
-            </div>
+          </div>
+          <div class="catalog-header__filters">
+            <CatalogFiltersMenu
+              curriculums={data.curriculums}
+              activeFilters={activeFilters}
+              onToggle={toggleFilter}
+            />
           </div>
         </header>
 

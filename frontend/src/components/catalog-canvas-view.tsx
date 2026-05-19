@@ -13,14 +13,14 @@ import {
 } from "json-canvas-viewer";
 import type { CatalogChapter } from "../../../data/catalog.types";
 import { renderCatalogChapterCardElement } from "./catalog-chapter-card";
-import { chapterSlugFromNodeId, relayoutCanvasChapterHeights } from "../lib/catalog-to-canvas";
-import { measureRenderedMapChapterCards } from "../lib/catalog-chapter-card-layout";
+import { chapterSlugFromNodeId } from "../lib/catalog-to-canvas";
 import {
   syncViewerTheme,
   VIEWER_THEME_COLORS,
   siteCanvasTheme,
   watchSiteTheme,
 } from "../lib/catalog-canvas-theme";
+import { focusReadableCatalogView } from "../lib/catalog-canvas-viewport";
 
 type CatalogCanvasViewProps = {
   canvas: JSONCanvas;
@@ -52,21 +52,6 @@ function bindPageScrollWheel(container: HTMLElement): () => void {
   };
   container.addEventListener("wheel", onWheel, { capture: true, passive: true });
   return () => container.removeEventListener("wheel", onWheel, { capture: true });
-}
-
-function waitForFrames(count = 2): Promise<void> {
-  return new Promise((resolve) => {
-    let remaining = count;
-    const step = () => {
-      remaining -= 1;
-      if (remaining <= 0) {
-        resolve();
-        return;
-      }
-      requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  });
 }
 
 function buildNodeComponents(
@@ -115,20 +100,7 @@ export function CatalogCanvasView(props: CatalogCanvasViewProps) {
     lastSerialized = cacheKey;
     viewer.load({ canvas });
     syncViewerTheme(viewer);
-
-    await waitForFrames();
-    if (generation !== loadGeneration || !viewer) return;
-
-    const measured = measureRenderedMapChapterCards(container);
-    const fitted = relayoutCanvasChapterHeights(canvas, measured);
-    if (!fitted) return;
-
-    const fittedKey = `${serializeCanvas(fitted)}|${chaptersKey(chapters)}`;
-    if (fittedKey === lastSerialized) return;
-
-    lastSerialized = fittedKey;
-    viewer.load({ canvas: fitted });
-    syncViewerTheme(viewer);
+    focusReadableCatalogView(viewer, container);
   };
 
   onMount(() => {

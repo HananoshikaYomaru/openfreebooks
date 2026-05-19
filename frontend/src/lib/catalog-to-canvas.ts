@@ -9,7 +9,7 @@ import { measureAllMapChapterCardHeights } from "./catalog-chapter-card-layout";
 
 export const CHAPTER_NODE_WIDTH = 300;
 /** Horizontal gap between strand columns (groups must not overlap). */
-const STRAND_GAP_X = 112;
+export const STRAND_GAP_X = 112;
 const GAP_Y = 48;
 const GROUP_PAD = 28;
 
@@ -327,7 +327,12 @@ export function relayoutCanvasChapterHeights(
   for (const node of chapterNodes) {
     const slug = chapterSlugFromNodeId(node.id);
     if (!slug) continue;
-    mergedHeights.set(slug, Math.max(node.height ?? 0, heightBySlug.get(slug) ?? 0));
+    const measured = heightBySlug.get(slug);
+    if (measured !== undefined) {
+      mergedHeights.set(slug, measured);
+    } else {
+      mergedHeights.set(slug, node.height ?? 0);
+    }
   }
 
   const slots: ChapterLayoutSlot[] = chapterNodes.map((node, index) => {
