@@ -36,6 +36,39 @@
   width: min(100%, 280px);
   height: auto;
   display: block;
+  overflow: visible;
+}
+
+.why-art.is-inview .why-illustration__float {
+  animation: why-illustration-float 4.5s ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.why-art.is-inview .why-illustration__pulse {
+  animation: why-illustration-pulse 2.8s ease-in-out infinite;
+}
+
+@keyframes why-illustration-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes why-illustration-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.45;
+  }
 }
 
 .why-copy {
@@ -243,6 +276,11 @@ $university-colors: (
     opacity: 1;
     translate: 0 0;
     transition: none;
+  }
+
+  .why-illustration__float,
+  .why-illustration__pulse {
+    animation: none !important;
   }
 
   .university-carousel-track {
