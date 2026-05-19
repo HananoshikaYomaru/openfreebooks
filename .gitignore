@@ -24,3 +24,9 @@ Thumbs.db
 
 # Vite build output (bun run build:js → zola copies into public/)
 themes/openfreebooks/static/
+
+# Chapter sync output (bun run sync:chapters)
+frontend/src/generated/
+data/_generated/
+static/css/chapters/
+static/chapters/

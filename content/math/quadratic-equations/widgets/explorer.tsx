@@ -340,7 +340,7 @@ function SliderRow(props: {
   );
 }
 
-export function QuadraticExplorer() {
+function QuadraticExplorer() {
   const [a, setA] = createSignal(1);
   const [b, setB] = createSignal(0);
   const [c, setC] = createSignal(-4);
@@ -556,3 +556,5 @@ export function QuadraticExplorer() {
     </section>
   );
 }
+
+export default QuadraticExplorer;

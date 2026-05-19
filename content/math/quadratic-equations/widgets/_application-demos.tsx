@@ -1,6 +1,6 @@
 import katex from "katex";
 import { createEffect, createMemo, createSignal, For, onCleanup, Show } from "solid-js";
-import { computeRoots, discriminant, formatNum } from "../lib/math-graph";
+import { computeRoots, discriminant, formatNum } from "../../../../frontend/src/lib/math-graph";
 
 const HORIZONTAL_SPEED = 12;
 

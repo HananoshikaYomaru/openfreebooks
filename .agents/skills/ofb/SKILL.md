@@ -74,7 +74,7 @@ bun run build       # production: JS + Zola + pagefind → public/
 
 - **Component UI** only (`pagefind-component-ui.js`), not legacy `pagefind-ui.js`.
 - Index runs **after** `zola build`. Production: `bun run build`. Dev: `bun run index:search` copies bundle to `static/pagefind/` (gitignored) for `zola serve`.
-- v1 indexes **live chapter pages only** (`data-pagefind-body` on `templates/math/chapter.html`); home, about, catalog, credits, and other site pages are excluded.
+- v1 indexes **live chapter pages only** (`data-pagefind-body` on `templates/chapter.html`); home, about, catalog, credits, and other site pages are excluded.
 
 Detailed checklists: [curriculum-data.md](curriculum-data.md). Human-facing guide: [CONTRIBUTING.md](../../../CONTRIBUTING.md).
 
@@ -105,16 +105,17 @@ Detailed checklists: [curriculum-data.md](curriculum-data.md). Human-facing guid
 
 Prerequisites: **only** `graph.edges` (required, global DAG, cross-strand OK). Longest-path levels. No implicit strand-list chains. List order ≠ map order.
 
-## Chapter content (current pattern)
+## Chapter content (colocated folder)
 
-Live math example:
+Live chapters live under `content/{subject}/{slug}/`:
 
-1. `content/math/quadratic-equations/_index.md` — front matter, `template = "math/chapter.html"`, `[extra] chapter_id`
-2. `templates/partials/math/quadratic-equations-core-content.html` — prose + KaTeX (supplement partial for history, derivation, etc.)
-3. `templates/math/chapter.html` — `{% if section.extra.chapter_id == "…" %}` includes partial
-4. Optional: `frontend/src/components/quadratic-explorer.tsx` + mount in `main.tsx`
+1. `data/{subject}-curriculum.json` — catalog metadata (`status`, `curriculums`, `graph.edges`)
+2. `_index.md` — front matter only (`template = "chapter.html"`, `[extra] subject`, `chapter_id`, `strand`)
+3. `core.html` (required), optional `supplement.html`, `assets/`, `widgets/*.tsx`, optional `chapter.scss`
+4. `bun run sync:chapters` merges HTML into `_index.md`, copies assets to `static/chapters/…`, generates `frontend/src/generated/chapter-widgets.ts`
+5. `templates/chapter.html` renders `{{ section.content | safe }}`; widgets use `data-widget` + auto-mount in `main.tsx`
 
-**Pain point:** each new chapter needs a template `if` branch until a generic chapter loader exists.
+Reference: `content/math/quadratic-equations/`.
 
 ## Verify before PR
 

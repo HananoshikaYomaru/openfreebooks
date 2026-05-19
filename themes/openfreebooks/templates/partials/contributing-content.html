@@ -28,10 +28,9 @@
 <section id="overview" class="contributing-section">
   <h2 class="contributing-section__title">How the catalog fits together</h2>
   <div class="contributing-prose">
-    <pre class="contributing-code-block"><code>data/catalog.json              → subjects + filter chips (DSE, IB, …)
-data/{subject}-curriculum.json → strands, chapters, graph.edges
-content/{subject}/{slug}/      → chapter page when status is "live"
-themes/.../partials/...        → chapter HTML bodies (today)</code></pre>
+    <pre class="contributing-code-block"><code>data/{subject}-curriculum.json → catalog + graph (status, curriculums, edges)
+content/{subject}/{slug}/      → live page (one folder)
+  _index.md, core.html, supplement.html, assets/, widgets/</code></pre>
     <ul>
       <li><strong>List</strong> — numbered cards; live chapters link from the whole card.</li>
       <li><strong>Map</strong> (<code>?view=tree</code>) — Mermaid map with strand columns; live chapters link from the <strong>title</strong> only (<code>→</code> + hover underline).</li>
@@ -67,15 +66,13 @@ themes/.../partials/...        → chapter HTML bodies (today)</code></pre>
 <section id="live-chapter" class="contributing-section">
   <h2 class="contributing-section__title">Publish a live chapter</h2>
   <div class="contributing-prose">
-    <p>A live chapter needs catalog JSON <strong>and</strong> a Zola section.</p>
+    <p>A live chapter needs a catalog JSON entry <strong>and</strong> a folder under <code>content/{subject}/{slug}/</code>.</p>
     <h3 class="contributing-section__subtitle">1. Catalog entry</h3>
-    <p>Set <code>"status": "live"</code> and include <code>description</code> in the curriculum JSON.</p>
-    <h3 class="contributing-section__subtitle">2. Zola section</h3>
-    <p>Create <code>content/{subject}/{slug}/_index.md</code> with <code>chapter_id</code> matching the slug.</p>
-    <h3 class="contributing-section__subtitle">3. Chapter HTML</h3>
-    <p>Add <code>themes/openfreebooks/templates/partials/math/your-slug-content.html</code> and wire it in <code>math/chapter.html</code>. Copy patterns from <code>quadratic-equations-core-content.html</code>.</p>
-    <h3 class="contributing-section__subtitle">4. Optional widget</h3>
-    <p>Add a Solid component under <code>frontend/src/components/</code> and mount it in <code>main.tsx</code>. Run <code>bun run build:js</code>.</p>
+    <p>Set <code>"status": "live"</code> in <code>data/{subject}-curriculum.json</code> with <code>description</code> and <code>curriculums</code>.</p>
+    <h3 class="contributing-section__subtitle">2. Chapter folder</h3>
+    <p>Add <code>_index.md</code>, <code>core.html</code>, optional <code>supplement.html</code>, <code>assets/</code>, <code>widgets/*.tsx</code>. Copy <code>content/math/quadratic-equations/</code>.</p>
+    <h3 class="contributing-section__subtitle">3. Build</h3>
+    <p><code>bun run build:js</code> syncs HTML and bundles widgets — no theme or <code>main.tsx</code> edits.</p>
   </div>
 
   <aside class="contributing-card-demo" aria-label="Map chapter card example">

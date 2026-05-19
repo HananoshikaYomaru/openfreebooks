@@ -3,6 +3,11 @@ import solid from "vite-plugin-solid";
 
 export default defineConfig({
   plugins: [solid()],
+  server: {
+    fs: {
+      allow: [".."],
+    },
+  },
   build: {
     outDir: "themes/openfreebooks/static",
     emptyOutDir: false,

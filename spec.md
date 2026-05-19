@@ -22,7 +22,7 @@ we need to have a question bank feature. since this is purely static sites, ques
 4. choice
 5. ranking
 
-question bank not only show answer but also steps and calcultion
+question bank not only show answer but also steps, explanation, calcultion.
 
 ## Chapters requirements 
 

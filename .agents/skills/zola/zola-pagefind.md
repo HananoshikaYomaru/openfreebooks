@@ -42,7 +42,7 @@ bun run build   # build:js + zola build + index:search
 
 | Source | Indexed? |
 |--------|----------|
-| `templates/math/chapter.html` → `<article data-pagefind-body>` | Yes |
+| `templates/chapter.html` → `<article data-pagefind-body>` | Yes |
 | Home, about, catalog, credits, contributing, `/search/` | No |
 | Catalog chapter cards (Solid + JSON) | No |
 | Planned chapters (no `content/` page) | No |
@@ -51,10 +51,10 @@ New subject chapter templates must include `data-pagefind-body` on the main less
 
 ### Per-chapter markup
 
-[`themes/openfreebooks/templates/math/chapter.html`](../../../themes/openfreebooks/templates/math/chapter.html):
+[`themes/openfreebooks/templates/chapter.html`](../../../themes/openfreebooks/templates/chapter.html):
 
 ```html
-<article class="book-chapter" data-pagefind-body>
+<article class="book-chapter" data-pagefind-body data-chapter="math/quadratic-equations">
   …
   <div id="copy-page-button" … data-pagefind-ignore></div>
   <div id="quadratic-explorer" … data-pagefind-ignore></div>

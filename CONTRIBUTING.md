@@ -20,32 +20,30 @@ Thank you for helping grow free, open textbooks.
 
 **Browse the catalog locally:** `bun run build:js && zola serve` → [http://127.0.0.1:1111/catalog/](http://127.0.0.1:1111/catalog/)
 
-**Search locally:** After `bun run build:js`, run `bun run index:search` once (or again after changing chapter HTML), then `zola serve`. Try [http://127.0.0.1:1111/search/](http://127.0.0.1:1111/search/) or press ⌘K / Ctrl+K. Pagefind indexes **live chapter pages only** (not home, about, catalog, or credits). Without `index:search`, the search UI loads but returns no results.
+**Search locally:** After `bun run build:js`, run `bun run index:search` once (or again after changing chapter HTML), then `zola serve`. Try [http://127.0.0.1:1111/search/](http://127.0.0.1:1111/search/) or press ⌘K / Ctrl+K.
 
 ---
 
 ## How the catalog fits together
 
 ```text
-data/catalog.json              → subjects in the sidebar + filter chips (DSE, IB, …)
-data/{subject}-curriculum.json → strands, chapters, curriculum tags, graph.edges
-content/{subject}/{slug}/      → actual chapter page (when status is "live")
-themes/.../partials/...        → chapter HTML content (today)
+data/{subject}-curriculum.json  → catalog list + map (status, curriculums, graph.edges)
+content/{subject}/{slug}/       → everything for the live page (one folder)
+  _index.md, core.html, supplement.html, assets/, widgets/, chapter.scss
 ```
 
-- **Catalog** (`/catalog/`) — **List** (numbered cards; live = whole card links) and **Map** (`?view=tree`, Mermaid; live = title link only with `→` and hover underline).
-- **`/math/`** redirects to `/catalog/?subject=math`.
-- **Curriculum names** (DSE, IB, …) appear only in the catalog — not inside chapter text ([spec.md](spec.md)).
+- **Catalog** (`/catalog/`) — list and map (`?view=tree`). Curriculum names (DSE, IB, …) appear only in the catalog — not inside chapter prose ([spec.md](spec.md)).
 - Every chapter needs a **`description`** in curriculum JSON (map clamps to three lines).
+- **`bun run sync:chapters`** (also run automatically by `bun run build:js`) merges `core.html` + `supplement.html` into `_index.md` for Zola. Edit the HTML files, not the merged body in `_index.md`.
 
 ### Map graph rules (summary)
 
 | Rule | Detail |
 |------|--------|
-| Edges | **Only** `graph.edges` — no automatic chain from strand `chapters[]` order |
+| Edges | **Only** `graph.edges` — strand `chapters[]` order does not create arrows |
 | Meaning | Each edge is a **required** prerequisite (`from` → `to`) |
 | Scope | Cross-strand edges allowed |
-| Layout | **Longest-path** levels; siblings at the same level stack vertically in a column |
+| Layout | **Longest-path** levels; siblings stack vertically |
 | DAG | No cycles — build throws if the graph cycles |
 | `tier` | Optional `foundation` (default) or `non-foundation` (Extension badge) |
 
@@ -53,11 +51,8 @@ themes/.../partials/...        → chapter HTML content (today)
 
 ## Add a planned chapter (roadmap)
 
-Use this when the chapter is not written yet but should appear in the catalog.
-
 1. Open `data/{subject}-curriculum.json` (e.g. `data/math-curriculum.json`).
-2. Find the right **strand** (topic group).
-3. Add a chapter object:
+2. Add a chapter object under the right **strand**:
 
 ```json
 {
@@ -70,136 +65,98 @@ Use this when the chapter is not written yet but should appear in the catalog.
 }
 ```
 
-(`tier` is optional — omit for foundation topics; `non-foundation` shows an **Extension** badge.)
-
-4. Use a **kebab-case** `slug` (letters, numbers, hyphens only).
-5. Set `curriculums` to every syllabus tag that applies. Tags must exist in `data/catalog.json` → `curriculums`.
-6. Run `zola build` and check `/catalog/?subject=math` (or your subject).
-
-No `content/` files needed for planned chapters.
+3. Use **kebab-case** slugs. No `content/` folder needed for planned chapters.
 
 ---
 
 ## Publish a live chapter
 
-A live chapter needs **catalog data** and a **page**.
-
 ### 1. Catalog entry
 
-In `data/{subject}-curriculum.json`, set `"status": "live"` and include a `description` (see [planned chapter](#add-a-planned-chapter-roadmap)).
+In `data/{subject}-curriculum.json`, set `"status": "live"` and include `description`, `curriculums`, and optional `tier`.
 
-### 2. Zola section
+### 2. Chapter folder
 
-Create `content/{subject}/{slug}/_index.md`:
+Create `content/{subject}/{slug}/`:
+
+```text
+content/math/your-chapter-slug/
+├── _index.md           # page metadata (see below)
+├── core.html           # required — main lesson HTML
+├── supplement.html     # optional — history, checkpoints, extra demos
+├── chapter.scss        # optional — chapter-specific styles
+├── assets/             # optional — images (synced to static/chapters/…)
+└── widgets/            # optional — Solid widgets (auto-mounted)
+    └── my-widget.tsx   # default export; use data-widget="my-widget" in HTML
+```
+
+**`_index.md` front matter** (page fields only — catalog fields stay in JSON):
 
 ```md
 +++
 title = "Your chapter title"
 description = "One sentence for search and previews — no curriculum names here."
-template = "math/chapter.html"
+template = "chapter.html"
 weight = 10
 [extra]
+subject = "math"
 chapter_id = "your-chapter-slug"
+strand = "Number & Algebra"
 +++
 ```
 
-- `slug` in the path must match `slug` in the JSON file.
-- `chapter_id` must match the slug (used by the template).
-- `weight` controls order within the section (lower = earlier).
+### 3. HTML and widgets
 
-### 3. Chapter HTML content
+- Use shared classes: `book-prose`, `book-prose__heading`, `book-callout`, etc. Copy from `content/math/quadratic-equations/`.
+- **Do not** mention DSE, IB, or other curriculum names in chapter HTML.
+- Mount widgets with `<div class="math-widget-mount" data-widget="widget-name" data-pagefind-ignore></div>` (filename without `.tsx` = `data-widget` value).
+- Reference synced assets with root-relative paths: `/chapters/math/your-chapter-slug/image.png` (chapter HTML is not processed as Tera)
 
-Today, chapter bodies live as HTML partials under the theme, not Markdown:
+### 4. Build and check
 
-1. Add `themes/openfreebooks/templates/partials/math/your-chapter-slug-content.html` with the lesson HTML.
-2. In `themes/openfreebooks/templates/math/chapter.html`, include it when `chapter_id` matches (chapter content is inside `<article data-pagefind-body>` for search indexing):
-
-```html
-{% if section.extra.chapter_id == "your-chapter-slug" %}
-{% include "partials/math/your-chapter-slug-content.html" %}
-{% endif %}
+```bash
+bun run build:js    # sync:chapters + Vite bundle
+zola serve
 ```
 
-Use existing classes: `book-prose`, `book-prose__heading`, `book-callout`, etc. Copy from `quadratic-equations-core-content.html`.
+- `/catalog/?subject=math` — chapter appears and links correctly.
+- `/math/your-chapter-slug/` — page renders.
+- `bun run build` — full production build.
 
-**Do not** mention DSE, IB, or other curriculum names in the chapter body.
-
-### 4. Interactive widgets (optional)
-
-If the chapter needs a Solid widget (like the quadratic explorer):
-
-1. Add a component under `frontend/src/components/`.
-2. Mount it in `frontend/src/main.tsx` when a mount element exists.
-3. Add `<div id="your-widget" class="math-widget-mount"></div>` in the chapter template branch.
-
-Then run `bun run build:js`.
-
-### 5. Check
-
-- `/catalog/?subject=math` — chapter appears; live chapters link correctly.
-- `/math/your-chapter-slug/` — page renders; breadcrumb goes to catalog.
-- `bun run build` completes without errors.
+No theme edits, no `main.tsx` edits, no per-chapter template branches.
 
 ---
 
 ## Chapter graph (branches)
 
-The **Map** tab (`?view=tree`) shows chapters as a directed graph (strand = column, arrows = prerequisites).
-
-- Prerequisites are **only** declared in `graph.edges` (strand list order does not create arrows).
-- For **branches** or **merges**, add edges:
+Add edges in `data/{subject}-curriculum.json`:
 
 ```json
 "graph": {
   "edges": [
-    { "from": "quadratic-equations", "to": "sequences-series" },
-    { "from": "quadratic-equations", "to": "functions-graphs" },
-    { "from": "functions-graphs", "to": "linear-programming" },
-    { "from": "sequences-series", "to": "linear-programming" }
+    { "from": "quadratic-equations", "to": "sequences-series" }
   ]
 }
 ```
 
-Rules:
-
-- `from` and `to` are chapter **slugs**.
-- The graph must **not contain cycles**.
-- Edges may cross strands.
-
-Open `/catalog/?subject=math&view=tree` to verify. Use Ctrl/Cmd + wheel on the map to zoom.
+`from` / `to` are chapter **slugs**. Graph must be acyclic. Verify at `/catalog/?subject=math&view=tree`.
 
 ---
 
 ## Add a new subject
 
-Example: adding **Science**.
-
-1. **`data/catalog.json`** — add to `subjects`:
-
-   ```json
-   { "id": "science", "name": "Science" }
-   ```
-
-2. **`data/science-curriculum.json`** — create with `title`, `strands`, and chapters (copy structure from `math-curriculum.json`).
-
-3. **`themes/openfreebooks/templates/catalog.html`** — wire the new file into `#catalog-data` (see `math` block).
-
-4. **`content/science/`** — add `_index.md` when you have a section.
-
-5. **Homepage** — optional card in `themes/openfreebooks/templates/index.html`.
-
-6. Build and test `/catalog/?subject=science`.
+1. `data/catalog.json` — add to `subjects`.
+2. Create `data/{id}-curriculum.json` (copy structure from `math-curriculum.json`).
+3. Wire the subject in `themes/openfreebooks/templates/catalog.html` (until auto-wire lands).
+4. Add `content/{subject}/` when you have chapters.
 
 ---
 
 ## Add a curriculum label
 
-Example: adding **GCSE**.
-
-1. Add `"GCSE"` to `curriculums` in `data/catalog.json`.
-2. Tag chapters with `"GCSE"` in their `curriculums` arrays.
-3. Add a badge style in `themes/openfreebooks/sass/_catalog.scss` (copy `.catalog-badge--igcse` pattern).
-4. Add a mapping in `frontend/src/lib/catalog-badge.ts` → `curriculumBadgeClass()` (or rely on the default style).
+1. Add the label to `curriculums` in `data/catalog.json`.
+2. Tag chapters in their `curriculums` arrays.
+3. Add badge style in `themes/openfreebooks/sass/_catalog.scss` and mapping in `frontend/src/lib/catalog-badge.ts`.
 
 ---
 
@@ -207,22 +164,23 @@ Example: adding **GCSE**.
 
 ```bash
 bun install
-bun run build:js    # after frontend/ changes
+bun run sync:chapters  # after content/ chapter changes
+bun run build:js       # sync + Vite
 zola serve
-bun test            # catalog map generation (catalog-to-mermaid)
+bun test
 bun run build
 ```
 
-- Do **not** commit `themes/openfreebooks/static/` (Vite output). Run `bun run build:js` before `zola build` or `zola serve`.
+- Do **not** commit `themes/openfreebooks/static/` (Vite output).
 - Do **not** commit `public/`.
 
 ---
 
 ## Pull requests
 
-- Keep changes focused (one subject or a few chapters per PR is fine).
+- Keep changes focused.
 - Run `bun run build` before opening the PR.
-- Describe what you added: subject, chapters, live vs planned, and which curricula apply.
+- Describe subject, chapters, live vs planned, and curricula.
 
 Questions? Open a [GitHub discussion](https://github.com/hananoshikayomaru/openfreebooks) or issue.
 
@@ -230,4 +188,4 @@ Questions? Open a [GitHub discussion](https://github.com/hananoshikayomaru/openf
 
 ## For maintainers & agents
 
-Machine-oriented detail: [.agents/skills/ofb/SKILL.md](.agents/skills/ofb/SKILL.md) and [.agents/skills/ofb/curriculum-data.md](.agents/skills/ofb/curriculum-data.md).
+Machine-oriented detail: [.agents/skills/ofb/SKILL.md](.agents/skills/ofb/SKILL.md).

@@ -103,9 +103,9 @@ These issues make contributions harder than they should be. PRs that fix any ite
 
 ### Chapters & content
 
-- [ ] **Generic chapter template** — drop per-chapter `{% if chapter_id %}` branches; load `partials/{subject}/{slug}-content.html` by convention.
-- [ ] **Strand kicker from data** — chapter header still hardcodes “Number & Algebra”; should come from strand in curriculum JSON.
-- [ ] **Subject-agnostic chapter template** — breadcrumb/catalog URL and `load_data` path should use section path, not `math` only.
+- [x] **Colocated chapter folders** — `content/{subject}/{slug}/` with `sync:chapters`, generic `chapter.html`, auto widget registry.
+- [x] **Strand kicker from front matter** — `[extra] strand` in `_index.md`.
+- [ ] **Subject-agnostic catalog load in chapter template** — breadcrumb still loads `math-curriculum.json` literally until more subjects go live.
 - [ ] **Markdown chapters (optional)** — README/spec disagree on format; if staying HTML, document clearly everywhere.
 - [ ] **Defuddle “copy as Markdown”** — spec calls for it on every page; not implemented.
 

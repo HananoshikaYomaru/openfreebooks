@@ -36,6 +36,40 @@ function mountFooterYear() {
   }
 }
 
+function mountChapterWidgets() {
+  const article = document.querySelector<HTMLElement>("[data-chapter]");
+  const chapterKey = article?.dataset.chapter;
+  const mounts = document.querySelectorAll<HTMLElement>("[data-widget]");
+  if (!chapterKey || mounts.length === 0) return;
+
+  void import("./generated/chapter-widgets").then(({ chapterWidgetLoaders }) => {
+    const loadPromises: Promise<void>[] = [];
+
+    for (const el of mounts) {
+      const widget = el.dataset.widget;
+      if (!widget) continue;
+      const loaderKey = `${chapterKey}/${widget}`;
+      const loader = chapterWidgetLoaders[loaderKey];
+      if (!loader) {
+        console.warn(`No widget loader registered for ${loaderKey}`);
+        continue;
+      }
+      loadPromises.push(
+        loader().then((mod) => {
+          render(() => mod.default(), el);
+        })
+      );
+    }
+
+    void Promise.all(loadPromises).then(() => {
+      if (!document.querySelector(".book-prose")) return;
+      void import("./lib/render-math").then(({ renderBookMath }) => {
+        requestAnimationFrame(() => renderBookMath());
+      });
+    });
+  });
+}
+
 initTheme();
 
 const config = readConfig();
@@ -78,12 +112,6 @@ if (copyPageRoot) {
   });
 }
 
-const hasQuadraticChapter =
-  document.getElementById("quadratic-explorer") ||
-  document.getElementById("projectile-demo") ||
-  document.getElementById("profit-demo") ||
-  document.getElementById("area-demo");
-
 const chapterNavRoot = document.getElementById("chapter-heading-nav");
 if (chapterNavRoot) {
   void import("./components/chapter-heading-nav").then(({ ChapterHeadingNav }) => {
@@ -91,30 +119,7 @@ if (chapterNavRoot) {
   });
 }
 
-if (hasQuadraticChapter) {
-  void Promise.all([
-    import("./components/quadratic-explorer"),
-    import("./components/quadratic-application-demos"),
-    import("./lib/render-math"),
-  ]).then(([{ QuadraticExplorer }, demos, { renderBookMath }]) => {
-    const quadraticRoot = document.getElementById("quadratic-explorer");
-    if (quadraticRoot) {
-      render(() => <QuadraticExplorer />, quadraticRoot);
-    }
-    const appDemos: Array<[string, () => import("solid-js").JSX.Element]> = [
-      ["projectile-demo", demos.ProjectileDemo],
-      ["profit-demo", demos.ProfitDemo],
-      ["area-demo", demos.AreaDemo],
-    ];
-    for (const [id, Demo] of appDemos) {
-      const root = document.getElementById(id);
-      if (root) {
-        render(() => <Demo />, root);
-      }
-    }
-    requestAnimationFrame(() => renderBookMath());
-  });
-}
+mountChapterWidgets();
 
 const catalogRoot = document.getElementById("catalog-app");
 if (catalogRoot) {
