@@ -1,6 +1,9 @@
 # Zola build output (Wrangler deploy source)
 public/
 
+# Pagefind index copied for zola serve (run bun run index:search)
+static/pagefind/
+
 # Dependencies
 node_modules/
 

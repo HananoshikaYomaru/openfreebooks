@@ -1,0 +1,250 @@
+// Pagefind Component UI — override defaults from pagefind-component-ui.css (load main.css after Pagefind).
+// Modal surface matches .contributor-dialog / .contributor-dialog-panel (_contributors.scss).
+
+$dialog-surface-light: #f5f4f1;
+$dialog-surface-dark: #1a1917;
+$dialog-backdrop-light: rgba(26, 26, 26, 0.45);
+$dialog-backdrop-dark: rgba(0, 0, 0, 0.62);
+
+@mixin pagefind-tokens {
+  --pf-text: var(--ink);
+  --pf-text-secondary: var(--soft-ink);
+  --pf-text-muted: var(--muted);
+  --pf-background: #{$dialog-surface-light};
+  --pf-border: var(--line);
+  --pf-border-focus: color-mix(in srgb, var(--accent) 45%, var(--line));
+  --pf-skeleton: color-mix(in srgb, var(--line) 50%, #{$dialog-surface-light});
+  --pf-skeleton-shine: color-mix(in srgb, var(--line) 25%, #{$dialog-surface-light});
+  --pf-hover: color-mix(in srgb, var(--accent) 10%, #{$dialog-surface-light});
+  --pf-mark: var(--accent);
+  --pf-scroll-shadow: var(--shadow-soft);
+  --pf-shadow-sm: 0 2px 8px var(--shadow-soft);
+  --pf-shadow-md: 0 4px 16px var(--shadow-soft);
+  --pf-shadow-lg: 0 18px 48px var(--shadow-soft);
+  --pf-error-bg: color-mix(in srgb, #dc2626 12%, var(--paper));
+  --pf-error-border: color-mix(in srgb, #dc2626 35%, var(--line));
+  --pf-error-text: #b91c1c;
+  --pf-error-text-secondary: #991b1b;
+  --pf-outline-focus: var(--accent);
+  --pf-outline-width: 2px;
+  --pf-outline-offset: 2px;
+  --pf-font: var(--font-body);
+  --pf-input-height: 40px;
+  --pf-input-font-size: 16px;
+  --pf-summary-font-size: 0.75rem;
+  --pf-result-title-font-size: 0.95rem;
+  --pf-result-excerpt-font-size: 0.85rem;
+  --pf-border-radius: 8px;
+  --pf-modal-backdrop: #{$dialog-backdrop-light};
+  --pf-modal-max-width: min(92vw, 440px);
+  --pf-modal-max-height: min(80dvh, 800px);
+  --pf-modal-top: 10dvh;
+}
+
+@mixin pagefind-dialog-dark-tokens {
+  --pf-background: #{$dialog-surface-dark};
+  --pf-skeleton: color-mix(in srgb, var(--line) 50%, #{$dialog-surface-dark});
+  --pf-skeleton-shine: color-mix(in srgb, var(--line) 25%, #{$dialog-surface-dark});
+  --pf-hover: color-mix(in srgb, var(--accent) 12%, #{$dialog-surface-dark});
+  --pf-modal-backdrop: #{$dialog-backdrop-dark};
+}
+
+:root {
+  @include pagefind-tokens;
+}
+
+[data-theme="dark"],
+html[data-pf-theme="dark"] {
+  @include pagefind-tokens;
+  @include pagefind-dialog-dark-tokens;
+
+  --pf-error-bg: color-mix(in srgb, #dc2626 18%, var(--paper));
+  --pf-error-text: #fca5a5;
+  --pf-error-text-secondary: #fecaca;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include pagefind-tokens;
+    @include pagefind-dialog-dark-tokens;
+
+    --pf-error-bg: color-mix(in srgb, #dc2626 18%, var(--paper));
+    --pf-error-text: #fca5a5;
+    --pf-error-text-secondary: #fecaca;
+  }
+}
+
+// Match Pagefind's specificity so modal styles beat component defaults.
+@mixin pf-host {
+  :is(*, #\#):is(*, #\#):is(*, #\#) {
+    @content;
+  }
+}
+
+pagefind-modal {
+  --pf-background: #{$dialog-surface-light};
+  --pf-modal-backdrop: #{$dialog-backdrop-light};
+}
+
+[data-theme="dark"] pagefind-modal,
+html[data-pf-theme="dark"] pagefind-modal {
+  --pf-background: #{$dialog-surface-dark};
+  --pf-modal-backdrop: #{$dialog-backdrop-dark};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) pagefind-modal {
+    --pf-background: #{$dialog-surface-dark};
+    --pf-modal-backdrop: #{$dialog-backdrop-dark};
+  }
+}
+
+@include pf-host {
+  dialog.pf-modal {
+    background-color: #{$dialog-surface-light};
+    color: var(--ink);
+    border: 1px solid var(--card-border);
+    border-radius: 0;
+    box-shadow: 0 18px 48px var(--shadow-soft);
+    isolation: isolate;
+    mix-blend-mode: normal;
+  }
+
+  dialog.pf-modal::backdrop {
+    background: #{$dialog-backdrop-light};
+  }
+
+  pagefind-modal-header,
+  .pf-modal-header,
+  pagefind-modal-body,
+  .pf-modal-body,
+  pagefind-modal-footer,
+  .pf-modal-footer {
+    background-color: #{$dialog-surface-light};
+  }
+
+  pagefind-modal-header .pf-input,
+  .pf-modal-header .pf-input {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .pf-modal-close {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    color: var(--muted);
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .pf-modal-close:hover,
+  .pf-modal-close:focus-visible {
+    color: var(--ink);
+    background: var(--paper);
+    outline: none;
+  }
+}
+
+[data-theme="dark"] {
+  @include pf-host {
+    dialog.pf-modal {
+      background-color: #{$dialog-surface-dark};
+    }
+
+    dialog.pf-modal::backdrop {
+      background: #{$dialog-backdrop-dark};
+    }
+
+    pagefind-modal-header,
+    .pf-modal-header,
+    pagefind-modal-body,
+    .pf-modal-body,
+    pagefind-modal-footer,
+    .pf-modal-footer {
+      background-color: #{$dialog-surface-dark};
+    }
+
+    .pf-modal-close:hover,
+    .pf-modal-close:focus-visible {
+      background: color-mix(in srgb, var(--ink) 8%, #{$dialog-surface-dark});
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include pf-host {
+      dialog.pf-modal {
+        background-color: #{$dialog-surface-dark};
+      }
+
+      dialog.pf-modal::backdrop {
+        background: #{$dialog-backdrop-dark};
+      }
+
+      pagefind-modal-header,
+      .pf-modal-header,
+      pagefind-modal-body,
+      .pf-modal-body,
+      pagefind-modal-footer,
+      .pf-modal-footer {
+        background-color: #{$dialog-surface-dark};
+      }
+    }
+  }
+}
+
+// Header compact trigger — align with .theme-toggle
+.site-header__search {
+  display: flex;
+  align-items: center;
+
+  --pf-background: transparent;
+  --pf-border: var(--line);
+  --pf-border-focus: color-mix(in srgb, var(--accent) 35%, var(--line));
+  --pf-hover: color-mix(in srgb, var(--accent) 10%, transparent);
+  --pf-text-muted: var(--soft-ink);
+  --pf-text-secondary: var(--soft-ink);
+  --pf-input-height: 36px;
+  --pf-border-radius: 8px;
+  --pf-font: var(--mono);
+}
+
+.search-page {
+  padding-block: clamp(2.5rem, 6vh, 4rem) clamp(3rem, 8vh, 5rem);
+}
+
+.search-page__layout {
+  max-width: 42rem;
+}
+
+.search-page__title {
+  margin-top: 0.35rem;
+}
+
+.search-page__lead {
+  margin: 0.75rem 0 2rem;
+  color: var(--soft-ink);
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.search-page__ui {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  --pf-background: #{$dialog-surface-light};
+}
+
+[data-theme="dark"] .search-page__ui {
+  --pf-background: #{$dialog-surface-dark};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .search-page__ui {
+    --pf-background: #{$dialog-surface-dark};
+  }
+}

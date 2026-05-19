@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} | {{ config.extra.site_title }}{% endblock title %}
+{% block meta_description %}
+<meta name="description" content="Search Open Free Books chapters and site pages." />
+{% endblock meta_description %}
+
+{% block content %}
+<section class="search-page">
+  <div class="container search-page__layout">
+    <p class="section-kicker">Search</p>
+    <h1 class="section-title search-page__title">{{ page.title }}</h1>
+    <p class="search-page__lead">Find chapters and pages across Open Free Books.</p>
+    <div class="search-page__ui">
+      <pagefind-input autofocus placeholder="Search books and chapters…"></pagefind-input>
+      <pagefind-summary></pagefind-summary>
+      <pagefind-results></pagefind-results>
+      <pagefind-keyboard-hints></pagefind-keyboard-hints>
+    </div>
+  </div>
+</section>
+{% endblock content %}

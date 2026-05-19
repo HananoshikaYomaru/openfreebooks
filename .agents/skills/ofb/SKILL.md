@@ -33,8 +33,9 @@ frontend/                  → catalog-app, canvas viewer, site chrome
 ```bash
 bun install
 bun run build:js    # after frontend/ changes
+bun run index:search  # once per dev session (copies public/pagefind → static/pagefind)
 zola serve          # http://127.0.0.1:1111
-bun run build       # production: JS + Zola → public/
+bun run build       # production: JS + Zola + pagefind → public/
 ```
 
 ## Non-negotiables
@@ -59,6 +60,21 @@ bun run build       # production: JS + Zola → public/
 | New chapter (live) | Above + `content/{subject}/{slug}/_index.md` + HTML partial + `chapter.html` wiring + `main.tsx` widget mount if interactive |
 | Homepage subject card | `themes/.../templates/index.html` (not yet data-driven) |
 | Browse / nav URL | `zola.toml` `[extra] browse_url` + `base.html` site-config + `main.tsx` fallback |
+| Search UI / index | `base.html` (Pagefind assets + modal), `content/search.md`, `_search.scss`; `bun run index:search` for dev |
+
+## Search (Pagefind)
+
+| Piece | Path |
+|-------|------|
+| Global modal + assets | `themes/.../templates/base.html` |
+| Dedicated page | `/search/` — `content/search.md`, `templates/search.html` |
+| Header trigger | `frontend/src/components/site-header.tsx` (`pagefind-modal-trigger`) |
+| Nav link | `main.tsx` + `zola.toml` `search_url` |
+| Theming | `themes/.../sass/_search.scss` (`--pf-*` → site tokens) |
+
+- **Component UI** only (`pagefind-component-ui.js`), not legacy `pagefind-ui.js`.
+- Index runs **after** `zola build`. Production: `bun run build`. Dev: `bun run index:search` copies bundle to `static/pagefind/` (gitignored) for `zola serve`.
+- v1 indexes **live chapter pages only** (`data-pagefind-body` on `templates/math/chapter.html`); home, about, catalog, credits, and other site pages are excluded.
 
 Detailed checklists: [curriculum-data.md](curriculum-data.md). Human-facing guide: [CONTRIBUTING.md](../../../CONTRIBUTING.md).
 
@@ -114,7 +130,6 @@ bun run build
 
 ## Planned / not implemented (do not assume)
 
-- Pagefind search (`build_search_index = false`)
 - Defuddle “copy as Markdown” on chapters
 - Markdown-based chapters (spec says HTML; README may be outdated)
 - Data-driven homepage cards

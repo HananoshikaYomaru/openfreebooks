@@ -20,6 +20,8 @@ Thank you for helping grow free, open textbooks.
 
 **Browse the catalog locally:** `bun run build:js && zola serve` → [http://127.0.0.1:1111/catalog/](http://127.0.0.1:1111/catalog/)
 
+**Search locally:** After `bun run build:js`, run `bun run index:search` once (or again after changing chapter HTML), then `zola serve`. Try [http://127.0.0.1:1111/search/](http://127.0.0.1:1111/search/) or press ⌘K / Ctrl+K. Pagefind indexes **live chapter pages only** (not home, about, catalog, or credits). Without `index:search`, the search UI loads but returns no results.
+
 ---
 
 ## How the catalog fits together
@@ -110,7 +112,7 @@ chapter_id = "your-chapter-slug"
 Today, chapter bodies live as HTML partials under the theme, not Markdown:
 
 1. Add `themes/openfreebooks/templates/partials/math/your-chapter-slug-content.html` with the lesson HTML.
-2. In `themes/openfreebooks/templates/math/chapter.html`, include it when `chapter_id` matches:
+2. In `themes/openfreebooks/templates/math/chapter.html`, include it when `chapter_id` matches (chapter content is inside `<article data-pagefind-body>` for search indexing):
 
 ```html
 {% if section.extra.chapter_id == "your-chapter-slug" %}

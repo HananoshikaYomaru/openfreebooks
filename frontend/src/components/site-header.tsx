@@ -22,7 +22,7 @@ export function SiteHeader(props: SiteHeaderProps) {
     window.addEventListener("scroll", onScroll, { passive: true });
 
     const onResize = () => {
-      if (window.innerWidth > 467 && navOpen()) {
+      if (window.innerWidth > 768 && navOpen()) {
         setNavOpen(false);
         document.body.style.overflow = "";
       }
@@ -60,6 +60,9 @@ export function SiteHeader(props: SiteHeaderProps) {
           <nav class="main-nav" aria-label="Primary navigation">
             <For each={props.links}>{(link) => <a href={link.href}>{link.label}</a>}</For>
           </nav>
+          <div class="site-header__search">
+            <pagefind-modal-trigger compact placeholder="Search" />
+          </div>
           <ThemeToggle />
           <button
             type="button"

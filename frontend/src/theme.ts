@@ -20,6 +20,7 @@ export function resolveTheme(): ThemeChoice {
 
 export function applyTheme(theme: ThemeChoice) {
   document.documentElement.setAttribute("data-theme", theme);
+  document.documentElement.setAttribute("data-pf-theme", theme);
 }
 
 export function setTheme(theme: ThemeChoice) {

@@ -29,11 +29,15 @@ See [reference.md](reference.md) for Tera pitfalls and build checks.
 
 ```bash
 bun run build:js   # Vite → themes/openfreebooks/static/js/ (bundle.js + lazy chunks)
+zola build         # required before indexing
+bun run index:search  # pagefind on public/ → copies to static/pagefind/ for zola serve
 zola serve         # dev at http://127.0.0.1:1111
-bun run build      # build:js + zola build → public/
+bun run build      # build:js + zola build + index:search
 ```
 
 After Sass or template changes, run `zola build` (or `zola serve`). Do **not** copy `public/` into `themes/openfreebooks/static/`.
+
+**Search (Pagefind):** read [zola-pagefind.md](zola-pagefind.md) before changing search UI, indexing, or `data-pagefind-*` attributes.
 
 ## Templates (Tera)
 
@@ -74,6 +78,11 @@ Client behavior lives in `frontend/` and mounts from `base.html`:
 | `js/catalog-app-*.js` | `#catalog-app` on `/catalog/` | Lazy-loaded with `catalog-canvas-view-*.js` for Map view |
 
 **When changing `frontend/` or adding interactivity**, read [zola-solid.md](zola-solid.md) before editing JS.
+
+### Search (Pagefind)
+
+- Runs after `zola build`; indexes **live chapter pages** only (`data-pagefind-body` on chapter template).
+- UI: global modal (⌘K) + `/search/` page. See [zola-pagefind.md](zola-pagefind.md).
 
 ### Catalog page
 

@@ -12,6 +12,7 @@ Free, open-source textbooks for every learner — from elementary school through
 | Theme | Custom theme in `themes/openfreebooks/` |
 | Interactivity | [Solid.js](https://www.solidjs.com/) (header, marquee, scroll reveal, theme toggle) |
 | JS build | [Bun](https://bun.sh/) + [Vite](https://vite.dev/) |
+| Search | [Pagefind](https://pagefind.app/) (post-build index, Component UI) |
 | Hosting | Cloudflare Workers (static assets via Wrangler) |
 
 Chapter content is **HTML partials** in the theme today (not Markdown). Canvas maps use the [JSON Canvas](https://jsoncanvas.org/) standard (Obsidian-compatible) via [json-canvas-viewer](https://github.com/Hesprs/JSON-Canvas-Viewer).
@@ -47,14 +48,17 @@ Install JS dependencies:
 bun install
 ```
 
-Build the Solid bundle and start Zola’s dev server:
+Build the Solid bundle, index search (once per session or after content changes), then start Zola’s dev server:
 
 ```bash
 bun run build:js
+bun run index:search
 zola serve
 ```
 
-Open [http://127.0.0.1:1111](http://127.0.0.1:1111). Re-run `bun run build:js` (or `bun run dev:js` in another terminal) when you change `frontend/`.
+Open [http://127.0.0.1:1111](http://127.0.0.1:1111). Re-run `bun run build:js` (or `bun run dev:js` in another terminal) when you change `frontend/`. Re-run `bun run index:search` when you change chapter HTML or add pages so search stays up to date.
+
+Search UI is available immediately; results require the index step above (`static/pagefind/` is gitignored and copied from the build output).
 
 ## Production build
 
@@ -62,7 +66,7 @@ Open [http://127.0.0.1:1111](http://127.0.0.1:1111). Re-run `bun run build:js` (
 bun run build
 ```
 
-This runs `vite build` (outputs to `themes/openfreebooks/static/js/bundle.js`) and then `zola build` (outputs to `public/`).
+This runs `vite build` (outputs to `themes/openfreebooks/static/js/bundle.js`), `zola build` (outputs to `public/`), then Pagefind (`public/pagefind/`).
 
 ## Deploy to Cloudflare
 
@@ -78,7 +82,7 @@ The Worker name is `openfreebooks` (see `wrangler.jsonc`). Assets are served fro
 Site-wide settings live in `zola.toml`:
 
 - `base_url` — canonical URL for feeds and absolute links
-- `[extra]` — `site_title`, `github_url`, `browse_url`, `about_url` (used in templates and the Solid config block)
+- `[extra]` — `site_title`, `github_url`, `browse_url`, `search_url`, `about_url` (used in templates and the Solid config block)
 
 ## Theme notes
 
@@ -108,7 +112,7 @@ These issues make contributions harder than they should be. PRs that fix any ite
 ### Site & discoverability
 
 - [ ] **Data-driven homepage cards** — “Browse by subject” / featured blocks duplicate manual edits in `index.html`.
-- [ ] **Pagefind search** — spec mentions search; `build_search_index = false` and no index step in build.
+- [x] **Pagefind search** — `/search/`, header modal (⌘K), `bun run index:search` for local dev.
 - [ ] **CONTRIBUTING wizard or checklist in CI** — fail PR if live chapter missing partial or catalog entry.
 
 ### Build & repo hygiene

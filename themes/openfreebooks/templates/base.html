@@ -20,7 +20,15 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="{{ get_url(path='pagefind/pagefind-component-ui.css', trailing_slash=false) | safe }}"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="{{ get_url(path='main.css', trailing_slash=false) | safe }}" />
+    <script
+      src="{{ get_url(path='pagefind/pagefind-component-ui.js', trailing_slash=false) | safe }}"
+      type="module"
+    ></script>
     {% block extra_head %}{% endblock extra_head %}
   </head>
   <body>
@@ -30,6 +38,7 @@
         "homeUrl": {{ get_url(path="/") | json_encode() | safe }},
         "browseUrl": {{ config.extra.browse_url | json_encode() | safe }},
         "aboutUrl": {{ config.extra.about_url | json_encode() | safe }},
+        "searchUrl": {{ config.extra.search_url | json_encode() | safe }},
         "githubUrl": {{ config.extra.github_url | json_encode() | safe }}
       }
     </script>
@@ -54,6 +63,7 @@
     </footer>
 
     <script type="module" src="{{ get_url(path='js/bundle.js', trailing_slash=false) | safe }}"></script>
+    <pagefind-modal reset-on-close></pagefind-modal>
     {% block extra_scripts %}{% endblock extra_scripts %}
   </body>
 </html>

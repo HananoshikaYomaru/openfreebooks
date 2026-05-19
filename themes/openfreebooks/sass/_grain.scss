@@ -12,7 +12,8 @@ body::before {
 
 /* Top-layer modals must stay opaque; grain blend would otherwise show through. */
 .contributor-dialog[open],
-.contributor-dialog[open] .contributor-dialog-panel {
+.contributor-dialog[open] .contributor-dialog-panel,
+pagefind-modal dialog.pf-modal[open] {
   mix-blend-mode: normal;
 }
 

@@ -13,6 +13,7 @@ function readConfig() {
       homeUrl: "/",
       browseUrl: "/catalog/",
       aboutUrl: "/about/",
+      searchUrl: "/search/",
       contributingUrl: "/contributing/",
       githubUrl: "https://github.com/openfreebooks/openfreebooks",
     };
@@ -22,6 +23,7 @@ function readConfig() {
     homeUrl: string;
     browseUrl: string;
     aboutUrl: string;
+    searchUrl: string;
     contributingUrl: string;
     githubUrl: string;
   };
@@ -39,6 +41,7 @@ initTheme();
 const config = readConfig();
 const navLinks = [
   { label: "Browse", href: config.browseUrl },
+  { label: "Search", href: config.searchUrl },
   { label: "About", href: config.aboutUrl },
   { label: "GitHub", href: config.githubUrl },
 ];
