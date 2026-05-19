@@ -7,6 +7,7 @@
     {% block meta_description %}
     <meta name="description" content="{{ config.description | default(value=config.extra.site_title) }}" />
     {% endblock meta_description %}
+    {% include "partials/social-meta.html" %}
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
