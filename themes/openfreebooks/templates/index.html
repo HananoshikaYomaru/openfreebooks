@@ -6,6 +6,10 @@
 <meta name="description" content="{{ section.description | default(value=config.description) }}" />
 {% endblock meta_description %}
 
+{% block page_background %}
+<div id="webgl-background" aria-hidden="true"></div>
+{% endblock page_background %}
+
 {% block content %}
 <section class="hero">
   <div class="container">

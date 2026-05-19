@@ -59,6 +59,13 @@ if (marqueeRoot) {
 render(() => <ScrollRevealBootstrap />, document.body);
 render(() => <ContributorsDialogBootstrap />, document.body);
 
+const particleRoot = document.getElementById("webgl-background");
+if (particleRoot && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  void import("./lib/particle-background").then(({ initParticleBackground }) => {
+    initParticleBackground(particleRoot);
+  });
+}
+
 const quadraticRoot = document.getElementById("quadratic-explorer");
 if (quadraticRoot) {
   void Promise.all([
