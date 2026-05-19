@@ -6,7 +6,8 @@
   "scripts": {
     "build:js": "vite build",
     "build": "bun run build:js && zola build",
-    "dev:js": "vite build --watch"
+    "dev:js": "vite build --watch",
+    "scan:size": "bun scripts/scan-output-size.ts"
   },
   "dependencies": {
     "katex": "^0.16.47",
