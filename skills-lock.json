@@ -30,6 +30,12 @@
       "sourceType": "github",
       "skillPath": "svg-animations/SKILL.md",
       "computedHash": "9be4b3e0afe9d3cbb1bcf238f8504f9a23552f742350fbef9483070112ac1977"
+    },
+    "visual-explainer": {
+      "source": "nicobailon/visual-explainer",
+      "sourceType": "github",
+      "skillPath": "plugins/visual-explainer/SKILL.md",
+      "computedHash": "af1b98dda4cc5aeec848c2e97e0f8dcd4461ba22c34abc4c13852af4e8e41cb8"
     }
   }
 }

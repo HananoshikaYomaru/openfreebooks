@@ -10,7 +10,9 @@ export default defineConfig({
       input: "frontend/src/main.tsx",
       output: {
         entryFileNames: "js/bundle.js",
-        assetFileNames: "js/[name][extname]",
+        chunkFileNames: "js/[name]-[hash].js",
+        assetFileNames: (info) =>
+          info.name?.endsWith(".css") ? "js/katex.css" : "js/[name][extname]",
       },
     },
   },

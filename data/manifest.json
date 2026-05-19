@@ -1,0 +1,46 @@
+{
+  "intro": "Our guiding principles are set in stone.",
+  "lead": "Open Free Books is free internet textbooks for learners from elementary school through university — static, open source, and built for the web. These are the values we will not trade away as the catalog grows.",
+  "principles": [
+    {
+      "id": "free",
+      "title": "Free",
+      "body": "Every book, every chapter, every learner — no paywalls, no premium unlocks, no subscription that gates the syllabus. Free is not a trial; it is the product, forever."
+    },
+    {
+      "id": "open",
+      "title": "Open",
+      "body": "Source on GitHub, improvements via pull requests, forks for classrooms and regions. Open means you can see how the book was made, fix a typo today, and ship a better edition tomorrow — not a PDF locked behind a login."
+    },
+    {
+      "id": "curriculum",
+      "title": "Curriculum",
+      "body": "Not a wiki. Wikis excel at scattered facts; they do not carry a learner from prerequisite to mastery. We publish opinionated paths: ordered chapters, assessed skills, and a point of view about what to teach next — structure on purpose, not everything about X."
+    },
+    {
+      "id": "independent",
+      "title": "Independent",
+      "body": "Built for learners and teachers, not for ad networks or investor growth charts. Sustainability comes from community contribution and shared infrastructure, not from turning students into the product."
+    },
+    {
+      "id": "durable",
+      "title": "Durable",
+      "body": "Static HTML in an open repository — readable in a browser today, archivable tomorrow, forkable for decades. Your syllabus should not vanish when a vendor sunsets digital textbooks or changes the terms."
+    },
+    {
+      "id": "crafted",
+      "title": "Crafted",
+      "body": "Books are authored HTML with care: figures, interactives, and JSON Canvas where they help understanding — not generated slop or print PDFs pasted on the web. Quality is a deliberate choice on every page."
+    },
+    {
+      "id": "inspectable",
+      "title": "Inspectable",
+      "body": "Every change has a commit. Teachers can adapt a fork for their syllabus with diffs and review, not opaque exports from a CMS. If something is wrong, you can find who wrote it and fix it."
+    },
+    {
+      "id": "web-native",
+      "title": "Web-native",
+      "body": "The medium is the open web: links, search, accessibility, and embeddable demos — not a file you download once and never update. Textbooks should behave like the rest of the internet learners already use."
+    }
+  ]
+}

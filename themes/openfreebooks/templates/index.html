@@ -37,10 +37,12 @@
     <p class="section-kicker">Catalog</p>
     <h2 class="section-title">Browse by subject</h2>
     <div class="work-grid" data-scroll-reveal>
-      <article class="work-card" data-scroll-reveal-card>
-        <h3>Mathematics</h3>
-        <p class="card-subtitle">Coming soon</p>
-        <p>Algebra, calculus, statistics, and more — structured for self-study and classrooms.</p>
+      <article class="work-card work-card--link" data-scroll-reveal-card>
+        <a class="work-card__anchor" href="{{ get_url(path='/math/') | safe }}">
+          <h3>Mathematics</h3>
+          <p class="card-subtitle">DSE Compulsory — live</p>
+          <p>Hong Kong secondary mathematics: three curriculum strands, starting with quadratic equations.</p>
+        </a>
       </article>
       <article class="work-card" data-scroll-reveal-card>
         <h3>Science</h3>
@@ -67,10 +69,12 @@
     <p class="section-kicker">Featured</p>
     <h2 class="section-title">Featured books</h2>
     <div class="work-grid" data-scroll-reveal>
-      <article class="work-card" data-scroll-reveal-card>
-        <h3>Your textbook here</h3>
-        <p class="card-subtitle">Placeholder</p>
-        <p>We are building the first open catalog. The first published books will appear in this grid.</p>
+      <article class="work-card work-card--link" data-scroll-reveal-card>
+        <a class="work-card__anchor" href="{{ get_url(path='/math/') | safe }}">
+          <h3>Hong Kong Mathematics</h3>
+          <p class="card-subtitle">DSE Compulsory Part</p>
+          <p>Number &amp; Algebra, Measures Shape &amp; Space, and Data Handling — with an interactive quadratic explorer.</p>
+        </a>
       </article>
       <article class="work-card" data-scroll-reveal-card>
         <h3>Community contributions</h3>

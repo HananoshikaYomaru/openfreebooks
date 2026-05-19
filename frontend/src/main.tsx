@@ -58,4 +58,16 @@ if (marqueeRoot) {
 
 render(() => <ScrollRevealBootstrap />, document.body);
 render(() => <ContributorsDialogBootstrap />, document.body);
+
+const quadraticRoot = document.getElementById("quadratic-explorer");
+if (quadraticRoot) {
+  void Promise.all([
+    import("./components/quadratic-explorer"),
+    import("./lib/render-math"),
+  ]).then(([{ QuadraticExplorer }, { renderBookMath }]) => {
+    render(() => <QuadraticExplorer />, quadraticRoot);
+    requestAnimationFrame(() => renderBookMath());
+  });
+}
+
 mountFooterYear();

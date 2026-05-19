@@ -9,6 +9,7 @@
     "dev:js": "vite build --watch"
   },
   "dependencies": {
+    "katex": "^0.16.47",
     "solid-js": "^1.9.5"
   },
   "devDependencies": {

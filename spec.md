@@ -9,3 +9,5 @@ canvas feature use [jsoncanvas](https://jsoncanvas.org/spec/1.0/) standard by Ob
 not markdown, html based. but in every page, we should have a copy as md button using [defuddle](https://github.com/kepano/defuddle).
 
 we don't i18n. i18n will be solved in future by big companies.
+
+search is supported by pagefind.

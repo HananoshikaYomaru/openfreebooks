@@ -1,0 +1,11 @@
+<section class="manifest-principles" aria-labelledby="manifest-principles-heading">
+  <h2 id="manifest-principles-heading" class="manifest-principles__sr-only">Principles</h2>
+  <ul class="manifest-grid" data-scroll-reveal>
+    {% for principle in manifest.principles %}
+    <li class="manifest-card" id="{{ principle.id }}" data-scroll-reveal-card>
+      <h3 class="manifest-card__title">{{ principle.title }}</h3>
+      <p class="manifest-card__body">{{ principle.body }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+</section>

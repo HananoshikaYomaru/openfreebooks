@@ -320,6 +320,24 @@ h3 {
   line-height: 1.7;
 }
 
+.work-card--link .work-card__anchor,
+.work-card--link .work-card__anchor:any-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.work-card__anchor h3,
+.work-card__anchor p,
+.work-card__anchor .card-subtitle {
+  text-decoration: none;
+}
+
+.work-card__anchor:hover h3,
+.work-card__anchor:focus-visible h3 {
+  color: var(--accent);
+}
+
 .card-subtitle {
   font-style: italic;
   color: var(--muted);

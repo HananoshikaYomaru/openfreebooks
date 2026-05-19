@@ -1,0 +1,85 @@
+{
+  "title": "Hong Kong Mathematics",
+  "subtitle": "DSE Compulsory Part (S4–S6)",
+  "intro": "Structured around the three core strands of the Hong Kong mathematics curriculum. Chapters marked as available can be read now; others are on the roadmap.",
+  "strands": [
+    {
+      "id": "number-algebra",
+      "title": "Number & Algebra",
+      "chapters": [
+        {
+          "slug": "quadratic-equations",
+          "title": "Quadratic equations",
+          "status": "live"
+        },
+        {
+          "slug": "sequences",
+          "title": "Sequences & series",
+          "status": "planned"
+        },
+        {
+          "slug": "functions-graphs",
+          "title": "Functions & graphs",
+          "status": "planned"
+        },
+        {
+          "slug": "linear-programming",
+          "title": "Linear programming",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "id": "measures-shape-space",
+      "title": "Measures, Shape & Space",
+      "chapters": [
+        {
+          "slug": "trigonometry",
+          "title": "Advanced trigonometry",
+          "status": "planned"
+        },
+        {
+          "slug": "coordinate-geometry",
+          "title": "Coordinate geometry of circles",
+          "status": "planned"
+        },
+        {
+          "slug": "circle-properties",
+          "title": "Properties of circles",
+          "status": "planned"
+        },
+        {
+          "slug": "loci",
+          "title": "Loci",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "id": "data-handling",
+      "title": "Data Handling",
+      "chapters": [
+        {
+          "slug": "dispersion",
+          "title": "Measures of dispersion",
+          "status": "planned"
+        },
+        {
+          "slug": "probability",
+          "title": "Permutations, combinations & probability",
+          "status": "planned"
+        },
+        {
+          "slug": "normal-distribution",
+          "title": "Normal distribution & z-scores",
+          "status": "planned"
+        },
+        {
+          "slug": "statistical-literacy",
+          "title": "Statistical literacy",
+          "status": "planned"
+        }
+      ]
+    }
+  ]
+}

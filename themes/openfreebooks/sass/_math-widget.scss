@@ -1,0 +1,247 @@
+.math-widget {
+  --math-grid: #e5e5e5;
+  --math-axis: #a8a29e;
+  --math-curve: #9a6b2e;
+  --math-vertex: #4a6b4a;
+  --math-root: #2563eb;
+  --math-canvas-bg: #ffffff;
+
+  padding: 28px;
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  background: var(--card-bg);
+  box-shadow: 0 10px 32px var(--shadow-soft);
+}
+
+[data-theme="dark"] .math-widget {
+  --math-grid: #3a3834;
+  --math-axis: #8f8a80;
+  --math-curve: #c4924a;
+  --math-vertex: #84cc16;
+  --math-root: #60a5fa;
+  --math-canvas-bg: #242120;
+}
+
+.math-widget__title {
+  margin: 0 0 20px;
+  padding-bottom: 12px;
+  font-size: 1.35rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.math-widget__layout {
+  display: grid;
+  gap: 28px;
+}
+
+.math-widget__equation-box {
+  margin-bottom: 20px;
+  padding: 16px;
+  text-align: center;
+  border-radius: 10px;
+  background: rgba(154, 107, 46, 0.06);
+}
+
+.math-widget__equation-label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.math-widget__equation {
+  font-size: 1.1rem;
+}
+
+.math-widget__equation .katex {
+  font-size: 1.15em;
+}
+
+.math-widget__controls {
+  min-width: 0;
+}
+
+.math-slider-row {
+  margin-bottom: 16px;
+}
+
+.math-slider-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--soft-ink);
+}
+
+.math-slider-value {
+  font-family: var(--mono);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.math-slider {
+  width: 100%;
+}
+
+.math-slider--a {
+  accent-color: var(--accent);
+}
+
+.math-slider--b {
+  accent-color: #4a6b4a;
+}
+
+.math-slider--c {
+  accent-color: #2563eb;
+}
+
+.math-widget__delta-panel {
+  margin-top: 8px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(154, 107, 46, 0.05);
+}
+
+.math-widget__delta-title {
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
+.math-widget__delta-formula {
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.math-widget__delta-formula--pos .katex {
+  color: #16a34a;
+}
+
+.math-widget__delta-formula--neg .katex {
+  color: #dc2626;
+}
+
+.math-widget__delta-nature {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--soft-ink);
+}
+
+.math-widget__delta-roots {
+  margin: 8px 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.math-widget__graph {
+  margin: 0;
+  min-width: 0;
+}
+
+.math-widget__canvas-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(154, 107, 46, 0.04);
+}
+
+.math-widget__canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  box-shadow: inset 0 1px 4px var(--shadow-soft);
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.math-widget__canvas--active {
+  cursor: pointer;
+}
+
+.math-graph-tooltip {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  box-shadow: 0 6px 18px var(--shadow-soft);
+  pointer-events: none;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  animation: math-tooltip-in 120ms ease-out;
+}
+
+@keyframes math-tooltip-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .math-graph-tooltip {
+    animation: none;
+  }
+}
+
+.math-graph-tooltip__label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.math-graph-tooltip__coords {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.math-graph-tooltip--vertex .math-graph-tooltip__label {
+  color: var(--math-vertex);
+}
+
+.math-graph-tooltip--root .math-graph-tooltip__label {
+  color: var(--math-root);
+}
+
+.math-graph-tooltip--curve .math-graph-tooltip__label {
+  color: var(--math-curve);
+}
+
+.math-widget__caption {
+  margin-top: 10px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .math-widget__layout {
+    grid-template-columns: minmax(240px, 1fr) minmax(280px, 1.2fr);
+    align-items: start;
+  }
+}

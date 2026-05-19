@@ -1,0 +1,259 @@
+.book-page {
+  padding: 48px 0 96px;
+}
+
+.book-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.book-breadcrumb a {
+  color: var(--soft-ink);
+  text-decoration: none;
+}
+
+.book-breadcrumb a:hover,
+.book-breadcrumb a:focus-visible {
+  color: var(--accent);
+}
+
+.book-breadcrumb__sep {
+  color: var(--muted);
+}
+
+.book-header {
+  max-width: var(--prose-width);
+  margin-bottom: 56px;
+}
+
+.book-subtitle {
+  margin: 12px 0 0;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.book-intro {
+  margin: 20px 0 0;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--soft-ink);
+}
+
+.book-strands {
+  display: grid;
+  gap: 40px;
+}
+
+.book-strand__title {
+  margin: 0 0 16px;
+  font-size: 1.5rem;
+}
+
+.book-chapter-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.book-chapter-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  background: var(--card-bg);
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+a.book-chapter-link:hover,
+a.book-chapter-link:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 6px 20px var(--shadow-soft);
+}
+
+.book-chapter-link--disabled {
+  opacity: 0.72;
+  cursor: default;
+}
+
+.book-chapter-item--planned .book-chapter-link__title {
+  color: var(--soft-ink);
+}
+
+.book-chapter-link__title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+}
+
+.book-chapter-badge {
+  flex-shrink: 0;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.book-chapter-badge--live {
+  color: var(--accent);
+  background: rgba(154, 107, 46, 0.12);
+}
+
+.book-chapter-badge--planned {
+  color: var(--muted);
+  background: rgba(118, 118, 118, 0.12);
+}
+
+.book-chapter {
+  max-width: var(--prose-width);
+}
+
+.book-chapter__header {
+  margin-bottom: 32px;
+}
+
+.book-chapter__lead {
+  margin: 16px 0 0;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--soft-ink);
+}
+
+.book-prose {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.book-prose > p {
+  margin: 0 0 1.1em;
+}
+
+.book-prose__heading {
+  margin: 2em 0 0.6em;
+  font-size: 1.35rem;
+}
+
+.book-formula {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+.book-formula--inline {
+  font-size: 0.95rem;
+}
+
+.book-callout {
+  margin: 1.5em 0;
+  padding: 18px 20px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+  background: var(--card-bg);
+}
+
+.book-callout--formula {
+  text-align: center;
+  border-left: none;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+}
+
+.book-callout--dse {
+  border-left-color: var(--muted);
+}
+
+.book-callout__label {
+  margin: 0 0 8px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.book-table-wrap {
+  margin: 1.25em 0 1.5em;
+  overflow-x: auto;
+}
+
+.book-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  border: 1px solid var(--line);
+}
+
+.book-table th,
+.book-table td {
+  padding: 12px 14px;
+  text-align: left;
+  border: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.book-table thead th {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: rgba(154, 107, 46, 0.08);
+}
+
+.book-table tbody td:first-child {
+  font-family: var(--mono);
+  font-size: 0.88rem;
+}
+
+.book-table tbody tr:nth-child(even) td {
+  background: rgba(154, 107, 46, 0.04);
+}
+
+.book-prose .katex {
+  font-size: 1.05em;
+}
+
+.book-formula .katex-display {
+  margin: 0;
+}
+
+.math-widget-mount {
+  margin-top: 40px;
+  max-width: 960px;
+}
+
+.book-page--chapter .book-callout--dse {
+  max-width: var(--prose-width);
+  margin-top: 2rem;
+}
+
+@media (min-width: 900px) {
+  .book-page--chapter .book-chapter {
+    max-width: none;
+  }
+
+  .book-prose {
+    max-width: var(--prose-width);
+  }
+}
