@@ -1,6 +1,6 @@
 +++
-title = "Hong Kong Mathematics"
-description = "DSE Compulsory Part mathematics — Number & Algebra, Measures Shape & Space, and Data Handling."
-template = "math/book.html"
+title = "Mathematics"
+description = "Browse mathematics chapters in the curriculum catalog."
+template = "math-redirect.html"
 sort_by = "weight"
 +++

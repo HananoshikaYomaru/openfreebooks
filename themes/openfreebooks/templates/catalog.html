@@ -7,7 +7,7 @@
 
 {% block content %}
 {% set catalog = load_data(path="data/catalog.json", format="json") %}
-{% set math = load_data(path="data/math-dse-curriculum.json", format="json") %}
+{% set math_catalog = load_data(path="data/math-curriculum.json", format="json") %}
 <script id="catalog-data" type="application/json">
 {
   "title": {{ catalog.title | json_encode() | safe }},
@@ -18,7 +18,7 @@
     {
       "id": {{ subject.id | json_encode() | safe }},
       "name": {{ subject.name | json_encode() | safe }},
-      "strands": {% if subject.id == "math" %}{{ math.strands | json_encode() | safe }}{% else %}[]{% endif %}
+      "strands": {% if subject.id == "math" %}{{ math_catalog.strands | json_encode() | safe }}{% else %}[]{% endif %}
     }{% if not loop.last %},{% endif %}
     {% endfor %}
   ]
@@ -32,7 +32,7 @@
       <p>{{ catalog.subtitle }}</p>
       <p>
         JavaScript is required for the interactive catalog. You can read
-        <a href="{{ get_url(path='/math/') | safe }}">Hong Kong Mathematics</a> directly.
+        <a href="{{ get_url(path='/catalog/') | safe }}?subject=math">Mathematics in the catalog</a> directly.
       </p>
     </div>
   </div>
