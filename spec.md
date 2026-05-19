@@ -16,12 +16,6 @@ we have a catalog of subjects. Each subject will have chapters. Each chapters ca
 
 we need to have a question bank feature. since this is purely static sites, question answer needs to be determined and able to grade in advanced. 
 
-1. multiple-choice
-2. short-answer
-3. fill-in-the-blank
-4. choice
-5. ranking
-
 question bank not only show answer but also steps, explanation, calcultion.
 
 ## Chapters requirements 

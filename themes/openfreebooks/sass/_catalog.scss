@@ -453,8 +453,20 @@
 
   :global(.catalog-mermaid-view__svg .plannedNode rect),
   :global(.catalog-mermaid-view__svg .plannedNode polygon) {
-    stroke: color-mix(in srgb, var(--muted) 85%, transparent);
-    fill: color-mix(in srgb, var(--paper) 92%, var(--muted) 8%);
+    stroke: color-mix(in srgb, var(--muted) 70%, var(--line));
+    fill: color-mix(in srgb, var(--paper) 82%, var(--muted) 18%);
+  }
+
+  :global(.catalog-mermaid-view__svg .plannedNode .catalog-mermaid-node__title) {
+    color: var(--muted);
+  }
+
+  :global(.catalog-mermaid-view__svg .plannedNode .catalog-mermaid-node__description) {
+    color: color-mix(in srgb, var(--muted) 88%, var(--soft-ink));
+  }
+
+  :global(.catalog-mermaid-view__svg .plannedNode .catalog-badge:not(.book-chapter-badge--planned)) {
+    opacity: 0.55;
   }
 
   :global(.catalog-mermaid-view__svg .edge-path path) {
@@ -615,6 +627,16 @@
   &:focus-within::before {
     background: var(--accent);
   }
+
+  &:has(.catalog-chapter-card--planned)::before {
+    background: color-mix(in srgb, var(--muted) 45%, var(--line));
+    box-shadow: 0 0 0 4px var(--card-bg);
+  }
+
+  &:has(.catalog-chapter-card--planned):hover::before,
+  &:has(.catalog-chapter-card--planned):focus-within::before {
+    background: color-mix(in srgb, var(--muted) 45%, var(--line));
+  }
 }
 
 .catalog-chapter-card {
@@ -631,8 +653,27 @@
   transition: border-color 200ms ease, box-shadow 200ms ease;
 
   &--planned {
-    opacity: 0.85;
+    color: var(--muted);
+    background: color-mix(in srgb, var(--paper) 86%, var(--muted) 14%);
+    border-color: color-mix(in srgb, var(--line) 65%, transparent);
+    border-style: dashed;
     cursor: default;
+
+    .catalog-chapter-card__number,
+    .catalog-chapter-card__title,
+    .catalog-chapter-card__description {
+      color: var(--muted);
+    }
+
+    .catalog-badge:not(.book-chapter-badge--planned) {
+      opacity: 0.5;
+    }
+
+    .book-chapter-badge--planned {
+      color: var(--muted);
+      background: color-mix(in srgb, var(--muted) 16%, transparent);
+      border: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
+    }
   }
 }
 

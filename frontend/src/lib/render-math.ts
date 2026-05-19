@@ -7,12 +7,18 @@ const DELIMITERS = [
   { left: "\\[", right: "\\]", display: true },
 ];
 
+const RENDER_OPTIONS = {
+  delimiters: DELIMITERS,
+  throwOnError: false,
+  strict: "ignore" as const,
+};
+
+export function renderMathInContainer(el: HTMLElement) {
+  renderMathInElement(el, RENDER_OPTIONS);
+}
+
 export function renderBookMath() {
-  document.querySelectorAll<HTMLElement>(".book-prose, .book-callout").forEach((el) => {
-    renderMathInElement(el, {
-      delimiters: DELIMITERS,
-      throwOnError: false,
-      strict: "ignore",
-    });
-  });
+  document
+    .querySelectorAll<HTMLElement>(".book-prose, .book-callout, .math-widget__caption")
+    .forEach(renderMathInContainer);
 }
