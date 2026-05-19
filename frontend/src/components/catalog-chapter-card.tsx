@@ -1,6 +1,6 @@
 import { For, Show } from "solid-js";
 import type { CatalogChapter } from "../../../data/catalog.types";
-import { curriculumBadgeClass } from "../lib/catalog-badge";
+import { curriculumBadgeClass, tierBadgeLabel } from "../lib/catalog-badge";
 
 export type CatalogChapterCardProps = {
   chapter: CatalogChapter;
@@ -22,6 +22,14 @@ function appendMeta(parent: HTMLElement, chapter: CatalogChapter) {
     badge.className = `catalog-badge ${curriculumBadgeClass(curriculum)}`;
     badge.textContent = curriculum;
     meta.appendChild(badge);
+  }
+
+  const tierLabel = tierBadgeLabel(chapter.tier);
+  if (tierLabel) {
+    const tier = document.createElement("span");
+    tier.className = "catalog-badge catalog-badge--extension";
+    tier.textContent = tierLabel;
+    meta.appendChild(tier);
   }
 
   if (chapter.status === "planned") {
@@ -154,6 +162,9 @@ export function CatalogChapterCard(props: CatalogChapterCardProps) {
             <span class={`catalog-badge ${curriculumBadgeClass(curriculum)}`}>{curriculum}</span>
           )}
         </For>
+        <Show when={tierBadgeLabel(props.chapter.tier)}>
+          {(label) => <span class="catalog-badge catalog-badge--extension">{label()}</span>}
+        </Show>
         <Show when={props.chapter.status === "planned"}>
           <span class="book-chapter-badge book-chapter-badge--planned">Coming soon</span>
         </Show>

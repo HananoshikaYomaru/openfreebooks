@@ -17,6 +17,7 @@ export const CANVAS_NODE_DARK = {
 } as const;
 
 export function siteCanvasTheme(): "light" | "dark" {
+  if (typeof document === "undefined") return "light";
   const attr = document.documentElement.getAttribute("data-theme");
   if (attr === "dark" || attr === "light") return attr;
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";

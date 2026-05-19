@@ -87,7 +87,7 @@ Detailed checklists: [curriculum-data.md](curriculum-data.md). Human-facing guid
 
 **Canvas viewer quirks:** use `container.get(internal.InteractionHandler).onClick` (not `viewer.onClick`); edge colors must be 8-digit hex (no `rgba` on node/edge color fields); wheel on map uses capture-phase `stopPropagation` unless Ctrl/Cmd so the page can scroll.
 
-Implicit edges: sequential links inside each strand. Explicit: `graph.edges` for branches. Both merged; deduped.
+Prerequisites: **only** `graph.edges` (required, global DAG, cross-strand OK). Longest-path levels. No implicit strand-list chains. List order ≠ map order.
 
 ## Chapter content (current pattern)
 

@@ -1,6 +1,8 @@
 # Contributing to Open Free Books
 
-Thank you for helping grow free, open textbooks. This guide focuses on **curriculum, subjects, and chapters** — the most common contribution.
+Thank you for helping grow free, open textbooks.
+
+**Readable guide (with examples):** [openfreebooks.org/contributing](https://openfreebooks.org/contributing/) — or locally after `zola serve` → [http://127.0.0.1:1111/contributing/](http://127.0.0.1:1111/contributing/)
 
 **Prerequisites:** [Zola](https://www.getzola.org/), [Bun](https://bun.sh/). See [README.md](README.md) for dev setup.
 
@@ -11,7 +13,7 @@ Thank you for helping grow free, open textbooks. This guide focuses on **curricu
 | I want to… | Start here |
 |------------|------------|
 | Add a **planned** chapter (roadmap only) | [§ Planned chapter](#add-a-planned-chapter-roadmap) |
-| Publish a **live** chapter (readable page) | [§ Live chapter](#publish-a-live-chapter) |
+| Publish a **live** chapter (readable page) | [§ Publish a live chapter](#publish-a-live-chapter) |
 | Add a **branch** in the catalog map | [§ Chapter graph](#chapter-graph-branches) |
 | Add a new **subject** | [§ New subject](#add-a-new-subject) |
 | Add a **curriculum** filter (e.g. GCSE) | [§ New curriculum label](#add-a-curriculum-label) |
@@ -24,17 +26,26 @@ Thank you for helping grow free, open textbooks. This guide focuses on **curricu
 
 ```text
 data/catalog.json              → subjects in the sidebar + filter chips (DSE, IB, …)
-data/{subject}-curriculum.json → strands, chapters, curriculum tags, optional graph
+data/{subject}-curriculum.json → strands, chapters, curriculum tags, graph.edges
 content/{subject}/{slug}/      → actual chapter page (when status is "live")
 themes/.../partials/...        → chapter HTML content (today)
 ```
 
-- **Catalog** (`/catalog/`) is the place to browse everything.
-  - **List** — numbered chapter cards; live chapters link to the whole card.
-  - **Map** — strand columns on a pannable JSON Canvas graph; live chapters link from the **title only** (with `→` and a hover underline).
-- **`/math/`** redirects to `/catalog/?subject=math` — there is no separate math book homepage.
+- **Catalog** (`/catalog/`) — **List** (numbered cards; live = whole card links) and **Map** (`?view=tree`; live = title link only with `→` and hover underline).
+- **`/math/`** redirects to `/catalog/?subject=math`.
 - **Curriculum names** (DSE, IB, …) appear only in the catalog — not inside chapter text ([spec.md](spec.md)).
-- Every chapter needs a short **`description`** in curriculum JSON (shown in list and map; map clamps description to three lines).
+- Every chapter needs a **`description`** in curriculum JSON (map clamps to three lines).
+
+### Map graph rules (summary)
+
+| Rule | Detail |
+|------|--------|
+| Edges | **Only** `graph.edges` — no automatic chain from strand `chapters[]` order |
+| Meaning | Each edge is a **required** prerequisite (`from` → `to`) |
+| Scope | Cross-strand edges allowed |
+| Layout | **Longest-path** levels; siblings at the same level stack vertically in a column |
+| DAG | No cycles — build throws if the graph cycles |
+| `tier` | Optional `foundation` (default) or `non-foundation` (Extension badge) |
 
 ---
 
@@ -52,9 +63,12 @@ Use this when the chapter is not written yet but should appear in the catalog.
   "title": "Human-readable title",
   "description": "One or two sentences for the catalog list and map card.",
   "status": "planned",
-  "curriculums": ["DSE"]
+  "curriculums": ["DSE"],
+  "tier": "non-foundation"
 }
 ```
+
+(`tier` is optional — omit for foundation topics; `non-foundation` shows an **Extension** badge.)
 
 4. Use a **kebab-case** `slug` (letters, numbers, hyphens only).
 5. Set `curriculums` to every syllabus tag that applies. Tags must exist in `data/catalog.json` → `curriculums`.
@@ -70,7 +84,7 @@ A live chapter needs **catalog data** and a **page**.
 
 ### 1. Catalog entry
 
-In `data/{subject}-curriculum.json`, set `"status": "live"` and include a `description` for the chapter (see [planned chapter](#add-a-planned-chapter-roadmap)).
+In `data/{subject}-curriculum.json`, set `"status": "live"` and include a `description` (see [planned chapter](#add-a-planned-chapter-roadmap)).
 
 ### 2. Zola section
 
@@ -128,19 +142,18 @@ Then run `bun run build:js`.
 
 ## Chapter graph (branches)
 
-The **Map** tab (`?view=tree`) shows chapters as a directed graph on a canvas (strand = column, arrows = prerequisites / sequence).
+The **Map** tab (`?view=tree`) shows chapters as a directed graph (strand = column, arrows = prerequisites).
 
-- Chapters appear as cards with title, description, and curriculum badges.
-- **Live** chapters: click the **title** to open the chapter (not the whole card).
-- **Planned** chapters: shown with a “Coming soon” badge; no link.
-- By default, chapters in a strand link in **list order** (chapter 1 → chapter 2 → …).
-- For **branches** (one chapter leads to several next chapters), add `graph.edges`:
+- Prerequisites are **only** declared in `graph.edges` (strand list order does not create arrows).
+- For **branches** or **merges**, add edges:
 
 ```json
 "graph": {
   "edges": [
-    { "from": "quadratic-equations", "to": "sequences" },
-    { "from": "quadratic-equations", "to": "functions-graphs" }
+    { "from": "quadratic-equations", "to": "sequences-series" },
+    { "from": "quadratic-equations", "to": "functions-graphs" },
+    { "from": "functions-graphs", "to": "linear-programming" },
+    { "from": "sequences-series", "to": "linear-programming" }
   ]
 }
 ```
@@ -148,12 +161,10 @@ The **Map** tab (`?view=tree`) shows chapters as a directed graph on a canvas (s
 Rules:
 
 - `from` and `to` are chapter **slugs**.
-- The graph must **not contain cycles** (no circular prerequisites).
-- Edges must reference slugs that exist in `strands`.
+- The graph must **not contain cycles**.
+- Edges may cross strands.
 
-Open `/catalog/?subject=math&view=tree` to verify layout. Scroll the page normally; use Ctrl/Cmd + wheel on the map to zoom. Pan by clicking the map first if the “click to interact” banner appears.
-
-If a map card looks **clipped** at the bottom (badges or description cut off), that is a layout bug — long titles and descriptions need enough node height. Report it or see [curriculum-data.md](.agents/skills/ofb/curriculum-data.md) for how heights are measured.
+Open `/catalog/?subject=math&view=tree` to verify. Use Ctrl/Cmd + wheel on the map to zoom.
 
 ---
 
@@ -169,9 +180,9 @@ Example: adding **Science**.
 
 2. **`data/science-curriculum.json`** — create with `title`, `strands`, and chapters (copy structure from `math-curriculum.json`).
 
-3. **`themes/openfreebooks/templates/catalog.html`** — today you must wire the new file into `#catalog-data` (see `math` block). *This step should get easier; see README contributor tasks.*
+3. **`themes/openfreebooks/templates/catalog.html`** — wire the new file into `#catalog-data` (see `math` block).
 
-4. **`content/science/`** — add `_index.md` (redirect template like math) when you have a section.
+4. **`content/science/`** — add `_index.md` when you have a section.
 
 5. **Homepage** — optional card in `themes/openfreebooks/templates/index.html`.
 
@@ -190,13 +201,26 @@ Example: adding **GCSE**.
 
 ---
 
+## Development & tests
+
+```bash
+bun install
+bun run build:js    # after frontend/ changes
+zola serve
+bun test            # catalog map layout (catalog-to-canvas)
+bun run build
+```
+
+- Commit `themes/openfreebooks/static/js/` after `build:js`.
+- Do **not** commit `public/`.
+
+---
+
 ## Pull requests
 
 - Keep changes focused (one subject or a few chapters per PR is fine).
 - Run `bun run build` before opening the PR.
-- Do **not** commit `public/` or copied HTML under `themes/openfreebooks/static/`.
-- **Do** commit Vite output under `themes/openfreebooks/static/js/` (`bundle.js` and hashed chunks such as `catalog-app-*.js`, `catalog-canvas-view-*.js`) after `bun run build:js`.
-- Describe what you added in the PR: subject, chapters, live vs planned, and which curricula apply.
+- Describe what you added: subject, chapters, live vs planned, and which curricula apply.
 
 Questions? Open a [GitHub discussion](https://github.com/hananoshikayomaru/openfreebooks) or issue.
 

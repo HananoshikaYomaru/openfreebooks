@@ -1,0 +1,149 @@
+<p class="section-kicker">Community</p>
+<h1 class="section-title contributing-page__title">{{ page.title }}</h1>
+<p class="contributing-page__lead">
+  Help grow free, open textbooks. Most contributions add <strong>curriculum data</strong> (what exists on the
+  <a href="{{ config.extra.browse_url | safe }}">catalog</a>) or publish a <strong>live chapter</strong> (readable
+  lesson pages). This guide matches the repo’s <a href="https://github.com/hananoshikayomaru/openfreebooks/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.
+</p>
+
+<nav class="contributing-quick-nav" aria-label="On this page">
+  <a class="contributing-quick-nav__card" href="#overview">
+    <span class="contributing-quick-nav__label">Overview</span>
+    <span class="contributing-quick-nav__text">How catalog data and chapters connect</span>
+  </a>
+  <a class="contributing-quick-nav__card" href="#planned-chapter">
+    <span class="contributing-quick-nav__label">Planned chapter</span>
+    <span class="contributing-quick-nav__text">Roadmap entry only — JSON</span>
+  </a>
+  <a class="contributing-quick-nav__card" href="#live-chapter">
+    <span class="contributing-quick-nav__label">Live chapter</span>
+    <span class="contributing-quick-nav__text">Catalog + Zola page + HTML</span>
+  </a>
+  <a class="contributing-quick-nav__card" href="#chapter-graph">
+    <span class="contributing-quick-nav__label">Chapter graph</span>
+    <span class="contributing-quick-nav__text">Branches &amp; prerequisites on the map</span>
+  </a>
+</nav>
+
+<section id="overview" class="contributing-section">
+  <h2 class="contributing-section__title">How the catalog fits together</h2>
+  <div class="contributing-prose">
+    <pre class="contributing-code-block"><code>data/catalog.json              → subjects + filter chips (DSE, IB, …)
+data/{subject}-curriculum.json → strands, chapters, graph.edges
+content/{subject}/{slug}/      → chapter page when status is "live"
+themes/.../partials/...        → chapter HTML bodies (today)</code></pre>
+    <ul>
+      <li><strong>List</strong> — numbered cards; live chapters link from the whole card.</li>
+      <li><strong>Map</strong> (<code>?view=tree</code>) — strand columns; live chapters link from the <strong>title</strong> only (<code>→</code> + hover underline).</li>
+      <li>Curriculum names (DSE, IB, …) appear <strong>only in the catalog</strong>, never inside lesson prose.</li>
+      <li>Every chapter needs a <code>description</code> (1–2 sentences; map clamps to three lines).</li>
+    </ul>
+  </div>
+
+  <div id="contributing-demo-views" class="contributing-demo-slot"></div>
+</section>
+
+<section id="planned-chapter" class="contributing-section">
+  <h2 class="contributing-section__title">Add a planned chapter</h2>
+  <div class="contributing-prose">
+    <p>Use this when the lesson is not written yet but should appear in the catalog roadmap.</p>
+    <ol>
+      <li>Open <code>data/{subject}-curriculum.json</code> (e.g. <code>data/math-curriculum.json</code>).</li>
+      <li>Find the right <strong>strand</strong> and add a chapter object:</li>
+    </ol>
+    <pre class="contributing-code-block"><code>{
+  "slug": "your-chapter-slug",
+  "title": "Human-readable title",
+  "description": "One or two sentences for list and map cards.",
+  "status": "planned",
+  "curriculums": ["DSE"],
+  "tier": "non-foundation"
+}</code></pre>
+    <p><code>tier</code> is optional — omit for foundation topics; <code>non-foundation</code> shows an <strong>Extension</strong> badge.</p>
+    <p>Use <strong>kebab-case</strong> slugs. No <code>content/</code> files needed for planned chapters.</p>
+  </div>
+</section>
+
+<section id="live-chapter" class="contributing-section">
+  <h2 class="contributing-section__title">Publish a live chapter</h2>
+  <div class="contributing-prose">
+    <p>A live chapter needs catalog JSON <strong>and</strong> a Zola section.</p>
+    <h3 class="contributing-section__subtitle">1. Catalog entry</h3>
+    <p>Set <code>"status": "live"</code> and include <code>description</code> in the curriculum JSON.</p>
+    <h3 class="contributing-section__subtitle">2. Zola section</h3>
+    <p>Create <code>content/{subject}/{slug}/_index.md</code> with <code>chapter_id</code> matching the slug.</p>
+    <h3 class="contributing-section__subtitle">3. Chapter HTML</h3>
+    <p>Add <code>themes/openfreebooks/templates/partials/math/your-slug-content.html</code> and wire it in <code>math/chapter.html</code>. Copy patterns from <code>quadratic-equations-content.html</code>.</p>
+    <h3 class="contributing-section__subtitle">4. Optional widget</h3>
+    <p>Add a Solid component under <code>frontend/src/components/</code> and mount it in <code>main.tsx</code>. Run <code>bun run build:js</code>.</p>
+  </div>
+
+  <aside class="contributing-card-demo" aria-label="Map chapter card example">
+    <p class="contributing-demo__hint">On the map, only the title is clickable — hover to preview the underline.</p>
+    <div class="catalog-chapter-card catalog-chapter-card--map">
+      <div class="catalog-chapter-card__body">
+        <h3 class="catalog-chapter-card__title">
+          <a class="catalog-chapter-card__title-link" href="{{ config.extra.browse_url | safe }}">
+            <span class="catalog-chapter-card__title-text">Quadratic equations</span>
+            <span class="catalog-chapter-card__title-arrow" aria-hidden="true">→</span>
+          </a>
+        </h3>
+        <p class="catalog-chapter-card__description">
+          Solve quadratics by factorising, completing the square, and the formula.
+        </p>
+        <div class="catalog-chapter-card__meta">
+          <span class="catalog-badge catalog-badge--dse">DSE</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+</section>
+
+<section id="chapter-graph" class="contributing-section">
+  <h2 class="contributing-section__title">Chapter graph (map prerequisites)</h2>
+  <div class="contributing-prose">
+    <p>Prerequisites are <strong>required</strong> edges in <code>graph.edges</code>. Strand <code>chapters[]</code> order is for the list only — it does not create arrows.</p>
+    <ul>
+      <li><code>from</code> / <code>to</code> are chapter <strong>slugs</strong> (any strand).</li>
+      <li>The graph must be acyclic (no cycles).</li>
+      <li>Branch: one parent → many children. Merge: many parents → one child (multiple edges).</li>
+      <li>Vertical position uses <strong>longest-path</strong> layering — a chapter sits below all ancestors.</li>
+    </ul>
+    <pre class="contributing-code-block"><code>"graph": {
+  "edges": [
+    { "from": "quadratic-equations", "to": "sequences-series" },
+    { "from": "quadratic-equations", "to": "functions-graphs" },
+    { "from": "functions-graphs", "to": "linear-programming" },
+    { "from": "sequences-series", "to": "linear-programming" }
+  ]
+}</code></pre>
+    <p>Verify at <a href="{{ config.extra.browse_url | safe }}?subject=math&amp;view=tree">catalog map</a>. Use Ctrl/Cmd + scroll to zoom the canvas.</p>
+  </div>
+
+  <div id="contributing-demo-graph" class="contributing-demo-slot"></div>
+</section>
+
+<section id="dev-setup" class="contributing-section">
+  <h2 class="contributing-section__title">Local development</h2>
+  <div class="contributing-prose">
+    <p>Prerequisites: <a href="https://www.getzola.org/">Zola</a> and <a href="https://bun.sh/">Bun</a>.</p>
+    <pre class="contributing-code-block"><code>bun install
+bun run build:js    # after frontend/ changes
+zola serve          # http://127.0.0.1:1111
+bun test            # layout tests for catalog map
+bun run build       # production build</code></pre>
+    <p>Commit <code>themes/openfreebooks/static/js/</code> after <code>build:js</code>. Do not commit <code>public/</code>.</p>
+  </div>
+</section>
+
+<section class="contributing-section contributing-section--cta">
+  <h2 class="contributing-section__title">Ready to open a pull request?</h2>
+  <p class="contributing-page__lead">
+    Keep PRs focused. Describe subject, chapters, live vs planned, and curricula. Questions welcome on
+    <a href="{{ config.extra.github_url | safe }}">GitHub</a>.
+  </p>
+  <div class="contributing-page__actions">
+    <a class="button button-primary" href="{{ config.extra.github_url | safe }}">View repository</a>
+    <a class="button button-secondary" href="{{ config.extra.browse_url | safe }}">Browse catalog</a>
+  </div>
+</section>

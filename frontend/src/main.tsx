@@ -13,6 +13,7 @@ function readConfig() {
       homeUrl: "/",
       browseUrl: "/catalog/",
       aboutUrl: "/about/",
+      contributingUrl: "/contributing/",
       githubUrl: "https://github.com/openfreebooks/openfreebooks",
     };
   }
@@ -21,6 +22,7 @@ function readConfig() {
     homeUrl: string;
     browseUrl: string;
     aboutUrl: string;
+    contributingUrl: string;
     githubUrl: string;
   };
 }
@@ -89,6 +91,12 @@ if (catalogRoot) {
   void import("./components/catalog-app").then(({ CatalogApp }) => {
     catalogRoot.replaceChildren();
     render(() => <CatalogApp />, catalogRoot);
+  });
+}
+
+if (document.getElementById("contributing-demo-graph") || document.getElementById("contributing-demo-views")) {
+  void import("./components/contributing-demos").then(({ mountContributingDemos }) => {
+    mountContributingDemos();
   });
 }
 

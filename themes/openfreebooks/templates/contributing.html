@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Contribute | {{ config.extra.site_title }}{% endblock title %}
+{% block meta_description %}
+<meta name="description" content="How to add chapters, curriculum data, and prerequisite graphs to {{ config.extra.site_title }}." />
+{% endblock meta_description %}
+
+{% block content %}
+<section class="contributing-page">
+  <div class="container">
+    {% include "partials/contributing-content.html" %}
+  </div>
+</section>
+{% endblock content %}

@@ -607,6 +607,12 @@ a.catalog-chapter-card:focus-visible .catalog-chapter-card__number {
   border-color: rgba(244, 63, 94, 0.25);
 }
 
+.catalog-badge--extension {
+  color: #9a3412;
+  background: rgba(234, 88, 12, 0.1);
+  border-color: rgba(234, 88, 12, 0.28);
+}
+
 .catalog-badge--default {
   color: var(--soft-ink);
   background: var(--paper);

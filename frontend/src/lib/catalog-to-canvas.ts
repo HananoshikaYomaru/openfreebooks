@@ -59,13 +59,6 @@ function buildEdgeList(
     add(edge.from, edge.to, edge.label);
   }
 
-  for (const strand of subject.strands) {
-    const chapters = strand.chapters.filter((ch) => visible.has(ch.slug));
-    for (let i = 0; i < chapters.length - 1; i++) {
-      add(chapters[i].slug, chapters[i + 1].slug);
-    }
-  }
-
   return edges;
 }
 
@@ -100,62 +93,97 @@ function assertAcyclic(edges: CatalogGraphEdge[], slugs: Iterable<string>): void
   }
 }
 
+/** Longest-path rank: level(to) >= level(from) + 1 for every required edge; roots at 0. */
 function assignLevels(edges: CatalogGraphEdge[], slugs: string[]): Map<string, number> {
-  const inDegree = new Map<string, number>();
-  const adj = new Map<string, string[]>();
-
-  for (const slug of slugs) {
-    inDegree.set(slug, 0);
-    adj.set(slug, []);
-  }
-
-  for (const { from, to } of edges) {
-    adj.get(from)?.push(to);
-    inDegree.set(to, (inDegree.get(to) ?? 0) + 1);
-  }
-
   const levels = new Map<string, number>();
-  const queue: Array<{ slug: string; level: number }> = [];
-
   for (const slug of slugs) {
-    if ((inDegree.get(slug) ?? 0) === 0) {
-      queue.push({ slug, level: 0 });
-    }
+    levels.set(slug, 0);
   }
 
-  if (queue.length === 0 && slugs.length > 0) {
-    queue.push({ slug: slugs[0], level: 0 });
-  }
-
-  while (queue.length > 0) {
-    const { slug, level } = queue.shift()!;
-    levels.set(slug, Math.max(level, levels.get(slug) ?? 0));
-
-    for (const next of adj.get(slug) ?? []) {
-      const nextLevel = level + 1;
-      levels.set(next, Math.max(nextLevel, levels.get(next) ?? 0));
-      inDegree.set(next, (inDegree.get(next) ?? 1) - 1);
-      if ((inDegree.get(next) ?? 0) === 0) {
-        queue.push({ slug: next, level: nextLevel });
+  for (let pass = 0; pass < slugs.length; pass++) {
+    let changed = false;
+    for (const { from, to } of edges) {
+      const next = (levels.get(from) ?? 0) + 1;
+      if (next > (levels.get(to) ?? 0)) {
+        levels.set(to, next);
+        changed = true;
       }
     }
-  }
-
-  for (const slug of slugs) {
-    if (!levels.has(slug)) {
-      levels.set(slug, 0);
-    }
+    if (!changed) break;
   }
 
   return levels;
 }
 
-function yOffsetInColumn(level: number, levelHeights: Map<number, number>): number {
+function yOffsetInColumn(level: number, levelRowHeights: Map<number, number>): number {
   let y = 0;
   for (let l = 0; l < level; l++) {
-    y += (levelHeights.get(l) ?? 0) + GAP_Y;
+    y += (levelRowHeights.get(l) ?? 0) + GAP_Y;
   }
   return y;
+}
+
+type ChapterLayoutSlot = {
+  slug: string;
+  columnX: number;
+  level: number;
+  height: number;
+  sortIndex: number;
+};
+
+/** Stack chapters that share a level within one strand column (avoids overlapping cards). */
+function layoutChapterPositions(
+  slots: ChapterLayoutSlot[]
+): Map<string, { x: number; y: number; height: number }> {
+  const byColumn = new Map<number, ChapterLayoutSlot[]>();
+  for (const slot of slots) {
+    const column = byColumn.get(slot.columnX) ?? [];
+    column.push(slot);
+    byColumn.set(slot.columnX, column);
+  }
+
+  const positions = new Map<string, { x: number; y: number; height: number }>();
+
+  for (const [columnX, columnSlots] of byColumn) {
+    const byLevel = new Map<number, ChapterLayoutSlot[]>();
+    for (const slot of columnSlots) {
+      const levelSlots = byLevel.get(slot.level) ?? [];
+      levelSlots.push(slot);
+      byLevel.set(slot.level, levelSlots);
+    }
+
+    const levelRowHeights = new Map<number, number>();
+    for (const [level, levelSlots] of byLevel) {
+      levelSlots.sort((a, b) => a.sortIndex - b.sortIndex);
+      let rowHeight = 0;
+      for (let i = 0; i < levelSlots.length; i++) {
+        rowHeight += levelSlots[i].height;
+        if (i < levelSlots.length - 1) rowHeight += GAP_Y;
+      }
+      levelRowHeights.set(level, rowHeight);
+    }
+
+    for (const [level, levelSlots] of byLevel) {
+      levelSlots.sort((a, b) => a.sortIndex - b.sortIndex);
+      let y = yOffsetInColumn(level, levelRowHeights);
+      for (const slot of levelSlots) {
+        positions.set(slot.slug, { x: columnX, y, height: slot.height });
+        y += slot.height + GAP_Y;
+      }
+    }
+  }
+
+  return positions;
+}
+
+function buildStrandChapterOrder(subject: CatalogSubject): Map<string, number> {
+  const order = new Map<string, number>();
+  for (const strand of subject.strands) {
+    strand.chapters.forEach((chapter, index) => {
+      order.set(chapter.slug, index);
+    });
+  }
+  return order;
 }
 
 function layoutNodes(
@@ -181,33 +209,22 @@ function layoutNodes(
     subject.id
   );
 
-  const levelMaxHeightByStrand = new Map<string, Map<number, number>>();
-  for (const [slug] of visible) {
-    const strandId = slugToStrandId.get(slug);
-    if (!strandId) continue;
-    const level = levels.get(slug) ?? 0;
-    const height = heightBySlug.get(slug) ?? 0;
-    if (!levelMaxHeightByStrand.has(strandId)) {
-      levelMaxHeightByStrand.set(strandId, new Map());
-    }
-    const levelHeights = levelMaxHeightByStrand.get(strandId)!;
-    levelHeights.set(level, Math.max(levelHeights.get(level) ?? 0, height));
-  }
-
-  const positions = new Map<string, { x: number; y: number; height: number }>();
+  const strandChapterOrder = buildStrandChapterOrder(subject);
+  const slots: ChapterLayoutSlot[] = [];
 
   for (const [slug] of visible) {
     const strandId = slugToStrandId.get(slug);
-    const columnX = strandId ? strandColumnX.get(strandId) : 0;
-    const level = levels.get(slug) ?? 0;
-    const levelHeights = strandId ? levelMaxHeightByStrand.get(strandId) : undefined;
-    const height = heightBySlug.get(slug) ?? 0;
-    positions.set(slug, {
-      x: columnX ?? 0,
-      y: yOffsetInColumn(level, levelHeights ?? new Map()),
-      height,
+    const columnX = strandId ? (strandColumnX.get(strandId) ?? 0) : 0;
+    slots.push({
+      slug,
+      columnX,
+      level: levels.get(slug) ?? 0,
+      height: heightBySlug.get(slug) ?? 0,
+      sortIndex: strandChapterOrder.get(slug) ?? 0,
     });
   }
+
+  const positions = layoutChapterPositions(slots);
 
   const groups: JSONCanvasNode[] = [];
   const nodes: JSONCanvasNode[] = [];
@@ -281,7 +298,7 @@ function toCanvasEdges(edgeList: CatalogGraphEdge[]): JSONCanvasEdge[] {
 
 function edgesFromCanvas(canvas: JSONCanvas): CatalogGraphEdge[] {
   const edges: CatalogGraphEdge[] = [];
-  for (const edge of canvas.edges) {
+  for (const edge of canvas.edges ?? []) {
     const from = chapterSlugFromNodeId(edge.fromNode);
     const to = chapterSlugFromNodeId(edge.toNode);
     if (!from || !to) continue;
@@ -295,7 +312,8 @@ export function relayoutCanvasChapterHeights(
   canvas: JSONCanvas,
   heightBySlug: Map<string, number>
 ): JSONCanvas | null {
-  const chapterNodes = canvas.nodes.filter(
+  const canvasNodes = canvas.nodes ?? [];
+  const chapterNodes = canvasNodes.filter(
     (node) => node.type === "text" && node.id.startsWith("chapter-")
   );
   if (chapterNodes.length === 0) return null;
@@ -312,36 +330,35 @@ export function relayoutCanvasChapterHeights(
     mergedHeights.set(slug, Math.max(node.height ?? 0, heightBySlug.get(slug) ?? 0));
   }
 
-  const levelMaxHeightByColumn = new Map<number, Map<number, number>>();
-  for (const node of chapterNodes) {
-    const slug = chapterSlugFromNodeId(node.id);
-    if (!slug) continue;
-    const level = levels.get(slug) ?? 0;
-    const height = mergedHeights.get(slug) ?? 0;
-    if (!levelMaxHeightByColumn.has(node.x)) {
-      levelMaxHeightByColumn.set(node.x, new Map());
-    }
-    const levelHeights = levelMaxHeightByColumn.get(node.x)!;
-    levelHeights.set(level, Math.max(levelHeights.get(level) ?? 0, height));
-  }
+  const slots: ChapterLayoutSlot[] = chapterNodes.map((node, index) => {
+    const slug = chapterSlugFromNodeId(node.id) ?? "";
+    return {
+      slug,
+      columnX: node.x,
+      level: levels.get(slug) ?? 0,
+      height: mergedHeights.get(slug) ?? node.height ?? 0,
+      sortIndex: node.y * 1000 + index,
+    };
+  });
+
+  const positions = layoutChapterPositions(slots);
 
   let changed = false;
   const updatedChapters = chapterNodes.map((node) => {
     const slug = chapterSlugFromNodeId(node.id);
     if (!slug) return node;
-    const level = levels.get(slug) ?? 0;
-    const levelHeights = levelMaxHeightByColumn.get(node.x) ?? new Map();
-    const height = mergedHeights.get(slug) ?? node.height ?? 0;
-    const y = yOffsetInColumn(level, levelHeights);
-    if (y !== node.y || height !== node.height) changed = true;
-    return { ...node, y, height };
+    const pos = positions.get(slug);
+    if (!pos) return node;
+    const height = pos.height;
+    if (pos.y !== node.y || height !== node.height) changed = true;
+    return { ...node, y: pos.y, height };
   });
 
   if (!changed) return null;
 
   const chapterById = new Map(updatedChapters.map((node) => [node.id, node]));
 
-  let nodes = canvas.nodes.map((node) => {
+  let nodes = canvasNodes.map((node) => {
     if (node.type === "text" && node.id.startsWith("chapter-")) {
       return chapterById.get(node.id) ?? node;
     }

@@ -7,7 +7,8 @@
     "build:js": "vite build",
     "build": "rm -f themes/openfreebooks/static/main.css public/main.css && bun run build:js && zola build",
     "dev:js": "vite build --watch",
-    "scan:size": "bun scripts/scan-output-size.ts"
+    "scan:size": "bun scripts/scan-output-size.ts",
+    "test": "bun test frontend/src/lib"
   },
   "dependencies": {
     "defuddle": "^0.18.1",

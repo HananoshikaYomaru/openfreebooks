@@ -1,9 +1,13 @@
+export type CatalogChapterTier = "foundation" | "non-foundation";
+
 export type CatalogChapter = {
   slug: string;
   title: string;
   description: string;
   status: "live" | "planned";
   curriculums: string[];
+  /** DSE compulsory tier; omit = foundation. */
+  tier?: CatalogChapterTier;
 };
 
 export type CatalogStrand = {

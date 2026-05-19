@@ -32,8 +32,9 @@ Example: `data/math-curriculum.json`.
   "intro": "Optional; was used by old book page",
   "graph": {
     "edges": [
-      { "from": "quadratic-equations", "to": "sequences" },
-      { "from": "quadratic-equations", "to": "functions-graphs" }
+      { "from": "quadratic-equations", "to": "sequences-series" },
+      { "from": "quadratic-equations", "to": "functions-graphs" },
+      { "from": "functions-graphs", "to": "linear-programming" }
     ]
   },
   "strands": [
@@ -63,13 +64,26 @@ Example: `data/math-curriculum.json`.
 | `description` | yes | 1–2 sentences; shown in list and map cards (clamped to 3 lines on map) |
 | `status` | yes | `live` (link to chapter) or `planned` (no link) |
 | `curriculums` | yes | Non-empty array; values must exist in `catalog.json` `curriculums` |
+| `tier` | no | `foundation` (default) or `non-foundation` — shows an **Extension** badge on cards |
+
+### Graph model (map)
+
+| Rule | Detail |
+|------|--------|
+| Scope | DSE compulsory topic units (~25–35 chapters); primary/junior not in JSON yet |
+| Edges | **Required** prerequisites only; `graph.edges` is the sole source (no auto chain from strand array order) |
+| Scope of `from`/`to` | Any chapter slug — **cross-strand** edges allowed (arrows may cross columns) |
+| Levels | **Longest-path** from roots: `level = 1 + max(level(parent))`; roots at 0 |
+| List order | `strands[].chapters[]` array order is for the **list** tab only (authoring / ToC) |
+| Roots | Multiple level-0 chapters per strand OK; edgeless placeholders OK while drafting |
 
 ### Graph edges
 
 - `from` / `to` are **chapter slugs** (not node ids).
-- Edges must form a **DAG** (no cycles). Map builder runs cycle detection.
-- Strand order still adds implicit edges: each chapter → next chapter in the same strand (deduped).
-- Use explicit edges for **branches** (one chapter → multiple next chapters).
+- Edges must form a **DAG** (no cycles). Map builder throws on cycles.
+- One prerequisite → add one edge. Multiple parents → multiple edges into the same `to`.
+- Branches: one `from` → many `to` (e.g. quadratics → sequences and functions-graphs).
+- Merges: many `from` → one `to` (e.g. functions + sequences → linear programming).
 
 ### Wiring into catalog
 
