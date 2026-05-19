@@ -1,0 +1,23 @@
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.7;
+  mix-blend-mode: multiply;
+  background-image: var(--grain-svg);
+  background-size: 180px 180px;
+}
+
+[data-theme="dark"] body::before {
+  opacity: 0.45;
+  mix-blend-mode: soft-light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body::before {
+    opacity: 0.45;
+    mix-blend-mode: soft-light;
+  }
+}

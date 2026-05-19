@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Page not found | {{ config.extra.site_title }}{% endblock title %}
+
+{% block content %}
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Page not found</h1>
+      <p class="hero-lead">That page is not in the catalog yet. Try the homepage or browse when books are published.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="{{ get_url(path="/") | safe }}">Back home</a>
+        <a class="button button-secondary" href="{{ config.extra.github_url | safe }}">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

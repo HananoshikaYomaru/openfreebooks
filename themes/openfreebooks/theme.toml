@@ -1,0 +1,9 @@
+name = "openfreebooks"
+description = "Editorial paper theme for Open Free Books"
+license = "MIT"
+min_version = "0.19.0"
+demo = "https://openfreebooks.org"
+
+[author]
+name = "Open Free Books"
+homepage = "https://openfreebooks.org"

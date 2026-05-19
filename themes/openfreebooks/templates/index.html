@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title }}{% endblock title %}
+{% block meta_description %}
+<meta name="description" content="{{ section.description | default(value=config.description) }}" />
+{% endblock meta_description %}
+
+{% block content %}
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Open textbooks. Free to read. Open to improve.</h1>
+      <p class="hero-lead">
+        High-quality learning materials for elementary school through university — on the web, at no cost.
+      </p>
+      <ul class="hero-points">
+        <li><strong>Free</strong> means the whole book, for everyone — read it all online without paywalls.</li>
+        <li><strong>Open</strong> means open source — anyone can fix a typo, add a chapter, or fork a book on GitHub.</li>
+      </ul>
+      <div class="hero-actions">
+        <a class="button button-primary" href="{{ config.extra.browse_url | safe }}">Browse books</a>
+        <a class="button button-secondary" href="{{ config.extra.github_url | safe }}">View on GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="marquee"></div>
+
+<section id="browse-by-subject">
+  <div class="container">
+    <p class="section-kicker">Catalog</p>
+    <h2 class="section-title">Browse by subject</h2>
+    <div class="work-grid" data-scroll-reveal>
+      <article class="work-card" data-scroll-reveal-card>
+        <h3>Mathematics</h3>
+        <p class="card-subtitle">Coming soon</p>
+        <p>Algebra, calculus, statistics, and more — structured for self-study and classrooms.</p>
+      </article>
+      <article class="work-card" data-scroll-reveal-card>
+        <h3>Science</h3>
+        <p class="card-subtitle">Coming soon</p>
+        <p>Physics, chemistry, biology, and earth science from introductory to advanced levels.</p>
+      </article>
+      <article class="work-card" data-scroll-reveal-card>
+        <h3>Humanities</h3>
+        <p class="card-subtitle">Coming soon</p>
+        <p>History, literature, philosophy, and languages — readable, citable, and free to share.</p>
+      </article>
+      <article class="work-card" data-scroll-reveal-card>
+        <h3>Computing</h3>
+        <p class="card-subtitle">Coming soon</p>
+        <p>Programming, computer science fundamentals, and practical skills for students and teachers.</p>
+      </article>
+    </div>
+    <p class="section-note">Subject pages and full catalogs are on the roadmap. Contribute a book on GitHub.</p>
+  </div>
+</section>
+
+<section id="featured-books">
+  <div class="container">
+    <p class="section-kicker">Featured</p>
+    <h2 class="section-title">Featured books</h2>
+    <div class="work-grid" data-scroll-reveal>
+      <article class="work-card" data-scroll-reveal-card>
+        <h3>Your textbook here</h3>
+        <p class="card-subtitle">Placeholder</p>
+        <p>We are building the first open catalog. The first published books will appear in this grid.</p>
+      </article>
+      <article class="work-card" data-scroll-reveal-card>
+        <h3>Community contributions</h3>
+        <p class="card-subtitle">Open source</p>
+        <p>Every book is a repository you can fork, translate, or adapt for your classroom.</p>
+      </article>
+    </div>
+    <p class="section-note">Want to list a book? Open a pull request or start a discussion on GitHub.</p>
+  </div>
+</section>
+{% endblock content %}

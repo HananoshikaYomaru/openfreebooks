@@ -1,5 +1,7 @@
 # The URL the site will be built for
 base_url = "https://openfreebooks.org"
+title = "Open Free Books"
+description = "Free, open-source textbooks for every learner — elementary through university."
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
@@ -7,10 +9,15 @@ compile_sass = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = false
 
+theme = "openfreebooks"
+
 [markdown]
 
 [markdown.highlighting]
 theme = "catppuccin-mocha"
 
 [extra]
-# Put all your custom variables here
+site_title = "Open Free Books"
+github_url = "https://github.com/hananoshikayomaru/openfreebooks"
+browse_url = "/browse/"
+about_url = "/about/"

@@ -1,0 +1,18 @@
+{
+  "name": "openfreebooks",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:js": "vite build",
+    "build": "bun run build:js && zola build",
+    "dev:js": "vite build --watch"
+  },
+  "dependencies": {
+    "solid-js": "^1.9.5"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vite-plugin-solid": "^2.11.6"
+  }
+}

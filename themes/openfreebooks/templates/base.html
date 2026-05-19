@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+    {% block meta_description %}
+    <meta name="description" content="{{ config.description | default(value=config.extra.site_title) }}" />
+    {% endblock meta_description %}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/x-icon" href="{{ get_url(path='favicon.ico') | safe }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ get_url(path='apple-touch-icon.png') | safe }}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ get_url(path='favicon-32x32.png') | safe }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ get_url(path='favicon-16x16.png') | safe }}" />
+    <link rel="manifest" href="{{ get_url(path='site.webmanifest') | safe }}" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ get_url(path='main.css', trailing_slash=false) | safe }}" />
+    {% block extra_head %}{% endblock extra_head %}
+  </head>
+  <body>
+    <script id="site-config" type="application/json">
+      {
+        "brand": {{ config.extra.site_title | json_encode() | safe }},
+        "homeUrl": {{ get_url(path="/") | json_encode() | safe }},
+        "browseUrl": {{ config.extra.browse_url | json_encode() | safe }},
+        "aboutUrl": {{ config.extra.about_url | json_encode() | safe }},
+        "githubUrl": {{ config.extra.github_url | json_encode() | safe }}
+      }
+    </script>
+    <div id="site-header"></div>
+
+    <main>
+      {% block content %}{% endblock content %}
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span>© <span id="footer-year"></span> {{ config.extra.site_title }} — Free, open textbooks for every learner</span>
+        <a class="footer-link" href="{{ config.extra.github_url | safe }}">GitHub</a>
+      </div>
+    </footer>
+
+    <script src="{{ get_url(path='js/bundle.js', trailing_slash=false) | safe }}" defer></script>
+    {% block extra_scripts %}{% endblock extra_scripts %}
+  </body>
+</html>
