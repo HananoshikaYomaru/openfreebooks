@@ -1,0 +1,68 @@
+{% set credits = load_data(path="data/credits.json", format="json") %}
+{% set libraries = credits.libraries | sort(attribute="name") %}
+
+<div class="credits-prose">
+  <p class="credits-lead">{{ credits.intro }}</p>
+  <p class="credits-contributors-note">
+    {{ credits.contributors_note }}
+    <a href="{{ get_url(path='/') | safe }}#contributors">View contributors</a>.
+  </p>
+
+  <section class="credits-block" aria-labelledby="credits-project-heading">
+    <h2 id="credits-project-heading" class="credits-section-title">This project</h2>
+    <article class="credits-entry">
+      <h3 class="credits-entry-name">
+        {% if credits.project.url %}
+        <a href="{{ credits.project.url | safe }}">{{ credits.project.name }}</a>
+        {% else %}
+        {{ credits.project.name }}
+        {% endif %}
+      </h3>
+      <p class="credits-entry-version">Version {{ credits.project.version }}</p>
+      <p class="credits-entry-license">
+        <a href="{{ credits.project.license_url | safe }}">{{ credits.project.license }} License</a>
+      </p>
+      <p class="credits-entry-copyright">{{ credits.project.copyright }}</p>
+    </article>
+  </section>
+
+  <section class="credits-block" aria-labelledby="credits-libraries-heading">
+    <h2 id="credits-libraries-heading" class="credits-section-title">Third party acknowledgements</h2>
+    <p class="credits-section-intro">
+      {{ credits.project.name }} uses the open source libraries below (in alphabetical order):
+    </p>
+    {% for lib in libraries %}
+    <article class="credits-entry">
+      <h3 class="credits-entry-name">
+        <a href="{{ lib.url | safe }}" rel="noopener noreferrer">{{ lib.name }}</a>
+      </h3>
+      <p class="credits-entry-version">Version {{ lib.version }}</p>
+      <p class="credits-entry-license">
+        {% if lib.license_url %}
+        <a href="{{ lib.license_url | safe }}" rel="noopener noreferrer">{{ lib.license }}</a>
+        {% else %}
+        {{ lib.license }}
+        {% endif %}
+      </p>
+      <p class="credits-entry-copyright">{{ lib.copyright }}</p>
+    </article>
+    {% endfor %}
+  </section>
+
+  {% if credits.hosting %}
+  <section class="credits-block" aria-labelledby="credits-hosting-heading">
+    <h2 id="credits-hosting-heading" class="credits-section-title">Hosting &amp; deploy</h2>
+    {% for item in credits.hosting %}
+    <article class="credits-entry">
+      <h3 class="credits-entry-name">
+        <a href="{{ item.url | safe }}" rel="noopener noreferrer">{{ item.name }}</a>
+      </h3>
+      {% if item.version %}
+      <p class="credits-entry-version">Version {{ item.version }}</p>
+      {% endif %}
+      <p class="credits-entry-note">{{ item.note }}</p>
+    </article>
+    {% endfor %}
+  </section>
+  {% endif %}
+</div>

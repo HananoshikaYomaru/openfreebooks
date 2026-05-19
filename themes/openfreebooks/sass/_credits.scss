@@ -1,0 +1,86 @@
+.credits-page {
+  padding: 54px 0 72px;
+  border-top: 1px solid var(--line);
+}
+
+.credits-prose {
+  max-width: var(--prose-width);
+}
+
+.credits-lead,
+.credits-contributors-note,
+.credits-section-intro {
+  margin: 0 0 1rem;
+  color: var(--soft-ink);
+  font-size: 1.05rem;
+  line-height: 1.72;
+}
+
+.credits-contributors-note a,
+.credits-entry-name a,
+.credits-entry-license a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.credits-contributors-note a:hover,
+.credits-contributors-note a:focus-visible,
+.credits-entry-name a:hover,
+.credits-entry-name a:focus-visible,
+.credits-entry-license a:hover,
+.credits-entry-license a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.credits-block {
+  margin-top: 40px;
+}
+
+.credits-section-title {
+  margin: 0 0 16px;
+  font-family: var(--font-heading);
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.credits-entry {
+  margin: 0 0 28px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.credits-block .credits-entry:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.credits-entry-name {
+  margin: 0 0 8px;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.credits-entry-name a {
+  color: var(--ink);
+}
+
+.credits-entry-version,
+.credits-entry-license,
+.credits-entry-copyright,
+.credits-entry-note {
+  margin: 0 0 6px;
+  color: var(--soft-ink);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.credits-entry-copyright:last-child,
+.credits-entry-note:last-child {
+  margin-bottom: 0;
+}

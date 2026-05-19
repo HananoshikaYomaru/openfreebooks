@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Credits | {{ config.extra.site_title }}{% endblock title %}
+{% block meta_description %}
+<meta name="description" content="Technology credits and open source acknowledgements for {{ config.extra.site_title }}." />
+{% endblock meta_description %}
+
+{% block content %}
+<section class="credits-page">
+  <div class="container">
+    <p class="section-kicker">Acknowledgements</p>
+    <h1 class="section-title">{{ page.title }}</h1>
+    {% include "partials/credits-content.html" %}
+  </div>
+</section>
+{% endblock content %}
