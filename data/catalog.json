@@ -1,0 +1,11 @@
+{
+  "title": "Curriculum Catalog",
+  "subtitle": "Browse chapters by subject and curriculum",
+  "curriculums": ["DSE", "IB", "A-Level", "AP", "IGCSE"],
+  "subjects": [
+    { "id": "math", "name": "Mathematics" },
+    { "id": "science", "name": "Science" },
+    { "id": "humanities", "name": "Humanities" },
+    { "id": "computing", "name": "Computing" }
+  ]
+}

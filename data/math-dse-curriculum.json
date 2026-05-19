@@ -10,22 +10,26 @@
         {
           "slug": "quadratic-equations",
           "title": "Quadratic equations",
-          "status": "live"
+          "status": "live",
+          "curriculums": ["DSE"]
         },
         {
           "slug": "sequences",
           "title": "Sequences & series",
-          "status": "planned"
+          "status": "planned",
+          "curriculums": ["DSE"]
         },
         {
           "slug": "functions-graphs",
           "title": "Functions & graphs",
-          "status": "planned"
+          "status": "planned",
+          "curriculums": ["DSE"]
         },
         {
           "slug": "linear-programming",
           "title": "Linear programming",
-          "status": "planned"
+          "status": "planned",
+          "curriculums": ["DSE"]
         }
       ]
     },
@@ -36,22 +40,26 @@
         {
           "slug": "trigonometry",
           "title": "Advanced trigonometry",
-          "status": "planned"
+          "status": "planned",
+          "curriculums": ["DSE"]
         },
         {
           "slug": "coordinate-geometry",
           "title": "Coordinate geometry of circles",
-          "status": "planned"
+          "status": "planned",
+          "curriculums": ["DSE"]
         },
         {
           "slug": "circle-properties",
           "title": "Properties of circles",
-          "status": "planned"
+          "status": "planned",
+          "curriculums": ["DSE"]
         },
         {
           "slug": "loci",
           "title": "Loci",
-          "status": "planned"
+          "status": "planned",
+          "curriculums": ["DSE"]
         }
       ]
     },
@@ -62,22 +70,26 @@
         {
           "slug": "dispersion",
           "title": "Measures of dispersion",
-          "status": "planned"
+          "status": "planned",
+          "curriculums": ["DSE"]
         },
         {
           "slug": "probability",
           "title": "Permutations, combinations & probability",
-          "status": "planned"
+          "status": "planned",
+          "curriculums": ["DSE"]
         },
         {
           "slug": "normal-distribution",
           "title": "Normal distribution & z-scores",
-          "status": "planned"
+          "status": "planned",
+          "curriculums": ["DSE"]
         },
         {
           "slug": "statistical-literacy",
           "title": "Statistical literacy",
-          "status": "planned"
+          "status": "planned",
+          "curriculums": ["DSE"]
         }
       ]
     }

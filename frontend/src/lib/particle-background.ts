@@ -178,10 +178,47 @@ type TreeBranch = {
   ex: number;
   ey: number;
   ez: number;
+  length: number;
   thickStart: number;
   thickEnd: number;
   isTerminal: boolean;
 };
+
+/** Volume proxy for even density: longer / thicker segments get more particles. */
+function segmentParticleWeight(length: number, thickStart: number, thickEnd: number) {
+  const avgThick = (thickStart + thickEnd) * 0.5;
+  return Math.max(0.001, length * avgThick * avgThick);
+}
+
+function branchParticleWeight(branch: TreeBranch) {
+  return segmentParticleWeight(branch.length, branch.thickStart, branch.thickEnd);
+}
+
+function rootParticleWeight(segment: RootSegment) {
+  return segmentParticleWeight(segment.length, segment.thickStart, segment.thickEnd);
+}
+
+function buildWeightCdf<T>(items: T[], weight: (item: T) => number) {
+  const cdf: number[] = [];
+  let total = 0;
+  for (const item of items) {
+    total += weight(item);
+    cdf.push(total);
+  }
+  return { cdf, total };
+}
+
+function pickWeighted<T>(items: T[], cdf: number[], total: number) {
+  const target = Math.random() * total;
+  let lo = 0;
+  let hi = cdf.length - 1;
+  while (lo < hi) {
+    const mid = (lo + hi) >> 1;
+    if (cdf[mid] < target) lo = mid + 1;
+    else hi = mid;
+  }
+  return items[lo];
+}
 
 type RootSegment = {
   sx: number;
@@ -189,6 +226,7 @@ type RootSegment = {
   ex: number;
   ez: number;
   bend: number;
+  length: number;
   thickStart: number;
   thickEnd: number;
   depth: number;
@@ -260,11 +298,11 @@ function generateDetailedTree(
   isFlower: Float32Array,
   palette: ThemePalette
 ) {
-  const landCount = Math.floor(count * (25000 / 150000));
+  const landCount = Math.floor(count * (30000 / 150000));
   const rootCount = Math.floor(count * (15000 / 150000));
-  const trunkCount = Math.floor(count * (3000 / 150000));
-  const branchParticleCount = Math.floor(count * (55000 / 150000));
-  const junctionBudget = Math.floor(count * (4000 / 150000));
+  const trunkCount = Math.floor(count * (6000 / 150000));
+  const branchParticleCount = Math.floor(count * (43000 / 150000));
+  const junctionBudget = Math.floor(count * (7000 / 150000));
   const flowerPlotCount = Math.max(120, Math.floor(count * (1000 / 150000)));
 
   let pIdx = 0;
@@ -294,7 +332,7 @@ function generateDetailedTree(
     const ex = sx + Math.cos(angle) * length;
     const ez = sz + Math.sin(angle) * length;
     const thickEnd = Math.max(0.018, thickStart * (0.42 + Math.random() * 0.15));
-    rootSegments.push({ sx, sz, ex, ez, bend: curve, thickStart, thickEnd, depth });
+    rootSegments.push({ sx, sz, ex, ez, bend: curve, length, thickStart, thickEnd, depth });
 
     if (depth >= maxDepth) return;
 
@@ -331,8 +369,10 @@ function generateDetailedTree(
     );
   }
 
+  const rootPick = buildWeightCdf(rootSegments, rootParticleWeight);
+
   for (let i = 0; i < rootCount && pIdx < count; i += 1, pIdx += 1) {
-    const segment = rootSegments[Math.floor(Math.random() * rootSegments.length)];
+    const segment = pickWeighted(rootSegments, rootPick.cdf, rootPick.total);
     const t = Math.pow(Math.random(), 0.82);
     const omt = 1 - t;
     const midX = (segment.sx + segment.ex) * 0.5 + Math.cos(Math.atan2(segment.ez - segment.sz, segment.ex - segment.sx) + Math.PI / 2) * segment.bend;
@@ -360,7 +400,12 @@ function generateDetailedTree(
     const fx = r * Math.cos(theta);
     const fz = r * Math.sin(theta);
     const fh = 0.35 + Math.random() * 0.55;
-    const magenta = Math.random() > 0.5;
+    const flowerVariant = Math.floor(Math.random() * 3);
+    const flowerColors: [number, number, number][] = [
+      [0.95, 0.14, 0.2], // red
+      [0.72, 0.2, 0.98], // purple
+      [1, 0.88, 0.14], // yellow
+    ];
     const stemSegments = 8;
 
     for (let j = 0; j < stemSegments; j += 1) {
@@ -375,12 +420,10 @@ function generateDetailedTree(
     positions[pIdx * 3] = fx;
     positions[pIdx * 3 + 1] = GROUND_Y + fh;
     positions[pIdx * 3 + 2] = fz;
-    if (magenta) {
-      setColorExact(colors, pIdx, 1, 0.2, 0.8);
-    } else {
-      setColorExact(colors, pIdx, 1, 0.9, 0.2);
-    }
-    isFlower[pIdx] = 1;
+    const [fr, fg, fb] = flowerColors[flowerVariant];
+    setColorExact(colors, pIdx, fr, fg, fb);
+    // 1 = red, 2 = purple, 3 = yellow (0 = not a flower)
+    isFlower[pIdx] = flowerVariant + 1;
     pIdx += 1;
   }
 
@@ -425,6 +468,7 @@ function generateDetailedTree(
       ex,
       ey,
       ez,
+      length,
       thickStart,
       thickEnd,
       isTerminal,
@@ -508,9 +552,12 @@ function generateDetailedTree(
 
   const branchOrange: ShapeColors = palette.helix;
   const branchOrangeTip: ShapeColors = palette.sphere;
+  const branchPick = buildWeightCdf(branches, branchParticleWeight);
+  const terminalPick =
+    terminalBranches.length > 0 ? buildWeightCdf(terminalBranches, branchParticleWeight) : null;
 
   for (let i = 0; i < branchParticleCount && pIdx < count; i += 1, pIdx += 1) {
-    const b = branches[Math.floor(Math.random() * branches.length)];
+    const b = pickWeighted(branches, branchPick.cdf, branchPick.total);
     const t =
       Math.random() < 0.45
         ? Math.pow(Math.random(), 2.2) * 0.35
@@ -526,8 +573,8 @@ function generateDetailedTree(
   }
 
   while (pIdx < count) {
-    if (terminalBranches.length === 0) break;
-    const b = terminalBranches[Math.floor(Math.random() * terminalBranches.length)];
+    if (!terminalPick) break;
+    const b = pickWeighted(terminalBranches, terminalPick.cdf, terminalPick.total);
     const t = Math.pow(Math.random(), 0.6);
     const pos = evalBezier(b.sx, b.sy, b.sz, b.cx, b.cy, b.cz, b.ex, b.ey, b.ez, t);
     const angle = Math.random() * Math.PI * 2;
@@ -590,8 +637,10 @@ const vertexShader = `
 
   varying vec3 vColor;
   varying float vAlpha;
+  varying float vFlowerGlint;
 
   void main() {
+    vFlowerGlint = 0.0;
     float m = clamp(uMorph, 0.0, ${MORPH_MAX}.0);
     float t = fract(m);
     float ease = t < 0.5 ? 4.0 * t * t * t : 1.0 - pow(-2.0 * t + 2.0, 3.0) / 2.0;
@@ -630,10 +679,21 @@ const vertexShader = `
       }
 
       if (aIsFlower > 0.5) {
-        float blink = 0.5 + 0.5 * sin(uTime * 5.0 + pos4.x * 12.0 + pos4.z * 10.0);
-        finalPos.y += blink * 0.35 * treeInfluence;
-        finalCol += finalCol * blink * 2.5 * treeInfluence;
+        float flowerKind = floor(aIsFlower + 0.1);
+        float phase = uTime * 7.0 + pos4.x * 19.0 + pos4.z * 14.0 + flowerKind * 2.4;
+        float twinkle = 0.5 + 0.5 * sin(phase);
+        float sparkle = pow(max(0.0, sin(phase * 3.1)), 10.0);
+        float shimmer = 0.5 + twinkle * 0.45 + sparkle * 1.1;
+
+        finalPos.y += twinkle * 0.28 * treeInfluence;
+        finalCol *= shimmer;
+        finalCol += vec3(1.0, 0.96, 0.88) * sparkle * 1.35 * treeInfluence;
+        vFlowerGlint = (sparkle * 0.95 + twinkle * 0.35) * treeInfluence;
+      } else {
+        vFlowerGlint = 0.0;
       }
+    } else {
+      vFlowerGlint = 0.0;
     }
 
     float sphereInfluence = max(0.0, 1.0 - abs(m - 1.0));
@@ -670,7 +730,11 @@ const vertexShader = `
     finalPos.z += sin(finalPos.x * 1.5 + finalPos.y * 1.5 + uTime * 1.6) * 0.06 * idleWobble;
 
     vec4 mvPosition = modelViewMatrix * vec4(finalPos, 1.0);
-    gl_PointSize = (13.0 * uPixelRatio * uPointScale) * (1.0 / -mvPosition.z);
+    float pointSize = (13.0 * uPixelRatio * uPointScale) * (1.0 / -mvPosition.z);
+    if (vFlowerGlint > 0.0) {
+      pointSize *= 1.0 + vFlowerGlint * 0.75;
+    }
+    gl_PointSize = pointSize;
     gl_Position = projectionMatrix * mvPosition;
     vColor = finalCol;
     vAlpha = 1.0;
@@ -680,9 +744,11 @@ const vertexShader = `
 const fragmentShader = `
   uniform float uParticleAlpha;
   uniform float uColorBoost;
+  uniform float uTime;
 
   varying vec3 vColor;
   varying float vAlpha;
+  varying float vFlowerGlint;
 
   void main() {
     vec2 center = vec2(0.5, 0.5);
@@ -690,6 +756,17 @@ const fragmentShader = `
     if (dist > 0.5) discard;
     float alpha = smoothstep(0.5, 0.08, dist);
     vec3 color = clamp(vColor * uColorBoost, 0.0, 1.0);
+
+    if (vFlowerGlint > 0.0) {
+      vec2 uv = gl_PointCoord - center;
+      float ang = atan(uv.y, uv.x);
+      float star = pow(abs(sin(ang * 4.0 + uTime * 9.0)), 3.0);
+      float core = 1.0 - smoothstep(0.0, 0.22, dist);
+      float glint = star * core * vFlowerGlint;
+      color += vec3(1.0, 0.98, 0.9) * glint * 1.4;
+      alpha = min(1.0, alpha * (1.0 + vFlowerGlint * 0.45));
+    }
+
     gl_FragColor = vec4(color, alpha * uParticleAlpha * vAlpha);
   }
 `;

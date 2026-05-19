@@ -19,6 +19,6 @@ theme = "catppuccin-mocha"
 [extra]
 site_title = "Open Free Books"
 github_url = "https://github.com/hananoshikayomaru/openfreebooks"
-browse_url = "/browse/"
+browse_url = "/catalog/"
 about_url = "/about/"
 credits_url = "/credits/"

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} | {{ config.extra.site_title }}{% endblock title %}
+{% block meta_description %}
+<meta name="description" content="Browse Open Free Books chapters by subject and curriculum." />
+{% endblock meta_description %}
+
+{% block content %}
+{% set catalog = load_data(path="data/catalog.json", format="json") %}
+{% set math = load_data(path="data/math-dse-curriculum.json", format="json") %}
+<script id="catalog-data" type="application/json">
+{
+  "title": {{ catalog.title | json_encode() | safe }},
+  "subtitle": {{ catalog.subtitle | json_encode() | safe }},
+  "curriculums": {{ catalog.curriculums | json_encode() | safe }},
+  "subjects": [
+    {% for subject in catalog.subjects %}
+    {
+      "id": {{ subject.id | json_encode() | safe }},
+      "name": {{ subject.name | json_encode() | safe }},
+      "strands": {% if subject.id == "math" %}{{ math.strands | json_encode() | safe }}{% else %}[]{% endif %}
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+
+<noscript>
+  <div class="catalog-page">
+    <div class="container">
+      <h1 class="section-title">{{ catalog.title }}</h1>
+      <p>{{ catalog.subtitle }}</p>
+      <p>
+        JavaScript is required for the interactive catalog. You can read
+        <a href="{{ get_url(path='/math/') | safe }}">Hong Kong Mathematics</a> directly.
+      </p>
+    </div>
+  </div>
+</noscript>
+
+<div id="catalog-app" class="catalog-page"></div>
+{% endblock content %}

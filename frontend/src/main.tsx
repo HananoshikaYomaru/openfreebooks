@@ -11,7 +11,7 @@ function readConfig() {
     return {
       brand: "Open Free Books",
       homeUrl: "/",
-      browseUrl: "/browse/",
+      browseUrl: "/catalog/",
       aboutUrl: "/about/",
       githubUrl: "https://github.com/openfreebooks/openfreebooks",
     };
@@ -74,6 +74,14 @@ if (quadraticRoot) {
   ]).then(([{ QuadraticExplorer }, { renderBookMath }]) => {
     render(() => <QuadraticExplorer />, quadraticRoot);
     requestAnimationFrame(() => renderBookMath());
+  });
+}
+
+const catalogRoot = document.getElementById("catalog-app");
+if (catalogRoot) {
+  void import("./components/catalog-app").then(({ CatalogApp }) => {
+    catalogRoot.replaceChildren();
+    render(() => <CatalogApp />, catalogRoot);
   });
 }
 
