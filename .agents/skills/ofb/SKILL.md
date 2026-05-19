@@ -110,7 +110,7 @@ Prerequisites: **only** `graph.edges` (required, global DAG, cross-strand OK). L
 Live math example:
 
 1. `content/math/quadratic-equations/_index.md` — front matter, `template = "math/chapter.html"`, `[extra] chapter_id`
-2. `templates/partials/math/quadratic-equations-content.html` — prose + KaTeX
+2. `templates/partials/math/quadratic-equations-core-content.html` — prose + KaTeX (supplement partial for history, derivation, etc.)
 3. `templates/math/chapter.html` — `{% if section.extra.chapter_id == "…" %}` includes partial
 4. Optional: `frontend/src/components/quadratic-explorer.tsx` + mount in `main.tsx`
 

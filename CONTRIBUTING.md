@@ -120,7 +120,7 @@ Today, chapter bodies live as HTML partials under the theme, not Markdown:
 {% endif %}
 ```
 
-Use existing classes: `book-prose`, `book-prose__heading`, `book-callout`, etc. Copy from `quadratic-equations-content.html`.
+Use existing classes: `book-prose`, `book-prose__heading`, `book-callout`, etc. Copy from `quadratic-equations-core-content.html`.
 
 **Do not** mention DSE, IB, or other curriculum names in the chapter body.
 

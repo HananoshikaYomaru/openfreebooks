@@ -13,7 +13,10 @@ body::before {
 /* Top-layer modals must stay opaque; grain blend would otherwise show through. */
 .contributor-dialog[open],
 .contributor-dialog[open] .contributor-dialog-panel,
-pagefind-modal dialog.pf-modal[open] {
+pagefind-modal dialog.pf-modal[open],
+.chapter-heading-nav__popover,
+.chapter-heading-nav__sheet,
+.chapter-heading-nav__fab {
   mix-blend-mode: normal;
 }
 

@@ -35,8 +35,10 @@
       </header>
 
       {% if section.extra.chapter_id == "quadratic-equations" %}
-      {% include "partials/math/quadratic-equations-content.html" %}
+      <div id="chapter-heading-nav" data-pagefind-ignore></div>
+      {% include "partials/math/quadratic-equations-core-content.html" %}
       <div id="quadratic-explorer" class="math-widget-mount" data-pagefind-ignore></div>
+      {% include "partials/math/quadratic-equations-supplement-content.html" %}
       {% endif %}
     </article>
   </div>

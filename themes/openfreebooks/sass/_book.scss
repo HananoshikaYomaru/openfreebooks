@@ -242,7 +242,45 @@ a.book-chapter-link:focus-visible {
 
 .book-prose__heading {
   margin: 2em 0 0.6em;
+}
+
+.book-prose h2.book-prose__heading {
   font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.book-prose h3.book-prose__heading {
+  margin-top: 1.35em;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--soft-ink);
+}
+
+.book-prose h2.book-prose__heading,
+.book-prose h3.book-prose__heading {
+  scroll-margin-top: 96px;
+}
+
+.book-figure {
+  margin: 1.5em 0 1.75em;
+  max-width: 100%;
+}
+
+.book-figure__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 24px var(--shadow-soft);
+}
+
+.book-figure__caption {
+  margin: 0.65em 0 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--muted);
 }
 
 .book-formula {

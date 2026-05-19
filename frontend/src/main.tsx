@@ -78,13 +78,40 @@ if (copyPageRoot) {
   });
 }
 
-const quadraticRoot = document.getElementById("quadratic-explorer");
-if (quadraticRoot) {
+const hasQuadraticChapter =
+  document.getElementById("quadratic-explorer") ||
+  document.getElementById("projectile-demo") ||
+  document.getElementById("profit-demo") ||
+  document.getElementById("area-demo");
+
+const chapterNavRoot = document.getElementById("chapter-heading-nav");
+if (chapterNavRoot) {
+  void import("./components/chapter-heading-nav").then(({ ChapterHeadingNav }) => {
+    render(() => <ChapterHeadingNav />, chapterNavRoot);
+  });
+}
+
+if (hasQuadraticChapter) {
   void Promise.all([
     import("./components/quadratic-explorer"),
+    import("./components/quadratic-application-demos"),
     import("./lib/render-math"),
-  ]).then(([{ QuadraticExplorer }, { renderBookMath }]) => {
-    render(() => <QuadraticExplorer />, quadraticRoot);
+  ]).then(([{ QuadraticExplorer }, demos, { renderBookMath }]) => {
+    const quadraticRoot = document.getElementById("quadratic-explorer");
+    if (quadraticRoot) {
+      render(() => <QuadraticExplorer />, quadraticRoot);
+    }
+    const appDemos: Array<[string, () => import("solid-js").JSX.Element]> = [
+      ["projectile-demo", demos.ProjectileDemo],
+      ["profit-demo", demos.ProfitDemo],
+      ["area-demo", demos.AreaDemo],
+    ];
+    for (const [id, Demo] of appDemos) {
+      const root = document.getElementById(id);
+      if (root) {
+        render(() => <Demo />, root);
+      }
+    }
     requestAnimationFrame(() => renderBookMath());
   });
 }
