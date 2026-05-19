@@ -358,107 +358,170 @@
   color: var(--muted);
 }
 
-// -----------------------------------------------------------------------------
-// Map canvas viewer
-// -----------------------------------------------------------------------------
-
-.catalog-canvas-view {
+.catalog-mermaid-stage {
+  position: relative;
   flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  background: var(--paper);
+}
+
+.catalog-mermaid-controls {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 4;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.catalog-mermaid-controls__btn {
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  cursor: pointer;
+  transition: border-color 180ms ease, color 180ms ease;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--accent);
+    color: var(--accent);
+    outline: none;
+  }
+}
+
+.catalog-mermaid-view {
   width: 100%;
   height: 100%;
   min-height: 0;
-  border-radius: 0;
-  background: var(--paper);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--line) 55%, transparent) 1px, transparent 0)
+    center / 16px 16px;
 
-  :global(.JSON-Canvas-Viewer) {
-    border-radius: 0;
+  :global(.catalog-mermaid-view__svg) {
+    width: 100%;
+    height: 100%;
   }
 
-  :global(.JCV-controls) {
-    --jcv-control-bg: var(--card-bg);
-    --jcv-control-border: var(--card-border);
-    --jcv-control-fg: var(--ink);
+  :global(svg[id^="catalog-mermaid-"]) {
+    width: 100%;
+    height: 100%;
   }
 
-  :global(.JCV-markdown-content) {
+  :global(.catalog-mermaid-view__svg .node rect),
+  :global(.catalog-mermaid-view__svg .node polygon),
+  :global(.catalog-mermaid-view__svg .cluster rect) {
+    fill: color-mix(in srgb, var(--paper) 92%, transparent);
+    stroke: color-mix(in srgb, var(--card-border) 88%, var(--line));
+    stroke-width: 1.3px;
+  }
+
+  :global(.catalog-mermaid-view__svg .cluster-label span),
+  :global(.catalog-mermaid-view__svg .nodeLabel p),
+  :global(.catalog-mermaid-view__svg .nodeLabel span) {
     color: var(--ink);
     font-family: var(--font-body);
-    font-size: 0.9rem;
-    line-height: 1.45;
-
-    p {
-      margin: 0;
-      color: var(--ink);
-    }
-
-    p + p {
-      margin-top: 0.35rem;
-      color: var(--muted);
-      font-size: 0.82rem;
-    }
-
-    strong {
-      color: var(--ink);
-      font-weight: 600;
-    }
-
-    em {
-      color: var(--muted);
-      font-style: italic;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
   }
 
-  :global(.JCV-minimap-container) {
-    border-color: var(--card-border);
-    background: var(--card-bg);
+  :global(.catalog-mermaid-view__svg .edgeLabel span) {
+    background: color-mix(in srgb, var(--card-bg) 94%, transparent);
+    color: var(--soft-ink);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 2px 6px;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 
-  :global(.JCV-overlay-container .JCV-content) {
-    padding: 0;
-    overflow: hidden;
-    background: transparent;
+  :global(.catalog-mermaid-view__svg .liveNode rect),
+  :global(.catalog-mermaid-view__svg .liveNode polygon) {
+    stroke: var(--accent);
+    fill: color-mix(in srgb, var(--paper) 94%, var(--accent) 6%);
   }
 
-  :global(.catalog-chapter-card--map) {
-    margin: 0;
-    width: 100%;
-    height: auto;
-    min-height: 0;
-    box-sizing: border-box;
+  :global(.catalog-mermaid-view__svg .plannedNode rect),
+  :global(.catalog-mermaid-view__svg .plannedNode polygon) {
+    stroke: color-mix(in srgb, var(--muted) 85%, transparent);
+    fill: color-mix(in srgb, var(--paper) 92%, var(--muted) 8%);
+  }
+
+  :global(.catalog-mermaid-view__svg .edge-path path) {
+    stroke: color-mix(in srgb, var(--accent) 65%, var(--muted));
+    stroke-width: 1.8px;
+  }
+
+  :global(.catalog-mermaid-view__svg .cluster rect) {
+    fill: color-mix(in srgb, var(--paper) 78%, transparent);
+    stroke: color-mix(in srgb, var(--accent) 26%, var(--line));
+  }
+
+  :global(.catalog-mermaid-node) {
+    width: min(300px, 46vw);
+    display: flex;
     flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    pointer-events: auto;
-    cursor: default;
+    gap: 8px;
+    text-align: left;
   }
 
-  :global(.catalog-chapter-card--map .catalog-chapter-card__title-link) {
-    @include catalog-chapter-title-link-with-arrow;
+  :global(.catalog-mermaid-node__title) {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    line-height: 1.2;
+    color: var(--ink);
   }
 
-  :global(.catalog-chapter-card--map .catalog-chapter-card__title-arrow) {
-    @include catalog-chapter-title-arrow;
-  }
-
-  :global(.catalog-chapter-card--map .catalog-chapter-card__meta) {
-    padding-left: 0;
-  }
-
-  :global(.catalog-chapter-card--map .catalog-chapter-card__description) {
+  :global(.catalog-mermaid-node__description) {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    color: var(--soft-ink);
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  :global(.catalog-mermaid-node__meta) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  :global(.catalog-mermaid-node .catalog-badge) {
+    font-size: 0.6rem;
+  }
+
+}
+
+[data-theme="dark"] .catalog-mermaid-view {
+  :global(.catalog-mermaid-view__svg .node rect),
+  :global(.catalog-mermaid-view__svg .node polygon),
+  :global(.catalog-mermaid-view__svg .cluster rect) {
+    stroke: color-mix(in srgb, var(--accent) 78%, #ffffff 22%);
+  }
+
+  :global(.catalog-mermaid-view__svg .edge-path path),
+  :global(.catalog-mermaid-view__svg .arrowheadPath) {
+    stroke: color-mix(in srgb, var(--accent) 88%, #ffffff 12%);
+    fill: color-mix(in srgb, var(--accent) 88%, #ffffff 12%);
+  }
+
+  :global(.catalog-mermaid-view__svg .edgeLabel span) {
+    border-color: color-mix(in srgb, var(--accent) 52%, var(--line));
   }
 }
 
@@ -827,13 +890,18 @@ a.catalog-chapter-card {
   }
 
   .catalog-content {
-    padding: 24px 20px;
+    padding: 0px;
   }
 
   .catalog-content--tree {
     flex: 1 1 0%;
     min-height: min(70vh, 560px);
     max-height: min(70vh, 560px);
+  }
+
+  .catalog-mermaid-controls {
+    right: 12px;
+    top: 12px;
   }
 }
 

@@ -34,6 +34,7 @@
       { "from": "deductive-geometry", "to": "circle-properties" },
       { "from": "coordinate-circles", "to": "loci" },
       { "from": "circle-properties", "to": "loci" },
+      { "from": "directed-numbers-rates", "to": "statistical-charts-averages" },
       { "from": "statistical-charts-averages", "to": "measures-dispersion" },
       { "from": "statistical-charts-averages", "to": "basic-probability" },
       { "from": "basic-probability", "to": "permutations-combinations-probability" },

@@ -31,7 +31,7 @@ content/{subject}/{slug}/      → actual chapter page (when status is "live")
 themes/.../partials/...        → chapter HTML content (today)
 ```
 
-- **Catalog** (`/catalog/`) — **List** (numbered cards; live = whole card links) and **Map** (`?view=tree`; live = title link only with `→` and hover underline).
+- **Catalog** (`/catalog/`) — **List** (numbered cards; live = whole card links) and **Map** (`?view=tree`, Mermaid; live = title link only with `→` and hover underline).
 - **`/math/`** redirects to `/catalog/?subject=math`.
 - **Curriculum names** (DSE, IB, …) appear only in the catalog — not inside chapter text ([spec.md](spec.md)).
 - Every chapter needs a **`description`** in curriculum JSON (map clamps to three lines).
@@ -207,7 +207,7 @@ Example: adding **GCSE**.
 bun install
 bun run build:js    # after frontend/ changes
 zola serve
-bun test            # catalog map layout (catalog-to-canvas)
+bun test            # catalog map generation (catalog-to-mermaid)
 bun run build
 ```
 

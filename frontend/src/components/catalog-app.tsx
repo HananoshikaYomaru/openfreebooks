@@ -1,6 +1,5 @@
-import { createMemo, createSignal, For, lazy, onCleanup, onMount, Show, Suspense } from "solid-js";
-import { subjectToCanvas } from "../lib/catalog-to-canvas";
-import { watchSiteTheme } from "../lib/catalog-canvas-theme";
+import { createMemo, createSignal, For, lazy, Show, Suspense } from "solid-js";
+import { subjectToMermaid } from "../lib/catalog-to-mermaid";
 import { CatalogChapterCard } from "./catalog-chapter-card";
 import { CatalogFiltersMenu } from "./catalog-filters-menu";
 import type {
@@ -11,8 +10,8 @@ import type {
   CatalogViewMode,
 } from "../../../data/catalog.types";
 
-const CatalogCanvasView = lazy(() =>
-  import("./catalog-canvas-view").then((m) => ({ default: m.CatalogCanvasView }))
+const CatalogMermaidView = lazy(() =>
+  import("./catalog-mermaid-view").then((m) => ({ default: m.CatalogMermaidView }))
 );
 
 function readCatalogData(): CatalogData | null {
@@ -66,16 +65,6 @@ export function CatalogApp() {
   const [currentSubjectId, setCurrentSubjectId] = createSignal(initialSubjectId(data.subjects));
   const [activeFilters, setActiveFilters] = createSignal<Set<string>>(new Set());
   const [viewMode, setViewMode] = createSignal<CatalogViewMode>(initialViewMode());
-  const [canvasThemeTick, setCanvasThemeTick] = createSignal(0);
-  const [mapLayoutReady, setMapLayoutReady] = createSignal(!document.fonts);
-
-  onMount(() => {
-    const stopThemeWatch = watchSiteTheme(() => setCanvasThemeTick((tick) => tick + 1));
-    if (document.fonts) {
-      void document.fonts.ready.then(() => setMapLayoutReady(true));
-    }
-    onCleanup(stopThemeWatch);
-  });
 
   const currentSubject = createMemo(
     () => data.subjects.find((s) => s.id === currentSubjectId()) ?? data.subjects[0]
@@ -89,23 +78,9 @@ export function CatalogApp() {
     () => (chapter: CatalogChapter) => chapterMatchesFilters(chapter, activeFilters())
   );
 
-  const canvasData = createMemo(() => {
-    canvasThemeTick();
-    if (!mapLayoutReady()) return undefined;
-    return subjectToCanvas(currentSubject(), chapterFilter());
-  });
-
-  const visibleChapters = createMemo(() => {
-    const map: Record<string, CatalogChapter> = {};
-    for (const strand of currentSubject().strands) {
-      for (const chapter of strand.chapters) {
-        if (chapterFilter()(chapter)) {
-          map[chapter.slug] = chapter;
-        }
-      }
-    }
-    return map;
-  });
+  const mermaidData = createMemo(() =>
+    subjectToMermaid(currentSubject(), chapterFilter(), currentSubjectId())
+  );
 
   const statsLabel = createMemo(() => {
     const count = visibleCount();
@@ -253,7 +228,6 @@ export function CatalogApp() {
                                 chapter={chapter}
                                 index={index()}
                                 subjectId={currentSubjectId()}
-                                variant="list"
                               />
                             </li>
                           )}
@@ -264,20 +238,14 @@ export function CatalogApp() {
                 </For>
               }
             >
-              <Show
-                when={canvasData()}
-                fallback={<p class="catalog-canvas-loading">Loading chapter map…</p>}
-              >
-                {(canvas) => (
-                  <Suspense fallback={<p class="catalog-canvas-loading">Loading chapter map…</p>}>
-                    <CatalogCanvasView
-                      canvas={canvas()}
-                      subjectId={currentSubjectId()}
-                      chapters={visibleChapters()}
-                    />
-                  </Suspense>
-                )}
-              </Show>
+              <Suspense fallback={<p class="catalog-canvas-loading">Loading chapter map…</p>}>
+                <Show
+                  when={mermaidData()}
+                  fallback={<p class="catalog-canvas-loading">Loading chapter map…</p>}
+                >
+                  {(diagram) => <CatalogMermaidView diagram={diagram()} />}
+                </Show>
+              </Suspense>
             </Show>
           </Show>
         </div>
