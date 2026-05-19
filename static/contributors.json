@@ -1,0 +1,23 @@
+{
+  "contributors": [
+    {
+      "name": "Man Lung Yeung",
+      "avatar": "contributors/manlung.png",
+      "website": "https://manlung.work",
+      "job_title": "EdTech specialist / software engineer",
+      "education": "BEng in Computer Science (HKUST) + BBA (HKUST)",
+      "contributions": [
+        "Project Creator",
+        "Math textbook",
+        "Physics textbook",
+        "Chemistry textbook"
+      ],
+      "socials": [
+        { "type": "email", "url": "manlung.yeung@outlook.com" },
+        { "type": "github", "url": "https://github.com/hananoshikaYomaru" },
+        { "type": "x", "url": "https://x.com/yomaru_1999" },
+        { "type": "youtube", "url": "https://www.youtube.com/@yomaru_1999" }
+      ]
+    }
+  ]
+}

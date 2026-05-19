@@ -1,6 +1,7 @@
 import { render } from "solid-js/web";
 import { SiteHeader } from "./components/site-header";
 import { Marquee } from "./components/marquee";
+import { ContributorsDialogBootstrap } from "./components/contributors-dialog";
 import { ScrollRevealBootstrap } from "./components/scroll-reveal";
 import { initTheme } from "./theme";
 
@@ -56,4 +57,5 @@ if (marqueeRoot) {
 }
 
 render(() => <ScrollRevealBootstrap />, document.body);
+render(() => <ContributorsDialogBootstrap />, document.body);
 mountFooterYear();

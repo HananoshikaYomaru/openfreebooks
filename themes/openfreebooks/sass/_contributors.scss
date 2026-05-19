@@ -1,0 +1,303 @@
+.why-section--community {
+  --community-block-gap: 72px;
+}
+
+.why-section--community .why-craft-logos-wrap {
+  margin-top: var(--community-block-gap);
+}
+
+.why-section--community .community-contributors {
+  margin-top: var(--community-block-gap);
+  padding-bottom: 12px;
+}
+
+.contributors-intro {
+  max-width: var(--prose-width);
+  margin: 0 0 24px;
+  color: var(--soft-ink);
+  font-size: 1.05rem;
+  line-height: 1.72;
+}
+
+.contributors-avatar-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contributors-avatar-item {
+  opacity: 0;
+  translate: 0 12px;
+  transition: opacity 400ms ease, translate 400ms ease;
+}
+
+.contributors-avatar-item.is-inview {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.contributor-avatar-btn {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  line-height: 0;
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.contributor-avatar-btn:hover,
+.contributor-avatar-btn:focus-visible {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.contributor-avatar-img,
+.contributor-avatar-fallback {
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.contributor-avatar-img {
+  object-fit: cover;
+  border: 1px solid var(--card-border);
+  background: var(--paper);
+}
+
+.contributor-avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--accent);
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.contributor-dialog {
+  margin: auto;
+  padding: 0;
+  border: none;
+  max-width: min(92vw, 440px);
+  background-color: #f5f4f1;
+  color: var(--ink);
+  isolation: isolate;
+}
+
+[data-theme="dark"] .contributor-dialog {
+  background-color: #1a1917;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .contributor-dialog {
+    background-color: #1a1917;
+  }
+}
+
+.contributor-dialog::backdrop {
+  background: rgba(26, 26, 26, 0.45);
+}
+
+[data-theme="dark"] .contributor-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.62);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .contributor-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.62);
+  }
+}
+
+.contributor-dialog-panel {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  margin: 0;
+  padding: 28px 28px 24px;
+  border: 1px solid var(--card-border);
+  background-color: #f5f4f1;
+  box-shadow: 0 18px 48px var(--shadow-soft);
+}
+
+[data-theme="dark"] .contributor-dialog-panel {
+  background-color: #1a1917;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .contributor-dialog-panel {
+    background-color: #1a1917;
+  }
+}
+
+.contributor-dialog-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.contributor-dialog-close:hover,
+.contributor-dialog-close:focus-visible {
+  color: var(--ink);
+  background: var(--paper);
+  outline: none;
+}
+
+.contributor-dialog-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 18px;
+  padding-right: 28px;
+}
+
+.contributor-dialog-avatar {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--card-border);
+  background: var(--paper);
+}
+
+.contributor-dialog-name {
+  margin: 0 0 6px;
+  font-family: var(--font-heading);
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.contributor-dialog-job {
+  margin: 0;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.contributor-dialog-meta,
+.contributor-dialog-contributions {
+  margin: 0 0 14px;
+  color: var(--soft-ink);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.contributor-meta-label {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.contributor-contribution-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contributor-contribution-list li {
+  position: relative;
+  padding-left: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.contributor-contribution-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.contributor-dialog-connect {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.contributor-social-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contributor-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  color: var(--ink);
+  text-decoration: none;
+  background: var(--paper);
+  transition: border-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.contributor-social-link:hover,
+.contributor-social-link:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.contributor-social-icon {
+  display: block;
+  flex-shrink: 0;
+}
+
+.why-section--community .section-note a {
+  color: var(--accent);
+}
+
+.why-section--community .community-contributors .section-note {
+  margin-top: 28px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contributors-avatar-item {
+    opacity: 1;
+    translate: 0 0;
+    transition: none;
+  }
+
+  .contributor-avatar-btn:hover,
+  .contributor-avatar-btn:focus-visible {
+    transform: none;
+  }
+}

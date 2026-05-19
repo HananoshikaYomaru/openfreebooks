@@ -10,6 +10,12 @@ body::before {
   background-size: 180px 180px;
 }
 
+/* Top-layer modals must stay opaque; grain blend would otherwise show through. */
+.contributor-dialog[open],
+.contributor-dialog[open] .contributor-dialog-panel {
+  mix-blend-mode: normal;
+}
+
 [data-theme="dark"] body::before {
   opacity: 0.45;
   mix-blend-mode: soft-light;

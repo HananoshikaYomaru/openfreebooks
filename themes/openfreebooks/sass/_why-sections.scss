@@ -1,0 +1,267 @@
+.why-section {
+  padding: 64px 0;
+  border-top: 1px solid var(--line);
+}
+
+.why-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 56px);
+  align-items: center;
+}
+
+.why-row--art-end .why-art {
+  order: 2;
+}
+
+.why-row--art-end .why-copy {
+  order: 1;
+}
+
+.why-art {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  translate: 0 20px;
+  transition: opacity 500ms ease, translate 500ms ease;
+}
+
+.why-art.is-inview {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.why-art svg {
+  width: min(100%, 280px);
+  height: auto;
+  display: block;
+}
+
+.why-copy {
+  max-width: var(--prose-width);
+  opacity: 0;
+  translate: 0 20px;
+  transition: opacity 500ms ease, translate 500ms ease;
+}
+
+.why-copy.is-inview {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.why-copy .section-title {
+  margin-bottom: 16px;
+}
+
+.why-copy p {
+  margin: 0 0 1rem;
+  color: var(--soft-ink);
+  font-size: 1.05rem;
+  line-height: 1.72;
+}
+
+.why-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.why-copy strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.why-section--community .why-craft-logos-wrap {
+  overflow: hidden;
+  opacity: 0;
+  translate: 0 20px;
+  transition: opacity 500ms ease, translate 500ms ease;
+}
+
+.why-section--community .why-craft-logos-wrap.is-inview {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.university-logos-label {
+  margin: 0 0 24px;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.university-carousel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  overflow: hidden;
+}
+
+.university-carousel-row {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+}
+
+.university-carousel-track {
+  display: flex;
+  width: max-content;
+  animation: university-carousel-forward 52s linear infinite;
+}
+
+.university-carousel-row--reverse .university-carousel-track {
+  animation-name: university-carousel-reverse;
+  animation-duration: 58s;
+}
+
+.university-carousel-row--slow .university-carousel-track {
+  animation-duration: 64s;
+}
+
+.university-carousel-group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 0 6px;
+  list-style: none;
+}
+
+@keyframes university-carousel-forward {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes university-carousel-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.university-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 10px 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+}
+
+.university-logo svg {
+  width: 108px;
+  height: auto;
+  display: block;
+  color: var(--ink);
+}
+
+$university-colors: (
+  mit: (#a31f34, #e85a6f),
+  harvard: (#a51c30, #e88a96),
+  stanford: (#8c1515, #e88a8a),
+  berkeley: (#003262, #6a9fd4),
+  caltech: (#ff6c0c, #f5a623),
+  princeton: (#e77500, #f0a040),
+  yale: (#00356b, #6a9fd4),
+  columbia: (#003865, #7eb3e8),
+  cornell: (#b31b1b, #e85a6f),
+  cmu: (#c41230, #e87888),
+  oxford: (#002147, #7eb3e8),
+  cambridge: (#0072cf, #6ab0f0),
+  imperial: (#003e74, #6a9fd4),
+  lse: (#e41f13, #f07870),
+  eth: (#1f407a, #6a9fd4),
+  toronto: (#002a5c, #6a9fd4),
+  mcgill: (#ed1b2f, #f07888),
+  hku: (#006747, #3cb88a),
+  hkust: (#003366, #6a9fd4),
+  cuhk: (#7b2d8e, #c49ae0),
+  nus: (#ef7c00, #f5a623),
+  tsinghua: (#82318e, #c49ae0),
+  pku: (#94070a, #e87878),
+  utokyo: (#003f87, #6a9fd4),
+  anu: (#c4a337, #e8c860),
+  melbourne: (#094183, #6a9fd4),
+  iitb: (#003366, #6a9fd4)
+);
+
+@each $slug, $pair in $university-colors {
+  .university-logo--#{$slug} {
+    color: nth($pair, 1);
+  }
+
+  [data-theme="dark"] .university-logo--#{$slug} {
+    color: nth($pair, 2);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  @each $slug, $pair in $university-colors {
+    :root:not([data-theme="light"]) .university-logo--#{$slug} {
+      color: nth($pair, 2);
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .why-row,
+  .why-row--art-end {
+    grid-template-columns: 1fr;
+  }
+
+  .why-row--art-end .why-art,
+  .why-row--art-end .why-copy {
+    order: unset;
+  }
+
+  .why-art svg {
+    width: min(100%, 220px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .why-art,
+  .why-copy,
+  .why-section--community .why-craft-logos-wrap {
+    opacity: 1;
+    translate: 0 0;
+    transition: none;
+  }
+
+  .university-carousel-track {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .university-carousel-row {
+    mask-image: none;
+  }
+
+  .university-carousel-group[aria-hidden="true"] {
+    display: none;
+  }
+
+  .university-carousel {
+    width: 100%;
+    margin-left: 0;
+  }
+}

@@ -1,3 +1,27 @@
+# Zola build output (Wrangler deploy source)
 public/
-.wrangler/
+
+# Dependencies
 node_modules/
+
+# Cloudflare
+.wrangler/
+.dev.vars
+
+# Environment / secrets
+.env
+.env.*
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Theme static: only the Vite-built bundle is source-controlled.
+# Do not copy Zola public/ output here — it overrides the real homepage on build.
+themes/openfreebooks/static/*
+!themes/openfreebooks/static/js/
+themes/openfreebooks/static/js/*
+!themes/openfreebooks/static/js/bundle.js

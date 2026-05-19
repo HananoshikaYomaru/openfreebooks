@@ -24,6 +24,12 @@
       "sourceType": "github",
       "skillPath": "microinteractions/SKILL.md",
       "computedHash": "875eca02a058bca5467850587d6c7aed62f3de1cd9f509f52c95253ec267b518"
+    },
+    "svg-animations": {
+      "source": "supermemoryai/skills",
+      "sourceType": "github",
+      "skillPath": "svg-animations/SKILL.md",
+      "computedHash": "9be4b3e0afe9d3cbb1bcf238f8504f9a23552f742350fbef9483070112ac1977"
     }
   }
 }
