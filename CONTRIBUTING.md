@@ -211,7 +211,7 @@ bun test            # catalog map generation (catalog-to-mermaid)
 bun run build
 ```
 
-- Commit `themes/openfreebooks/static/js/` after `build:js`.
+- Do **not** commit `themes/openfreebooks/static/` (Vite output). Run `bun run build:js` before `zola build` or `zola serve`.
 - Do **not** commit `public/`.
 
 ---

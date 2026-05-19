@@ -19,11 +19,5 @@ Thumbs.db
 # Logs
 *.log
 
-# Theme static: only Vite-built JS/CSS assets (no HTML or main.css from Zola public/).
-themes/openfreebooks/static/*
-!themes/openfreebooks/static/js/
-themes/openfreebooks/static/js/*
-!themes/openfreebooks/static/js/bundle.js
-!themes/openfreebooks/static/js/*.js
-!themes/openfreebooks/static/js/katex.css
-!themes/openfreebooks/static/js/KaTeX_*
+# Vite build output (bun run build:js → zola copies into public/)
+themes/openfreebooks/static/
