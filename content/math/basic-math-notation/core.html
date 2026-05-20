@@ -6,6 +6,45 @@
     arithmetic yet; you only need to <strong>read</strong> the symbols like words on a sign.
   </p>
 
+  <h2 id="history" class="book-prose__heading">History</h2>
+  <p>
+    People counted with fingers and words long before they agreed on one way to write math. Ancient
+    Egyptians and Babylonians used pictures and marks for amounts. Over centuries, different
+    countries used different symbols for the same ideas.
+  </p>
+
+  <figure class="book-figure">
+    <img
+      class="book-figure__img"
+      src="/chapters/math/basic-math-notation/basic-math-notation-history.png"
+      alt="Cartoon timeline: counting long ago, Egyptian and Babylonian marks, different symbols around the world, then equals, plus and minus, times and divide, and brackets for grouping"
+      width="960"
+      height="640"
+      loading="lazy"
+      decoding="async"
+    />
+    <figcaption class="book-figure__caption">
+      From finger counting and ancient marks to short symbols on one line: how +, −, ×, ÷, =, and ( )
+      became the signs you read today.
+    </figcaption>
+  </figure>
+
+  <p>
+    The <strong>equals sign</strong> (=) was popularised in the 1500s by Welsh mathematician
+    <strong>Robert Recorde</strong>. He chose two lines because “no two things can be more equal” than
+    parallel lines — a way to show both sides match.
+  </p>
+  <p>
+    The <strong>plus</strong> and <strong>minus</strong> signs (+ and −) became common in Europe
+    around the same era, replacing longer Latin words. The <strong>times</strong> sign (×) and
+    <strong>division</strong> sign (÷) appeared later, when printing books needed short, clear marks
+    that fit on one line.
+  </p>
+  <p>
+    Brackets grew important when formulas got longer — mathematicians needed a visible rule for
+    “which part first,” just like you do in <strong>(2 + 3) + 4</strong>.
+  </p>
+
   <h2 id="digits-and-words" class="book-prose__heading">Digits, words, and spaces</h2>
   <p>
     The symbols <strong>0</strong> through <strong>9</strong> are called <strong>digits</strong>. Each
@@ -207,17 +246,90 @@
 
   <h2 id="compare" class="book-prose__heading">Less than and greater than (&lt; &gt;)</h2>
   <p>
-    Sometimes we compare two amounts without adding or subtracting. The open mouth of the symbol
-    points at the <strong>bigger</strong> number.
+    Sometimes we compare two amounts without adding or subtracting. Think of
+    <strong>&lt;</strong> and <strong>&gt;</strong> as a hungry mouth: the open side points at the
+    <strong>bigger</strong> number — it “wants” the larger pile.
   </p>
   <ul>
-    <li><strong>&lt;</strong> means <strong>less than</strong>. Example: <strong>3 &lt; 7</strong> — three is less than seven.</li>
-    <li><strong>&gt;</strong> means <strong>greater than</strong>. Example: <strong>9 &gt; 5</strong> — nine is greater than five.</li>
+    <li><strong>&lt;</strong> means <strong>less than</strong> — the mouth opens toward the bigger number on the right.</li>
+    <li><strong>&gt;</strong> means <strong>greater than</strong> — the mouth opens toward the bigger number on the left.</li>
+  </ul>
+
+  <h3 id="compare-examples" class="book-prose__heading">More examples</h3>
+  <p>Read each line like a short sentence. The symbol tells you which side is bigger:</p>
+  <ul>
+    <li><strong>3 &lt; 7</strong> — “three is less than seven.”</li>
+    <li><strong>9 &gt; 5</strong> — “nine is greater than five.”</li>
+    <li><strong>2 &lt; 6</strong> — “two is less than six.”</li>
+    <li><strong>8 &gt; 3</strong> — “eight is greater than three.”</li>
+    <li><strong>5 &lt; 5</strong> is <strong>not</strong> true — five is the same as five, not less.</li>
+    <li><strong>4 &lt; 4</strong> is also false — use <strong>=</strong> when both sides match.</li>
   </ul>
   <p>
-    You may also see <strong>≤</strong> (less than or equal) and <strong>≥</strong> (greater than or
-    equal). The extra line means “or the same amount.”
+    The same idea works either way: <strong>7 &gt; 4</strong> and <strong>4 &lt; 7</strong> both say
+    that seven is the bigger amount.
   </p>
+
+  <h3 id="compare-chain" class="book-prose__heading">A longer compare line</h3>
+  <p>
+    You can chain comparisons when several numbers line up from <strong>biggest to smallest</strong>
+    (or the other way around). Read it in order, one piece at a time:
+  </p>
+  <p>
+    <strong>9 &gt; 7 &gt; 4 &gt; 1</strong> — “nine is greater than seven, greater than four, greater
+    than one.” Each number is bigger than the one to its right.
+  </p>
+  <p>
+    In words: nine is greater than seven; seven is greater than four; four is greater than one. The
+    whole chain means <strong>nine wins</strong> and <strong>one is smallest</strong>.
+  </p>
+  <figure class="notation-compare-chain" role="group" aria-label="Nine dots, then seven, then four, then one; each group has fewer dots than the group before">
+    <ol class="notation-compare-chain__ladder">
+      <li class="notation-compare-chain__step">
+        <span class="notation-compare-chain__digit">9</span>
+        <span class="notation-dots notation-dots--chain" role="img" aria-hidden="true">
+          <span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span>
+        </span>
+      </li>
+      <li class="notation-compare-chain__sign" aria-hidden="true">&gt;</li>
+      <li class="notation-compare-chain__step">
+        <span class="notation-compare-chain__digit">7</span>
+        <span class="notation-dots notation-dots--chain" role="img" aria-hidden="true">
+          <span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span>
+        </span>
+      </li>
+      <li class="notation-compare-chain__sign" aria-hidden="true">&gt;</li>
+      <li class="notation-compare-chain__step">
+        <span class="notation-compare-chain__digit">4</span>
+        <span class="notation-dots notation-dots--chain" role="img" aria-hidden="true">
+          <span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span>
+        </span>
+      </li>
+      <li class="notation-compare-chain__sign" aria-hidden="true">&gt;</li>
+      <li class="notation-compare-chain__step">
+        <span class="notation-compare-chain__digit">1</span>
+        <span class="notation-dots notation-dots--chain" role="img" aria-hidden="true">
+          <span class="notation-dots__dot"></span>
+        </span>
+      </li>
+    </ol>
+    <figcaption class="notation-compare-chain__caption">
+      Nine dots &gt; seven dots &gt; four dots &gt; one dot — the pictures shrink the same way the
+      numbers do.
+    </figcaption>
+  </figure>
+  <p>
+    You can flip the story for “smallest first”: <strong>1 &lt; 4 &lt; 7 &lt; 9</strong> — “one is
+    less than four, less than seven, less than nine.” Same order, different mouths.
+  </p>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Or the same amount</p>
+    <p>
+      You may also see <strong>≤</strong> (less than or equal) and <strong>≥</strong> (greater than or
+      equal). The extra line means “or the same amount,” like <strong>5 ≤ 5</strong>.
+    </p>
+  </div>
 
   <h2 id="comma-decimal" class="book-prose__heading">Comma and decimal point</h2>
   <p>
@@ -225,10 +337,44 @@
     the number is easier to read — one thousand, not “one zero zero zero” as separate ideas.
   </p>
   <p>
-    A <strong>decimal point</strong> <strong>.</strong> sits between a whole part and a smaller part.
-    <strong>3.50</strong> might mean three dollars and fifty cents: the part after the point is not
-    whole dollars. You will learn more about decimals later; for now, remember the dot splits the
-    number into two pieces.
+    A <strong>decimal point</strong> <strong>.</strong> is a tiny dot that acts like a
+    <strong>fence</strong> in a number. Everything on the <strong>left</strong> counts whole things
+    you can line up (1, 2, 3, …). Everything on the <strong>right</strong> tells a
+    <strong>piece</strong> of one more thing — not another full thing.
+  </p>
+  <p>
+    Take <strong>3.5</strong>. Read it as <strong>“three and a half”</strong>: three full ones, plus
+    half of the next one. The digit <strong>5</strong> after the point does <em>not</em> mean “five
+    more marbles” — it names how much of the <em>next</em> whole you have filled in.
+  </p>
+  <figure class="notation-decimal-demo" role="group" aria-label="Three point five shown as three whole dots and half of a fourth">
+    <p class="notation-decimal-demo__label">
+      <span class="notation-decimal-demo__whole">3</span><span class="notation-decimal-demo__point" aria-hidden="true">.</span><span class="notation-decimal-demo__fraction">5</span>
+      <span class="notation-decimal-demo__words">three and a half</span>
+    </p>
+    <div class="notation-decimal-demo__picture">
+      <div class="notation-decimal-demo__wholes" aria-hidden="true">
+        <span class="notation-dots notation-dots--decimal" role="presentation">
+          <span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span>
+        </span>
+        <span class="notation-decimal-demo__fence" aria-hidden="true">·</span>
+        <span class="notation-decimal-demo__half" role="presentation">
+          <span class="notation-decimal-demo__half-bar">
+            <span class="notation-decimal-demo__half-on"></span>
+            <span class="notation-decimal-demo__half-off"></span>
+          </span>
+        </span>
+      </div>
+    </div>
+    <figcaption class="notation-decimal-demo__caption">
+      Left of the fence: three whole dots. Right of the fence: half of the next dot filled in — that
+      is what <strong>3.5</strong> means.
+    </figcaption>
+  </figure>
+  <p>
+    In a shop, <strong>3.50</strong> often means three dollars and fifty cents: dollars are whole
+    steps on the left, cents are small pieces on the right. You will learn more about decimals later;
+    for now, remember the point splits “how many wholes” from “how much of the next one.”
   </p>
 
   <h2 id="fractions" class="book-prose__heading">Fractions (½ and 1/2)</h2>
@@ -281,199 +427,5 @@
     <li><strong>2 × 5 = 10</strong> — “two times five equals ten”</li>
     <li><strong>8 ÷ 2 = 4</strong> — “eight divided by two equals four”</li>
     <li><strong>(1 + 2) × 3 = 9</strong> — brackets first: one plus two is three; three times three is nine</li>
-  </ul>
-</div>
-
-<div class="book-prose">
-  <h2 id="history" class="book-prose__heading">History</h2>
-  <p>
-    People counted with fingers and words long before they agreed on one way to write math. Ancient
-    Egyptians and Babylonians used pictures and marks for amounts. Over centuries, different
-    countries used different symbols for the same ideas.
-  </p>
-  <p>
-    The <strong>equals sign</strong> (=) was popularised in the 1500s by Welsh mathematician
-    <strong>Robert Recorde</strong>. He chose two lines because “no two things can be more equal” than
-    parallel lines — a way to show both sides match.
-  </p>
-  <p>
-    The <strong>plus</strong> and <strong>minus</strong> signs (+ and −) became common in Europe
-    around the same era, replacing longer Latin words. The <strong>times</strong> sign (×) and
-    <strong>division</strong> sign (÷) appeared later, when printing books needed short, clear marks
-    that fit on one line.
-  </p>
-  <p>
-    Brackets grew important when formulas got longer — mathematicians needed a visible rule for
-    “which part first,” just like you do in <strong>(2 + 3) + 4</strong>.
-  </p>
-
-  <h2 id="derivation" class="book-prose__heading">Derivation</h2>
-
-  <h3 id="why-symbols" class="book-prose__heading">Why symbols instead of only words?</h3>
-  <p>
-    Writing “three plus four equals seven” every time is long. Symbols are a <strong>shorthand</strong>:
-    the same meaning in less space, so you can compare many sentences quickly.
-  </p>
-
-  <h3 id="equals-meaning" class="book-prose__heading">What equals really says</h3>
-  <p>
-    If the left side of \(=\) counts to \(a\) and the right side counts to \(b\), then \(a = b\)
-    means both sides name the <strong>same number</strong>. If they were different, the sentence would
-    be false — like claiming \(3 + 4 = 8\) when seven dots are the true total.
-  </p>
-
-  <h3 id="brackets-order" class="book-prose__heading">Why brackets change the order</h3>
-  <p>
-    Without a rule, \(2 + 3 \times 4\) could be read in two ways. Brackets fix one group:
-    \((2 + 3) \times 4 = 5 \times 4 = 20\). Later you will learn more order rules; for now,
-    brackets always mean “work inside first.”
-  </p>
-
-  <h2 id="checkpoints" class="book-prose__heading">Checkpoints</h2>
-  <p>Pause and answer in your head or with a partner.</p>
-
-  <div class="book-callout" role="note">
-    <p class="book-callout__label">Checkpoint</p>
-    <p>What is the name of the sign in \(7 - 3 = 4\)? What does it tell you to do?</p>
-  </div>
-
-  <div class="book-callout" role="note">
-    <p class="book-callout__label">Checkpoint</p>
-    <p>Say out loud: \(4 \times 2 = 8\). Which word goes with \(\times\)?</p>
-  </div>
-
-  <div class="book-callout" role="note">
-    <p class="book-callout__label">Checkpoint</p>
-    <p>In \((5 + 1) + 2\), which part do you work out first? What is the final total?</p>
-  </div>
-
-  <div class="book-callout" role="note">
-    <p class="book-callout__label">Checkpoint</p>
-    <p>Is \(6 &gt; 2\) true? What does the open side of \(>\) point toward?</p>
-  </div>
-
-  <div class="book-callout" role="note">
-    <p class="book-callout__label">Checkpoint</p>
-    <p>What does \(50\%\) mean in words (“out of …”)?</p>
-  </div>
-
-  <h2 id="applications" class="book-prose__heading">Real-life applications</h2>
-  <ul>
-    <li><strong>Recipes</strong> — “add 2 cups flour + 1 cup sugar” is a plus sentence in the kitchen.</li>
-    <li><strong>Scores</strong> — “Team A: 12, Team B: 8” uses comparison; 12 &gt; 8 means A scored more.</li>
-    <li><strong>Sharing</strong> — “12 sweets ÷ 4 children” is fair division at a party.</li>
-    <li><strong>Shopping</strong> — prices like $3.50 use a decimal point between dollars and cents.</li>
-    <li><strong>Sales</strong> — “25% off” uses percent out of one hundred.</li>
-    <li><strong>Patterns</strong> — “2, 4, 6, …” on a worksheet uses ellipsis for “keep going.”</li>
-  </ul>
-
-  <h2 id="question-bank" class="book-prose__heading">Question bank</h2>
-
-  <h3 id="questions-easy" class="book-prose__heading">Easy</h3>
-
-  <details class="book-question">
-    <summary class="book-question__prompt">What is the plus sign?</summary>
-    <div class="book-question__solution">
-      <p><strong>Answer:</strong> A cross-shaped mark <strong>+</strong> that means add or put together.</p>
-    </div>
-  </details>
-
-  <details class="book-question">
-    <summary class="book-question__prompt">How do you say \(5 = 5\) out loud?</summary>
-    <div class="book-question__solution">
-      <p><strong>Answer:</strong> “Five equals five.”</p>
-    </div>
-  </details>
-
-  <details class="book-question">
-    <summary class="book-question__prompt">Which symbol means “take away”?</summary>
-    <div class="book-question__solution">
-      <p><strong>Answer:</strong> Minus: <strong>−</strong> (or <strong>-</strong> on a keyboard).</p>
-    </div>
-  </details>
-
-  <h3 id="questions-intermediate" class="book-prose__heading">Intermediate</h3>
-
-  <details class="book-question">
-    <summary class="book-question__prompt">Say \(9 \div 3 = 3\) in words.</summary>
-    <div class="book-question__solution">
-      <p><strong>Answer:</strong> “Nine divided by three equals three.”</p>
-    </div>
-  </details>
-
-  <details class="book-question">
-    <summary class="book-question__prompt">What does \(\times\) mean in \(4 \times 2\)?</summary>
-    <div class="book-question__solution">
-      <p><strong>Answer:</strong> Multiply — four groups of two (or two groups of four), total eight.</p>
-    </div>
-  </details>
-
-  <details class="book-question">
-    <summary class="book-question__prompt">Compute \((3 + 2) + 4\).</summary>
-    <div class="book-question__solution">
-      <p><strong>Answer:</strong> \(9\).</p>
-      <p><strong>Steps:</strong> Inside brackets: \(3 + 2 = 5\). Then \(5 + 4 = 9\).</p>
-    </div>
-  </details>
-
-  <details class="book-question">
-    <summary class="book-question__prompt">Is \(4 &lt; 9\) true or false?</summary>
-    <div class="book-question__solution">
-      <p><strong>Answer:</strong> True — four is less than nine.</p>
-    </div>
-  </details>
-
-  <h3 id="questions-difficult" class="book-prose__heading">Difficult</h3>
-
-  <details class="book-question">
-    <summary class="book-question__prompt">Which is bigger: \(7\) or \(5\)? Write a true comparison using \(>\) or \(&lt;\).</summary>
-    <div class="book-question__solution">
-      <p><strong>Answer:</strong> Seven is bigger. Examples: \(7 &gt; 5\) or \(5 &lt; 7\).</p>
-    </div>
-  </details>
-
-  <details class="book-question">
-    <summary class="book-question__prompt">What does \(1/2\) mean in words?</summary>
-    <div class="book-question__solution">
-      <p><strong>Answer:</strong> One half — one part out of two equal parts.</p>
-    </div>
-  </details>
-
-  <details class="book-question">
-    <summary class="book-question__prompt">A shirt costs \(20\) dollars. The tag says \(25\%\) off. What does \(25\%\) mean?</summary>
-    <div class="book-question__solution">
-      <p><strong>Answer:</strong> Twenty-five out of every hundred — a quarter of the price is taken off (you will learn to compute the exact dollars later).</p>
-    </div>
-  </details>
-
-  <h3 id="questions-hardcore" class="book-prose__heading">Hardcore</h3>
-
-  <details class="book-question">
-    <summary class="book-question__prompt">Write \(2 \times 3 + 1\) in words two ways: (a) if you multiply first, (b) if you add inside brackets as \((2 \times 3) + 1\) only — are the totals the same as \(2 \times (3 + 1)\)?</summary>
-    <div class="book-question__solution">
-      <p><strong>Answer:</strong> \((2 \times 3) + 1 = 7\). \(2 \times (3 + 1) = 2 \times 4 = 8\). They are <strong>not</strong> the same — brackets change the result.</p>
-      <p><strong>Explanation:</strong> Brackets show which group to do first; this is why notation matters.</p>
-    </div>
-  </details>
-
-  <details class="book-question">
-    <summary class="book-question__prompt">Name two other symbols that can mean “multiply” besides \(\times\).</summary>
-    <div class="book-question__solution">
-      <p><strong>Answer:</strong> Dot \(\cdot\) and asterisk \(*\) (on keyboards/calculators).</p>
-    </div>
-  </details>
-
-  <details class="book-question">
-    <summary class="book-question__prompt">Read \(1{,}000 + 500 = 1{,}500\) aloud. What job does the comma do in \(1{,}000\)?</summary>
-    <div class="book-question__solution">
-      <p><strong>Answer:</strong> “One thousand plus five hundred equals one thousand five hundred.” The comma groups digits in threes to show thousands.</p>
-    </div>
-  </details>
-
-  <h2 id="references" class="book-prose__heading">References</h2>
-  <ul>
-    <li>Recorde, Robert — early use of the equals sign in <em>The Whetstone of Witte</em> (1557).</li>
-    <li>Cajori, Florian — <em>A History of Mathematical Notations</em> (origins of +, −, ×, ÷).</li>
-    <li>National Council of Teachers of Mathematics — developing operation sense and notation in elementary grades.</li>
   </ul>
 </div>

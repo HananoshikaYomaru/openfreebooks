@@ -4,6 +4,23 @@
     Long before writing, people kept track of herds, harvests, and trade by making marks — tallies —
     one mark for each item. Archaeologists have found tally bones tens of thousands of years old.
   </p>
+
+  <figure class="book-figure">
+    <img
+      class="book-figure__img"
+      src="/chapters/math/counting-and-numbers/counting-and-numbers.png"
+      alt="Cartoon timeline: tally marks long ago, Egyptian number symbols, zero in India and among the Maya, then addition, fair sharing, large numbers, and the four operations"
+      width="960"
+      height="640"
+      loading="lazy"
+      decoding="async"
+    />
+    <figcaption class="book-figure__caption">
+      From tally bones and ancient symbols to zero, equal groups, fair shares, and names for very large
+      counts — how people learned to count and write amounts.
+    </figcaption>
+  </figure>
+
   <p>
     Different cultures invented symbols for amounts. The idea of <strong>zero</strong> as a number took
     time: Indian mathematicians such as <strong>Brahmagupta</strong> (7th century CE) wrote rules for
@@ -19,6 +36,111 @@
     parts. Large-number names (million, billion) expanded as empires, astronomy, and finance needed to
     record bigger totals than everyday counting.
   </p>
+
+  <h2 id="past-ten" class="book-prose__heading">Past ten: tens and hundreds</h2>
+  <p>
+    You can count higher than ten on your fingers — people use <strong>place value</strong>. Ten
+    single dots can be thought of as <strong>one group of ten</strong>. Ten groups of ten make
+    <strong>one hundred</strong>.
+  </p>
+  <figure class="counting-place-ladder" aria-label="Place value: ten ones make one ten, ten tens make one hundred">
+    <ol class="counting-place-ladder__steps">
+      <li class="counting-place-step">
+        <span class="counting-place-step__label">1 one</span>
+        <span class="counting-dots" role="img" aria-hidden="true"><span class="counting-dots__dot"></span></span>
+      </li>
+      <li class="counting-place-step counting-place-step--arrow" aria-hidden="true">× 10</li>
+      <li class="counting-place-step">
+        <span class="counting-place-step__label">1 ten</span>
+        <span class="counting-place-blocks counting-place-blocks--ten" role="img" aria-hidden="true">
+          <span class="counting-place-blocks__rod"></span>
+        </span>
+      </li>
+      <li class="counting-place-step counting-place-step--arrow" aria-hidden="true">× 10</li>
+      <li class="counting-place-step">
+        <span class="counting-place-step__label">1 hundred</span>
+        <span class="counting-place-blocks counting-place-blocks--hundred" role="img" aria-hidden="true">
+          <span class="counting-place-blocks__grid"></span>
+        </span>
+      </li>
+    </ol>
+    <figcaption class="counting-pattern-board__caption">
+      Each step bundles ten of the smaller unit. That is why our digits work in columns (ones, tens,
+      hundreds…).
+    </figcaption>
+  </figure>
+  <p>
+    The number <strong>47</strong> means 4 tens and 7 ones — forty-seven dots, without drawing every
+    dot one by one.
+  </p>
+
+  <h2 id="big-numbers" class="book-prose__heading">Big numbers in real life</h2>
+  <p>
+    The world is huge. Counting every grain of sand on a beach one by one would take forever, so we
+    use <strong>big number words</strong> to talk about amounts we cannot easily picture dot by dot.
+    They matter because governments, scientists, and shops all work with large totals.
+  </p>
+
+  <div class="book-table-wrap">
+    <table class="book-table counting-big-table">
+      <thead>
+        <tr>
+          <th scope="col">Word</th>
+          <th scope="col">How we write it</th>
+          <th scope="col">Why it matters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>hundred</td>
+          <td>100</td>
+          <td>About how many people fit in a big sports field; pages in a long novel.</td>
+        </tr>
+        <tr>
+          <td>thousand</td>
+          <td>1,000</td>
+          <td>Steps you might walk in a long hike; students in a large school district.</td>
+        </tr>
+        <tr>
+          <td>million</td>
+          <td>1,000,000</td>
+          <td>People in a large city; dollars in a national budget line item.</td>
+        </tr>
+        <tr>
+          <td>billion</td>
+          <td>1,000,000,000</td>
+          <td>World population is several <em>billion</em>; stars in our galaxy are hundreds of billions.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    Each big word is <strong>one thousand times</strong> the word before (ten hundreds make a
+    thousand; one thousand thousands make a million). We bundle in tens and thousands so we can
+    compare and add without losing track.
+  </p>
+
+  <ul>
+    <li><strong>Money</strong> — prices and taxes use thousands and millions.</li>
+    <li><strong>Distance</strong> — kilometres between cities add up to thousands.</li>
+    <li><strong>Time</strong> — minutes in a year are in the hundreds of thousands.</li>
+    <li><strong>Nature</strong> — insects in a forest, cells in your body — counts go huge fast.</li>
+  </ul>
+
+  <h2 id="try-it-yourself" class="book-prose__heading">Try it yourself</h2>
+  <p>
+    Use the four demos below to practise what you read: <strong>count</strong> objects one by one,
+    <strong>add</strong> groups together, build a <strong>multiplication</strong> array, and
+    <strong>share dots equally</strong>. Then explore <strong>how big</strong> a number is — from one
+    dot up to a billion.
+  </p>
+
+  <div class="math-widget-mount" data-widget="counting-demo" data-pagefind-ignore></div>
+  <div class="math-widget-mount" data-widget="addition-groups" data-pagefind-ignore></div>
+  <div class="math-widget-mount" data-widget="multiplication-array" data-pagefind-ignore></div>
+  <div class="math-widget-mount" data-widget="division-sharing" data-pagefind-ignore></div>
+  <div class="math-widget-mount" data-widget="big-numbers-scale" data-pagefind-ignore></div>
 
   <h2 id="derivation" class="book-prose__heading">Derivation</h2>
 
@@ -47,8 +169,9 @@
   <h3 id="place-value-and-big-numbers" class="book-prose__heading">Place value and big numbers</h3>
   <p>
     In base ten, each column is worth ten times the column to its right. So \(47 = 4 \times 10 + 7\).
-    Extending the pattern: \(1{,}000 = 10^3\), \(1{,}000{,}000 = 10^6\), and each “thousand step” multiplies
-    by \(1{,}000\) again. That is why we group digits in threes when writing millions and billions.
+    Keep bundling: ten tens make one hundred, ten hundreds make one thousand, and each “thousand step”
+    is one thousand times the step before — ten hundreds make \(1{,}000\), and one thousand thousands
+    make \(1{,}000{,}000\). That is why we group digits in threes when writing millions and billions.
   </p>
 
   <h2 id="checkpoints" class="book-prose__heading">Checkpoints</h2>

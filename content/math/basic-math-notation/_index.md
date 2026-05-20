@@ -17,6 +17,45 @@ strand = "Number & Algebra"
     arithmetic yet; you only need to <strong>read</strong> the symbols like words on a sign.
   </p>
 
+  <h2 id="history" class="book-prose__heading">History</h2>
+  <p>
+    People counted with fingers and words long before they agreed on one way to write math. Ancient
+    Egyptians and Babylonians used pictures and marks for amounts. Over centuries, different
+    countries used different symbols for the same ideas.
+  </p>
+
+  <figure class="book-figure">
+    <img
+      class="book-figure__img"
+      src="/chapters/math/basic-math-notation/basic-math-notation-history.png"
+      alt="Cartoon timeline: counting long ago, Egyptian and Babylonian marks, different symbols around the world, then equals, plus and minus, times and divide, and brackets for grouping"
+      width="960"
+      height="640"
+      loading="lazy"
+      decoding="async"
+    />
+    <figcaption class="book-figure__caption">
+      From finger counting and ancient marks to short symbols on one line: how +, −, ×, ÷, =, and ( )
+      became the signs you read today.
+    </figcaption>
+  </figure>
+
+  <p>
+    The <strong>equals sign</strong> (=) was popularised in the 1500s by Welsh mathematician
+    <strong>Robert Recorde</strong>. He chose two lines because “no two things can be more equal” than
+    parallel lines — a way to show both sides match.
+  </p>
+  <p>
+    The <strong>plus</strong> and <strong>minus</strong> signs (+ and −) became common in Europe
+    around the same era, replacing longer Latin words. The <strong>times</strong> sign (×) and
+    <strong>division</strong> sign (÷) appeared later, when printing books needed short, clear marks
+    that fit on one line.
+  </p>
+  <p>
+    Brackets grew important when formulas got longer — mathematicians needed a visible rule for
+    “which part first,” just like you do in <strong>(2 + 3) + 4</strong>.
+  </p>
+
   <h2 id="digits-and-words" class="book-prose__heading">Digits, words, and spaces</h2>
   <p>
     The symbols <strong>0</strong> through <strong>9</strong> are called <strong>digits</strong>. Each
@@ -218,17 +257,90 @@ strand = "Number & Algebra"
 
   <h2 id="compare" class="book-prose__heading">Less than and greater than (&lt; &gt;)</h2>
   <p>
-    Sometimes we compare two amounts without adding or subtracting. The open mouth of the symbol
-    points at the <strong>bigger</strong> number.
+    Sometimes we compare two amounts without adding or subtracting. Think of
+    <strong>&lt;</strong> and <strong>&gt;</strong> as a hungry mouth: the open side points at the
+    <strong>bigger</strong> number — it “wants” the larger pile.
   </p>
   <ul>
-    <li><strong>&lt;</strong> means <strong>less than</strong>. Example: <strong>3 &lt; 7</strong> — three is less than seven.</li>
-    <li><strong>&gt;</strong> means <strong>greater than</strong>. Example: <strong>9 &gt; 5</strong> — nine is greater than five.</li>
+    <li><strong>&lt;</strong> means <strong>less than</strong> — the mouth opens toward the bigger number on the right.</li>
+    <li><strong>&gt;</strong> means <strong>greater than</strong> — the mouth opens toward the bigger number on the left.</li>
+  </ul>
+
+  <h3 id="compare-examples" class="book-prose__heading">More examples</h3>
+  <p>Read each line like a short sentence. The symbol tells you which side is bigger:</p>
+  <ul>
+    <li><strong>3 &lt; 7</strong> — “three is less than seven.”</li>
+    <li><strong>9 &gt; 5</strong> — “nine is greater than five.”</li>
+    <li><strong>2 &lt; 6</strong> — “two is less than six.”</li>
+    <li><strong>8 &gt; 3</strong> — “eight is greater than three.”</li>
+    <li><strong>5 &lt; 5</strong> is <strong>not</strong> true — five is the same as five, not less.</li>
+    <li><strong>4 &lt; 4</strong> is also false — use <strong>=</strong> when both sides match.</li>
   </ul>
   <p>
-    You may also see <strong>≤</strong> (less than or equal) and <strong>≥</strong> (greater than or
-    equal). The extra line means “or the same amount.”
+    The same idea works either way: <strong>7 &gt; 4</strong> and <strong>4 &lt; 7</strong> both say
+    that seven is the bigger amount.
   </p>
+
+  <h3 id="compare-chain" class="book-prose__heading">A longer compare line</h3>
+  <p>
+    You can chain comparisons when several numbers line up from <strong>biggest to smallest</strong>
+    (or the other way around). Read it in order, one piece at a time:
+  </p>
+  <p>
+    <strong>9 &gt; 7 &gt; 4 &gt; 1</strong> — “nine is greater than seven, greater than four, greater
+    than one.” Each number is bigger than the one to its right.
+  </p>
+  <p>
+    In words: nine is greater than seven; seven is greater than four; four is greater than one. The
+    whole chain means <strong>nine wins</strong> and <strong>one is smallest</strong>.
+  </p>
+  <figure class="notation-compare-chain" role="group" aria-label="Nine dots, then seven, then four, then one; each group has fewer dots than the group before">
+    <ol class="notation-compare-chain__ladder">
+      <li class="notation-compare-chain__step">
+        <span class="notation-compare-chain__digit">9</span>
+        <span class="notation-dots notation-dots--chain" role="img" aria-hidden="true">
+          <span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span>
+        </span>
+      </li>
+      <li class="notation-compare-chain__sign" aria-hidden="true">&gt;</li>
+      <li class="notation-compare-chain__step">
+        <span class="notation-compare-chain__digit">7</span>
+        <span class="notation-dots notation-dots--chain" role="img" aria-hidden="true">
+          <span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span>
+        </span>
+      </li>
+      <li class="notation-compare-chain__sign" aria-hidden="true">&gt;</li>
+      <li class="notation-compare-chain__step">
+        <span class="notation-compare-chain__digit">4</span>
+        <span class="notation-dots notation-dots--chain" role="img" aria-hidden="true">
+          <span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span>
+        </span>
+      </li>
+      <li class="notation-compare-chain__sign" aria-hidden="true">&gt;</li>
+      <li class="notation-compare-chain__step">
+        <span class="notation-compare-chain__digit">1</span>
+        <span class="notation-dots notation-dots--chain" role="img" aria-hidden="true">
+          <span class="notation-dots__dot"></span>
+        </span>
+      </li>
+    </ol>
+    <figcaption class="notation-compare-chain__caption">
+      Nine dots &gt; seven dots &gt; four dots &gt; one dot — the pictures shrink the same way the
+      numbers do.
+    </figcaption>
+  </figure>
+  <p>
+    You can flip the story for “smallest first”: <strong>1 &lt; 4 &lt; 7 &lt; 9</strong> — “one is
+    less than four, less than seven, less than nine.” Same order, different mouths.
+  </p>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Or the same amount</p>
+    <p>
+      You may also see <strong>≤</strong> (less than or equal) and <strong>≥</strong> (greater than or
+      equal). The extra line means “or the same amount,” like <strong>5 ≤ 5</strong>.
+    </p>
+  </div>
 
   <h2 id="comma-decimal" class="book-prose__heading">Comma and decimal point</h2>
   <p>
@@ -236,10 +348,44 @@ strand = "Number & Algebra"
     the number is easier to read — one thousand, not “one zero zero zero” as separate ideas.
   </p>
   <p>
-    A <strong>decimal point</strong> <strong>.</strong> sits between a whole part and a smaller part.
-    <strong>3.50</strong> might mean three dollars and fifty cents: the part after the point is not
-    whole dollars. You will learn more about decimals later; for now, remember the dot splits the
-    number into two pieces.
+    A <strong>decimal point</strong> <strong>.</strong> is a tiny dot that acts like a
+    <strong>fence</strong> in a number. Everything on the <strong>left</strong> counts whole things
+    you can line up (1, 2, 3, …). Everything on the <strong>right</strong> tells a
+    <strong>piece</strong> of one more thing — not another full thing.
+  </p>
+  <p>
+    Take <strong>3.5</strong>. Read it as <strong>“three and a half”</strong>: three full ones, plus
+    half of the next one. The digit <strong>5</strong> after the point does <em>not</em> mean “five
+    more marbles” — it names how much of the <em>next</em> whole you have filled in.
+  </p>
+  <figure class="notation-decimal-demo" role="group" aria-label="Three point five shown as three whole dots and half of a fourth">
+    <p class="notation-decimal-demo__label">
+      <span class="notation-decimal-demo__whole">3</span><span class="notation-decimal-demo__point" aria-hidden="true">.</span><span class="notation-decimal-demo__fraction">5</span>
+      <span class="notation-decimal-demo__words">three and a half</span>
+    </p>
+    <div class="notation-decimal-demo__picture">
+      <div class="notation-decimal-demo__wholes" aria-hidden="true">
+        <span class="notation-dots notation-dots--decimal" role="presentation">
+          <span class="notation-dots__dot"></span><span class="notation-dots__dot"></span><span class="notation-dots__dot"></span>
+        </span>
+        <span class="notation-decimal-demo__fence" aria-hidden="true">·</span>
+        <span class="notation-decimal-demo__half" role="presentation">
+          <span class="notation-decimal-demo__half-bar">
+            <span class="notation-decimal-demo__half-on"></span>
+            <span class="notation-decimal-demo__half-off"></span>
+          </span>
+        </span>
+      </div>
+    </div>
+    <figcaption class="notation-decimal-demo__caption">
+      Left of the fence: three whole dots. Right of the fence: half of the next dot filled in — that
+      is what <strong>3.5</strong> means.
+    </figcaption>
+  </figure>
+  <p>
+    In a shop, <strong>3.50</strong> often means three dollars and fifty cents: dollars are whole
+    steps on the left, cents are small pieces on the right. You will learn more about decimals later;
+    for now, remember the point splits “how many wholes” from “how much of the next one.”
   </p>
 
   <h2 id="fractions" class="book-prose__heading">Fractions (½ and 1/2)</h2>
@@ -296,28 +442,6 @@ strand = "Number & Algebra"
 </div>
 
 <div class="book-prose">
-  <h2 id="history" class="book-prose__heading">History</h2>
-  <p>
-    People counted with fingers and words long before they agreed on one way to write math. Ancient
-    Egyptians and Babylonians used pictures and marks for amounts. Over centuries, different
-    countries used different symbols for the same ideas.
-  </p>
-  <p>
-    The <strong>equals sign</strong> (=) was popularised in the 1500s by Welsh mathematician
-    <strong>Robert Recorde</strong>. He chose two lines because “no two things can be more equal” than
-    parallel lines — a way to show both sides match.
-  </p>
-  <p>
-    The <strong>plus</strong> and <strong>minus</strong> signs (+ and −) became common in Europe
-    around the same era, replacing longer Latin words. The <strong>times</strong> sign (×) and
-    <strong>division</strong> sign (÷) appeared later, when printing books needed short, clear marks
-    that fit on one line.
-  </p>
-  <p>
-    Brackets grew important when formulas got longer — mathematicians needed a visible rule for
-    “which part first,” just like you do in <strong>(2 + 3) + 4</strong>.
-  </p>
-
   <h2 id="derivation" class="book-prose__heading">Derivation</h2>
 
   <h3 id="why-symbols" class="book-prose__heading">Why symbols instead of only words?</h3>

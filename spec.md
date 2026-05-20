@@ -31,4 +31,4 @@ each chapter needs to have the following other than the core content:
 5. questions bank - some exams questions from easy, intermediate, difficult, hardcore
 6. reference (if any)
 
-the order is that core content (with some interactive demos) -> history -> derivation -> check point -> applications -> question bank 
+the order can be adjustable base on importance. 

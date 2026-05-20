@@ -334,8 +334,46 @@ strand = "Number & Algebra"
       left over, the total does not split evenly — those extras are the <strong>remainder</strong>.
     </p>
   </div>
+</div>
 
-  <div class="math-widget-mount" data-widget="division-sharing" data-pagefind-ignore></div>
+<div class="book-prose">
+  <h2 id="history" class="book-prose__heading">History</h2>
+  <p>
+    Long before writing, people kept track of herds, harvests, and trade by making marks — tallies —
+    one mark for each item. Archaeologists have found tally bones tens of thousands of years old.
+  </p>
+
+  <figure class="book-figure">
+    <img
+      class="book-figure__img"
+      src="/chapters/math/counting-and-numbers/counting-and-numbers.png"
+      alt="Cartoon timeline: tally marks long ago, Egyptian number symbols, zero in India and among the Maya, then addition, fair sharing, large numbers, and the four operations"
+      width="960"
+      height="640"
+      loading="lazy"
+      decoding="async"
+    />
+    <figcaption class="book-figure__caption">
+      From tally bones and ancient symbols to zero, equal groups, fair shares, and names for very large
+      counts — how people learned to count and write amounts.
+    </figcaption>
+  </figure>
+
+  <p>
+    Different cultures invented symbols for amounts. The idea of <strong>zero</strong> as a number took
+    time: Indian mathematicians such as <strong>Brahmagupta</strong> (7th century CE) wrote rules for
+    arithmetic that included zero. The Maya used a shell sign for zero in their calendar. Zero let
+    people write “none” clearly and build place-value systems later on.
+  </p>
+  <p>
+    Multiplication grew from repeated addition in trade and land measurement — counting equal rows of
+    goods or fields without adding one row at a time forever.
+  </p>
+  <p>
+    Division appears in sharing problems as old as fair trade: split grain, land, or money into equal
+    parts. Large-number names (million, billion) expanded as empires, astronomy, and finance needed to
+    record bigger totals than everyday counting.
+  </p>
 
   <h2 id="past-ten" class="book-prose__heading">Past ten: tens and hundreds</h2>
   <p>
@@ -428,40 +466,19 @@ strand = "Number & Algebra"
     <li><strong>Nature</strong> — insects in a forest, cells in your body — counts go huge fast.</li>
   </ul>
 
-  <div class="math-widget-mount" data-widget="big-numbers-scale" data-pagefind-ignore></div>
-
   <h2 id="try-it-yourself" class="book-prose__heading">Try it yourself</h2>
   <p>
-    Use the tools below: count dots, add and multiply, <strong>share equally</strong>, and zoom from
-    one dot up to a billion to see how big numbers compare.
+    Use the four demos below to practise what you read: <strong>count</strong> objects one by one,
+    <strong>add</strong> groups together, build a <strong>multiplication</strong> array, and
+    <strong>share dots equally</strong>. Then explore <strong>how big</strong> a number is — from one
+    dot up to a billion.
   </p>
-</div>
 
-<div class="math-widget-mount" data-widget="counting-demo" data-pagefind-ignore></div>
-<div class="math-widget-mount" data-widget="addition-groups" data-pagefind-ignore></div>
-<div class="math-widget-mount" data-widget="multiplication-array" data-pagefind-ignore></div>
-
-<div class="book-prose">
-  <h2 id="history" class="book-prose__heading">History</h2>
-  <p>
-    Long before writing, people kept track of herds, harvests, and trade by making marks — tallies —
-    one mark for each item. Archaeologists have found tally bones tens of thousands of years old.
-  </p>
-  <p>
-    Different cultures invented symbols for amounts. The idea of <strong>zero</strong> as a number took
-    time: Indian mathematicians such as <strong>Brahmagupta</strong> (7th century CE) wrote rules for
-    arithmetic that included zero. The Maya used a shell sign for zero in their calendar. Zero let
-    people write “none” clearly and build place-value systems later on.
-  </p>
-  <p>
-    Multiplication grew from repeated addition in trade and land measurement — counting equal rows of
-    goods or fields without adding one row at a time forever.
-  </p>
-  <p>
-    Division appears in sharing problems as old as fair trade: split grain, land, or money into equal
-    parts. Large-number names (million, billion) expanded as empires, astronomy, and finance needed to
-    record bigger totals than everyday counting.
-  </p>
+  <div class="math-widget-mount" data-widget="counting-demo" data-pagefind-ignore></div>
+  <div class="math-widget-mount" data-widget="addition-groups" data-pagefind-ignore></div>
+  <div class="math-widget-mount" data-widget="multiplication-array" data-pagefind-ignore></div>
+  <div class="math-widget-mount" data-widget="division-sharing" data-pagefind-ignore></div>
+  <div class="math-widget-mount" data-widget="big-numbers-scale" data-pagefind-ignore></div>
 
   <h2 id="derivation" class="book-prose__heading">Derivation</h2>
 
@@ -490,8 +507,9 @@ strand = "Number & Algebra"
   <h3 id="place-value-and-big-numbers" class="book-prose__heading">Place value and big numbers</h3>
   <p>
     In base ten, each column is worth ten times the column to its right. So \(47 = 4 \times 10 + 7\).
-    Extending the pattern: \(1{,}000 = 10^3\), \(1{,}000{,}000 = 10^6\), and each “thousand step” multiplies
-    by \(1{,}000\) again. That is why we group digits in threes when writing millions and billions.
+    Keep bundling: ten tens make one hundred, ten hundreds make one thousand, and each “thousand step”
+    is one thousand times the step before — ten hundreds make \(1{,}000\), and one thousand thousands
+    make \(1{,}000{,}000\). That is why we group digits in threes when writing millions and billions.
   </p>
 
   <h2 id="checkpoints" class="book-prose__heading">Checkpoints</h2>
