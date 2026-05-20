@@ -1,6 +1,5 @@
-import katex from "katex";
+import { renderLatex, renderMathInContainer } from "@ofb/katex";
 import { createEffect, createMemo, createSignal } from "solid-js";
-import { renderMathInContainer } from "../../../../frontend/src/lib/render-math";
 
 const MIN = -10;
 const MAX = 10;
@@ -11,10 +10,6 @@ const PLOT = WIDTH - 2 * PAD;
 function formatNum(n: number) {
   if (Number.isInteger(n)) return String(n);
   return (Math.round(n * 100) / 100).toString();
-}
-
-function renderLatex(latex: string) {
-  return katex.renderToString(latex, { throwOnError: false, strict: "ignore" });
 }
 
 function toX(value: number) {

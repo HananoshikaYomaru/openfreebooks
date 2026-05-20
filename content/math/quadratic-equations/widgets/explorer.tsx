@@ -1,4 +1,4 @@
-import katex from "katex";
+import { renderLatex } from "@ofb/katex";
 import { createEffect, createMemo, createSignal, onCleanup, Show } from "solid-js";
 
 const VIEW_SIZE = 400;
@@ -65,10 +65,6 @@ function natureOfRoots(delta: number) {
   if (delta > 0) return "Two distinct real roots";
   if (delta === 0) return "One repeated real root (equal roots)";
   return "No real roots";
-}
-
-function renderLatex(latex: string) {
-  return katex.renderToString(latex, { throwOnError: false, strict: "ignore" });
 }
 
 function readCanvasColors(canvas: HTMLCanvasElement) {

@@ -1,13 +1,8 @@
-import katex from "katex";
+import { renderLatex, renderMathInContainer } from "@ofb/katex";
 import { createEffect, createMemo, createSignal } from "solid-js";
-import { renderMathInContainer } from "../../../../frontend/src/lib/render-math";
 
 function formatNum(n: number) {
   return String(n);
-}
-
-function renderLatex(latex: string) {
-  return katex.renderToString(latex, { throwOnError: false, strict: "ignore" });
 }
 
 function AreaModel() {

@@ -1,0 +1,304 @@
+.book-prose .math-widget-mount:has(.sim-graph),
+.book-prose .math-widget-mount:has(.sim-solver) {
+  max-width: none;
+}
+
+.sim-graph {
+  --math-line2: #2563eb;
+
+  .math-widget__equation-box.sim-graph__eq2-box {
+    background: color-mix(in srgb, #2563eb 8%, transparent);
+  }
+}
+
+[data-theme="dark"] .sim-graph {
+  --math-line2: #60a5fa;
+}
+
+.sim-graph__presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.sim-graph__preset-btn {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--soft-ink);
+  cursor: pointer;
+}
+
+.sim-graph__preset-btn:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.sim-graph__preset-btn--active {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--paper));
+  color: var(--accent);
+}
+
+.sim-graph__line-heading {
+  margin: 0.75rem 0 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.sim-graph__status--unique .math-widget__delta-nature {
+  color: var(--success);
+}
+
+.sim-graph__status--parallel .math-widget__delta-nature {
+  color: var(--muted);
+}
+
+.sim-graph__status--coincident .math-widget__delta-nature {
+  color: var(--accent);
+}
+
+.math-graph-tooltip--intersection .math-graph-tooltip__label {
+  color: var(--math-root);
+}
+
+.math-graph-tooltip--line1 .math-graph-tooltip__label {
+  color: var(--math-curve);
+}
+
+.math-graph-tooltip--line2 .math-graph-tooltip__label {
+  color: var(--math-line2);
+}
+
+.sim-solver {
+  --sim-panel-bg: var(--card-bg);
+  --sim-panel-border: var(--card-border);
+  --sim-error: #dc2626;
+
+  width: min(1100px, 92vw);
+  max-width: none;
+  margin-top: 1.25rem;
+}
+
+[data-theme="dark"] .sim-solver {
+  --sim-error: #f87171;
+}
+
+.sim-solver__shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 24rem;
+  border: 1px solid var(--sim-panel-border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--sim-panel-bg);
+}
+
+@media (min-width: 768px) {
+  .sim-solver__shell {
+    flex-direction: row;
+    min-height: 28rem;
+  }
+}
+
+.sim-solver__sidebar {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 768px) {
+  .sim-solver__sidebar {
+    width: 17rem;
+    border-bottom: none;
+    border-right: 1px solid var(--line);
+  }
+}
+
+.sim-solver__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sim-solver__label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--soft-ink);
+}
+
+.sim-solver__select {
+  width: 100%;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.sim-solver__method-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.sim-solver__method-btn {
+  padding: 0.5rem 0.65rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--soft-ink);
+  cursor: pointer;
+}
+
+.sim-solver__method-btn--active {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--paper));
+  color: var(--accent);
+}
+
+.sim-solver__method-btn--disabled,
+.sim-solver__method-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.sim-solver__transport {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sim-solver__transport-btn,
+.sim-solver__play {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.sim-solver__play {
+  flex: 1;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.sim-solver__transport-btn:disabled,
+.sim-solver__play:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.sim-solver__speed {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.sim-solver__speed-slider {
+  flex: 1;
+}
+
+.sim-solver__stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  min-width: 0;
+}
+
+.sim-solver__message-box {
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent) 6%, var(--paper));
+}
+
+.sim-solver__message-box--error {
+  background: color-mix(in srgb, var(--sim-error) 10%, var(--paper));
+}
+
+.sim-solver__message-box--error .sim-solver__message {
+  color: var(--sim-error);
+}
+
+.sim-solver__message {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+.sim-solver__progress-track {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.sim-solver__progress-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.2s ease;
+}
+
+.sim-solver__equation-panel {
+  padding: 1rem;
+  text-align: center;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+}
+
+.sim-solver__panel-label {
+  margin: 0 0 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.sim-solver__step-panel {
+  flex: 1;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+}
+
+.sim-solver__step-title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.sim-solver__step-math {
+  font-size: 1.05rem;
+  overflow-x: auto;
+}
+
+@media (min-width: 900px) {
+  .math-widget__layout {
+    grid-template-columns: minmax(260px, 340px) 1fr;
+    align-items: start;
+  }
+}

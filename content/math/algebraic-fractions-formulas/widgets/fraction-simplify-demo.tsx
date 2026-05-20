@@ -1,9 +1,5 @@
-import katex from "katex";
+import { renderLatex } from "@ofb/katex";
 import { createMemo, createSignal, For } from "solid-js";
-
-function renderLatex(latex: string) {
-  return katex.renderToString(latex, { throwOnError: false, strict: "ignore", displayMode: true });
-}
 
 const PRESETS = [
   {
@@ -32,16 +28,16 @@ const PRESETS = [
   },
 ] as const;
 
+type PresetId = (typeof PRESETS)[number]["id"];
+
 function FractionSimplifyDemo() {
-  const [presetId, setPresetId] = createSignal(PRESETS[0].id);
+  const [presetId, setPresetId] = createSignal<PresetId>(PRESETS[0].id);
   const preset = createMemo(() => PRESETS.find((p) => p.id === presetId()) ?? PRESETS[0]);
 
-  const originalHtml = createMemo(() => renderLatex(preset().original));
-  const factoredHtml = createMemo(() => renderLatex(preset().factored));
-  const simplifiedHtml = createMemo(() => renderLatex(preset().simplified));
-  const restrictionHtml = createMemo(() =>
-    katex.renderToString(preset().restriction, { throwOnError: false, strict: "ignore" })
-  );
+  const originalHtml = createMemo(() => renderLatex(preset().original, { displayMode: true }));
+  const factoredHtml = createMemo(() => renderLatex(preset().factored, { displayMode: true }));
+  const simplifiedHtml = createMemo(() => renderLatex(preset().simplified, { displayMode: true }));
+  const restrictionHtml = createMemo(() => renderLatex(preset().restriction));
 
   return (
     <section
@@ -57,7 +53,10 @@ function FractionSimplifyDemo() {
             id="fraction-preset"
             class="formula-rearrange-demo__select"
             value={presetId()}
-            onChange={(e) => setPresetId(e.currentTarget.value)}
+            onChange={(e) => {
+              const next = PRESETS.find((p) => p.id === e.currentTarget.value);
+              if (next) setPresetId(next.id);
+            }}
           >
             <For each={PRESETS}>
               {(p) => <option value={p.id}>{p.label}</option>}

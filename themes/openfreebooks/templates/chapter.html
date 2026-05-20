@@ -15,7 +15,6 @@
 {% set chapter_key = subject ~ "/" ~ slug %}
 {% set chapters_meta = load_data(path="data/_generated/chapters-meta.json", format="json") %}
 {% set chapter_meta = chapters_meta.chapters[chapter_key] %}
-<link rel="stylesheet" href="{{ get_url(path='js/katex.css', trailing_slash=false) | safe }}" />
 {% if chapter_meta.hasCss %}
 <link rel="stylesheet" href="{{ get_url(path='css/chapters/' ~ subject ~ '-' ~ slug ~ '.css', trailing_slash=false) | safe }}" />
 {% endif %}

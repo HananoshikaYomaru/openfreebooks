@@ -57,6 +57,17 @@ Prefer **bootstrap** components that `querySelector` existing markup over re-ren
 3. Hard-refresh browser.
 4. For production: `bun run build` then `wrangler deploy`.
 
+## KaTeX (math)
+
+| Use case | API | Where |
+|----------|-----|--------|
+| Chapter HTML with `\( … \)` / `\[ … \]` | `renderBookMath()` | `frontend/src/lib/katex.ts` — runs on load via `initBookMath()` in `main.tsx` |
+| Widget labels / dynamic formulas | `renderLatex()` + `innerHTML` | `import { renderLatex } from "@ofb/katex"` in `content/**/widgets/*.tsx` |
+| Captions with delimiter math | `renderMathInContainer(el)` | Same module; do not duplicate per chapter |
+
+- **CSS:** `js/katex.css` is linked from `base.html` on every page.
+- **Do not** add local `function renderLatex` or `import katex from "katex"` in widgets — use `@ofb/katex` only.
+
 ## Adding a feature
 
 1. Add mount root in Tera template (empty `<div id="…">` or use existing).

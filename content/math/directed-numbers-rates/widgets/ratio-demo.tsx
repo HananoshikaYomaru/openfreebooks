@@ -1,13 +1,9 @@
-import katex from "katex";
+import { renderLatex } from "@ofb/katex";
 import { createMemo, createSignal } from "solid-js";
 
 function formatNum(n: number) {
   if (Number.isInteger(n)) return String(n);
   return (Math.round(n * 100) / 100).toString();
-}
-
-function renderLatex(latex: string) {
-  return katex.renderToString(latex, { throwOnError: false, strict: "ignore" });
 }
 
 function RatioDemo() {

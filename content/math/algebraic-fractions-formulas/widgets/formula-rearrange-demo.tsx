@@ -1,13 +1,5 @@
-import katex from "katex";
+import { renderLatex } from "@ofb/katex";
 import { createMemo, createSignal, For } from "solid-js";
-
-function renderLatex(latex: string, display = false) {
-  return katex.renderToString(latex, {
-    throwOnError: false,
-    strict: "ignore",
-    displayMode: display,
-  });
-}
 
 type FormulaId = "speed" | "density" | "ohm";
 type SubjectId = string;
@@ -125,7 +117,7 @@ function FormulaRearrangeDemo() {
     () => formula().subjects.find((s) => s.id === subjectId()) ?? formula().subjects[0]
   );
 
-  const resultHtml = createMemo(() => renderLatex(subject().result, true));
+  const resultHtml = createMemo(() => renderLatex(subject().result, { displayMode: true }));
 
   const onFormulaChange = (id: FormulaId) => {
     setFormulaId(id);

@@ -1,9 +1,5 @@
-import katex from "katex";
+import { renderLatex } from "@ofb/katex";
 import { createMemo, createSignal } from "solid-js";
-
-function renderLatex(latex: string) {
-  return katex.renderToString(latex, { throwOnError: false, strict: "ignore" });
-}
 
 function DistributiveAreaDemo() {
   const [a, setA] = createSignal(2);

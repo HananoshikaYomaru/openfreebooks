@@ -38,8 +38,8 @@ function mountFooterYear() {
   }
 }
 
-function scheduleChapterMath() {
-  void import("./lib/render-math").then(({ renderBookMath }) => {
+function scheduleBookMath() {
+  void import("./lib/katex").then(({ renderBookMath }) => {
     requestAnimationFrame(() => renderBookMath());
   });
 }
@@ -50,11 +50,7 @@ function mountChapterWidgets() {
   const mounts = document.querySelectorAll<HTMLElement>("[data-widget]");
   if (!article || !chapterKey) return;
 
-  // KaTeX must run on widget-less chapters too (renderBookMath was only chained after widgets).
-  if (mounts.length === 0) {
-    scheduleChapterMath();
-    return;
-  }
+  if (mounts.length === 0) return;
 
   void import("./generated/chapter-widgets").then(({ chapterWidgetLoaders }) => {
     const loadPromises: Promise<void>[] = [];
@@ -76,9 +72,16 @@ function mountChapterWidgets() {
     }
 
     void Promise.all(loadPromises).then(() => {
-      scheduleChapterMath();
+      scheduleBookMath();
     });
   });
+}
+
+/** Prose math runs immediately; widgets re-run after mount for any new captions. */
+function initBookMath() {
+  if (document.querySelector("[data-pagefind-body]")) {
+    scheduleBookMath();
+  }
 }
 
 initTheme();
@@ -131,6 +134,7 @@ if (chapterNavRoot) {
   });
 }
 
+initBookMath();
 mountChapterWidgets();
 
 const catalogRoot = document.getElementById("catalog-app");

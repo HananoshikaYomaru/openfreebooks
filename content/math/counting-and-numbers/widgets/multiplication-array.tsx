@@ -1,9 +1,5 @@
-import katex from "katex";
+import { renderLatex } from "@ofb/katex";
 import { createMemo, createSignal, For } from "solid-js";
-
-function renderLatex(latex: string) {
-  return katex.renderToString(latex, { throwOnError: false, strict: "ignore" });
-}
 
 function MultiplicationArray() {
   const [rows, setRows] = createSignal(3);

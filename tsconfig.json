@@ -8,7 +8,10 @@
     "jsxImportSource": "solid-js",
     "isolatedModules": true,
     "noEmit": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@ofb/katex": ["./frontend/src/lib/katex.ts"]
+    }
   },
   "include": ["frontend/src", "content/**/widgets/**/*.ts", "content/**/widgets/**/*.tsx"],
   "exclude": ["frontend/src/**/*.test.ts", "content/**/widgets/**/*.test.ts"]

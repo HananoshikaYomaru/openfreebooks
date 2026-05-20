@@ -111,6 +111,7 @@ strand = "Number & Algebra"
 - Use shared classes: `book-prose`, `book-prose__heading`, `book-callout`, etc. Copy from `content/math/quadratic-equations/`.
 - **Do not** mention DSE, IB, or other curriculum names in chapter HTML.
 - Mount widgets with `<div class="math-widget-mount" data-widget="widget-name" data-pagefind-ignore></div>` (filename without `.tsx` = `data-widget` value).
+- **Math (KaTeX):** write `\( … \)` and `\[ … \]` in HTML; prose is auto-rendered on chapter load. In widgets use `import { renderLatex } from "@ofb/katex"` — do not add a per-widget `renderLatex` helper.
 - Reference synced assets with root-relative paths: `/chapters/math/your-chapter-slug/image.png` (chapter HTML is not processed as Tera)
 
 ### 4. Build and check

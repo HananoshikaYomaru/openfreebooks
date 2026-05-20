@@ -1,12 +1,8 @@
-import katex from "katex";
+import { renderLatex } from "@ofb/katex";
 import { createEffect, createMemo, createSignal, For, onCleanup, Show } from "solid-js";
 import { computeRoots, discriminant, formatNum } from "../../../../frontend/src/lib/math-graph";
 
 const HORIZONTAL_SPEED = 12;
-
-function renderLatex(latex: string) {
-  return katex.renderToString(latex, { throwOnError: false, strict: "ignore" });
-}
 
 function SliderRow(props: {
   id: string;

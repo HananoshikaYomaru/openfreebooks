@@ -105,8 +105,8 @@
         {
           "slug": "linear-equations-two-unknowns",
           "title": "Linear equations in two unknowns",
-          "description": "Solve simultaneous linear equations by substitution, elimination, and graphical interpretation.",
-          "status": "planned",
+          "description": "Solve simultaneous linear equations by substitution, elimination, and graphical interpretation; classify unique, parallel, and coincident cases.",
+          "status": "live",
           "curriculums": ["DSE"]
         },
         {

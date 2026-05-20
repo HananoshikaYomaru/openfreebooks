@@ -1,0 +1,128 @@
+<div class="book-prose">
+  <p>
+    A <strong>system of linear equations in two unknowns</strong> is a pair of equations in
+    variables \(x\) and \(y\), where each equation is linear (the highest power of each variable is
+    1). A <strong>solution</strong> is an ordered pair \((x, y)\) that satisfies
+    <em>both</em> equations at the same time.
+  </p>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Assumed knowledge</p>
+    <ul>
+      <li>Expand and collect like terms, e.g. \(2(x+3) = 2x + 6\).</li>
+      <li>Substitute a value into an expression, e.g. replace \(x\) by \(4\) in \(3x - 1\).</li>
+      <li>Add or subtract equations term by term when both sides are equal.</li>
+    </ul>
+  </div>
+
+  <h2 id="standard-form" class="book-prose__heading">Standard form</h2>
+  <p>
+    A convenient form is
+    \[ ax + by = c, \qquad dx + ey = f, \]
+    where \(a, b, c, d, e, f\) are constants. The same system can be written in other equivalent
+    forms — for example \(y = 2x + 1\) is the same as \(-2x + y = 1\).
+  </p>
+
+  <h2 id="substitution" class="book-prose__heading">Substitution</h2>
+  <p>
+    <strong>Substitution</strong> means isolate one unknown in one equation, then replace that
+    expression in the other equation.
+  </p>
+  <p><strong>Example.</strong> Solve</p>
+  <p class="book-formula">
+    \[ \begin{cases} y = 2x + 1 \\ x + y = 7 \end{cases} \]
+  </p>
+  <p>
+    From the first equation, \(y = 2x + 1\). Substitute into the second:
+    \[ x + (2x + 1) = 7 \Rightarrow 3x + 1 = 7 \Rightarrow 3x = 6 \Rightarrow x = 2. \]
+    Then \(y = 2(2) + 1 = 5\). The solution is \((2, 5)\).
+  </p>
+  <p>
+    Check: \(2(2)+1 = 5\) and \(2 + 5 = 7\).
+  </p>
+
+  <h2 id="elimination" class="book-prose__heading">Elimination</h2>
+  <p>
+    <strong>Elimination</strong> adds or subtracts the equations so that one unknown cancels. You
+    may need to multiply one or both equations first so that the coefficients of \(x\) or \(y\) match
+    in size (one positive, one negative).
+  </p>
+  <p><strong>Example.</strong> Solve</p>
+  <p class="book-formula">
+    \[ \begin{cases} x + y = 5 \\ 2x - y = 1 \end{cases} \]
+  </p>
+  <p>
+    The coefficients of \(y\) are \(1\) and \(-1\), so add the equations:
+    \[ (x+y) + (2x-y) = 5 + 1 \Rightarrow 3x = 6 \Rightarrow x = 2. \]
+    Substitute into \(x + y = 5\): \(2 + y = 5\), so \(y = 3\). Solution: \((2, 3)\).
+  </p>
+
+  <h2 id="graphical" class="book-prose__heading">Graphical interpretation</h2>
+  <p>
+    Each equation \(ax + by = c\) (with \(b \neq 0\)) can be rearranged to
+    \(y = -\frac{a}{b}x + \frac{c}{b}\), which is a straight line. The solution of the system is
+    the point where the two lines meet — their <strong>intersection</strong>.
+  </p>
+  <div class="book-table-wrap">
+    <table class="book-table">
+      <thead>
+        <tr>
+          <th scope="col">Lines</th>
+          <th scope="col">Algebraic picture</th>
+          <th scope="col">Solutions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Intersect at one point</td>
+          <td>Different slopes</td>
+          <td>Exactly one \((x, y)\)</td>
+        </tr>
+        <tr>
+          <td>Parallel, distinct</td>
+          <td>Same slope, different intercepts</td>
+          <td>No solution</td>
+        </tr>
+        <tr>
+          <td>Coincident (same line)</td>
+          <td>One equation is a multiple of the other</td>
+          <td>Infinitely many</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="try-graph" class="book-prose__heading">Try it — graph explorer</h2>
+  <p>
+    Adjust the two lines or use presets. Read off the intersection and how the classification changes
+    when the lines are parallel or coincident.
+  </p>
+</div>
+
+<div class="math-widget-mount" data-widget="simultaneous-graph-explorer" data-pagefind-ignore></div>
+
+<div class="book-prose">
+  <h2 id="try-solver" class="book-prose__heading">Try it — step-by-step solver</h2>
+  <p>
+    Pick a preset system and watch substitution or elimination steps. Systems with no unique
+    solution show an explanation instead of incorrect steps.
+  </p>
+</div>
+
+<div class="math-widget-mount" data-widget="simultaneous-solver-workbench" data-pagefind-ignore></div>
+
+<div class="book-prose">
+  <h2 id="word-problems" class="book-prose__heading">Word problems</h2>
+  <p>
+    For story problems, define unknowns clearly, write <em>two</em> independent equations, then solve
+    by substitution, elimination, or a graph.
+  </p>
+  <p><strong>Example (tickets).</strong> Adult tickets cost \$12 and child tickets \$7. A group buys
+    10 tickets for \$95. How many of each type?</p>
+  <p>
+    Let \(a\) be the number of adult tickets and \(c\) the number of child tickets. Then
+    \(a + c = 10\) and \(12a + 7c = 95\). From the first, \(c = 10 - a\). Substitute:
+    \[ 12a + 7(10 - a) = 95 \Rightarrow 12a + 70 - 7a = 95 \Rightarrow 5a = 25 \Rightarrow a = 5, \]
+    so \(c = 5\). Five adult and five child tickets.
+  </p>
+</div>
