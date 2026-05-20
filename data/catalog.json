@@ -3,7 +3,7 @@
   "subtitle": "Browse chapters by subject and curriculum",
   "curriculums": ["Foundation", "DSE", "IB", "A-Level", "AP", "IGCSE"],
   "subjects": [
-    { "id": "math", "name": "Mathematics" },
+    { "id": "math", "name": "Mathematics", "banner": "/catalog/banners/math.webp" },
     { "id": "science", "name": "Science" },
     { "id": "humanities", "name": "Humanities" },
     { "id": "computing", "name": "Computing" }

@@ -16,6 +16,7 @@ Thank you for helping grow free, open textbooks.
 | Publish a **live** chapter (readable page) | [§ Publish a live chapter](#publish-a-live-chapter) |
 | Add a **branch** in the catalog map | [§ Chapter graph](#chapter-graph-branches) |
 | Add a new **subject** | [§ New subject](#add-a-new-subject) |
+| Add a **catalog subject banner** | [§ Catalog subject banner](#catalog-subject-banner) |
 | Add a **curriculum** filter (e.g. GCSE) | [§ New curriculum label](#add-a-curriculum-label) |
 
 **Browse the catalog locally:** `bun run build:js && zola serve` → [http://127.0.0.1:1111/catalog/](http://127.0.0.1:1111/catalog/)
@@ -149,6 +150,36 @@ Add edges in `data/{subject}-curriculum.json`:
 2. Create `data/{id}-curriculum.json` (copy structure from `math-curriculum.json`).
 3. Wire the subject in `themes/openfreebooks/templates/catalog.html` (until auto-wire lands).
 4. Add `content/{subject}/` when you have chapters.
+
+---
+
+## Catalog subject banner
+
+Optional header image when browsing a subject in the catalog (List and Map). Subjects without a `banner` field keep the plain header.
+
+1. Prepare a **2:1** image (e.g. 2000×1000). Keep the large source file out of the repo if possible.
+2. Optimize to WebP under `static/catalog/banners/`:
+
+```bash
+mkdir -p static/catalog/banners
+
+# ffmpeg (requires libwebp in your build):
+ffmpeg -y -i your-banner.jpg -vf "scale=1400:-2" -c:v libwebp -quality 82 \
+  static/catalog/banners/math.webp
+
+# or cwebp (Homebrew: brew install webp):
+cwebp -resize 1400 0 -q 82 your-banner.jpg -o static/catalog/banners/math.webp
+```
+
+3. In `data/catalog.json`, add a root-relative path on the subject:
+
+```json
+{ "id": "math", "name": "Mathematics", "banner": "/catalog/banners/math.webp" }
+```
+
+4. Check locally: `bun run build:js && zola serve` → `/catalog/?subject=math`
+
+Omit `banner` for subjects that should stay unchanged (e.g. roadmap-only placeholders).
 
 ---
 

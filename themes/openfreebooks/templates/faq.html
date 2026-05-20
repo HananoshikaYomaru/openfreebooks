@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} | {{ config.extra.site_title }}{% endblock title %}
+{% block meta_description %}
+<meta name="description" content="Frequently asked questions about {{ config.extra.site_title }} — free, open textbooks, how we differ from other sites, and how to use the catalog." />
+{% endblock meta_description %}
+
+{% block content %}
+{% set faq = load_data(path="data/faq.json", format="json") %}
+<section class="faq-page">
+  <div class="container">
+    <p class="section-kicker">Help</p>
+    <h1 class="section-title faq-page__title">{{ page.title }}</h1>
+    <p class="faq-page__intro">{{ faq.intro }}</p>
+
+    <nav class="faq-jump" aria-label="On this page">
+      <p class="faq-jump__label">On this page</p>
+      <ol class="faq-jump__list">
+        {% for item in faq.items %}
+        <li>
+          <a class="faq-jump__link" href="#faq-{{ item.id }}">{{ item.question }}</a>
+        </li>
+        {% endfor %}
+      </ol>
+    </nav>
+
+    <div class="faq-list">
+      {% for item in faq.items %}
+      <article class="faq-item" id="faq-{{ item.id }}">
+        <h2 class="faq-item__question">{{ item.question }}</h2>
+
+        {% if item.type == "comparison" %}
+        <div class="faq-item__answer faq-compare">
+          <p>{{ item.intro }}</p>
+          <ul class="faq-compare__peers">
+            {% for peer in item.peers %}
+            <li class="faq-compare__card">
+              <h3 class="faq-compare__name">
+                <a href="{{ peer.url | safe }}" rel="noopener noreferrer">{{ peer.name }}</a>
+              </h3>
+              <p class="faq-compare__role">{{ peer.role }}</p>
+              <p class="faq-compare__contrast">{{ peer.contrast }}</p>
+            </li>
+            {% endfor %}
+          </ul>
+          <p class="faq-compare__ofb">
+            <strong>{{ config.extra.site_title }}</strong> — {{ item.ofb }}
+          </p>
+        </div>
+        {% else %}
+        <div class="faq-item__answer">
+          {% for paragraph in item.answer %}
+          <p>{{ paragraph }}</p>
+          {% endfor %}
+
+          {% if item.id == "open-github" %}
+          <p class="faq-item__links">
+            <a href="{{ config.extra.contributing_url | safe }}">Contributing guide</a>
+            ·
+            <a href="{{ config.extra.github_url | safe }}">GitHub repository</a>
+          </p>
+          {% elif item.id == "about-manifesto" %}
+          <p class="faq-item__links">
+            <a href="{{ config.extra.about_url | safe }}">Read the manifesto</a>
+          </p>
+          {% elif item.id == "subjects" or item.id == "find-chapters" or item.id == "catalog-curriculum" %}
+          <p class="faq-item__links">
+            <a href="{{ config.extra.browse_url | safe }}">Browse the catalog</a>
+            {% if item.id == "find-chapters" %}
+            ·
+            <a href="{{ config.extra.search_url | safe }}">Search chapters</a>
+            {% endif %}
+          </p>
+          {% endif %}
+        </div>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+
+    <div class="faq-page__actions">
+      <a class="button button-primary" href="{{ config.extra.browse_url | safe }}">Browse books</a>
+      <a class="button button-secondary" href="{{ config.extra.contributing_url | safe }}">Contribute</a>
+    </div>
+  </div>
+</section>
+{% endblock content %}

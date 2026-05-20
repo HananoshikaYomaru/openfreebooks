@@ -10,6 +10,6 @@
     "noEmit": true,
     "skipLibCheck": true
   },
-  "include": ["frontend/src"],
-  "exclude": ["frontend/src/**/*.test.ts"]
+  "include": ["frontend/src", "content/**/widgets/**/*.ts", "content/**/widgets/**/*.tsx"],
+  "exclude": ["frontend/src/**/*.test.ts", "content/**/widgets/**/*.test.ts"]
 }

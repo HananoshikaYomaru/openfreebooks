@@ -5,7 +5,9 @@
   "graph": {
     "edges": [
       { "from": "counting-and-numbers", "to": "basic-math-notation" },
-      { "from": "basic-math-notation", "to": "directed-numbers-rates" },
+      { "from": "basic-math-notation", "to": "properties-of-operations" },
+      { "from": "properties-of-operations", "to": "written-calculation" },
+      { "from": "written-calculation", "to": "directed-numbers-rates" },
       { "from": "directed-numbers-rates", "to": "polynomials-expansion-factorisation" },
       { "from": "polynomials-expansion-factorisation", "to": "algebraic-fractions-formulas" },
       { "from": "polynomials-expansion-factorisation", "to": "linear-equations-two-unknowns" },
@@ -62,6 +64,20 @@
           "slug": "basic-math-notation",
           "title": "Basic math notation",
           "description": "Learn the names and meanings of plus, minus, times, divide, equals, brackets, and other signs used in number sentences.",
+          "status": "live",
+          "curriculums": ["Foundation"]
+        },
+        {
+          "slug": "properties-of-operations",
+          "title": "Properties of operations",
+          "description": "See why order, grouping, and distribution can change how you write a sum or product without changing the result — with interactive area and dot models.",
+          "status": "live",
+          "curriculums": ["Foundation"]
+        },
+        {
+          "slug": "written-calculation",
+          "title": "Written calculation",
+          "description": "Add, subtract, multiply, and divide whole numbers using vertical written form: align columns, regroup, and read the result.",
           "status": "live",
           "curriculums": ["Foundation"]
         },

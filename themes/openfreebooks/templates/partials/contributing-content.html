@@ -23,6 +23,10 @@
     <span class="contributing-quick-nav__label">Chapter graph</span>
     <span class="contributing-quick-nav__text">Branches &amp; prerequisites on the map</span>
   </a>
+  <a class="contributing-quick-nav__card" href="#catalog-banner">
+    <span class="contributing-quick-nav__label">Catalog banner</span>
+    <span class="contributing-quick-nav__text">Optional subject header image</span>
+  </a>
 </nav>
 
 <section id="overview" class="contributing-section">
@@ -130,6 +134,29 @@ zola serve          # http://127.0.0.1:1111
 bun test            # layout tests for catalog map
 bun run build       # production build</code></pre>
     <p>Commit <code>themes/openfreebooks/static/js/</code> after <code>build:js</code>. Do not commit <code>public/</code>.</p>
+  </div>
+</section>
+
+<section id="catalog-banner" class="contributing-section">
+  <h2 class="contributing-section__title">Catalog subject banner</h2>
+  <div class="contributing-prose">
+    <p>
+      Optional image at the top of the catalog header for a subject (List and Map). Subjects without
+      <code>banner</code> in <code>data/catalog.json</code> stay plain.
+    </p>
+    <ol>
+      <li>Prepare a <strong>2:1</strong> image (e.g. 2000×1000).</li>
+      <li>
+        Optimize to WebP in <code>static/catalog/banners/{subject-id}.webp</code> — use
+        <code>ffmpeg</code> with <code>libwebp</code>, or <code>cwebp -resize 1400 0 -q 82 …</code>
+        if ffmpeg lacks WebP support.
+      </li>
+      <li>
+        Add <code>"banner": "/catalog/banners/{subject-id}.webp"</code> on the subject in
+        <code>data/catalog.json</code>.
+      </li>
+      <li>Verify at <code>/catalog/?subject=…</code> after <code>bun run build:js &amp;&amp; zola serve</code>.</li>
+    </ol>
   </div>
 </section>
 

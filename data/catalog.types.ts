@@ -29,6 +29,8 @@ export type CatalogGraph = {
 export type CatalogSubject = {
   id: string;
   name: string;
+  /** Root-relative URL, e.g. /catalog/banners/math.webp */
+  banner?: string;
   strands: CatalogStrand[];
   graph?: CatalogGraph;
 };

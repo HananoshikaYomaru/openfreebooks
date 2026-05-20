@@ -1,0 +1,142 @@
+{
+  "intro": "Quick answers about Open Free Books — free textbooks for learners worldwide, how we work with different syllabi, and how to use the catalog.",
+  "items": [
+    {
+      "id": "what-is-ofb",
+      "type": "standard",
+      "question": "What is Open Free Books?",
+      "answer": [
+        "Open Free Books aims to be more than a learning resource: free textbooks for everyone worldwide, from elementary school through university — on the web, at no cost.",
+        "We aim to cater to different syllabi and curricula across the globe. It is a community effort by educators and contributors around the world, built in the open on GitHub.",
+        "Free means the whole book for everyone: read online without paywalls or premium unlocks. Open means anyone can fix a typo, add a chapter, or fork a book for a classroom."
+      ]
+    },
+    {
+      "id": "how-different",
+      "type": "comparison",
+      "question": "How is Open Free Books different from GeoGebra, Math is Fun, and Wikipedia?",
+      "intro": "We respect these projects — they solve different problems. Open Free Books is a free, open-source textbook library on the web.",
+      "peers": [
+        {
+          "name": "GeoGebra",
+          "url": "https://www.geogebra.org/",
+          "role": "Interactive geometry and algebra tools, activities, and classroom apps.",
+          "contrast": "Open Free Books publishes structured textbook chapters and learning paths, not a general-purpose construction sandbox."
+        },
+        {
+          "name": "Math is Fun",
+          "url": "https://www.mathsisfun.com/",
+          "role": "Friendly reference pages, games, and explanations across many topics.",
+          "contrast": "Open Free Books is curriculum-shaped: ordered chapters, prerequisites in the catalog map, and authored books — not a grab-bag of articles."
+        },
+        {
+          "name": "Wikipedia",
+          "url": "https://www.wikipedia.org/",
+          "role": "Encyclopedic, community-edited reference on almost everything.",
+          "contrast": "Not a wiki-style fact pile. We publish opinionated paths from prerequisite to mastery — structure on purpose, not everything about X."
+        }
+      ],
+      "ofb": "Free forever, no ads, no commercial upsell, and open on GitHub for anyone to fix or extend."
+    },
+    {
+      "id": "free-forever",
+      "type": "standard",
+      "question": "Is it really free? Will there be ads or paid tiers?",
+      "answer": [
+        "Yes — free is the product, not a trial. Every book and chapter is readable without a subscription or premium unlock.",
+        "Open Free Books offers no commercial services and no ads, now or in the future. Sustainability comes from community contribution and shared open infrastructure, not from turning learners into the product."
+      ]
+    },
+    {
+      "id": "open-github",
+      "type": "standard",
+      "question": "What does \"open\" mean? How do I contribute?",
+      "answer": [
+        "Open means the textbooks are built in public on GitHub. You can read the source, open a pull request, fork for your syllabus, and see every change in version control.",
+        "To add or improve material, start with the contributing guide on this site or open a discussion or pull request on GitHub. You do not need permission from a publisher."
+      ]
+    },
+    {
+      "id": "vs-commercial",
+      "type": "standard",
+      "question": "How is this different from commercial textbook platforms?",
+      "answer": [
+        "Many commercial platforms sell access, host ads, or bundle paid services around \"digital\" textbooks. Content may be locked behind logins, and terms can change when a vendor updates its product.",
+        "Open Free Books is non-commercial: no paywalls, no ad network, no investor-driven upsell. Books are static HTML in an open repository — readable in a browser today, forkable for your classroom tomorrow."
+      ]
+    },
+    {
+      "id": "not-wiki",
+      "type": "standard",
+      "question": "Is this a wiki?",
+      "answer": [
+        "No. Wikis excel at scattered facts across many topics; they do not usually carry a learner from prerequisite to mastery in one opinionated path.",
+        "We publish ordered chapters, assessed skills, and a catalog map of what to study next — curated structure, not an everything-about-X article farm."
+      ]
+    },
+    {
+      "id": "not-replace-teachers",
+      "type": "standard",
+      "question": "Does Open Free Books replace teachers?",
+      "answer": [
+        "No. A great teacher still sets pace, asks hard questions, and notices when a student is stuck. That relationship is not what we are trying to automate.",
+        "Textbooks are reference and structure: explanations, exercises, diagrams. Those can be free, forkable, and kept current on the web so teachers spend less time hunting permissions and more time teaching."
+      ]
+    },
+    {
+      "id": "why-html",
+      "type": "standard",
+      "question": "Why web pages instead of PDFs?",
+      "answer": [
+        "Paper and most \"digital\" textbooks are fixed layouts — hard to search, hard to update, and poor homes for live diagrams or interactives.",
+        "HTML on the open web can link to sources, resize for any screen, embed simulations, and improve over time. The book becomes something you use, not a file you download once."
+      ]
+    },
+    {
+      "id": "ai-content",
+      "type": "standard",
+      "question": "Is the content AI-generated?",
+      "answer": [
+        "No. Chapters are authored HTML with care: figures, interactives, and maps where they help understanding — not bulk-generated slop or print PDFs pasted online.",
+        "Core curriculum changes slowly; one carefully reviewed book, shared openly, beats regenerating the same chapter thousands of times in a data center."
+      ]
+    },
+    {
+      "id": "subjects",
+      "type": "standard",
+      "question": "What subjects are available?",
+      "answer": [
+        "Mathematics is live today — browse strands and chapters in the catalog. Science, humanities, and computing are on the roadmap.",
+        "New subjects and chapters appear as contributors publish them on GitHub. Planned chapters show in the catalog before a full page exists."
+      ]
+    },
+    {
+      "id": "catalog-curriculum",
+      "type": "standard",
+      "question": "What are curriculum labels on the catalog?",
+      "answer": [
+        "Each subject in the catalog has a set of curricula you can filter by — exam boards, school programs, and similar labels — so you can see which chapters fit your syllabus.",
+        "We try to keep chapter structure and prerequisite maps compatible with as many curricula as possible. We do our best, but coverage is not perfect; the catalog will grow and improve as more people contribute.",
+        "Those labels appear only in the catalog (badges and filters), not inside chapter pages. You choose what applies to you on the catalog; inside a chapter, the focus stays on the topic itself."
+      ]
+    },
+    {
+      "id": "find-chapters",
+      "type": "standard",
+      "question": "How do I find a chapter?",
+      "answer": [
+        "Open the catalog for a subject — list view by default, or map view to follow prerequisites. Use curriculum filters if you need to narrow the list.",
+        "Press ⌘K or Ctrl+K (or open Search in the header) to search live chapter pages. The dedicated search page indexes chapter content, not every site page."
+      ]
+    },
+    {
+      "id": "about-manifesto",
+      "type": "standard",
+      "question": "Where are the project principles?",
+      "answer": [
+        "The About page (Manifesto) lists the values we will not trade away as the catalog grows: free, open, curriculum-shaped, independent, durable, crafted, inspectable, and web-native.",
+        "Read the manifesto for the full principles behind every book on this site."
+      ]
+    }
+  ]
+}

@@ -153,7 +153,21 @@ export function CatalogApp() {
       </aside>
 
       <div class="catalog-main">
-        <header class="catalog-header">
+        <header
+          class="catalog-header"
+          classList={{ "catalog-header--has-banner": Boolean(currentSubject().banner) }}
+        >
+          <Show when={currentSubject().banner}>
+            <div class="catalog-header__banner" aria-hidden="true">
+              <img
+                src={currentSubject().banner!}
+                alt=""
+                width={1400}
+                height={700}
+                decoding="async"
+              />
+            </div>
+          </Show>
           <div class="catalog-header__head">
             <div class="catalog-header__intro">
               <h1 class="catalog-header__title">{currentSubject().name}</h1>

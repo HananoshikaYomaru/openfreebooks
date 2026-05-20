@@ -1,0 +1,293 @@
++++
+title = "Written calculation"
+description = "Add, subtract, multiply, and divide whole numbers using vertical written form: align columns, regroup, and read the result."
+template = "chapter.html"
+weight = 2
+[extra]
+subject = "math"
+chapter_id = "written-calculation"
+strand = "Number & Algebra"
++++
+
+<div class="book-prose">
+  <p>
+    You can read number sentences from <strong>basic math notation</strong> and use the
+    <strong>properties of operations</strong> to see why reordering or splitting sums can still give
+    the same answer. This chapter teaches
+    <strong>written calculation</strong> — how to add, subtract, multiply, and divide on paper by
+    stacking digits in <strong>vertical form</strong>: one number above another, digit under digit.
+    The ideas work for any size number; the visualizer below works best with about eight digits or
+    fewer per line.
+  </p>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Vertical form</p>
+    <p>
+      Line up the same places in columns, work from right to left, and write the answer under a horizontal
+      line. Carry and borrow keep each column within a single digit.
+    </p>
+  </div>
+
+  <h2 id="why-columns" class="book-prose__heading">Why columns?</h2>
+  <p>
+    In <strong>counting and numbers</strong> you learned <strong>place value</strong>: the ones column,
+    tens column, hundreds column. In vertical form, digits that share a place must sit in the same
+    column. If you shift a digit left or right, you are changing its value.
+  </p>
+  <p>
+    Always line up the <strong>ones</strong> under the ones, then tens under tens, and so on. Draw a
+    horizontal line under the stack before you write the answer.
+  </p>
+
+  <h2 id="carry-borrow" class="book-prose__heading">Carry and borrow</h2>
+  <p>
+    In the four operations, a column sometimes gives a digit from <strong>0 to 9</strong> and sometimes
+    gives <strong>10 or more</strong> (or too small to subtract). Then you adjust the next column to the
+    <strong>left</strong>.
+  </p>
+  <ul>
+    <li>
+      <strong>Carry</strong> — in addition, when a column sums to 10 or more, you write the ones
+      digit of that sum in the column and pass the extra ten to the next column on the left.
+    </li>
+    <li>
+      <strong>Borrow</strong> — in subtraction, when the top digit is smaller than the bottom
+      digit, you take one ten from the column on the left, add 10 to the current column, then subtract.
+    </li>
+  </ul>
+  <p>Work from the <strong>right</strong> (ones) toward the <strong>left</strong>, one column at a time.</p>
+
+  <h3 id="carry-example" class="book-prose__heading">Carry: 27 + 59 = 86</h3>
+  <pre class="va-static" aria-label="27 plus 59 equals 86 with carry"><span class="va-static__carry">¹</span>
+  27
++ 59
+────
+  86</pre>
+  <p>
+    In the ones column: \(7 + 9 = 16\). Write <strong>6</strong> in the ones place. Carry
+    <strong>1</strong> to the tens column (written small above the tens). In the tens column:
+    \(2 + 5 + 1 = 8\).
+  </p>
+
+  <h3 id="borrow-example" class="book-prose__heading">Borrow: 47 − 19 = 28</h3>
+  <pre class="va-static" aria-label="47 minus 19 equals 28 with borrow"><span class="va-static__borrow">−1</span>
+  47
+− 19
+────
+  28</pre>
+  <p>
+    In the ones column: \(7 - 9\) does not work. Borrow 10 from the tens: the <strong>4</strong> becomes
+    <strong>3</strong>, and the ones digit becomes <strong>17</strong>. Then \(17 - 9 = 8\). In the tens
+    column: \(3 - 1 = 2\).
+  </p>
+
+  <h2 id="addition" class="book-prose__heading">Addition</h2>
+  <p>
+    Write the numbers one above the other, plus sign to the left of the bottom number, line underneath,
+    sum below. Add each column from right to left; carry when needed.
+  </p>
+
+  <h2 id="subtraction" class="book-prose__heading">Subtraction</h2>
+  <p>
+    Put the <strong>larger</strong> number on top. Subtract column by column. When the top digit is too
+    small, borrow from the left (decrease that digit by 1, add 10 to the current column). Example with a
+    zero in the middle: \(503 - 278 = 225\) needs borrowing across the tens column.
+  </p>
+
+  <h2 id="multiplication" class="book-prose__heading">Multiplication</h2>
+  <p>
+    Write the larger number on top (often). Multiply the top number by each digit of the bottom number,
+    one <strong>partial product</strong> per digit, shifted so ones line up with ones. Add the partial
+    products for the final answer.
+  </p>
+  <pre class="va-static" aria-label="23 times 14 equals 322">
+   23
+ × 14
+ ────
+   92
+  230
+ ────
+  322</pre>
+  <p>Here \(23 \times 4 = 92\) and \(23 \times 10 = 230\); \(92 + 230 = 322\).</p>
+
+  <h2 id="division" class="book-prose__heading">Division</h2>
+  <p>
+    <strong>Long division</strong> writes the divisor outside a bracket, the dividend inside, and the
+    quotient on top. At each step: how many times does the divisor fit into the current part of the
+    dividend? Write that digit in the quotient, multiply, subtract, then bring down the next digit. If
+    the division is not exact, the amount left is the <strong>remainder</strong>.
+  </p>
+
+  <h2 id="terminology" class="book-prose__heading">Names of the parts</h2>
+  <div class="book-table-wrap">
+    <table class="book-table written-terms-table">
+      <thead>
+        <tr>
+          <th scope="col">Operation</th>
+          <th scope="col">Parts</th>
+          <th scope="col">Answer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Addition</td>
+          <td>addend + addend</td>
+          <td>sum</td>
+        </tr>
+        <tr>
+          <td>Subtraction</td>
+          <td>minuend − subtrahend</td>
+          <td>difference</td>
+        </tr>
+        <tr>
+          <td>Multiplication</td>
+          <td>factor × factor</td>
+          <td>product</td>
+        </tr>
+        <tr>
+          <td>Division</td>
+          <td>dividend ÷ divisor</td>
+          <td>quotient (and remainder if any)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="try-it-yourself" class="book-prose__heading">Try it yourself</h2>
+  <p>
+    Use the visualizer below: enter two or more whole numbers (one per line), choose an operation, and
+    click <strong>Generate visualization</strong>. Step through with <strong>Play</strong> or the arrow
+    buttons to see each carry, borrow, and column update.
+  </p>
+  <div class="math-widget-mount" data-widget="vertical-arithmetic-workbench" data-pagefind-ignore></div>
+</div>
+
+<div class="book-prose">
+  <h2 id="history" class="book-prose__heading">History</h2>
+  <p>
+    People calculated with tokens, rods, and abacuses long before everyone used pencil and paper. In many
+    places, including China, India, and the Arab world, scribes lined up digits in columns so addition
+    and subtraction could be done digit by digit.
+  </p>
+  <p>
+    <strong>Mechanical calculators</strong> (1600s–1900s) had to solve the same puzzle: when one wheel
+    moved from 9 to 0, it had to add 1 to the wheel for the next place. Early machines often did addition
+    first, then ran a separate <strong>carry cycle</strong> to update higher digits. Later designs passed
+    the carry instantly along the whole machine. That idea appears again inside modern chips: a
+    <strong>carry flag</strong> records whether the last step overflowed a column.
+  </p>
+
+  <h2 id="derivation" class="book-prose__heading">Derivation</h2>
+  <h3 id="place-value-add" class="book-prose__heading">Why column addition works</h3>
+  <p>
+    Split each number by place value. For example,
+    \(27 + 59 = (20 + 7) + (50 + 9) = (20 + 50) + (7 + 9) = 70 + 16 = 86\). The ones column adds
+    \(7 + 9\); the tens column adds \(2 + 5\) plus any carry. Each column only mixes the same place —
+    that is why alignment matters.
+  </p>
+  <h3 id="inverse" class="book-prose__heading">Subtraction and addition</h3>
+  <p>
+    Subtraction is the inverse of addition: \(c = a - b\) means the same as \(c + b = a\). Borrowing
+    moves one ten from the left so the subtraction in the current column matches that story.
+  </p>
+
+  <h2 id="checkpoints" class="book-prose__heading">Checkpoints</h2>
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Checkpoint</p>
+    <p>When you add 7 and 9 in the ones column, what do you write in the ones place? What do you carry?</p>
+  </div>
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Checkpoint</p>
+    <p>In \(47 - 19\), why does the 4 in the tens column become 3 before you subtract the ones?</p>
+  </div>
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Checkpoint</p>
+    <p>In \(23 \times 14\), why are there two rows under the line before the final sum?</p>
+  </div>
+
+  <h2 id="applications" class="book-prose__heading">Real life</h2>
+  <ul>
+    <li><strong>Shopping</strong> — adding prices on a receipt column by column.</li>
+    <li><strong>Scores</strong> — finding the difference between two team totals.</li>
+    <li><strong>Sharing</strong> — dividing a total equally (e.g. \(157\) stickers among \(12\) children: quotient 13, remainder 1).</li>
+  </ul>
+
+  <h2 id="questions-easy" class="book-prose__heading">Question bank — Easy</h2>
+  <details class="book-question">
+    <summary class="book-question__prompt">Work out \(34 + 25\).</summary>
+    <div class="book-question__solution">
+      <pre class="va-static">  34
++ 25
+────
+  59</pre>
+      <p><strong>Answer:</strong> 59</p>
+    </div>
+  </details>
+  <details class="book-question">
+    <summary class="book-question__prompt">Work out \(61 - 28\).</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> 33 (borrow from tens in the ones column).</p>
+    </div>
+  </details>
+
+  <h2 id="questions-intermediate" class="book-prose__heading">Intermediate</h2>
+  <details class="book-question">
+    <summary class="book-question__prompt">Work out \(27 + 59\).</summary>
+    <div class="book-question__solution">
+      <pre class="va-static"><span class="va-static__carry">¹</span>
+  27
++ 59
+────
+  86</pre>
+      <p><strong>Answer:</strong> 86</p>
+    </div>
+  </details>
+  <details class="book-question">
+    <summary class="book-question__prompt">Work out \(503 - 278\).</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> 225</p>
+      <p><strong>Steps:</strong> Borrow across the tens (0) from hundreds; ones become 13−8=5; tens 9−7=2; hundreds 4−2=2.</p>
+    </div>
+  </details>
+  <details class="book-question">
+    <summary class="book-question__prompt">Work out \(23 \times 14\).</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> 322</p>
+    </div>
+  </details>
+
+  <h2 id="questions-difficult" class="book-prose__heading">Difficult</h2>
+  <details class="book-question">
+    <summary class="book-question__prompt">Work out \(156 \div 12\).</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> 13</p>
+    </div>
+  </details>
+  <details class="book-question">
+    <summary class="book-question__prompt">Work out \(157 \div 12\) and state the remainder.</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> Quotient 13, remainder 1.</p>
+    </div>
+  </details>
+
+  <h2 id="questions-hardcore" class="book-prose__heading">Hardcore</h2>
+  <details class="book-question">
+    <summary class="book-question__prompt">A book has 864 pages. You read 379 pages. How many pages are left?</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> \(864 - 379 = 485\) pages.</p>
+    </div>
+  </details>
+  <details class="book-question">
+    <summary class="book-question__prompt">A classroom orders 24 packs of 15 pencils. How many pencils is that?</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> \(24 \times 15 = 360\) pencils.</p>
+    </div>
+  </details>
+
+  <h2 id="references" class="book-prose__heading">References</h2>
+  <ul>
+    <li>Wikipedia — <em>Carry (arithmetic)</em> and <em>Subtraction</em>.</li>
+    <li>Cajori, Florian — <em>A History of Mathematical Notations</em>.</li>
+    <li>Other school methods (Austrian/additions, partial differences) exist; this chapter uses column borrow as in most HK primary texts.</li>
+  </ul>
+</div>

@@ -8,6 +8,7 @@ site_title = "Open Free Books"
 github_url = "https://github.com/hananoshikayomaru/openfreebooks"
 browse_url = "/browse/"
 about_url = "/about/"
+faq_url = "/faq/"
 credits_url = "/credits/"
 ```
 
