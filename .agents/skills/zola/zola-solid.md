@@ -48,7 +48,8 @@ Prefer **bootstrap** components that `querySelector` existing markup over re-ren
 
 - `outDir`: `themes/openfreebooks/static`
 - `emptyOutDir: false` — do not wipe theme static (only add `js/bundle.js`)
-- Single entry: `frontend/src/main.tsx` → `js/bundle.js`
+- Entry: `frontend/src/main.tsx` → `js/bundle.js`
+- Lazy chunks: e.g. `import("./catalog-mermaid-view")` → `js/catalog-mermaid-view-[hash].js`
 
 ## Workflow
 
@@ -56,6 +57,20 @@ Prefer **bootstrap** components that `querySelector` existing markup over re-ren
 2. Run `bun run build:js` (or `bun run dev:js` while `zola serve` runs).
 3. Hard-refresh browser.
 4. For production: `bun run build` then `wrangler deploy`.
+
+## Catalog (Solid + Mermaid)
+
+Mounted from `catalog.html` via `catalog-app.tsx` (in main bundle). Map view lazy-loads `catalog-mermaid-view.tsx`.
+
+| Concern | Module |
+|---------|--------|
+| Diagram source | `lib/catalog-to-mermaid.ts` |
+| Mermaid init / hex theme | `lib/catalog-mermaid-theme.ts` → `mermaidInitializeOptions(mode)` |
+| Strand title band overlay | `lib/catalog-mermaid-strand-headers.ts` |
+| Light/dark for map | `lib/catalog-canvas-theme.ts` |
+| Compare tab HTML | `catalog-compare-doc.tsx` reads `#catalog-compare-template` |
+
+**Mermaid theming:** use `theme: "base"` and hex `themeVariables` only; CSS cannot override Mermaid’s inline cluster fills. See [zola-catalog.md](zola-catalog.md).
 
 ## KaTeX (math)
 

@@ -1,51 +1,204 @@
 {
   "title": "Mathematics",
-  "subtitle": "HKDSE Compulsory Part (S4–S6)",
-  "intro": "Topic units across three strands. The map shows required prerequisites; the list follows a readable teaching order.",
+  "intro": "Topic units across three strands, shaped for learners worldwide. The map shows required prerequisites; the list follows a readable teaching order; Compare explains how chapters relate to popular curricula.",
   "graph": {
     "edges": [
-      { "from": "counting-and-numbers", "to": "basic-math-notation" },
-      { "from": "basic-math-notation", "to": "properties-of-operations" },
-      { "from": "properties-of-operations", "to": "written-calculation" },
-      { "from": "written-calculation", "to": "directed-numbers-rates" },
-      { "from": "directed-numbers-rates", "to": "polynomials-expansion-factorisation" },
-      { "from": "polynomials-expansion-factorisation", "to": "algebraic-fractions-formulas" },
-      { "from": "polynomials-expansion-factorisation", "to": "linear-equations-two-unknowns" },
-      { "from": "linear-equations-two-unknowns", "to": "linear-inequalities-one-unknown" },
-      { "from": "polynomials-expansion-factorisation", "to": "laws-of-indices" },
-      { "from": "laws-of-indices", "to": "quadratic-equations" },
-      { "from": "polynomials-expansion-factorisation", "to": "factor-remainder-theorems" },
-      { "from": "quadratic-equations", "to": "factor-remainder-theorems" },
-      { "from": "quadratic-equations", "to": "complex-numbers" },
-      { "from": "quadratic-equations", "to": "functions-graphs" },
-      { "from": "quadratic-equations", "to": "sequences-series" },
-      { "from": "functions-graphs", "to": "exponential-logarithmic" },
-      { "from": "functions-graphs", "to": "variations" },
-      { "from": "functions-graphs", "to": "sequences-series" },
-      { "from": "functions-graphs", "to": "linear-programming" },
-      { "from": "sequences-series", "to": "linear-programming" },
-      { "from": "polynomials-expansion-factorisation", "to": "coordinate-geometry-foundations" },
-      { "from": "quadratic-equations", "to": "coordinate-circles" },
-      { "from": "functions-graphs", "to": "advanced-trigonometry" },
-      { "from": "coordinate-geometry-foundations", "to": "deductive-geometry" },
-      { "from": "coordinate-geometry-foundations", "to": "coordinate-circles" },
-      { "from": "deductive-geometry", "to": "congruence-similarity" },
-      { "from": "congruence-similarity", "to": "pythagoras-theorem" },
-      { "from": "pythagoras-theorem", "to": "introduction-trigonometry" },
-      { "from": "introduction-trigonometry", "to": "mensuration-3d" },
-      { "from": "introduction-trigonometry", "to": "advanced-trigonometry" },
-      { "from": "coordinate-circles", "to": "circle-properties" },
-      { "from": "deductive-geometry", "to": "circle-properties" },
-      { "from": "coordinate-circles", "to": "loci" },
-      { "from": "circle-properties", "to": "loci" },
-      { "from": "directed-numbers-rates", "to": "statistical-charts-averages" },
-      { "from": "statistical-charts-averages", "to": "measures-dispersion" },
-      { "from": "statistical-charts-averages", "to": "basic-probability" },
-      { "from": "basic-probability", "to": "permutations-combinations-probability" },
-      { "from": "measures-dispersion", "to": "normal-distribution-z-scores" },
-      { "from": "measures-dispersion", "to": "statistical-literacy" },
-      { "from": "basic-probability", "to": "statistical-literacy" },
-      { "from": "permutations-combinations-probability", "to": "statistical-literacy" }
+      {
+        "from": "counting-and-numbers",
+        "to": "basic-math-notation"
+      },
+      {
+        "from": "basic-math-notation",
+        "to": "properties-of-operations"
+      },
+      {
+        "from": "properties-of-operations",
+        "to": "written-calculation"
+      },
+      {
+        "from": "written-calculation",
+        "to": "integer-foundations"
+      },
+      {
+        "from": "written-calculation",
+        "to": "rational-number-operations"
+      },
+      {
+        "from": "integer-foundations",
+        "to": "integer-arithmetic"
+      },
+      {
+        "from": "rational-number-operations",
+        "to": "percentage-applications"
+      },
+      {
+        "from": "rational-number-operations",
+        "to": "ratios-and-rates-foundation"
+      },
+      {
+        "from": "percentage-applications",
+        "to": "ratios-and-rates-foundation"
+      },
+      {
+        "from": "integer-arithmetic",
+        "to": "directed-numbers-rates"
+      },
+      {
+        "from": "ratios-and-rates-foundation",
+        "to": "directed-numbers-rates"
+      },
+      {
+        "from": "directed-numbers-rates",
+        "to": "polynomials-expansion-factorisation"
+      },
+      {
+        "from": "polynomials-expansion-factorisation",
+        "to": "algebraic-fractions-formulas"
+      },
+      {
+        "from": "polynomials-expansion-factorisation",
+        "to": "linear-equations-two-unknowns"
+      },
+      {
+        "from": "linear-equations-two-unknowns",
+        "to": "linear-inequalities-one-unknown"
+      },
+      {
+        "from": "polynomials-expansion-factorisation",
+        "to": "laws-of-indices"
+      },
+      {
+        "from": "laws-of-indices",
+        "to": "quadratic-equations"
+      },
+      {
+        "from": "polynomials-expansion-factorisation",
+        "to": "factor-remainder-theorems"
+      },
+      {
+        "from": "quadratic-equations",
+        "to": "factor-remainder-theorems"
+      },
+      {
+        "from": "quadratic-equations",
+        "to": "complex-numbers"
+      },
+      {
+        "from": "quadratic-equations",
+        "to": "functions-graphs"
+      },
+      {
+        "from": "quadratic-equations",
+        "to": "sequences-series"
+      },
+      {
+        "from": "functions-graphs",
+        "to": "exponential-logarithmic"
+      },
+      {
+        "from": "functions-graphs",
+        "to": "variations"
+      },
+      {
+        "from": "functions-graphs",
+        "to": "sequences-series"
+      },
+      {
+        "from": "functions-graphs",
+        "to": "linear-programming"
+      },
+      {
+        "from": "sequences-series",
+        "to": "linear-programming"
+      },
+      {
+        "from": "polynomials-expansion-factorisation",
+        "to": "coordinate-geometry-foundations"
+      },
+      {
+        "from": "quadratic-equations",
+        "to": "coordinate-circles"
+      },
+      {
+        "from": "functions-graphs",
+        "to": "advanced-trigonometry"
+      },
+      {
+        "from": "coordinate-geometry-foundations",
+        "to": "deductive-geometry"
+      },
+      {
+        "from": "coordinate-geometry-foundations",
+        "to": "coordinate-circles"
+      },
+      {
+        "from": "deductive-geometry",
+        "to": "congruence-similarity"
+      },
+      {
+        "from": "congruence-similarity",
+        "to": "pythagoras-theorem"
+      },
+      {
+        "from": "pythagoras-theorem",
+        "to": "introduction-trigonometry"
+      },
+      {
+        "from": "introduction-trigonometry",
+        "to": "mensuration-3d"
+      },
+      {
+        "from": "introduction-trigonometry",
+        "to": "advanced-trigonometry"
+      },
+      {
+        "from": "coordinate-circles",
+        "to": "circle-properties"
+      },
+      {
+        "from": "deductive-geometry",
+        "to": "circle-properties"
+      },
+      {
+        "from": "coordinate-circles",
+        "to": "loci"
+      },
+      {
+        "from": "circle-properties",
+        "to": "loci"
+      },
+      {
+        "from": "directed-numbers-rates",
+        "to": "statistical-charts-averages"
+      },
+      {
+        "from": "statistical-charts-averages",
+        "to": "measures-dispersion"
+      },
+      {
+        "from": "statistical-charts-averages",
+        "to": "basic-probability"
+      },
+      {
+        "from": "basic-probability",
+        "to": "permutations-combinations-probability"
+      },
+      {
+        "from": "measures-dispersion",
+        "to": "normal-distribution-z-scores"
+      },
+      {
+        "from": "measures-dispersion",
+        "to": "statistical-literacy"
+      },
+      {
+        "from": "basic-probability",
+        "to": "statistical-literacy"
+      },
+      {
+        "from": "permutations-combinations-probability",
+        "to": "statistical-literacy"
+      }
     ]
   },
   "strands": [
@@ -58,130 +211,400 @@
           "title": "Counting and numbers",
           "description": "Count from zero, spot patterns, add, multiply, and divide; then meet place value and big numbers from hundreds to billions.",
           "status": "live",
-          "curriculums": ["Foundation"]
+          "curriculumCoverage": {
+            "Foundation": "core",
+            "IGCSE": "core",
+            "Common Core": "core",
+            "Singapore": "core",
+            "UK GCSE": "core",
+            "DSE": "related",
+            "IB": "related",
+            "A-Level": "related",
+            "AP": "related",
+            "Gaokao": "related"
+          }
         },
         {
           "slug": "basic-math-notation",
           "title": "Basic math notation",
           "description": "Learn the names and meanings of plus, minus, times, divide, equals, brackets, and other signs used in number sentences.",
           "status": "live",
-          "curriculums": ["Foundation"]
+          "curriculumCoverage": {
+            "Foundation": "core",
+            "IGCSE": "core",
+            "Common Core": "core",
+            "Singapore": "core",
+            "UK GCSE": "core",
+            "DSE": "related",
+            "IB": "related",
+            "A-Level": "related",
+            "AP": "related",
+            "Gaokao": "related"
+          }
         },
         {
           "slug": "properties-of-operations",
           "title": "Properties of operations",
           "description": "See why order, grouping, and distribution can change how you write a sum or product without changing the result — with interactive area and dot models.",
           "status": "live",
-          "curriculums": ["Foundation"]
+          "curriculumCoverage": {
+            "Foundation": "core",
+            "IGCSE": "core",
+            "Common Core": "core",
+            "Singapore": "core",
+            "UK GCSE": "core",
+            "DSE": "related",
+            "IB": "related",
+            "A-Level": "related",
+            "AP": "related",
+            "Gaokao": "related"
+          }
         },
         {
           "slug": "written-calculation",
           "title": "Written calculation",
           "description": "Add, subtract, multiply, and divide whole numbers using vertical written form: align columns, regroup, and read the result.",
           "status": "live",
-          "curriculums": ["Foundation"]
+          "curriculumCoverage": {
+            "Foundation": "core",
+            "IGCSE": "core",
+            "Common Core": "core",
+            "Singapore": "core",
+            "UK GCSE": "core",
+            "DSE": "related",
+            "IB": "related",
+            "A-Level": "related",
+            "AP": "related",
+            "Gaokao": "related"
+          }
+        },
+        {
+          "slug": "integer-foundations",
+          "title": "Integer foundations",
+          "description": "Model directed magnitude on number lines; use the zero principle and tiles to add and subtract integers, and see subtraction as adding an opposite.",
+          "status": "planned",
+          "curriculumCoverage": {
+            "Foundation": "core",
+            "IGCSE": "core",
+            "Common Core": "core",
+            "Singapore": "core",
+            "UK GCSE": "core",
+            "IB": "related",
+            "A-Level": "related",
+            "AP": "related",
+            "DSE": "related",
+            "Gaokao": "related"
+          }
+        },
+        {
+          "slug": "integer-arithmetic",
+          "title": "Integer arithmetic",
+          "description": "Multiply and divide integers from models to symbolic rules; apply order of operations with signed numbers in multi-step expressions.",
+          "status": "planned",
+          "curriculumCoverage": {
+            "Foundation": "core",
+            "IGCSE": "core",
+            "Common Core": "core",
+            "Singapore": "core",
+            "UK GCSE": "core",
+            "IB": "related",
+            "A-Level": "related",
+            "AP": "related",
+            "DSE": "related",
+            "Gaokao": "related"
+          }
+        },
+        {
+          "slug": "rational-number-operations",
+          "title": "Fractions and decimals",
+          "description": "Convert between fractions, terminating decimals, and repeating decimals; add, subtract, multiply, and divide rational numbers and mixed numbers.",
+          "status": "planned",
+          "curriculumCoverage": {
+            "Foundation": "core",
+            "IGCSE": "core",
+            "Common Core": "core",
+            "Singapore": "core",
+            "UK GCSE": "core",
+            "IB": "related",
+            "A-Level": "related",
+            "AP": "related",
+            "DSE": "related",
+            "Gaokao": "related"
+          }
+        },
+        {
+          "slug": "percentage-applications",
+          "title": "Percentage applications",
+          "description": "Relate fractions and decimals to base-100 ratios; calculate percent increase and decrease in financial and real-world contexts.",
+          "status": "planned",
+          "curriculumCoverage": {
+            "Foundation": "core",
+            "IGCSE": "core",
+            "Common Core": "core",
+            "Singapore": "core",
+            "UK GCSE": "core",
+            "IB": "related",
+            "A-Level": "related",
+            "AP": "related",
+            "DSE": "related",
+            "Gaokao": "related"
+          }
+        },
+        {
+          "slug": "ratios-and-rates-foundation",
+          "title": "Ratios & rates foundations",
+          "description": "Formulate part-to-part and part-to-whole ratios, find equivalent ratios, compute unit rates, and graph proportional relationships.",
+          "status": "planned",
+          "curriculumCoverage": {
+            "Foundation": "core",
+            "IGCSE": "core",
+            "Common Core": "core",
+            "Singapore": "core",
+            "UK GCSE": "core",
+            "IB": "related",
+            "A-Level": "related",
+            "AP": "related",
+            "DSE": "related",
+            "Gaokao": "related"
+          }
         },
         {
           "slug": "directed-numbers-rates",
           "title": "Directed numbers, rates & ratios",
           "description": "Operate with negative numbers and solve ratio, rate, and proportion problems in context.",
           "status": "live",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IGCSE": "core",
+            "Common Core": "core",
+            "Singapore": "core",
+            "UK GCSE": "core",
+            "Foundation": "related",
+            "IB": "related",
+            "A-Level": "related",
+            "AP": "related",
+            "Gaokao": "related"
+          }
         },
         {
           "slug": "polynomials-expansion-factorisation",
           "title": "Polynomials: expansion & factorisation",
           "description": "Expand products, collect like terms, and factorise expressions using common factors and identities.",
           "status": "live",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IGCSE": "core",
+            "IB": "core",
+            "A-Level": "core",
+            "Common Core": "core",
+            "Singapore": "core",
+            "UK GCSE": "core",
+            "Gaokao": "core",
+            "Foundation": "related",
+            "AP": "related"
+          }
         },
         {
           "slug": "algebraic-fractions-formulas",
           "title": "Algebraic fractions & formulas",
           "description": "Simplify algebraic fractions and change the subject of formulas in applied contexts.",
           "status": "live",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IGCSE": "core",
+            "IB": "core",
+            "A-Level": "core",
+            "Common Core": "related",
+            "Singapore": "related",
+            "UK GCSE": "core",
+            "Gaokao": "related",
+            "Foundation": "related",
+            "AP": "related"
+          }
         },
         {
           "slug": "linear-equations-two-unknowns",
           "title": "Linear equations in two unknowns",
           "description": "Solve simultaneous linear equations by substitution, elimination, and graphical interpretation; classify unique, parallel, and coincident cases.",
           "status": "live",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IGCSE": "core",
+            "IB": "core",
+            "A-Level": "core",
+            "Common Core": "core",
+            "Singapore": "core",
+            "UK GCSE": "core",
+            "Gaokao": "core",
+            "AP": "related",
+            "Foundation": "related"
+          }
         },
         {
           "slug": "linear-inequalities-one-unknown",
           "title": "Linear inequalities in one unknown",
           "description": "Solve and represent linear inequalities on the number line and in word problems.",
           "status": "planned",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IGCSE": "core",
+            "Common Core": "core",
+            "UK GCSE": "core",
+            "IB": "related",
+            "A-Level": "related",
+            "AP": "related",
+            "Singapore": "related",
+            "Gaokao": "related"
+          }
         },
         {
           "slug": "laws-of-indices",
           "title": "Laws of indices",
           "description": "Apply index laws to simplify expressions with integer and rational exponents.",
           "status": "planned",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IGCSE": "core",
+            "IB": "core",
+            "A-Level": "core",
+            "AP": "core",
+            "Common Core": "core",
+            "UK GCSE": "core",
+            "Singapore": "core",
+            "Gaokao": "core",
+            "Foundation": "related"
+          }
         },
         {
           "slug": "quadratic-equations",
           "title": "Quadratic equations",
           "description": "Solve quadratics by factorising, completing the square, and the formula. Model real problems with parabolas and roots.",
           "status": "live",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IGCSE": "core",
+            "IB": "core",
+            "A-Level": "core",
+            "AP": "core",
+            "Common Core": "core",
+            "UK GCSE": "core",
+            "Singapore": "core",
+            "Gaokao": "core",
+            "Foundation": "related"
+          }
         },
         {
           "slug": "factor-remainder-theorems",
           "title": "Factor & remainder theorems",
           "description": "Use the factor and remainder theorems to factorise higher-degree polynomials and solve related equations.",
           "status": "planned",
-          "curriculums": ["DSE"],
-          "tier": "non-foundation"
+          "tier": "non-foundation",
+          "curriculumCoverage": {
+            "DSE": "extension",
+            "IB": "extension",
+            "A-Level": "extension",
+            "IGCSE": "related",
+            "Gaokao": "related",
+            "AP": "related"
+          }
         },
         {
           "slug": "complex-numbers",
           "title": "Complex numbers",
           "description": "Represent complex numbers in Cartesian form and perform operations including conjugates and division.",
           "status": "planned",
-          "curriculums": ["DSE"],
-          "tier": "non-foundation"
+          "tier": "non-foundation",
+          "curriculumCoverage": {
+            "DSE": "extension",
+            "IB": "extension",
+            "A-Level": "extension",
+            "Gaokao": "related",
+            "IGCSE": "related",
+            "AP": "related"
+          }
         },
         {
           "slug": "functions-graphs",
           "title": "Functions & graphs",
           "description": "Study domains, ranges, transformations, and graphs of common functions including quadratics and rationals.",
           "status": "planned",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IGCSE": "core",
+            "IB": "core",
+            "A-Level": "core",
+            "AP": "core",
+            "Common Core": "core",
+            "UK GCSE": "core",
+            "Singapore": "core",
+            "Gaokao": "core",
+            "Foundation": "related"
+          }
         },
         {
           "slug": "exponential-logarithmic",
           "title": "Exponential & logarithmic functions",
           "description": "Explore laws of logarithms, exponential growth and decay, and sketch related graphs.",
           "status": "planned",
-          "curriculums": ["DSE"],
-          "tier": "non-foundation"
+          "tier": "non-foundation",
+          "curriculumCoverage": {
+            "DSE": "extension",
+            "IGCSE": "core",
+            "IB": "core",
+            "A-Level": "core",
+            "AP": "core",
+            "Common Core": "core",
+            "UK GCSE": "core",
+            "Gaokao": "core",
+            "Singapore": "related",
+            "Foundation": "related"
+          }
         },
         {
           "slug": "sequences-series",
           "title": "Sequences & series",
           "description": "Work with arithmetic and geometric sequences, sigma notation, and finite summation formulas.",
           "status": "planned",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IGCSE": "core",
+            "IB": "core",
+            "A-Level": "core",
+            "Common Core": "related",
+            "UK GCSE": "core",
+            "AP": "related",
+            "Gaokao": "core",
+            "Singapore": "related",
+            "Foundation": "related"
+          }
         },
         {
           "slug": "variations",
           "title": "Variations",
           "description": "Model direct, inverse, joint, and partial variation and solve combined variation problems.",
           "status": "planned",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IB": "related",
+            "A-Level": "related",
+            "IGCSE": "related",
+            "Common Core": "related",
+            "Singapore": "related"
+          }
         },
         {
           "slug": "linear-programming",
           "title": "Linear programming",
           "description": "Graph linear inequalities, identify feasible regions, and optimise objective functions in two variables.",
           "status": "planned",
-          "curriculums": ["DSE"],
-          "tier": "non-foundation"
+          "tier": "non-foundation",
+          "curriculumCoverage": {
+            "DSE": "extension",
+            "IB": "extension",
+            "A-Level": "related",
+            "AP": "related",
+            "IGCSE": "related"
+          }
         }
       ]
     },
@@ -194,73 +617,162 @@
           "title": "Coordinate geometry foundations",
           "description": "Plot points, find distances and midpoints, and work with slopes of lines in the Cartesian plane.",
           "status": "planned",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IGCSE": "core",
+            "Common Core": "core",
+            "UK GCSE": "core",
+            "IB": "core",
+            "A-Level": "related",
+            "Singapore": "core",
+            "AP": "related",
+            "Gaokao": "related"
+          }
         },
         {
           "slug": "deductive-geometry",
           "title": "Deductive geometry",
           "description": "Prove angle and side relationships for intersecting lines, triangles, and polygons.",
           "status": "planned",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IGCSE": "core",
+            "UK GCSE": "core",
+            "Common Core": "core",
+            "Singapore": "core",
+            "IB": "related",
+            "A-Level": "related",
+            "Gaokao": "related"
+          }
         },
         {
           "slug": "congruence-similarity",
           "title": "Congruence & similarity",
           "description": "Apply congruence and similarity criteria to justify properties of triangles and scale figures.",
           "status": "planned",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IGCSE": "core",
+            "UK GCSE": "core",
+            "Common Core": "core",
+            "Singapore": "core",
+            "IB": "related",
+            "A-Level": "related",
+            "Gaokao": "related"
+          }
         },
         {
           "slug": "pythagoras-theorem",
           "title": "Pythagoras' theorem",
           "description": "Use Pythagoras' theorem and its converse in 2D problems and coordinate settings.",
           "status": "planned",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IGCSE": "core",
+            "UK GCSE": "core",
+            "Common Core": "core",
+            "Singapore": "core",
+            "IB": "core",
+            "A-Level": "related",
+            "Gaokao": "core",
+            "AP": "related"
+          }
         },
         {
           "slug": "introduction-trigonometry",
           "title": "Introduction to trigonometry",
           "description": "Define sine, cosine, and tangent ratios and solve right-angled triangle problems.",
           "status": "planned",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IGCSE": "core",
+            "UK GCSE": "core",
+            "Common Core": "core",
+            "Singapore": "core",
+            "IB": "core",
+            "A-Level": "related",
+            "Gaokao": "core",
+            "AP": "related"
+          }
         },
         {
           "slug": "mensuration-3d",
           "title": "Mensuration in 3D",
           "description": "Find volumes and surface areas of prisms, cylinders, pyramids, cones, and spheres.",
           "status": "planned",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IGCSE": "core",
+            "UK GCSE": "core",
+            "Common Core": "core",
+            "Singapore": "core",
+            "IB": "related",
+            "A-Level": "related",
+            "Gaokao": "related"
+          }
         },
         {
           "slug": "coordinate-circles",
           "title": "Coordinate geometry of circles",
           "description": "Find equations of circles, tangents, and intersections using coordinate methods and distance.",
           "status": "planned",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IGCSE": "related",
+            "IB": "extension",
+            "A-Level": "extension",
+            "Gaokao": "related",
+            "UK GCSE": "related",
+            "AP": "related"
+          }
         },
         {
           "slug": "advanced-trigonometry",
           "title": "Advanced trigonometry",
           "description": "Use sine and cosine rules, radians, and trigonometric graphs in 2D and 3D applications.",
           "status": "planned",
-          "curriculums": ["DSE"],
-          "tier": "non-foundation"
+          "tier": "non-foundation",
+          "curriculumCoverage": {
+            "DSE": "extension",
+            "IGCSE": "core",
+            "IB": "core",
+            "A-Level": "core",
+            "AP": "core",
+            "UK GCSE": "core",
+            "Gaokao": "core",
+            "Common Core": "related",
+            "Singapore": "related"
+          }
         },
         {
           "slug": "circle-properties",
           "title": "Properties of circles",
           "description": "Apply chord, tangent, and angle theorems in circles to prove results and solve geometry problems.",
           "status": "planned",
-          "curriculums": ["DSE"],
-          "tier": "non-foundation"
+          "tier": "non-foundation",
+          "curriculumCoverage": {
+            "DSE": "extension",
+            "IGCSE": "core",
+            "UK GCSE": "core",
+            "IB": "related",
+            "A-Level": "related",
+            "Gaokao": "related",
+            "Singapore": "related"
+          }
         },
         {
           "slug": "loci",
           "title": "Loci",
           "description": "Describe and construct loci in the plane, linking geometric constraints to algebraic equations.",
           "status": "planned",
-          "curriculums": ["DSE"],
-          "tier": "non-foundation"
+          "tier": "non-foundation",
+          "curriculumCoverage": {
+            "DSE": "extension",
+            "IGCSE": "related",
+            "A-Level": "related",
+            "IB": "related",
+            "UK GCSE": "related"
+          }
         }
       ]
     },
@@ -273,44 +785,98 @@
           "title": "Charts & averages",
           "description": "Organise data with tables and charts and calculate mean, median, and mode.",
           "status": "planned",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IGCSE": "core",
+            "IB": "core",
+            "Common Core": "core",
+            "UK GCSE": "core",
+            "Singapore": "core",
+            "AP": "related",
+            "Gaokao": "related",
+            "A-Level": "related"
+          }
         },
         {
           "slug": "measures-dispersion",
           "title": "Measures of dispersion",
           "description": "Interpret range, interquartile range, variance, and standard deviation for comparing data sets.",
           "status": "planned",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IGCSE": "core",
+            "IB": "core",
+            "A-Level": "related",
+            "AP": "related",
+            "Common Core": "core",
+            "UK GCSE": "core",
+            "Singapore": "related",
+            "Gaokao": "related"
+          }
         },
         {
           "slug": "basic-probability",
           "title": "Basic probability",
           "description": "Calculate theoretical and experimental probabilities for simple events and complements.",
           "status": "planned",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IGCSE": "core",
+            "IB": "core",
+            "Common Core": "core",
+            "UK GCSE": "core",
+            "Singapore": "core",
+            "AP": "related",
+            "A-Level": "related",
+            "Gaokao": "related"
+          }
         },
         {
           "slug": "permutations-combinations-probability",
           "title": "Permutations, combinations & probability",
           "description": "Count outcomes with permutations and combinations, then compute probabilities in finite sample spaces.",
           "status": "planned",
-          "curriculums": ["DSE"],
-          "tier": "non-foundation"
+          "tier": "non-foundation",
+          "curriculumCoverage": {
+            "DSE": "extension",
+            "IGCSE": "extension",
+            "IB": "core",
+            "A-Level": "core",
+            "AP": "related",
+            "Gaokao": "related",
+            "Common Core": "related"
+          }
         },
         {
           "slug": "normal-distribution-z-scores",
           "title": "Normal distribution & z-scores",
           "description": "Model continuous data with the normal curve, standardise with z-scores, and read probabilities from tables.",
           "status": "planned",
-          "curriculums": ["DSE"],
-          "tier": "non-foundation"
+          "tier": "non-foundation",
+          "curriculumCoverage": {
+            "DSE": "extension",
+            "IB": "core",
+            "A-Level": "core",
+            "AP": "related",
+            "IGCSE": "related",
+            "Gaokao": "related",
+            "Common Core": "related"
+          }
         },
         {
           "slug": "statistical-literacy",
           "title": "Statistical literacy",
           "description": "Evaluate claims in media and research: sampling bias, correlation versus causation, and misleading charts.",
           "status": "planned",
-          "curriculums": ["DSE"]
+          "curriculumCoverage": {
+            "DSE": "core",
+            "IB": "related",
+            "Common Core": "related",
+            "IGCSE": "related",
+            "AP": "related",
+            "A-Level": "related",
+            "Singapore": "related"
+          }
         }
       ]
     }

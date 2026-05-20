@@ -1,11 +1,19 @@
 export type CatalogChapterTier = "foundation" | "non-foundation";
 
+/** Compare matrix + filter relevance per framework label. */
+export type CurriculumCoverageRole = "core" | "extension" | "related";
+
+export type CurriculumCoverage = Partial<Record<string, CurriculumCoverageRole>>;
+
 export type CatalogChapter = {
   slug: string;
   title: string;
   description: string;
   status: "live" | "planned";
-  curriculums: string[];
+  /** @deprecated Prefer curriculumCoverage; kept for older JSON during migration. */
+  curriculums?: string[];
+  /** Per-framework role for Compare matrix and catalog filters (keys = framework labels). */
+  curriculumCoverage?: CurriculumCoverage;
   /** DSE compulsory tier; omit = foundation. */
   tier?: CatalogChapterTier;
 };
@@ -42,4 +50,4 @@ export type CatalogData = {
   subjects: CatalogSubject[];
 };
 
-export type CatalogViewMode = "linear" | "tree";
+export type CatalogViewMode = "linear" | "tree" | "compare";

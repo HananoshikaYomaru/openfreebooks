@@ -1,7 +1,7 @@
 {
   "title": "Curriculum Catalog",
   "subtitle": "Browse chapters by subject and curriculum",
-  "curriculums": ["Foundation", "DSE", "IB", "A-Level", "AP", "IGCSE"],
+  "curriculums": ["Foundation", "DSE", "IB", "A-Level", "AP", "IGCSE", "Common Core"],
   "subjects": [
     { "id": "math", "name": "Mathematics", "banner": "/catalog/banners/math.webp" },
     { "id": "science", "name": "Science" },

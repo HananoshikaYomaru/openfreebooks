@@ -115,7 +115,7 @@
       "type": "standard",
       "question": "What are curriculum labels on the catalog?",
       "answer": [
-        "Each subject in the catalog has a set of curricula you can filter by — exam boards, school programs, and similar labels — so you can see which chapters fit your syllabus.",
+        "Each subject in the catalog has a set of curricula you can filter by — exam boards, school programs, and similar labels — so you can see which chapters fit your syllabus. For Mathematics, the Compare tab documents how frameworks differ and how chapters map to them.",
         "We try to keep chapter structure and prerequisite maps compatible with as many curricula as possible. We do our best, but coverage is not perfect; the catalog will grow and improve as more people contribute.",
         "Those labels appear only in the catalog (badges and filters), not inside chapter pages. You choose what applies to you on the catalog; inside a chapter, the focus stays on the topic itself."
       ]
@@ -125,7 +125,7 @@
       "type": "standard",
       "question": "How do I find a chapter?",
       "answer": [
-        "Open the catalog for a subject — list view by default, or map view to follow prerequisites. Use curriculum filters if you need to narrow the list.",
+        "Open the catalog for a subject — list view by default, map view for prerequisites, or (for Mathematics) Compare for how popular curricula relate to our chapters. Use curriculum filters on list and map if you need to narrow the list.",
         "Press ⌘K or Ctrl+K (or open Search in the header) to search live chapter pages. The dedicated search page indexes chapter content, not every site page."
       ]
     },

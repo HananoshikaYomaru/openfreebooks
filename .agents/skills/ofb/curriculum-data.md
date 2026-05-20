@@ -8,7 +8,7 @@ Site-wide catalog chrome.
 {
   "title": "Curriculum Catalog",
   "subtitle": "Browse chapters by subject and curriculum",
-  "curriculums": ["DSE", "IB", "A-Level", "AP", "IGCSE"],
+  "curriculums": ["Foundation", "DSE", "IB", "A-Level", "AP", "IGCSE", "Common Core"],
   "subjects": [
     { "id": "math", "name": "Mathematics" }
   ]
@@ -28,7 +28,8 @@ Example: `data/math-curriculum.json`.
 ```json
 {
   "title": "Mathematics",
-  "subtitle": "Short tagline for data (not shown on every page)",
+  "subtitle": "Optional; deprecated — do not use HKDSE-only framing. Catalog chrome uses data/catalog.json.",
+  "intro": "Optional subject-level intro (not shown in catalog UI today)",
   "intro": "Optional; was used by old book page",
   "graph": {
     "edges": [
@@ -63,8 +64,9 @@ Example: `data/math-curriculum.json`.
 | `title` | yes | Catalog list + map node label |
 | `description` | yes | 1–2 sentences; shown in list and map cards (clamped to 3 lines on map) |
 | `status` | yes | `live` (link to chapter) or `planned` (no link) |
-| `curriculums` | yes | Non-empty array; values must exist in `catalog.json` `curriculums` |
-| `tier` | no | `foundation` (default) or `non-foundation` — shows an **Extension** badge on cards |
+| `curriculumCoverage` | yes (math) | Object mapping framework label → `core` \| `extension` \| `related` (Compare matrix + filters) |
+| `curriculums` | legacy | Deprecated array; use `curriculumCoverage` instead |
+| `tier` | no | `foundation` (default) or `non-foundation` — shows an **Extension** badge on cards (DSE M2-style topics) |
 
 ### Graph model (map)
 

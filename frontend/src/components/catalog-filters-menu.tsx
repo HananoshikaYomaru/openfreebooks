@@ -74,7 +74,7 @@ export function CatalogFiltersMenu(props: CatalogFiltersMenuProps) {
             />
             <span class="catalog-filter-menu__option-label">All</span>
           </label>
-          <For each={props.curriculums}>
+          <For each={props.curriculums ?? []}>
             {(curriculum) => (
               <label class="catalog-filter-menu__option">
                 <input

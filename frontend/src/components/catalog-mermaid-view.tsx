@@ -1,6 +1,8 @@
 import { createEffect, onCleanup, onMount } from "solid-js";
 import type { MermaidCatalogDiagram } from "../lib/catalog-to-mermaid";
 import { siteCanvasTheme, watchSiteTheme } from "../lib/catalog-canvas-theme";
+import { mermaidInitializeOptions } from "../lib/catalog-mermaid-theme";
+import { enhanceStrandClusterHeaders } from "../lib/catalog-mermaid-strand-headers";
 
 type CatalogMermaidViewProps = {
   diagram: MermaidCatalogDiagram;
@@ -84,7 +86,7 @@ export function CatalogMermaidView(props: CatalogMermaidViewProps) {
     mermaidModule.initialize({
       startOnLoad: false,
       securityLevel: "loose",
-      theme: theme === "dark" ? "dark" : "default",
+      ...mermaidInitializeOptions(theme),
       flowchart: {
         htmlLabels: true,
         curve: "monotoneY",
@@ -108,6 +110,8 @@ export function CatalogMermaidView(props: CatalogMermaidViewProps) {
     renderedSvg.removeAttribute("style");
     renderedSvg.style.height = "100%";
     renderedSvg.style.width = "100%";
+
+    enhanceStrandClusterHeaders(renderedSvg, theme);
 
     panZoom = svgPanZoomModule(renderedSvg, {
       zoomEnabled: true,

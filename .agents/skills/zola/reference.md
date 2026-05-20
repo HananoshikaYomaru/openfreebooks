@@ -46,6 +46,16 @@ If styles “don’t apply”, delete stray `themes/openfreebooks/static/main.cs
 - `static/contributors.json` — optional mirror for `/contributors.json` if needed.
 - Contributors UI: `partials/contributors-block.html`; credits page: `credits.html` + `partials/credits-content.html`.
 
+## Catalog URLs
+
+| URL | View |
+|-----|------|
+| `/catalog/?subject=math` | List |
+| `/catalog/?subject=math&view=tree` | Mermaid map |
+| `/catalog/?subject=math&view=compare` | Math curricula compare (HTML partial) |
+
+Catalog build/data/Mermaid details: [zola-catalog.md](zola-catalog.md).
+
 ## Social icons
 
 1. Source SVGs: `static/icons/social/{kind}.svg` (from [Tabler Icons](https://tabler.io/icons) outline set).

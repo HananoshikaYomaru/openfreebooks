@@ -79,7 +79,7 @@ function GraphPrereqDemo() {
 }
 
 function CatalogViewsDemo() {
-  const [view, setView] = createSignal<"list" | "map">("list");
+  const [view, setView] = createSignal<"list" | "map" | "compare">("list");
 
   return (
     <div class="contributing-views-demo" aria-label="Catalog list and map views">
@@ -104,9 +104,22 @@ function CatalogViewsDemo() {
         >
           Map
         </button>
+        <button
+          type="button"
+          role="tab"
+          class="contributing-views-demo__tab"
+          classList={{ "is-active": view() === "compare" }}
+          aria-selected={view() === "compare"}
+          onClick={() => setView("compare")}
+        >
+          Compare
+        </button>
       </div>
       <div class="contributing-views-demo__panel" role="tabpanel">
         <Show
+          when={view() === "compare"}
+          fallback={
+            <Show
           when={view() === "list"}
           fallback={
             <div class="contributing-views-demo__map">
@@ -146,6 +159,13 @@ function CatalogViewsDemo() {
           </ol>
           <p class="contributing-views-demo__caption">
             List order follows the <code>chapters[]</code> array — your table of contents.
+          </p>
+        </Show>
+          }
+        >
+          <p class="contributing-views-demo__caption">
+            Mathematics only: curricula comparison doc at{" "}
+            <code>?view=compare</code> (HTML partial, not JSON).
           </p>
         </Show>
       </div>

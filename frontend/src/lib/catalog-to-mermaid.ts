@@ -1,4 +1,5 @@
 import type { CatalogChapter, CatalogGraphEdge, CatalogSubject } from "../../../data/catalog.types";
+import { chapterFilterCurriculums } from "./catalog-coverage";
 import { curriculumBadgeClass, tierBadgeLabel } from "./catalog-badge";
 
 export type MermaidCatalogDiagram = {
@@ -11,7 +12,7 @@ function collectVisibleChapters(
   matches: (chapter: CatalogChapter) => boolean
 ): Map<string, CatalogChapter> {
   const visible = new Map<string, CatalogChapter>();
-  for (const strand of subject.strands) {
+  for (const strand of subject.strands ?? []) {
     for (const chapter of strand.chapters) {
       if (matches(chapter)) {
         visible.set(chapter.slug, chapter);
@@ -82,7 +83,7 @@ function selectRootSlug(
     }
   }
 
-  for (const strand of subject.strands) {
+  for (const strand of subject.strands ?? []) {
     for (const chapter of strand.chapters) {
       if (rootCandidates.has(chapter.slug)) {
         return chapter.slug;
@@ -98,7 +99,7 @@ function chapterNodeLabel(chapter: CatalogChapter): string {
   const description = chapter.description
     ? `<p class='catalog-mermaid-node__description'>${escapeLabel(chapter.description)}</p>`
     : "";
-  const curriculumBadges = chapter.curriculums
+  const curriculumBadges = chapterFilterCurriculums(chapter)
     .map(
       (curriculum) =>
         `<span class='catalog-badge ${curriculumBadgeClass(curriculum)}'>${escapeLabel(curriculum)}</span>`
@@ -128,11 +129,13 @@ export function subjectToMermaid(
   const rootSlug = selectRootSlug(subject, visible, edges);
   const lines: string[] = ["flowchart TB"];
 
-  for (const strand of subject.strands) {
+  for (const strand of subject.strands ?? []) {
     const strandChapters = strand.chapters.filter((chapter) => visible.has(chapter.slug));
     if (strandChapters.length === 0) continue;
 
-    lines.push(`  subgraph strand_${strand.id.replaceAll(/[^a-zA-Z0-9_]/g, "_")}["${escapeLabel(strand.title)}"]`);
+    const strandKey = strand.id.replaceAll(/[^a-zA-Z0-9_]/g, "_");
+    const strandHeader = `<header class='catalog-mermaid-strand__header'><span class='catalog-mermaid-strand__title'>${escapeLabel(strand.title)}</span></header>`;
+    lines.push(`  subgraph strand_${strandKey}["${strandHeader}"]`);
     lines.push("    direction TB");
     for (const chapter of strandChapters) {
       const id = nodeId(chapter.slug);

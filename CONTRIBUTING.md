@@ -28,12 +28,12 @@ Thank you for helping grow free, open textbooks.
 ## How the catalog fits together
 
 ```text
-data/{subject}-curriculum.json  → catalog list + map (status, curriculums, graph.edges)
+data/{subject}-curriculum.json  → catalog list + map (status, curriculumCoverage, graph.edges)
 content/{subject}/{slug}/       → everything for the live page (one folder)
   _index.md, core.html, supplement.html, assets/, widgets/, chapter.scss
 ```
 
-- **Catalog** (`/catalog/`) — list and map (`?view=tree`). Curriculum names (DSE, IB, …) appear only in the catalog — not inside chapter prose ([spec.md](spec.md)).
+- **Catalog** (`/catalog/`) — list, map (`?view=tree`), and for Mathematics a Compare doc (`?view=compare`, HTML partial `themes/openfreebooks/templates/partials/math-curricula-compare.html`). Curriculum names (DSE, IB, …) appear only in the catalog — not inside chapter prose ([spec.md](spec.md)).
 - Every chapter needs a **`description`** in curriculum JSON (map clamps to three lines).
 - **`bun run sync:chapters`** (also run automatically by `bun run build:js`) merges `core.html` + `supplement.html` into `_index.md` for Zola. Edit the HTML files, not the merged body in `_index.md`.
 
@@ -61,10 +61,16 @@ content/{subject}/{slug}/       → everything for the live page (one folder)
   "title": "Human-readable title",
   "description": "One or two sentences for the catalog list and map card.",
   "status": "planned",
-  "curriculums": ["DSE"],
+  "curriculumCoverage": {
+    "DSE": "core",
+    "IGCSE": "core",
+    "IB": "related"
+  },
   "tier": "non-foundation"
 }
 ```
+
+Each framework maps to `core`, `extension`, or `related` (Compare matrix). Use `extension` for elective / M2-style topics; `related` when the topic supports but is not a named unit.
 
 3. Use **kebab-case** slugs. No `content/` folder needed for planned chapters.
 
@@ -74,7 +80,7 @@ content/{subject}/{slug}/       → everything for the live page (one folder)
 
 ### 1. Catalog entry
 
-In `data/{subject}-curriculum.json`, set `"status": "live"` and include `description`, `curriculums`, and optional `tier`.
+In `data/{subject}-curriculum.json`, set `"status": "live"` and include `description`, `curriculumCoverage`, and optional `tier`.
 
 ### 2. Chapter folder
 
@@ -187,7 +193,7 @@ Omit `banner` for subjects that should stay unchanged (e.g. roadmap-only placeho
 ## Add a curriculum label
 
 1. Add the label to `curriculums` in `data/catalog.json`.
-2. Tag chapters in their `curriculums` arrays.
+2. Add roles per chapter in `curriculumCoverage` (and update Compare if needed).
 3. Add badge style in `themes/openfreebooks/sass/_catalog.scss` and mapping in `frontend/src/lib/catalog-badge.ts`.
 
 ---

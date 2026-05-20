@@ -21,7 +21,7 @@ Static site: **Zola** + custom theme `openfreebooks`. Output goes to `public/` (
 | `static/` | Copied to site root (`favicons`, `icons/`, etc.) |
 | `themes/openfreebooks/templates/` | Tera HTML, partials, macros |
 | `themes/openfreebooks/sass/` | Source styles → compiled `public/main.css` |
-| `themes/openfreebooks/static/js/` | Vite output: `bundle.js` (site chrome) + hashed chunks (`catalog-app-*.js`, `catalog-canvas-view-*.js`, …) |
+| `themes/openfreebooks/static/js/` | Vite output: `bundle.js` (site chrome) + lazy chunks (e.g. `catalog-mermaid-view-*.js`) |
 
 See [reference.md](reference.md) for Tera pitfalls and build checks.
 
@@ -75,9 +75,11 @@ Client behavior lives in `frontend/` and mounts from `base.html`:
 | Entry | Mount | Notes |
 |-------|--------|--------|
 | `js/bundle.js` | `main.tsx` | Header, theme, homepage, chapter widgets |
-| `js/catalog-app-*.js` | `#catalog-app` on `/catalog/` | Lazy-loaded with `catalog-canvas-view-*.js` for Map view |
+| `#catalog-app` on `/catalog/` | `catalog-app.tsx` in bundle | List / Map / Compare; Map lazy-loads `catalog-mermaid-view` |
 
 **When changing `frontend/` or adding interactivity**, read [zola-solid.md](zola-solid.md) before editing JS.
+
+**When changing the catalog page, map, or compare doc**, read [zola-catalog.md](zola-catalog.md).
 
 ### Search (Pagefind)
 
@@ -87,8 +89,10 @@ Client behavior lives in `frontend/` and mounts from `base.html`:
 ### Catalog page
 
 - `content/catalog.md` → `template = "catalog.html"`
-- `templates/catalog.html` — empty `#catalog-app` + `#catalog-data` JSON embed (merged subject curricula at build time)
-- `sass/_catalog.scss` — list + map styles; map card title link underline lives under `.catalog-canvas`
+- `templates/catalog.html` — `#catalog-app`, `#catalog-data` JSON, `<template id="catalog-compare-template">` (math compare partial)
+- Views: list (default), `?view=tree` (Mermaid DAG map), `?view=compare` (math curricula doc)
+- Map colors: Mermaid `theme: "base"` + hex `themeVariables` in `frontend/src/lib/catalog-mermaid-theme.ts` — **not** Sass `fill` on cluster rects (inline SVG wins)
+- Full file map, strand header post-render, and verify steps: [zola-catalog.md](zola-catalog.md)
 - Run `bun run build:js` after any `frontend/src/components/catalog-*` or `frontend/src/lib/catalog-*` change
 
 ## Verify

@@ -11,7 +11,7 @@ function chapter(
     title: slug,
     description: "desc",
     status: "planned",
-    curriculums: ["DSE"],
+    curriculumCoverage: { DSE: "core" },
     ...overrides,
   };
 }
@@ -55,6 +55,8 @@ describe("subjectToMermaid", () => {
     expect(diagram!.rootNodeId).toBe("chapter_a");
 
     expect(source).toContain("flowchart TB");
+    expect(source).toContain("catalog-mermaid-strand__title");
+    expect(source).toContain("Strand A");
     expect(source.match(/chapter_a --> chapter_c/g)?.length).toBe(1);
     expect(source).toContain('chapter_b -->|after| chapter_c');
     expect(source).toContain('click chapter_a href "/math/a/"');

@@ -8,6 +8,7 @@ export function curriculumBadgeClass(curriculum: string): string {
     "A-Level": "catalog-badge--a-level",
     AP: "catalog-badge--ap",
     IGCSE: "catalog-badge--igcse",
+    "Common Core": "catalog-badge--common-core",
   };
   return map[curriculum] ?? "catalog-badge--default";
 }

@@ -1,5 +1,6 @@
 import { For, Show } from "solid-js";
 import type { CatalogChapter } from "../../../data/catalog.types";
+import { chapterFilterCurriculums } from "../lib/catalog-coverage";
 import { curriculumBadgeClass, tierBadgeLabel } from "../lib/catalog-badge";
 
 export type CatalogChapterCardProps = {
@@ -29,7 +30,7 @@ export function CatalogChapterCard(props: CatalogChapterCardProps) {
         <p class="catalog-chapter-card__description">{props.chapter.description}</p>
       </Show>
       <div class="catalog-chapter-card__meta">
-        <For each={props.chapter.curriculums}>
+        <For each={chapterFilterCurriculums(props.chapter)}>
           {(curriculum) => (
             <span class={`catalog-badge ${curriculumBadgeClass(curriculum)}`}>{curriculum}</span>
           )}

@@ -93,7 +93,7 @@ Detailed checklists: [curriculum-data.md](curriculum-data.md). Human-facing guid
 | Styles | `themes/openfreebooks/sass/_catalog.scss` |
 
 - Embedded data: `#catalog-data` in `templates/catalog.html` (merged at build time)
-- URL: `/catalog/?subject=math` (list), `&view=tree` (map)
+- URL: `/catalog/?subject=math` (list), `&view=tree` (map), `&view=compare` (math curricula doc — HTML partial `partials/math-curricula-compare.html`)
 
 **List view:** full-card link for live chapters; number + title row on wide screens.
 

@@ -1,7 +1,9 @@
 import { createMemo, createSignal, For, lazy, Show, Suspense } from "solid-js";
 import { subjectToMermaid } from "../lib/catalog-to-mermaid";
+import { CatalogCompareDoc } from "./catalog-compare-doc";
 import { CatalogChapterCard } from "./catalog-chapter-card";
 import { CatalogFiltersMenu } from "./catalog-filters-menu";
+import { chapterFilterCurriculums } from "../lib/catalog-coverage";
 import type {
   CatalogChapter,
   CatalogData,
@@ -14,10 +16,40 @@ const CatalogMermaidView = lazy(() =>
   import("./catalog-mermaid-view").then((m) => ({ default: m.CatalogMermaidView }))
 );
 
+function normalizeChapter(chapter: CatalogChapter): CatalogChapter {
+  const coverage = chapter.curriculumCoverage;
+  if (coverage && typeof coverage === "object" && !Array.isArray(coverage)) {
+    return chapter;
+  }
+  const legacy = chapter.curriculums;
+  if (!legacy?.length) return { ...chapter, curriculumCoverage: {} };
+  const curriculumCoverage: CatalogChapter["curriculumCoverage"] = {};
+  for (const label of legacy) {
+    curriculumCoverage[label] = "core";
+  }
+  return { ...chapter, curriculumCoverage };
+}
+
+function normalizeSubject(subject: CatalogSubject): CatalogSubject {
+  return {
+    ...subject,
+    strands: (subject.strands ?? []).map((strand) => ({
+      ...strand,
+      chapters: (strand.chapters ?? []).map(normalizeChapter),
+    })),
+    graph: subject.graph ?? { edges: [] },
+  };
+}
+
 function readCatalogData(): CatalogData | null {
   const el = document.getElementById("catalog-data");
   if (!el?.textContent) return null;
-  return JSON.parse(el.textContent) as CatalogData;
+  const raw = JSON.parse(el.textContent) as CatalogData;
+  return {
+    ...raw,
+    curriculums: raw.curriculums ?? [],
+    subjects: (raw.subjects ?? []).map(normalizeSubject),
+  };
 }
 
 function initialSubjectId(subjects: CatalogSubject[]): string {
@@ -31,17 +63,21 @@ function initialSubjectId(subjects: CatalogSubject[]): string {
 
 function initialViewMode(): CatalogViewMode {
   const params = new URLSearchParams(window.location.search);
-  return params.get("view") === "tree" ? "tree" : "linear";
+  const view = params.get("view");
+  if (view === "tree") return "tree";
+  if (view === "compare") return "compare";
+  return "linear";
 }
 
 function chapterMatchesFilters(chapter: CatalogChapter, activeFilters: Set<string>): boolean {
   if (activeFilters.size === 0) return true;
-  return chapter.curriculums.some((c) => activeFilters.has(c));
+  return chapterFilterCurriculums(chapter).some((c) => activeFilters.has(c));
 }
 
 function countVisibleChapters(subject: CatalogSubject, activeFilters: Set<string>): number {
-  return subject.strands.reduce((total, strand) => {
-    return total + strand.chapters.filter((ch) => chapterMatchesFilters(ch, activeFilters)).length;
+  return (subject.strands ?? []).reduce((total, strand) => {
+    const visible = (strand.chapters ?? []).filter((ch) => chapterMatchesFilters(ch, activeFilters));
+    return total + visible.length;
   }, 0);
 }
 
@@ -50,6 +86,8 @@ function syncUrl(subjectId: string, viewMode: CatalogViewMode) {
   url.searchParams.set("subject", subjectId);
   if (viewMode === "tree") {
     url.searchParams.set("view", "tree");
+  } else if (viewMode === "compare") {
+    url.searchParams.set("view", "compare");
   } else {
     url.searchParams.delete("view");
   }
@@ -66,23 +104,36 @@ export function CatalogApp() {
   const [activeFilters, setActiveFilters] = createSignal<Set<string>>(new Set());
   const [viewMode, setViewMode] = createSignal<CatalogViewMode>(initialViewMode());
 
-  const currentSubject = createMemo(
-    () => data.subjects.find((s) => s.id === currentSubjectId()) ?? data.subjects[0]
-  );
+  const currentSubject = createMemo(() => {
+    const subjects = data.subjects ?? [];
+    return subjects.find((s) => s.id === currentSubjectId()) ?? subjects[0];
+  });
 
-  const visibleCount = createMemo(() => countVisibleChapters(currentSubject(), activeFilters()));
+  const visibleCount = createMemo(() => {
+    const subject = currentSubject();
+    return subject ? countVisibleChapters(subject, activeFilters()) : 0;
+  });
 
-  const hasChapterTree = createMemo(() => currentSubject().strands.length > 0);
+  const hasChapterTree = createMemo(() => (currentSubject()?.strands ?? []).length > 0);
 
   const chapterFilter = createMemo(
     () => (chapter: CatalogChapter) => chapterMatchesFilters(chapter, activeFilters())
   );
 
-  const mermaidData = createMemo(() =>
-    subjectToMermaid(currentSubject(), chapterFilter(), currentSubjectId())
+  const mermaidData = createMemo(() => {
+    const subject = currentSubject();
+    if (!subject) return null;
+    return subjectToMermaid(subject, chapterFilter(), currentSubjectId());
+  });
+
+  const showCompareDoc = createMemo(
+    () => currentSubjectId() === "math" && viewMode() === "compare"
   );
 
   const statsLabel = createMemo(() => {
+    if (showCompareDoc()) {
+      return "Curriculum comparison for Mathematics";
+    }
     const count = visibleCount();
     const filters = activeFilters();
     const filterText =
@@ -91,8 +142,13 @@ export function CatalogApp() {
   });
 
   const selectSubject = (subjectId: string) => {
+    if (subjectId !== "math" && viewMode() === "compare") {
+      setViewMode("linear");
+      syncUrl(subjectId, "linear");
+    } else {
+      syncUrl(subjectId, viewMode());
+    }
     setCurrentSubjectId(subjectId);
-    syncUrl(subjectId, viewMode());
   };
 
   const setCatalogView = (mode: CatalogViewMode) => {
@@ -118,10 +174,13 @@ export function CatalogApp() {
 
   const filteredStrands = createMemo(() => {
     const subject = currentSubject();
-    return subject.strands
+    if (!subject) return [];
+    return (subject.strands ?? [])
       .map((strand) => ({
         ...strand,
-        chapters: strand.chapters.filter((ch) => chapterMatchesFilters(ch, activeFilters())),
+        chapters: (strand.chapters ?? []).filter((ch) =>
+          chapterMatchesFilters(ch, activeFilters())
+        ),
       }))
       .filter((strand) => strand.chapters.length > 0);
   });
@@ -129,7 +188,10 @@ export function CatalogApp() {
   return (
     <div
       class="catalog-shell"
-      classList={{ "catalog-shell--tree": viewMode() === "tree" }}
+      classList={{
+        "catalog-shell--tree": viewMode() === "tree",
+        "catalog-shell--compare": showCompareDoc(),
+      }}
     >
       <aside class="catalog-sidebar" aria-label="Subjects">
         <div class="catalog-sidebar__header">
@@ -155,12 +217,12 @@ export function CatalogApp() {
       <div class="catalog-main">
         <header
           class="catalog-header"
-          classList={{ "catalog-header--has-banner": Boolean(currentSubject().banner) }}
+          classList={{ "catalog-header--has-banner": Boolean(currentSubject()?.banner) }}
         >
-          <Show when={currentSubject().banner}>
+          <Show when={currentSubject()?.banner}>
             <div class="catalog-header__banner" aria-hidden="true">
               <img
-                src={currentSubject().banner!}
+                src={currentSubject()!.banner!}
                 alt=""
                 width={1400}
                 height={700}
@@ -170,7 +232,7 @@ export function CatalogApp() {
           </Show>
           <div class="catalog-header__head">
             <div class="catalog-header__intro">
-              <h1 class="catalog-header__title">{currentSubject().name}</h1>
+              <h1 class="catalog-header__title">{currentSubject()?.name ?? "Catalog"}</h1>
               <p class="catalog-header__stats">{statsLabel()}</p>
             </div>
             <div class="catalog-view-toggle" role="tablist" aria-label="Chapter layout">
@@ -192,21 +254,37 @@ export function CatalogApp() {
               >
                 Map
               </button>
+              <Show when={currentSubjectId() === "math"}>
+                <button
+                  type="button"
+                  class="catalog-view-toggle__btn"
+                  role="tab"
+                  aria-selected={viewMode() === "compare" ? "true" : "false"}
+                  onClick={() => setCatalogView("compare")}
+                >
+                  Compare
+                </button>
+              </Show>
             </div>
           </div>
-          <div class="catalog-header__filters">
-            <CatalogFiltersMenu
-              curriculums={data.curriculums}
-              activeFilters={activeFilters}
-              onToggle={toggleFilter}
-            />
-          </div>
+          <Show when={!showCompareDoc()}>
+            <div class="catalog-header__filters">
+              <CatalogFiltersMenu
+                curriculums={data.curriculums ?? []}
+                activeFilters={activeFilters}
+                onToggle={toggleFilter}
+              />
+            </div>
+          </Show>
         </header>
 
         <div
           class="catalog-content"
           classList={{ "catalog-content--tree": viewMode() === "tree" }}
         >
+          <Show
+            when={showCompareDoc()}
+            fallback={
           <Show
             when={hasChapterTree() && visibleCount() > 0}
             fallback={
@@ -261,6 +339,10 @@ export function CatalogApp() {
                 </Show>
               </Suspense>
             </Show>
+          </Show>
+            }
+          >
+            <CatalogCompareDoc />
           </Show>
         </div>
       </div>
