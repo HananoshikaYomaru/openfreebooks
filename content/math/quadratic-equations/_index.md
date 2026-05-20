@@ -2,7 +2,7 @@
 title = "Quadratic equations"
 description = "The discriminant, nature of roots, and the graph of y = ax² + bx + c."
 template = "chapter.html"
-weight = 1
+weight = 2
 [extra]
 subject = "math"
 chapter_id = "quadratic-equations"

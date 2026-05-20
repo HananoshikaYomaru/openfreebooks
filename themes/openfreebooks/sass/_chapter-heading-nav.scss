@@ -11,6 +11,10 @@
   top: 50%;
   right: 20px;
   z-index: 40;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 12px;
   transform: translateY(-50%);
 }
 
@@ -49,11 +53,15 @@
 }
 
 .chapter-heading-nav__popover {
-  position: absolute;
-  right: 36px;
-  top: 50%;
-  transform: translateY(-50%);
+  position: relative;
+  top: auto;
+  right: auto;
+  transform: none;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
   width: min(260px, calc(100vw - 80px));
+  max-height: min(70vh, calc(100vh - 120px));
   padding: 14px 12px;
   border: 1px solid var(--card-border);
   border-radius: 12px;
@@ -74,6 +82,7 @@
 }
 
 .chapter-heading-nav__popover-title {
+  flex-shrink: 0;
   margin: 0 0 10px;
   font-family: var(--mono);
   font-size: 0.68rem;
@@ -81,6 +90,12 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
+}
+
+.chapter-heading-nav__popover .chapter-heading-nav__list {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .chapter-heading-nav__list {
@@ -109,10 +124,19 @@
   transition: background 120ms ease, color 120ms ease;
 }
 
-.chapter-heading-nav__link:hover,
-.chapter-heading-nav__item--active .chapter-heading-nav__link {
+.chapter-heading-nav__link:hover {
   background: rgba(154, 107, 46, 0.1);
   color: var(--ink);
+}
+
+.chapter-heading-nav__item--active .chapter-heading-nav__link {
+  background: rgba(154, 107, 46, 0.18);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.chapter-heading-nav__item--active .chapter-heading-nav__link:hover {
+  background: rgba(154, 107, 46, 0.24);
 }
 
 .chapter-heading-nav__fab {

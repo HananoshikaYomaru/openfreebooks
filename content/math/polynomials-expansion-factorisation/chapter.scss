@@ -1,0 +1,72 @@
+.polynomials-area-model__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+  max-width: 320px;
+  margin: 0 auto;
+  aspect-ratio: 1;
+}
+
+.polynomials-area-model__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.polynomials-area-model__cell--ac {
+  background: rgba(37, 99, 235, 0.15);
+}
+
+.polynomials-area-model__cell--ad {
+  background: rgba(74, 107, 74, 0.2);
+}
+
+.polynomials-area-model__cell--bc {
+  background: rgba(154, 107, 46, 0.2);
+}
+
+.polynomials-area-model__cell--bd {
+  background: rgba(220, 38, 38, 0.12);
+}
+
+.polynomials-factor-checker__feedback {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  font-size: 0.9rem;
+}
+
+.polynomials-factor-checker__feedback--correct {
+  border-color: #16a34a;
+  background: rgba(22, 163, 74, 0.08);
+}
+
+.polynomials-factor-checker__feedback--incorrect {
+  border-color: #dc2626;
+  background: rgba(220, 38, 38, 0.06);
+}
+
+.polynomials-factor-checker__steps {
+  margin: 8px 0 0;
+  padding-left: 1.2rem;
+  color: var(--soft-ink);
+}
+
+.polynomials-factor-checker__input {
+  width: 100%;
+  max-width: 420px;
+  padding: 8px 12px;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card-bg);
+  color: var(--ink);
+}

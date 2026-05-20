@@ -6,6 +6,7 @@ import { $ } from "bun";
 const ROOT = join(import.meta.dir, "..");
 const CONTENT = join(ROOT, "content");
 const GENERATED_META = join(ROOT, "data/_generated/chapters-meta.json");
+const GENERATED_NAV = join(ROOT, "data/_generated/chapter-nav.json");
 const GENERATED_WIDGETS = join(ROOT, "frontend/src/generated/chapter-widgets.ts");
 const STATIC_ROOT = join(ROOT, "static");
 const CHAPTER_CSS_DIR = join(STATIC_ROOT, "css/chapters");
@@ -17,6 +18,30 @@ type ChapterMeta = {
 
 type ChaptersMetaFile = {
   chapters: Record<string, ChapterMeta>;
+};
+
+type CurriculumChapter = {
+  slug: string;
+  title: string;
+  status: "live" | "planned";
+};
+
+type CurriculumFile = {
+  strands: Array<{ chapters: CurriculumChapter[] }>;
+};
+
+type NavLink = {
+  slug: string;
+  title: string;
+};
+
+type ChapterNavEntry = {
+  prev: NavLink | null;
+  next: NavLink | null;
+};
+
+type ChapterNavFile = {
+  byKey: Record<string, ChapterNavEntry>;
 };
 
 function parseChapterTemplate(markdown: string): boolean {
@@ -167,6 +192,41 @@ async function syncChapter(chapter: {
   return { key, meta: { hasSupplement, hasCss }, widgets };
 }
 
+async function buildChapterNav(
+  discovered: Array<{ subject: string; slug: string }>
+): Promise<ChapterNavFile> {
+  const discoveredSet = new Set(discovered.map((c) => `${c.subject}/${c.slug}`));
+  const byKey: Record<string, ChapterNavEntry> = {};
+  const subjects = [...new Set(discovered.map((c) => c.subject))];
+
+  for (const subject of subjects) {
+    const curriculumPath = join(ROOT, "data", `${subject}-curriculum.json`);
+    if (!existsSync(curriculumPath)) continue;
+
+    const curriculum = JSON.parse(await readFile(curriculumPath, "utf8")) as CurriculumFile;
+    const sequence: NavLink[] = [];
+
+    for (const strand of curriculum.strands) {
+      for (const chapter of strand.chapters) {
+        if (chapter.status !== "live") continue;
+        const key = `${subject}/${chapter.slug}`;
+        if (!discoveredSet.has(key)) continue;
+        sequence.push({ slug: chapter.slug, title: chapter.title });
+      }
+    }
+
+    for (let i = 0; i < sequence.length; i++) {
+      const key = `${subject}/${sequence[i].slug}`;
+      byKey[key] = {
+        prev: i > 0 ? sequence[i - 1] : null,
+        next: i < sequence.length - 1 ? sequence[i + 1] : null,
+      };
+    }
+  }
+
+  return { byKey };
+}
+
 function buildWidgetRegistry(
   entries: Array<{ key: string; widgets: string[]; dir: string }>
 ): string {
@@ -209,6 +269,9 @@ async function main() {
 
   await mkdir(dirname(GENERATED_WIDGETS), { recursive: true });
   await writeFile(GENERATED_WIDGETS, buildWidgetRegistry(widgetEntries));
+
+  const chapterNav = await buildChapterNav(chapters);
+  await writeFile(GENERATED_NAV, `${JSON.stringify(chapterNav, null, 2)}\n`);
 
   console.log(`Synced ${chapters.length} chapter(s).`);
 }

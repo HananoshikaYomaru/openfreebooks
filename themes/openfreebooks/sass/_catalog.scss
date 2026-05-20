@@ -762,6 +762,12 @@ a.catalog-chapter-card {
   letter-spacing: 0.06em;
   text-transform: uppercase;
 
+  &--foundation {
+    color: #0f766e;
+    background: rgba(20, 184, 166, 0.12);
+    border-color: rgba(20, 184, 166, 0.28);
+  }
+
   &--dse {
     color: #1d4ed8;
     background: rgba(59, 130, 246, 0.12);

@@ -2,7 +2,7 @@
 title = "Directed numbers, rates & ratios"
 description = "Operate with negative numbers and solve ratio, rate, and proportion problems in context."
 template = "chapter.html"
-weight = 0
+weight = 1
 [extra]
 subject = "math"
 chapter_id = "directed-numbers-rates"
@@ -11,9 +11,11 @@ strand = "Number & Algebra"
 
 <div class="book-prose">
   <p>
-  Numbers on a line can lie to the <strong>right</strong> of zero (positive) or to the
-  <strong>left</strong> (negative). Temperatures below freezing, bank overdrafts, and positions
-  below sea level are everyday examples of <strong>directed numbers</strong>.
+  You already know how to count and work with whole numbers from <strong>0</strong> to
+  <strong>10</strong>. On a number line, those values lie on or to the <strong>right</strong> of zero.
+  Numbers can also lie to the <strong>left</strong> of zero — we call them <strong>negative</strong>.
+  Temperatures below freezing, bank overdrafts, and positions below sea level are everyday examples
+  of <strong>directed numbers</strong>.
   </p>
 
   <h2 id="number-line" class="book-prose__heading">The number line</h2>

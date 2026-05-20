@@ -6,6 +6,8 @@ type NavHeading = {
   level: 2 | 3;
 };
 
+/** Delay before closing the rail menu so brief pointer gaps do not dismiss it. */
+const RAIL_CLOSE_DELAY_MS = 200;
 /** Align with sticky site header (see .book-prose__heading scroll-margin-top). */
 const SCROLL_OFFSET = 96;
 const CLICK_LOCK_FALLBACK_MS = 900;
@@ -44,14 +46,57 @@ function pickActiveId(items: NavHeading[]): string | null {
   return active;
 }
 
+function scrollMenuToActive(container: HTMLElement | undefined, activeId: string | null) {
+  if (!container || !activeId) return;
+  const activeEl = container.querySelector(`[data-heading-id="${CSS.escape(activeId)}"]`);
+  if (activeEl instanceof HTMLElement) {
+    activeEl.scrollIntoView({ block: "center" });
+  }
+}
+
 export function ChapterHeadingNav() {
   const [headings, setHeadings] = createSignal<NavHeading[]>([]);
   const [activeId, setActiveId] = createSignal<string | null>(null);
   const [railOpen, setRailOpen] = createSignal(false);
   const [sheetOpen, setSheetOpen] = createSignal(false);
   const [isMobile, setIsMobile] = createSignal(false);
+  const [popoverListEl, setPopoverListEl] = createSignal<HTMLUListElement | undefined>();
+  const [sheetEl, setSheetEl] = createSignal<HTMLElement | undefined>();
 
   let scrollToHeading: ((id: string) => void) | undefined;
+  let railCloseTimer: number | undefined;
+
+  const syncActiveFromScroll = () => {
+    const items = headings();
+    if (items.length > 0) {
+      setActiveId(pickActiveId(items));
+    }
+  };
+
+  const openRail = () => {
+    if (railCloseTimer !== undefined) {
+      window.clearTimeout(railCloseTimer);
+      railCloseTimer = undefined;
+    }
+    syncActiveFromScroll();
+    setRailOpen(true);
+  };
+
+  const scheduleRailClose = () => {
+    if (railCloseTimer !== undefined) {
+      window.clearTimeout(railCloseTimer);
+    }
+    railCloseTimer = window.setTimeout(() => {
+      railCloseTimer = undefined;
+      setRailOpen(false);
+    }, RAIL_CLOSE_DELAY_MS);
+  };
+
+  onCleanup(() => {
+    if (railCloseTimer !== undefined) {
+      window.clearTimeout(railCloseTimer);
+    }
+  });
 
   onMount(() => {
     const article = document.querySelector<HTMLElement>(".book-chapter");
@@ -146,6 +191,35 @@ export function ChapterHeadingNav() {
     }
   });
 
+  createEffect(() => {
+    if (!railOpen()) return;
+    const list = popoverListEl();
+    const id = activeId();
+    if (!list || !id) return;
+    requestAnimationFrame(() => scrollMenuToActive(list, id));
+  });
+
+  createEffect(() => {
+    if (!sheetOpen()) return;
+    const sheet = sheetEl();
+    const id = activeId();
+    if (!sheet || !id) return;
+    requestAnimationFrame(() => scrollMenuToActive(sheet, id));
+  });
+
+  const openSheet = () => {
+    syncActiveFromScroll();
+    setSheetOpen(true);
+  };
+
+  const toggleSheet = () => {
+    if (sheetOpen()) {
+      setSheetOpen(false);
+      return;
+    }
+    openSheet();
+  };
+
   const jump = (id: string) => {
     if (scrollToHeading) {
       scrollToHeading(id);
@@ -161,12 +235,17 @@ export function ChapterHeadingNav() {
     setSheetOpen(false);
   };
 
-  const NavList = (props: { class?: string }) => (
-    <ul class={`chapter-heading-nav__list ${props.class ?? ""}`.trim()} role="list">
+  const NavList = (props: { listRef?: (el: HTMLUListElement) => void; class?: string }) => (
+    <ul
+      ref={props.listRef}
+      class={`chapter-heading-nav__list ${props.class ?? ""}`.trim()}
+      role="list"
+    >
       <For each={headings()}>
         {(item) => (
           <li
             class="chapter-heading-nav__item"
+            data-heading-id={item.id}
             classList={{
               "chapter-heading-nav__item--active": activeId() === item.id,
               "chapter-heading-nav__item--h3": item.level === 3,
@@ -175,6 +254,7 @@ export function ChapterHeadingNav() {
             <button
               type="button"
               class="chapter-heading-nav__link"
+              aria-current={activeId() === item.id ? "location" : undefined}
               onClick={() => jump(item.id)}
             >
               {item.label}
@@ -191,12 +271,12 @@ export function ChapterHeadingNav() {
         <Show when={!isMobile()}>
           <div
             class="chapter-heading-nav__rail-wrap"
-            onMouseEnter={() => setRailOpen(true)}
-            onMouseLeave={() => setRailOpen(false)}
-            onFocusIn={() => setRailOpen(true)}
+            onMouseEnter={openRail}
+            onMouseLeave={scheduleRailClose}
+            onFocusIn={openRail}
             onFocusOut={(e) => {
               if (!e.currentTarget.contains(e.relatedTarget as Node)) {
-                setRailOpen(false);
+                scheduleRailClose();
               }
             }}
           >
@@ -218,9 +298,13 @@ export function ChapterHeadingNav() {
               </For>
             </div>
             <Show when={railOpen()}>
-              <div class="chapter-heading-nav__popover" role="dialog" aria-label="Page sections">
+              <div
+                class="chapter-heading-nav__popover"
+                role="dialog"
+                aria-label="Page sections"
+              >
                 <p class="chapter-heading-nav__popover-title">On this page</p>
-                <NavList />
+                <NavList listRef={setPopoverListEl} />
               </div>
             </Show>
           </div>
@@ -232,7 +316,7 @@ export function ChapterHeadingNav() {
             class="chapter-heading-nav__fab"
             aria-expanded={sheetOpen()}
             aria-controls="chapter-heading-sheet"
-            onClick={() => setSheetOpen((open) => !open)}
+            onClick={toggleSheet}
           >
             On this page
           </button>
@@ -245,6 +329,7 @@ export function ChapterHeadingNav() {
             />
             <div
               id="chapter-heading-sheet"
+              ref={setSheetEl}
               class="chapter-heading-nav__sheet"
               role="dialog"
               aria-label="On this page"

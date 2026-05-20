@@ -1,0 +1,225 @@
+<div class="book-prose">
+  <h2 id="history" class="book-prose__heading">History</h2>
+  <p>
+    Long before modern symbols, people solved problems that required multiplying lengths and
+    collecting areas — the same ideas behind expanding and factorising. Babylonian scribes (around
+    1800&nbsp;BCE) recorded rectangle problems on clay tablets: given area and side relationships,
+    find unknown lengths. Their recipes are early cousins of “expand, then simplify.”
+  </p>
+
+  <figure class="book-figure">
+    <img
+      class="book-figure__img"
+      src="/chapters/math/polynomials-expansion-factorisation/polynomials-history.png"
+      alt="Illustrated timeline: Babylonian area on clay tablets, al-Khwarizmi's algebra, Viète's difference of squares, Enlightenment science, and modern expand–factorise steps"
+      width="960"
+      height="640"
+      loading="lazy"
+      decoding="async"
+    />
+    <figcaption class="book-figure__caption">
+      From geometric area puzzles to symbolic algebra: how expansion and factorisation became
+      standard tools in school mathematics.
+    </figcaption>
+  </figure>
+
+  <p>
+    In the 9th century, <strong>al-Khwarizmi</strong> organised methods for equations and products
+    in Arabic texts that later spread to Europe. Renaissance mathematicians such as
+    <strong>Viète</strong> introduced letters for unknowns and constants, making it easier to see
+    patterns like \(a^2 - b^2\). By the 17th–18th centuries, polynomial algebra was central to
+    calculus and science; factorisation became a routine step before solving equations or
+    simplifying formulas.
+  </p>
+
+  <h2 id="derivation" class="book-prose__heading">Derivation</h2>
+
+  <h3 id="area-distributive" class="book-prose__heading">Area proof of \((a+b)(c+d)\)</h3>
+  <p>
+    Draw a rectangle with width \(a+b\) and height \(c+d\). The total area is \((a+b)(c+d)\). Split
+    the rectangle into four smaller rectangles with areas \(ac\), \(ad\), \(bc\), and \(bd\). The
+    sum of partial areas equals the whole:
+    \[ (a+b)(c+d) = ac + ad + bc + bd. \]
+    This is the distributive law in two dimensions — the same picture as in the area-model widget
+    above.
+  </p>
+
+  <h3 id="derive-identities" class="book-prose__heading">Deriving standard identities</h3>
+  <p>
+    Set \(c = a\) and \(d = b\) in the area formula for a square of side \(a+b\):
+    \[ (a+b)^2 = a^2 + ab + ab + b^2 = a^2 + 2ab + b^2. \]
+    For a square of side \(a-b\) (with \(a &gt; b\)), remove a strip of width \(b\) from a square of
+    side \(a\); the remaining L-shape rearranges to show
+    \[ (a-b)^2 = a^2 - 2ab + b^2. \]
+    Difference of squares: a large square of side \(a\) minus a small square of side \(b\) leaves two
+    congruent rectangles, which rearrange to a rectangle of dimensions \((a+b)\) by \((a-b)\):
+    \[ a^2 - b^2 = (a+b)(a-b). \]
+  </p>
+
+  <h3 id="grouping-walkthrough" class="book-prose__heading">Grouping walkthrough</h3>
+  <p>
+    Factorise \(3x^2 + 12x - 2x - 8\).
+  </p>
+  <ol>
+    <li>Group: \((3x^2 + 12x) + (-2x - 8)\).</li>
+    <li>Factor each pair: \(3x(x+4) - 2(x+4)\).</li>
+    <li>Common bracket \((x+4)\): \((3x-2)(x+4)\).</li>
+  </ol>
+
+  <h2 id="checkpoints" class="book-prose__heading">Checkpoints</h2>
+  <p>
+    Pause and reason before continuing. Discuss with a partner or write your work in a notebook.
+  </p>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Checkpoint</p>
+    <p>
+      In \(4x^3 - 2x^2 + 5\), what is the degree? Which terms are like terms with \(4x^3\)?
+    </p>
+  </div>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Checkpoint</p>
+    <p>
+      Expand \((2x-1)(x+4)\) without skipping steps. How many terms do you get before collecting?
+    </p>
+  </div>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Checkpoint</p>
+    <p>
+      How would you factorise \(x^2 - 16\)? Which identity applies?
+    </p>
+  </div>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Checkpoint</p>
+    <p>
+      Expand \(x(x+1) - (x+1)\). What common factor appears? What is the factorised form?
+    </p>
+  </div>
+
+  <h2 id="applications" class="book-prose__heading">Applications</h2>
+
+  <h3 id="geometry-area" class="book-prose__heading">Geometry: area and perimeter</h3>
+  <p>
+    A rectangle has sides \((x+3)\) cm and \((2x-1)\) cm. Its area is
+    \[ (x+3)(2x-1) = 2x^2 + 5x - 3 \quad\text{cm}^2. \]
+    The perimeter is \(2\bigl((x+3)+(2x-1)\bigr) = 2(3x+2) = 6x+4\) cm. Expansion links algebraic
+    descriptions of sides to measurable quantities.
+  </p>
+
+  <h3 id="revenue-profit" class="book-prose__heading">Revenue and pricing</h3>
+  <p>
+    If a shop sells \(n\) items at price \((50 - 0.5n)\) dollars each, revenue is
+    \(n(50 - 0.5n) = 50n - 0.5n^2\). Expanding a product of two linear factors often appears before
+    finding maximum revenue (a quadratic in \(n\)).
+  </p>
+
+  <h3 id="number-pattern" class="book-prose__heading">Number patterns</h3>
+  <p>
+    Notice that \(11^2 = 121\), \(111^2 = 12321\). In general, expanding \((10^k + 10^{k-1} +
+    \cdots + 1)^2\) explains palindromic squares — a playful link between identities and arithmetic
+    patterns.
+  </p>
+
+  <h2 id="question-bank" class="book-prose__heading">Question bank</h2>
+  <p>
+    Work each question, then open the solution to check your reasoning. Difficulty increases
+    through the sets.
+  </p>
+
+  <h3 id="questions-easy" class="book-prose__heading">Easy</h3>
+
+  <details class="book-question">
+    <summary class="book-question__prompt">Expand \(3(x+2)\).</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> \(3x + 6\).</p>
+      <p><strong>Steps:</strong> \(3 \cdot x + 3 \cdot 2 = 3x + 6\).</p>
+    </div>
+  </details>
+
+  <details class="book-question">
+    <summary class="book-question__prompt">Simplify \(2x + 5x - 1\).</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> \(7x - 1\).</p>
+      <p><strong>Explanation:</strong> Combine like terms \(2x + 5x = 7x\).</p>
+    </div>
+  </details>
+
+  <details class="book-question">
+    <summary class="book-question__prompt">Factorise \(6x + 9\).</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> \(3(2x + 3)\).</p>
+      <p><strong>Steps:</strong> HCF is \(3\); \(6x \div 3 = 2x\), \(9 \div 3 = 3\).</p>
+    </div>
+  </details>
+
+  <h3 id="questions-intermediate" class="book-prose__heading">Intermediate</h3>
+
+  <details class="book-question">
+    <summary class="book-question__prompt">Expand \((x+4)(x-2)\).</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> \(x^2 + 2x - 8\).</p>
+      <p><strong>Steps:</strong> \(x^2 - 2x + 4x - 8 = x^2 + 2x - 8\).</p>
+    </div>
+  </details>
+
+  <details class="book-question">
+    <summary class="book-question__prompt">Factorise \(x^2 - 9\).</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> \((x+3)(x-3)\).</p>
+      <p><strong>Explanation:</strong> Difference of squares: \(x^2 - 3^2\).</p>
+    </div>
+  </details>
+
+  <details class="book-question">
+    <summary class="book-question__prompt">Factorise \(x^2 + 6x + 9\).</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> \((x+3)^2\).</p>
+      <p><strong>Explanation:</strong> Perfect square: \(3 \times 3 = 9\), \(3 + 3 = 6\).</p>
+    </div>
+  </details>
+
+  <h3 id="questions-difficult" class="book-prose__heading">Difficult</h3>
+
+  <details class="book-question">
+    <summary class="book-question__prompt">Factorise \(2x^2 + 6x - x - 3\) by grouping.</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> \((2x-1)(x+3)\).</p>
+      <p><strong>Steps:</strong> \(2x(x+3) - 1(x+3) = (2x-1)(x+3)\).</p>
+    </div>
+  </details>
+
+  <details class="book-question">
+    <summary class="book-question__prompt">Factorise \(2x^2 + 7x + 3\).</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> \((2x+1)(x+3)\).</p>
+      <p><strong>Steps:</strong> \(ac = 6\); split \(7x = 6x + x\); \(2x(x+3) + 1(x+3) = (2x+1)(x+3)\).</p>
+    </div>
+  </details>
+
+  <h3 id="questions-hardcore" class="book-prose__heading">Hardcore</h3>
+
+  <details class="book-question">
+    <summary class="book-question__prompt">Expand and then factorise \(x(x+2) - (x+2)\).</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> \((x+2)(x-1)\) after factorising (expansion gives \(x^2 + x - 2\)).</p>
+      <p><strong>Steps:</strong> Factor common \((x+2)\): \((x+2)(x-1)\). Check: \((x+2)(x-1) = x^2 + x - 2\).</p>
+    </div>
+  </details>
+
+  <details class="book-question">
+    <summary class="book-question__prompt">A rectangle has sides \((x+3)\) cm and \((2x-1)\) cm. Find its area in expanded form.</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> \((2x^2 + 5x - 3)\) cm².</p>
+      <p><strong>Calculation:</strong> \((x+3)(2x-1) = 2x^2 - x + 6x - 3 = 2x^2 + 5x - 3\).</p>
+    </div>
+  </details>
+
+  <h2 id="references" class="book-prose__heading">References</h2>
+  <ul>
+    <li>al-Khwarizmi, <em>Al-Kitāb al-mukhtaṣar fī ḥisāb al-jabr wal-muqābala</em> (c. 820 CE) — systematic treatment of algebra.</li>
+    <li>HKDSE Compulsory Part curriculum — Number and Algebra strand (polynomials, expansion, factorisation).</li>
+  </ul>
+</div>

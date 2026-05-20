@@ -1,0 +1,49 @@
+.formula-rearrange-demo__select {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-family: var(--body);
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: var(--card-bg);
+}
+
+.fraction-simplify-demo__steps,
+.formula-rearrange-demo__steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.fraction-simplify-demo__steps > li,
+.formula-rearrange-demo__steps > li {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(154, 107, 46, 0.04);
+}
+
+.fraction-simplify-demo__step-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.scenario-demo__formula--inline {
+  font-size: 0.95rem;
+}
+
+.fraction-simplify-demo__restriction .katex {
+  font-size: 0.95rem;
+}

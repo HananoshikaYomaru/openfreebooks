@@ -1,0 +1,171 @@
+<div class="book-prose">
+  <p>
+    An <strong>algebraic fraction</strong> is a fraction whose numerator and denominator are
+    polynomials (or monomials). The same ideas you use for numbers — simplify, find a common
+    denominator, and combine — apply here, with extra care: you may only cancel
+    <strong>common factors</strong>, and you must note values of the variable that would make a
+    denominator zero.
+  </p>
+
+  <h2 id="prerequisite-recap" class="book-prose__heading">Assumed knowledge recap</h2>
+  <p>
+    This chapter builds on expanding and factorising polynomials. If you have not studied those
+    topics yet, use the callout below as a minimal toolkit.
+  </p>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Before you start</p>
+    <ul>
+      <li>Expand: \((x+a)(x+b) = x^2 + (a+b)x + ab\).</li>
+      <li>
+        Factorise quadratics such as \(x^2 + 5x + 6 = (x+2)(x+3)\) (find two numbers that multiply
+        to \(6\) and add to \(5\)).
+      </li>
+      <li>Factorise by common factor: \(6x^2 - 9x = 3x(2x - 3)\).</li>
+      <li>
+        When simplifying \(\dfrac{P}{Q}\), factorise \(P\) and \(Q\) first, then cancel factors
+        that appear in <em>both</em> numerator and denominator — never cancel terms that are only
+        added or subtracted.
+      </li>
+    </ul>
+  </div>
+
+  <h2 id="simplify" class="book-prose__heading">Simplifying algebraic fractions</h2>
+  <p>
+    To simplify, factorise the numerator and denominator completely, then divide out any common
+    factors.
+  </p>
+
+  <div class="book-callout book-callout--formula" role="note">
+    <p class="book-callout__label">Rule</p>
+    <p class="book-formula">
+      \[ \frac{ac}{bc} = \frac{a}{b} \quad (b \neq 0,\; c \neq 0) \]
+    </p>
+    <p>Here \(c\) is a <em>common factor</em> of the top and bottom, not a term added to each.</p>
+  </div>
+
+  <p><strong>Example.</strong> Simplify \(\dfrac{x^2 - 1}{x^2 + x}\).</p>
+  <p>
+    Factorise: \(x^2 - 1 = (x-1)(x+1)\) and \(x^2 + x = x(x+1)\). Cancel the common factor
+    \((x+1)\):
+    \[ \frac{(x-1)(x+1)}{x(x+1)} = \frac{x-1}{x}, \quad x \neq 0,\; x \neq -1. \]
+    The restrictions matter: at \(x = -1\) the original denominator is zero.
+  </p>
+
+  <p><strong>Example.</strong> Simplify \(\dfrac{2x^2 - 8}{x^2 - 4}\).</p>
+  <p>
+    \[ \frac{2(x^2-4)}{x^2-4} = \frac{2(x-2)(x+2)}{(x-2)(x+2)} = 2, \quad x \neq 2,\; x \neq -2. \]
+  </p>
+
+  <h2 id="add-subtract" class="book-prose__heading">Adding and subtracting</h2>
+  <p>
+    Use a <strong>common denominator</strong> (the LCM of the denominators), as with numeric
+    fractions.
+  </p>
+
+  <p><strong>Example.</strong> \(\dfrac{2}{x} + \dfrac{3}{x+1}\).</p>
+  <p>
+    LCD is \(x(x+1)\):
+    \[ \frac{2}{x} + \frac{3}{x+1} = \frac{2(x+1) + 3x}{x(x+1)} = \frac{5x+2}{x(x+1)}, \quad x \neq 0,\; x \neq -1. \]
+  </p>
+
+  <p><strong>Example.</strong> \(\dfrac{1}{x-2} - \dfrac{3}{x^2 - 4}\).</p>
+  <p>
+    Note \(x^2 - 4 = (x-2)(x+2)\). With LCD \((x-2)(x+2)\):
+    \[ \frac{x+2}{(x-2)(x+2)} - \frac{3}{(x-2)(x+2)} = \frac{x-1}{(x-2)(x+2)}, \quad x \neq 2,\; x \neq -2. \]
+  </p>
+
+  <h2 id="multiply-divide" class="book-prose__heading">Multiplying and dividing</h2>
+  <p>
+    Multiply numerators and denominators; factorise before cancelling. To divide, multiply by the
+    reciprocal of the divisor.
+  </p>
+
+  <div class="book-callout book-callout--formula" role="note">
+    <p class="book-callout__label">Divide</p>
+    <p class="book-formula">
+      \[ \frac{A}{B} \div \frac{C}{D} = \frac{A}{B} \times \frac{D}{C} \]
+    </p>
+  </div>
+
+  <p><strong>Example.</strong> \(\dfrac{x^2 - 9}{2x} \times \dfrac{4}{x+3}\).</p>
+  <p>
+    \[ \frac{(x-3)(x+3)}{2x} \times \frac{4}{x+3} = \frac{4(x-3)}{2x} = \frac{2(x-3)}{x}, \quad x \neq 0,\; x \neq -3. \]
+  </p>
+
+  <p><strong>Example.</strong> \(\dfrac{x^2 - 1}{x+1} \div \dfrac{x-1}{2}\).</p>
+  <p>
+    \[ \frac{(x-1)(x+1)}{x+1} \times \frac{2}{x-1} = 2, \quad x \neq -1,\; x \neq 1. \]
+  </p>
+
+  <h2 id="harder-cases" class="book-prose__heading">Harder examples</h2>
+  <p>
+    These use the same rules; the algebra is longer. Work factorisation and the LCD carefully.
+  </p>
+
+  <p><strong>Example.</strong> \(\dfrac{1}{x} + \dfrac{1}{x+1}\) (already seen) gives
+    \(\dfrac{5x+2}{x(x+1)}\).</p>
+
+  <p><strong>Example.</strong> Simplify \(\dfrac{x}{x^2 - 5x + 6}\).</p>
+  <p>
+    Factorise \(x^2 - 5x + 6 = (x-2)(x-3)\):
+    \[ \frac{x}{(x-2)(x-3)}, \quad x \neq 2,\; x \neq 3. \]
+  </p>
+
+  <h2 id="change-subject" class="book-prose__heading">Changing the subject of a formula</h2>
+  <p>
+    A <strong>formula</strong> links several quantities. <strong>Changing the subject</strong> means
+    rewriting the formula so that one chosen letter stands alone on one side — like solving an
+    equation for that letter.
+  </p>
+  <p>
+    Undo operations in <strong>reverse order</strong> to how they build the right-hand side: if the
+    target variable is multiplied, divide; if it is inside a bracket, expand or divide through;
+    if it appears in a denominator, multiply both sides by that denominator.
+  </p>
+
+  <p><strong>Example.</strong> Make \(t\) the subject of \(v = \dfrac{d}{t}\) (\(t \neq 0\)).</p>
+  <p>
+    Multiply both sides by \(t\): \(vt = d\). Divide by \(v\) (assuming \(v \neq 0\)):
+    \[ t = \frac{d}{v}. \]
+  </p>
+
+  <p><strong>Example.</strong> Make \(A\) the subject of \(P = \dfrac{F}{A}\) (\(A \neq 0\)).</p>
+  <p>
+    Multiply by \(A\): \(PA = F\), so \(A = \dfrac{F}{P}\) (\(P \neq 0\)).
+  </p>
+
+  <p><strong>Example.</strong> Make \(R\) the subject of \(V = IR\).</p>
+  <p>
+    Divide by \(I\) (assuming \(I \neq 0\)): \(R = \dfrac{V}{I}\).
+  </p>
+
+  <div class="book-table-wrap">
+    <table class="book-table">
+      <thead>
+        <tr>
+          <th scope="col">Formula</th>
+          <th scope="col">Meaning (typical units)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>\(v = d/t\)</td>
+          <td>speed = distance ÷ time</td>
+        </tr>
+        <tr>
+          <td>\(P = F/A\)</td>
+          <td>pressure = force ÷ area</td>
+        </tr>
+        <tr>
+          <td>\(V = IR\)</td>
+          <td>voltage = current × resistance</td>
+        </tr>
+        <tr>
+          <td>\(\rho = m/V\)</td>
+          <td>density = mass ÷ volume</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

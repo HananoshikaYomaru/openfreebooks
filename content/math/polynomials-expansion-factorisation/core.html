@@ -1,0 +1,137 @@
+<div class="book-prose">
+  <p>
+    An <strong>algebraic expression</strong> combines numbers, variables, and operations. A
+    <strong>polynomial</strong> in one variable \(x\) is a sum of terms of the form
+    \(a x^n\) where \(a\) is a constant and \(n\) is a non-negative integer. Examples:
+    \(3x^2 - 5x + 1\), \(x^3 + 2x\), and \(7\).
+  </p>
+
+  <h2 id="vocabulary" class="book-prose__heading">Terms, coefficients, and degree</h2>
+  <p>
+    In \(5x^2 - 3x + 4\), the <strong>terms</strong> are \(5x^2\), \(-3x\), and \(4\). The
+    <strong>coefficient</strong> of \(x^2\) is \(5\); the coefficient of \(x\) is \(-3\). The
+    <strong>degree</strong> of the polynomial is the highest power of \(x\) — here, \(2\).
+    <strong>Like terms</strong> have the same variable part (same power of \(x\)); only their
+    coefficients may differ.
+  </p>
+
+  <h2 id="adding-subtracting" class="book-prose__heading">Adding and subtracting polynomials</h2>
+  <p>
+    Line up like terms and add or subtract their coefficients:
+    \[ (3x^2 + 2x - 1) + (x^2 - 5x + 4) = 4x^2 - 3x + 3. \]
+    When subtracting, distribute the minus sign to every term in the bracket:
+    \[ (2x^2 + x) - (x^2 - 3x + 2) = 2x^2 + x - x^2 + 3x - 2 = x^2 + 4x - 2. \]
+  </p>
+
+  <h2 id="expanding" class="book-prose__heading">Expanding products</h2>
+  <p>
+    Use the <strong>distributive law</strong>: each term in the first bracket multiplies each term in
+    the second. For two binomials,
+    \[ (a+b)(c+d) = ac + ad + bc + bd. \]
+    Example:
+    \[ (x+3)(x-2) = x^2 - 2x + 3x - 6 = x^2 + x - 6. \]
+  </p>
+  <p>
+    A binomial times a trinomial works the same way — multiply each of the two terms by each of the
+    three:
+    \[ (x+1)(x^2 - x + 2) = x^3 - x^2 + 2x + x^2 - x + 2 = x^3 + x + 2. \]
+  </p>
+
+  <h2 id="collecting" class="book-prose__heading">Collecting like terms</h2>
+  <p>
+    After expanding, combine like terms so the answer is simplified. From above,
+    \(x^2 - 2x + 3x - 6\) becomes \(x^2 + x - 6\). Constants, \(x\)-terms, and \(x^2\)-terms are
+    collected separately.
+  </p>
+
+  <h2 id="factorising-overview" class="book-prose__heading">Factorising</h2>
+  <p>
+    <strong>Factorisation</strong> is the reverse of expansion: write an expression as a product of
+    simpler factors. Choose a method by inspecting the shape of the expression:
+  </p>
+  <div class="book-table-wrap">
+    <table class="book-table">
+      <thead>
+        <tr>
+          <th scope="col">Situation</th>
+          <th scope="col">Method</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Every term shares a common factor</td>
+          <td>Highest common factor (HCF)</td>
+        </tr>
+        <tr>
+          <td>Four terms, pairs share factors</td>
+          <td>Grouping</td>
+        </tr>
+        <tr>
+          <td>Matches \(a^2-b^2\) or \((a\pm b)^2\)</td>
+          <td>Standard identities</td>
+        </tr>
+        <tr>
+          <td>Quadratic in \(x\): \(ax^2+bx+c\)</td>
+          <td>Two-number search or ac-method</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="hcf" class="book-prose__heading">Highest common factor</h2>
+  <p>
+    Factor out the largest factor common to every term:
+    \[ 6x^2 + 9x = 3x(2x + 3), \qquad 4x^3 - 8x^2 = 4x^2(x - 2). \]
+    Always check whether the bracket can be factorised further.
+  </p>
+
+  <h2 id="grouping" class="book-prose__heading">Factorising by grouping</h2>
+  <p>
+    With four terms, split into two pairs and factor each pair:
+    \[ ax + ay + bx + by = a(x+y) + b(x+y) = (a+b)(x+y). \]
+    Example:
+    \[ 2x^2 + 6x - x - 3 = 2x(x+3) - 1(x+3) = (2x-1)(x+3). \]
+  </p>
+
+  <h2 id="identities" class="book-prose__heading">Standard identities</h2>
+  <div class="book-callout book-callout--formula" role="note">
+    <p class="book-callout__label">Identities</p>
+    <p class="book-formula">
+      \[ a^2 - b^2 = (a+b)(a-b) \]
+      \[ (a+b)^2 = a^2 + 2ab + b^2 \]
+      \[ (a-b)^2 = a^2 - 2ab + b^2 \]
+    </p>
+  </div>
+  <p>
+    Recognising these forms speeds up factorisation. For example,
+    \(x^2 - 9 = x^2 - 3^2 = (x+3)(x-3)\) and
+    \(x^2 + 6x + 9 = (x+3)^2\).
+  </p>
+
+  <h2 id="quadratic-trinomials" class="book-prose__heading">Quadratic trinomials</h2>
+  <p>
+    To factorise a <strong>monic</strong> quadratic \(x^2 + bx + c\), find two numbers that
+    <em>multiply</em> to \(c\) and <em>add</em> to \(b\):
+    \[ x^2 + 5x + 6 = (x+2)(x+3) \quad\text{since } 2\times 3 = 6,\; 2+3 = 5. \]
+  </p>
+  <p>
+    For a <strong>non-monic</strong> quadratic \(ax^2 + bx + c\) with \(a \neq 1\), use the
+    <strong>ac-method</strong>: find two numbers that multiply to \(ac\) and add to \(b\), split the
+    middle term, then factor by grouping:
+    \[ 2x^2 + 7x + 3 = 2x^2 + 6x + x + 3 = 2x(x+3) + 1(x+3) = (2x+1)(x+3). \]
+  </p>
+  <p>
+    This chapter stops at factorising expressions. Solving equations of the form \(ax^2+bx+c=0\) is
+    covered in the chapter on quadratic equations.
+  </p>
+
+  <h2 id="try-it-yourself" class="book-prose__heading">Try it yourself</h2>
+  <p>
+    Use the area model to see how \((a+b)(c+d)\) splits into four partial products. Then practise
+    choosing a factorisation method and checking your factors in the explorer below.
+  </p>
+</div>
+
+<div class="math-widget-mount" data-widget="area-model" data-pagefind-ignore></div>
+
+<div class="math-widget-mount" data-widget="factorisation-checker" data-pagefind-ignore></div>

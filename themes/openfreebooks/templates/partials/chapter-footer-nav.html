@@ -1,0 +1,38 @@
+{% set nav_data = load_data(path="data/_generated/chapter-nav.json", format="json") %}
+{% set nav_entry = nav_data.byKey[chapter_key] | default(value=false) %}
+
+<footer class="book-chapter-footer" aria-label="Chapter navigation" data-pagefind-ignore>
+  <a class="book-chapter-footer__catalog" href="{{ catalog_subject_url | safe }}">
+    Return to catalog
+  </a>
+
+  {% if nav_entry %}
+  <div class="book-chapter-footer__adjacent">
+    {% if nav_entry.prev %}
+    <a
+      class="book-chapter-footer__link book-chapter-footer__link--prev"
+      href="{{ get_url(path='/' ~ subject ~ '/' ~ nav_entry.prev.slug ~ '/') | safe }}"
+      rel="prev"
+    >
+      <span class="book-chapter-footer__label">Previous</span>
+      <span class="book-chapter-footer__title">{{ nav_entry.prev.title }}</span>
+    </a>
+    {% else %}
+    <span class="book-chapter-footer__spacer" aria-hidden="true"></span>
+    {% endif %}
+
+    {% if nav_entry.next %}
+    <a
+      class="book-chapter-footer__link book-chapter-footer__link--next"
+      href="{{ get_url(path='/' ~ subject ~ '/' ~ nav_entry.next.slug ~ '/') | safe }}"
+      rel="next"
+    >
+      <span class="book-chapter-footer__label">Next</span>
+      <span class="book-chapter-footer__title">{{ nav_entry.next.title }}</span>
+    </a>
+    {% else %}
+    <span class="book-chapter-footer__spacer" aria-hidden="true"></span>
+    {% endif %}
+  </div>
+  {% endif %}
+</footer>
