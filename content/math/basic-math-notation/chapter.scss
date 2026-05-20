@@ -1,0 +1,38 @@
+// Symbol tables and fraction demo for basic math notation chapter
+
+.notation-symbol-table__glyph {
+  font-size: 1.35rem;
+  font-weight: 600;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.notation-fraction-demo {
+  margin: 1.25rem 0;
+  text-align: center;
+}
+
+.notation-fraction-demo__bar {
+  display: inline-flex;
+  width: min(200px, 100%);
+  height: 28px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 2px solid rgba(15, 118, 110, 0.4);
+}
+
+.notation-fraction-demo__part {
+  flex: 1;
+  background: rgba(20, 184, 166, 0.08);
+}
+
+.notation-fraction-demo__part--on {
+  background: #0f766e;
+}
+
+.notation-fraction-demo__caption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}

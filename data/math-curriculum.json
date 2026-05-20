@@ -4,7 +4,8 @@
   "intro": "Topic units across three strands. The map shows required prerequisites; the list follows a readable teaching order.",
   "graph": {
     "edges": [
-      { "from": "counting-and-numbers", "to": "directed-numbers-rates" },
+      { "from": "counting-and-numbers", "to": "basic-math-notation" },
+      { "from": "basic-math-notation", "to": "directed-numbers-rates" },
       { "from": "directed-numbers-rates", "to": "polynomials-expansion-factorisation" },
       { "from": "polynomials-expansion-factorisation", "to": "algebraic-fractions-formulas" },
       { "from": "polynomials-expansion-factorisation", "to": "linear-equations-two-unknowns" },
@@ -54,6 +55,13 @@
           "slug": "counting-and-numbers",
           "title": "Counting and numbers",
           "description": "Count from zero, spot patterns, add, multiply, and divide; then meet place value and big numbers from hundreds to billions.",
+          "status": "live",
+          "curriculums": ["Foundation"]
+        },
+        {
+          "slug": "basic-math-notation",
+          "title": "Basic math notation",
+          "description": "Learn the names and meanings of plus, minus, times, divide, equals, brackets, and other signs used in number sentences.",
           "status": "live",
           "curriculums": ["Foundation"]
         },

@@ -36,11 +36,23 @@ function mountFooterYear() {
   }
 }
 
+function scheduleChapterMath() {
+  void import("./lib/render-math").then(({ renderBookMath }) => {
+    requestAnimationFrame(() => renderBookMath());
+  });
+}
+
 function mountChapterWidgets() {
   const article = document.querySelector<HTMLElement>("[data-chapter]");
   const chapterKey = article?.dataset.chapter;
   const mounts = document.querySelectorAll<HTMLElement>("[data-widget]");
-  if (!chapterKey || mounts.length === 0) return;
+  if (!article || !chapterKey) return;
+
+  // KaTeX must run on widget-less chapters too (renderBookMath was only chained after widgets).
+  if (mounts.length === 0) {
+    scheduleChapterMath();
+    return;
+  }
 
   void import("./generated/chapter-widgets").then(({ chapterWidgetLoaders }) => {
     const loadPromises: Promise<void>[] = [];
@@ -62,10 +74,7 @@ function mountChapterWidgets() {
     }
 
     void Promise.all(loadPromises).then(() => {
-      if (!document.querySelector(".book-prose")) return;
-      void import("./lib/render-math").then(({ renderBookMath }) => {
-        requestAnimationFrame(() => renderBookMath());
-      });
+      scheduleChapterMath();
     });
   });
 }

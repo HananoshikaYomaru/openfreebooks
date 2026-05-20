@@ -2,7 +2,7 @@
 title = "Directed numbers, rates & ratios"
 description = "Operate with negative numbers and solve ratio, rate, and proportion problems in context."
 template = "chapter.html"
-weight = 1
+weight = 2
 [extra]
 subject = "math"
 chapter_id = "directed-numbers-rates"
