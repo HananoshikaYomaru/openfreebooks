@@ -49,6 +49,7 @@ bun run build       # production: JS + Zola + pagefind → public/
 | Chapter URLs | `/{subjectId}/{chapter-slug}/` (e.g. `/math/quadratic-equations/`) |
 | Map | Mermaid DAG view (`?view=tree`) driven by `graph.edges` |
 | Graph | `graph.edges` must be **acyclic**; builder throws on cycles |
+| Accessibility | Avoid decorative characters that may render as emoji on mobile. Prefer broadly supported symbols/text so desktop and mobile stay visually consistent. |
 
 ## Common tasks → where to edit
 

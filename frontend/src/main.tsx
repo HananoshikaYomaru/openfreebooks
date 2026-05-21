@@ -159,10 +159,4 @@ if (catalogRoot) {
   });
 }
 
-if (document.getElementById("contributing-demo-graph") || document.getElementById("contributing-demo-views")) {
-  void import("./components/contributing-demos").then(({ mountContributingDemos }) => {
-    mountContributingDemos();
-  });
-}
-
 mountFooterYear();

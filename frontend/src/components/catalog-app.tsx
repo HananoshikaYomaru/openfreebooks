@@ -199,6 +199,16 @@ export function CatalogApp() {
           <p class="catalog-sidebar__subtitle">{data.subtitle}</p>
         </div>
         <nav class="catalog-sidebar__nav" aria-label="Subject navigation">
+          <select
+            class="catalog-subject-select"
+            aria-label="Select subject"
+            value={currentSubjectId()}
+            onChange={(event) => selectSubject(event.currentTarget.value)}
+          >
+            <For each={data.subjects}>
+              {(subject) => <option value={subject.id}>{subject.name}</option>}
+            </For>
+          </select>
           <For each={data.subjects}>
             {(subject) => (
               <button

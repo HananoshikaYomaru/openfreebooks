@@ -5,6 +5,7 @@ import { curriculumBadgeClass, tierBadgeLabel } from "./catalog-badge";
 export type MermaidCatalogDiagram = {
   source: string;
   rootNodeId: string | null;
+  liveNodeHrefById: Record<string, string>;
 };
 
 function collectVisibleChapters(
@@ -128,6 +129,7 @@ export function subjectToMermaid(
   const edges = buildEdgeList(subject, visible);
   const rootSlug = selectRootSlug(subject, visible, edges);
   const lines: string[] = ["flowchart TB"];
+  const liveNodeHrefById: Record<string, string> = {};
 
   for (const strand of subject.strands ?? []) {
     const strandChapters = strand.chapters.filter((chapter) => visible.has(chapter.slug));
@@ -154,7 +156,10 @@ export function subjectToMermaid(
 
   for (const [slug, chapter] of visible) {
     if (chapter.status !== "live") continue;
-    lines.push(`  click ${nodeId(slug)} href "/${subjectId}/${slug}/"`);
+    const liveHref = `/${subjectId}/${slug}/`;
+    const id = nodeId(slug);
+    lines.push(`  click ${id} href "${liveHref}"`);
+    liveNodeHrefById[id] = liveHref;
   }
 
   const liveIds = classListNodeIds(visible, "live");
@@ -171,5 +176,6 @@ export function subjectToMermaid(
   return {
     source: lines.join("\n"),
     rootNodeId: rootSlug ? nodeId(rootSlug) : null,
+    liveNodeHrefById,
   };
 }

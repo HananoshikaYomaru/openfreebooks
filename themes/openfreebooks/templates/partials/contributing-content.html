@@ -45,7 +45,6 @@ content/{subject}/{slug}/      → live page (one folder)
     </ul>
   </div>
 
-  <div id="contributing-demo-views" class="contributing-demo-slot"></div>
 </section>
 
 <section id="planned-chapter" class="contributing-section">
@@ -81,25 +80,6 @@ content/{subject}/{slug}/      → live page (one folder)
     <p><code>bun run build:js</code> syncs HTML and bundles widgets — no theme template or <code>main.tsx</code> edits.</p>
   </div>
 
-  <aside class="contributing-card-demo" aria-label="Map chapter card example">
-    <p class="contributing-demo__hint">On the map, only the title is clickable — hover to preview the underline.</p>
-    <div class="catalog-chapter-card catalog-chapter-card--map">
-      <div class="catalog-chapter-card__body">
-        <h3 class="catalog-chapter-card__title">
-          <a class="catalog-chapter-card__title-link" href="{{ config.extra.browse_url | safe }}">
-            <span class="catalog-chapter-card__title-text">Quadratic equations</span>
-            <span class="catalog-chapter-card__title-arrow" aria-hidden="true">→</span>
-          </a>
-        </h3>
-        <p class="catalog-chapter-card__description">
-          Solve quadratics by factorising, completing the square, and the formula.
-        </p>
-        <div class="catalog-chapter-card__meta">
-          <span class="catalog-badge catalog-badge--dse">DSE</span>
-        </div>
-      </div>
-    </div>
-  </aside>
 </section>
 
 <section id="chapter-graph" class="contributing-section">
@@ -123,7 +103,6 @@ content/{subject}/{slug}/      → live page (one folder)
     <p>Verify at <a href="{{ config.extra.browse_url | safe }}?subject=math&amp;view=tree">catalog map</a>. Mermaid supports pan and zoom.</p>
   </div>
 
-  <div id="contributing-demo-graph" class="contributing-demo-slot"></div>
 </section>
 
 <section id="dev-setup" class="contributing-section">
