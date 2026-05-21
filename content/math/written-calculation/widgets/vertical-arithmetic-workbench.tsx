@@ -5,6 +5,82 @@ type Op = "+" | "-" | "*" | "/";
 
 const DEFAULT_NUMBERS = "27\n59";
 
+class WorkbenchSound {
+  private ctx: AudioContext | null = null;
+  muted = true;
+  private lastTick = 0;
+
+  private ensureCtx() {
+    if (!this.ctx) {
+      this.ctx = new (
+        window.AudioContext ||
+        (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
+      )();
+    }
+    if (this.ctx.state === "suspended") {
+      void this.ctx.resume();
+    }
+  }
+
+  toggleMute() {
+    this.ensureCtx();
+    this.muted = !this.muted;
+    return this.muted;
+  }
+
+  private play(
+    type: OscillatorType,
+    fromHz: number,
+    toHz: number,
+    duration: number,
+    gainStart: number
+  ) {
+    if (this.muted) return;
+    this.ensureCtx();
+    if (!this.ctx) return;
+
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    osc.connect(gain);
+    gain.connect(this.ctx.destination);
+    osc.type = type;
+    osc.frequency.setValueAtTime(fromHz, this.ctx.currentTime);
+    if (toHz > fromHz) {
+      osc.frequency.exponentialRampToValueAtTime(toHz, this.ctx.currentTime + duration);
+    } else {
+      osc.frequency.linearRampToValueAtTime(toHz, this.ctx.currentTime + duration);
+    }
+    gain.gain.setValueAtTime(gainStart, this.ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
+    osc.start();
+    osc.stop(this.ctx.currentTime + duration + 0.01);
+  }
+
+  playTick() {
+    if (!this.ctx) return;
+    const now = this.ctx.currentTime;
+    if (now - this.lastTick < 0.04) return;
+    this.lastTick = now;
+    this.play("sine", 520, 220, 0.07, 0.07);
+  }
+
+  playGenerate() {
+    this.play("triangle", 200, 420, 0.22, 0.11);
+  }
+
+  playTogglePlay(playing: boolean) {
+    if (playing) {
+      this.play("triangle", 260, 600, 0.15, 0.09);
+    } else {
+      this.play("sawtooth", 440, 220, 0.12, 0.06);
+    }
+  }
+
+  playError() {
+    this.play("square", 180, 120, 0.16, 0.08);
+  }
+}
+
 function VerticalArithmeticWorkbench() {
   let rootRef!: HTMLElement;
   let canvasRef!: HTMLCanvasElement;
@@ -19,6 +95,11 @@ function VerticalArithmeticWorkbench() {
   const [stepTotal, setStepTotal] = createSignal(0);
   const [playing, setPlaying] = createSignal(false);
   const [speed, setSpeed] = createSignal(800);
+  const [soundMuted, setSoundMuted] = createSignal(true);
+
+  const sound = new WorkbenchSound();
+  let lastStep = 0;
+  let lastPlaying = false;
 
   const progress = () =>
     stepTotal() > 0 ? (stepCurrent() / stepTotal()) * 100 : 0;
@@ -32,12 +113,23 @@ function VerticalArithmeticWorkbench() {
     visualizer.onMessage = (msg, err) => {
       setMessage(msg);
       setIsError(!!err);
+      if (err) sound.playError();
     };
     visualizer.onStep = (current, total) => {
       setStepCurrent(current);
       setStepTotal(total);
+      if (current !== lastStep) {
+        sound.playTick();
+      }
+      lastStep = current;
     };
-    visualizer.onPlayState = setPlaying;
+    visualizer.onPlayState = (nextPlaying) => {
+      setPlaying(nextPlaying);
+      if (nextPlaying !== lastPlaying) {
+        sound.playTogglePlay(nextPlaying);
+      }
+      lastPlaying = nextPlaying;
+    };
 
     const resize = () => visualizer?.resizeCanvas();
     resize();
@@ -72,6 +164,7 @@ function VerticalArithmeticWorkbench() {
   const generate = () => {
     visualizer?.setOperation(operation());
     visualizer?.generateFromInput(numbersInput());
+    sound.playGenerate();
   };
 
   return (
@@ -93,6 +186,18 @@ function VerticalArithmeticWorkbench() {
             <span class="va-workbench__brand-text">
               Arithmetic <strong>Visualizer</strong>
             </span>
+            <button
+              type="button"
+              class="va-workbench__sound-btn"
+              aria-pressed={!soundMuted()}
+              title={soundMuted() ? "Enable sound effects" : "Mute sound effects"}
+              onClick={() => {
+                const muted = sound.toggleMute();
+                setSoundMuted(muted);
+              }}
+            >
+              {soundMuted() ? "🔇 Muted" : "🔊 Active"}
+            </button>
           </div>
 
           <div class="va-workbench__field">
@@ -112,7 +217,10 @@ function VerticalArithmeticWorkbench() {
                   classList={{ "va-workbench__op-btn--active": operation() === op }}
                   aria-pressed={operation() === op}
                   aria-label={label}
-                  onClick={() => setOperation(op)}
+                  onClick={() => {
+                    setOperation(op);
+                    sound.playTick();
+                  }}
                 >
                   {op === "*" ? "×" : op === "/" ? "÷" : op}
                 </button>

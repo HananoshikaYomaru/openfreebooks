@@ -66,7 +66,7 @@ function mountChapterWidgets() {
       }
       loadPromises.push(
         loader().then((mod) => {
-          render(() => mod.default(), el);
+          render(() => mod.default({}), el);
         })
       );
     }

@@ -172,7 +172,7 @@ function buildSubjectModuleRegistry(
   ];
   for (const { id, dir } of withJs) {
     const relFromGenerated = relative(dirname(GENERATED_SUBJECT_MODULES), dir).replace(/\\/g, "/");
-    lines.push(`  "${id}": () => import("${relFromGenerated}/subject.ts"),`);
+    lines.push(`  "${id}": () => import("${relFromGenerated}/subject"),`);
   }
   lines.push("};", "");
   return lines.join("\n");
@@ -314,7 +314,7 @@ function buildWidgetRegistry(
   for (const { key, widgets, dir } of entries) {
     const relFromGenerated = relative(dirname(GENERATED_WIDGETS), dir).replace(/\\/g, "/");
     for (const widget of widgets) {
-      const importPath = `${relFromGenerated}/widgets/${widget}.tsx`;
+      const importPath = `${relFromGenerated}/widgets/${widget}`;
       lines.push(`  "${key}/${widget}": () => import("${importPath}"),`);
     }
   }

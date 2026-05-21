@@ -10,3 +10,5 @@ export function initMathSubject(root: HTMLElement): void {
     panel.classList.add("book-question__solution");
   }
 }
+
+export const initSubject = initMathSubject;

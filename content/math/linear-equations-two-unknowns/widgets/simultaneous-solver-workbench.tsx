@@ -496,12 +496,10 @@ function SimultaneousSolverWorkbench() {
           </div>
 
           <Show when={current() && !error()}>
-            {(step) => (
-              <div class="sim-solver__step-panel">
-                <h3 class="sim-solver__step-title">{step().title}</h3>
-                <div class="sim-solver__step-math" innerHTML={renderLatex(step().latex)} />
-              </div>
-            )}
+            <div class="sim-solver__step-panel">
+              <h3 class="sim-solver__step-title">{current()!.title}</h3>
+              <div class="sim-solver__step-math" innerHTML={renderLatex(current()!.latex)} />
+            </div>
           </Show>
         </div>
       </div>

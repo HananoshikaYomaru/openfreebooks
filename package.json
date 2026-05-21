@@ -6,8 +6,8 @@
   "scripts": {
     "sync:chapters": "bun scripts/sync-chapters.ts",
     "build:js": "bun run sync:chapters && vite build",
-    "build": "rm -f themes/openfreebooks/static/main.css public/main.css && bun run build:js && zola build && bun run index:search",
-    "index:search": "pagefind --site public && rm -rf static/pagefind && cp -R public/pagefind static/pagefind",
+    "build": "find themes/openfreebooks/static -name '*.html' -delete && rm -f themes/openfreebooks/static/main.css public/main.css && bun run build:js && zola build && bun run index:search",
+    "index:search": "pagefind --site public --glob \"**/index.html\" && rm -rf static/pagefind && cp -R public/pagefind static/pagefind",
     "dev:js": "bun run sync:chapters && vite build --watch",
     "scan:size": "bun scripts/scan-output-size.ts",
     "test": "bun test frontend/src/lib"

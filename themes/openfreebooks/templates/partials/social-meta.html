@@ -1,5 +1,5 @@
 {# Open Graph + Twitter Card — shared site image on every page #}
-{% set og_image = get_url(path='og.png', trailing_slash=false) %}
+{% set og_image = get_url(path='og.jpg', trailing_slash=false) %}
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="{{ config.extra.site_title }}" />
 <meta property="og:title" content="{% if page %}{{ page.title }}{% elif section %}{{ section.title }}{% else %}{{ config.title }}{% endif %}" />

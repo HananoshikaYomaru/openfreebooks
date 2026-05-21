@@ -54,10 +54,33 @@ function BigNumbersScale() {
       return;
     }
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    const canvasCtx = canvas.getContext("2d");
+    if (!canvasCtx) return;
+    const ctx: CanvasRenderingContext2D = canvasCtx;
 
-    const STEPS = [
+    type CoreTone = "green" | "purple" | "orange" | "yellow" | "cyan";
+    type CoreColorInfo = {
+      hex: string;
+      rgb: [number, number, number];
+      glow: string;
+    };
+    type StepMeta = {
+      id: string;
+      label: string;
+      value: number;
+      power: string;
+      tone: CoreTone;
+      example: string;
+      rawTime: number;
+    };
+    type TierMeta = {
+      index: number;
+      unitValue: number;
+      colorName: CoreTone;
+      label: string;
+    };
+
+    const STEPS: StepMeta[] = [
       { id: "one", label: "1", value: 1, power: "10⁰", tone: "green", example: "A single heartbeat. The primary unit of all structures.", rawTime: 1 },
       { id: "ten", label: "10", value: 10, power: "10¹", tone: "green", example: "The fingers on two hands. The basic structural unit of decimal arithmetic.", rawTime: 10 },
       { id: "hundred", label: "100", value: 100, power: "10²", tone: "purple", example: "Grains of salt in a pinch. Page count of a short story.", rawTime: 100 },
@@ -68,23 +91,23 @@ function BigNumbersScale() {
       { id: "ten_million", label: "10 Million", value: 10_000_000, power: "10⁷", tone: "yellow", example: "Population of a major mega-city like Tokyo, Seoul, or London.", rawTime: 10_000_000 },
       { id: "hundred_million", label: "100 Million", value: 100_000_000, power: "10⁸", tone: "cyan", example: "Total books published in human history. Heartbeats of a cat over its lifetime.", rawTime: 100_000_000 },
       { id: "billion", label: "1 Billion", value: 1_000_000_000, power: "10⁹", tone: "cyan", example: "Grains of sand in a typical children's playground. Light travel distance in meters in 3.3 seconds.", rawTime: 1_000_000_000 },
-    ] as const;
+    ];
 
-    const CORES = {
+    const CORES: Record<CoreTone, CoreColorInfo> = {
       green: { hex: "#14b8a6", rgb: [20, 184, 166] as [number, number, number], glow: "rgba(20, 184, 166, 0.4)" },
       purple: { hex: "#8b5cf6", rgb: [139, 92, 246] as [number, number, number], glow: "rgba(139, 92, 246, 0.4)" },
       orange: { hex: "#f97316", rgb: [249, 115, 22] as [number, number, number], glow: "rgba(249, 115, 22, 0.4)" },
       yellow: { hex: "#f59e0b", rgb: [245, 158, 11] as [number, number, number], glow: "rgba(245, 158, 11, 0.4)" },
       cyan: { hex: "#06b6d4", rgb: [6, 182, 212] as [number, number, number], glow: "rgba(6, 182, 212, 0.4)" },
-    } as const;
+    };
 
-    const TIERS = [
+    const TIERS: TierMeta[] = [
       { index: 0, unitValue: 1, colorName: "green", label: "Units (Green)" },
       { index: 1, unitValue: 100, colorName: "purple", label: "Hundreds (Purple)" },
       { index: 2, unitValue: 10_000, colorName: "orange", label: "Ten-Thousands (Orange)" },
       { index: 3, unitValue: 1_000_000, colorName: "yellow", label: "Millions (Yellow)" },
       { index: 4, unitValue: 100_000_000, colorName: "cyan", label: "Hundred-Millions (Cyan)" },
-    ] as const;
+    ];
 
     type VisualMode = "NORMAL" | "COMPRESSING" | "EXPANDING";
     type Speed = "slow" | "normal" | "fast";
@@ -230,7 +253,7 @@ function BigNumbersScale() {
       y = 0;
       radius = 5;
       alpha = 1;
-      colorInfo = CORES.green;
+      colorInfo: CoreColorInfo = CORES.green;
 
       constructor(index: number, tierIdx: number) {
         this.index = index;
@@ -652,7 +675,7 @@ function BigNumbersScale() {
     });
 
     btnPrevStep.addEventListener("click", () => {
-      let closestSmallerStep = STEPS[0]!.value;
+      let closestSmallerStep: number = STEPS[0]!.value;
       for (let i = STEPS.length - 1; i >= 0; i -= 1) {
         if (STEPS[i]!.value < state.targetValue) {
           closestSmallerStep = STEPS[i]!.value;
@@ -664,7 +687,7 @@ function BigNumbersScale() {
     });
 
     btnNextStep.addEventListener("click", () => {
-      let closestLargerStep = STEPS[STEPS.length - 1]!.value;
+      let closestLargerStep: number = STEPS[STEPS.length - 1]!.value;
       for (let i = 0; i < STEPS.length; i += 1) {
         if (STEPS[i]!.value > state.targetValue) {
           closestLargerStep = STEPS[i]!.value;

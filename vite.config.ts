@@ -7,6 +7,7 @@ const rootDir = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   plugins: [solid()],
+  publicDir: false,
   resolve: {
     alias: {
       "@ofb/katex": path.resolve(rootDir, "frontend/src/lib/katex.ts"),

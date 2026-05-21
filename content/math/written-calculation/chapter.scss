@@ -76,6 +76,7 @@
 .va-workbench__brand {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.75rem;
   margin-bottom: 0.25rem;
 }
@@ -103,6 +104,24 @@
 .va-workbench__brand-text strong {
   color: var(--accent);
   font-weight: 600;
+}
+
+.va-workbench__sound-btn {
+  margin-left: auto;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--paper) 55%, var(--card-bg));
+  color: var(--soft-ink);
+  cursor: pointer;
+}
+
+.va-workbench__sound-btn:hover {
+  border-color: var(--accent);
+  color: var(--ink);
 }
 
 .va-workbench__field {
