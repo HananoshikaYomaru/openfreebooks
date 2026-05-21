@@ -16,12 +16,12 @@
 {% set chapter_key = subject ~ "/" ~ slug %}
 {% set chapters_meta = load_data(path="data/_generated/chapters-meta.json", format="json") %}
 {% set subjects_meta = load_data(path="data/_generated/subjects-meta.json", format="json") %}
-{% set chapter_meta = chapters_meta.chapters[chapter_key] %}
+{% set chapter_meta = chapters_meta.chapters | get(key=chapter_key, default=false) %}
 {% set subject_meta = subjects_meta.subjects[subject] | default(value=false) %}
 {% if subject_meta and subject_meta.hasCss %}
 <link rel="stylesheet" href="{{ get_url(path='css/subjects/' ~ subject ~ '.css', trailing_slash=false) | safe }}" />
 {% endif %}
-{% if chapter_meta.hasCss %}
+{% if chapter_meta and chapter_meta.hasCss %}
 <link rel="stylesheet" href="{{ get_url(path='css/chapters/' ~ subject ~ '-' ~ slug ~ '.css', trailing_slash=false) | safe }}" />
 {% endif %}
 {% endblock extra_head %}
@@ -31,6 +31,8 @@
 {% set slug = section.extra.chapter_id | default(value=section.slug) %}
 {% set chapter_key = subject ~ "/" ~ slug %}
 {% set subject_catalog = load_data(path="data/" ~ subject ~ "-curriculum.json", format="json") %}
+{% set chapter_lastmod_data = load_data(path="data/_generated/chapter-lastmod.json", format="json") %}
+{% set chapter_lastmod = chapter_lastmod_data.byKey[chapter_key] | default(value=false) %}
 {% set catalog_subject_url = get_url(path="/catalog/") ~ "?subject=" ~ subject %}
 <section class="book-page book-page--chapter">
   <div class="container">
@@ -62,6 +64,16 @@
 
       <div id="chapter-heading-nav" data-pagefind-ignore></div>
       {{ section.content | safe }}
+      {% if chapter_lastmod %}
+      <p class="book-chapter__lastmod" data-pagefind-ignore>
+        Last modified:
+        <time
+          datetime="{{ chapter_lastmod.iso }}"
+          data-localize-lastmod
+          data-utc-fallback="{{ chapter_lastmod.display }}"
+        >{{ chapter_lastmod.display }}</time>
+      </p>
+      {% endif %}
       {% include "partials/chapter-footer-nav.html" %}
     </article>
   </div>

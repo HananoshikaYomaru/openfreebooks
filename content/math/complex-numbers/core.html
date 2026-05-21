@@ -1,0 +1,109 @@
+<div class="book-prose">
+  <p>
+    <strong>Complex numbers</strong> extend the real number system so equations like
+    \(x^2+1=0\) can be solved. In high school, you usually write a complex number in
+    <strong>Cartesian form</strong>:
+    \[
+    z = a + bi,
+    \]
+    where \(a,b\in\mathbb{R}\) and \(i^2=-1\).
+  </p>
+
+  <h2 id="imaginary-unit" class="book-prose__heading">The imaginary unit \(i\)</h2>
+  <div class="book-callout book-callout--formula" role="note">
+    <p class="book-callout__label">Definition</p>
+    <p class="book-formula">\[ i^2 = -1 \]</p>
+  </div>
+  <p>
+    Useful cycle:
+    \[
+    i^1=i,\quad i^2=-1,\quad i^3=-i,\quad i^4=1,
+    \]
+    and then the pattern repeats every 4 powers.
+  </p>
+
+  <h2 id="cartesian-form" class="book-prose__heading">Real and imaginary parts</h2>
+  <p>
+    For \(z=a+bi\):
+  </p>
+  <ul>
+    <li>\(\Re(z)=a\) (real part)</li>
+    <li>\(\Im(z)=b\) (imaginary coefficient)</li>
+  </ul>
+  <p><strong>Example.</strong> If \(z=3-4i\), then \(\Re(z)=3\), \(\Im(z)=-4\).</p>
+
+  <h2 id="operations" class="book-prose__heading">Basic operations</h2>
+  <p>
+    Add/subtract by combining like terms:
+  </p>
+  <p class="book-formula">
+    \[
+    (a+bi)\pm(c+di)=(a\pm c)+(b\pm d)i.
+    \]
+  </p>
+  <p>
+    Multiply using expansion and \(i^2=-1\):
+  </p>
+  <p class="book-formula">
+    \[
+    (a+bi)(c+di)=ac+adi+bci+bd\,i^2=(ac-bd)+(ad+bc)i.
+    \]
+  </p>
+  <p><strong>Example.</strong> \((2+3i)(1-4i)=2-8i+3i-12i^2=14-5i.\)</p>
+
+  <h2 id="conjugate" class="book-prose__heading">Conjugate and modulus</h2>
+  <p>
+    The conjugate of \(z=a+bi\) is
+    \[
+    \overline{z}=a-bi.
+    \]
+    Multiplying by conjugates removes imaginary parts:
+    \[
+    z\overline{z}=(a+bi)(a-bi)=a^2+b^2.
+    \]
+  </p>
+  <p>
+    The modulus (distance from origin in Argand plane) is:
+    \[
+    |z|=\sqrt{a^2+b^2}.
+    \]
+  </p>
+  <p><strong>Example.</strong> For \(z=3-4i\), \(\overline{z}=3+4i\), \(|z|=5\).</p>
+
+  <h2 id="division" class="book-prose__heading">Division in Cartesian form</h2>
+  <p>
+    To divide by \(c+di\), multiply top and bottom by \(c-di\):
+  </p>
+  <p class="book-formula">
+    \[
+    \frac{a+bi}{c+di}
+    =\frac{(a+bi)(c-di)}{(c+di)(c-di)}
+    =\frac{(a+bi)(c-di)}{c^2+d^2}.
+    \]
+  </p>
+  <p><strong>Example.</strong> \(\dfrac{1+2i}{3-i}\):</p>
+  <p>
+    \[
+    \frac{1+2i}{3-i}\cdot\frac{3+i}{3+i}
+    =\frac{(1+2i)(3+i)}{10}
+    =\frac{1+7i}{10}
+    =\frac{1}{10}+\frac{7}{10}i.
+    \]
+  </p>
+
+  <h2 id="argand-plane" class="book-prose__heading">Argand plane (graph view)</h2>
+  <p>
+    Plot \(z=a+bi\) as the point \((a,b)\): horizontal axis is real part, vertical axis is
+    imaginary part. This lets you interpret \(|z|\) as geometric distance.
+  </p>
+
+  <h2 id="solving-quadratics" class="book-prose__heading">Why this matters: solving quadratics</h2>
+  <p>
+    If \(x^2+4=0\), then \(x^2=-4\), so
+    \[
+    x=\pm 2i.
+    \]
+    Complex numbers ensure every quadratic has two roots (counting multiplicity), and later this
+    extends to all polynomial equations.
+  </p>
+</div>

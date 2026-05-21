@@ -30,12 +30,15 @@ type UrlEntry = {
   description: string;
   sourcePaths: string[];
   lastmod: Date | null;
+  isChapter: boolean;
+  chapterKey: string | null;
 };
 
 const ROOT = join(import.meta.dir, "..");
 const CONTENT_DIR = join(ROOT, "content");
 const DATA_DIR = join(ROOT, "data");
 const STATIC_DIR = join(ROOT, "static");
+const CHAPTER_LASTMOD_PATH = join(DATA_DIR, "_generated", "chapter-lastmod.json");
 const SITEMAP_PATH = join(STATIC_DIR, "sitemap.xml");
 const FEED_PATH = join(STATIC_DIR, "feed.xml");
 
@@ -58,6 +61,15 @@ function toPosixPath(path: string): string {
 
 function normalizeBaseUrl(rawBaseUrl: string): string {
   return rawBaseUrl.replace(/\/+$/, "");
+}
+
+function formatLastmodDisplay(date: Date): string {
+  const year = date.getUTCFullYear();
+  const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(date.getUTCDate()).padStart(2, "0");
+  const hour = String(date.getUTCHours()).padStart(2, "0");
+  const minute = String(date.getUTCMinutes()).padStart(2, "0");
+  return `${year}-${month}-${day} ${hour}:${minute} UTC`;
 }
 
 function ensureTrailingSlash(path: string): string {
@@ -214,6 +226,8 @@ async function buildEntries(): Promise<UrlEntry[]> {
         description: fm.description ?? fm.title ?? key.split("/")[1],
         sourcePaths,
         lastmod,
+        isChapter: true,
+        chapterKey: key,
       });
       continue;
     }
@@ -238,6 +252,8 @@ async function buildEntries(): Promise<UrlEntry[]> {
       description: fm.description ?? fm.title ?? fallbackTitle,
       sourcePaths,
       lastmod,
+      isChapter: false,
+      chapterKey: null,
     });
   }
 
@@ -304,19 +320,34 @@ function renderFeed(baseUrl: string, entries: UrlEntry[]): string {
   return lines.join("\n");
 }
 
+function buildChapterLastmodData(entries: UrlEntry[]): string {
+  const byKey: Record<string, { iso: string; display: string }> = {};
+  for (const entry of entries) {
+    if (!entry.isChapter || !entry.chapterKey || !entry.lastmod) continue;
+    byKey[entry.chapterKey] = {
+      iso: entry.lastmod.toISOString(),
+      display: formatLastmodDisplay(entry.lastmod),
+    };
+  }
+  return `${JSON.stringify({ byKey }, null, 2)}\n`;
+}
+
 async function main() {
   const baseUrl = await readBaseUrlFromConfig();
   const entries = await buildEntries();
   await mkdir(dirname(SITEMAP_PATH), { recursive: true });
+  await mkdir(dirname(CHAPTER_LASTMOD_PATH), { recursive: true });
   await writeFile(SITEMAP_PATH, renderSitemap(baseUrl, entries));
   await writeFile(FEED_PATH, renderFeed(baseUrl, entries));
+  await writeFile(CHAPTER_LASTMOD_PATH, buildChapterLastmodData(entries));
 
-  if (!existsSync(SITEMAP_PATH) || !existsSync(FEED_PATH)) {
-    throw new Error("Failed to generate sitemap/feed outputs");
+  if (!existsSync(SITEMAP_PATH) || !existsSync(FEED_PATH) || !existsSync(CHAPTER_LASTMOD_PATH)) {
+    throw new Error("Failed to generate site metadata outputs");
   }
 
   console.log(`Generated ${toPosixPath(relative(ROOT, SITEMAP_PATH))} with ${entries.length} URL(s).`);
   console.log(`Generated ${toPosixPath(relative(ROOT, FEED_PATH))} with ${entries.length} item(s).`);
+  console.log(`Generated ${toPosixPath(relative(ROOT, CHAPTER_LASTMOD_PATH))}.`);
 }
 
 main();

@@ -519,7 +519,7 @@
           "slug": "factor-remainder-theorems",
           "title": "Factor & remainder theorems",
           "description": "Use the factor and remainder theorems to factorise higher-degree polynomials and solve related equations.",
-          "status": "planned",
+          "status": "live",
           "tier": "non-foundation",
           "curriculumCoverage": {
             "DSE": "extension",
@@ -534,7 +534,7 @@
           "slug": "complex-numbers",
           "title": "Complex numbers",
           "description": "Represent complex numbers in Cartesian form and perform operations including conjugates and division.",
-          "status": "planned",
+          "status": "live",
           "tier": "non-foundation",
           "curriculumCoverage": {
             "DSE": "extension",
@@ -549,7 +549,7 @@
           "slug": "functions-graphs",
           "title": "Functions & graphs",
           "description": "Study domains, ranges, transformations, and graphs of common functions including quadratics and rationals.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "DSE": "core",
             "IGCSE": "core",
@@ -567,7 +567,7 @@
           "slug": "exponential-logarithmic",
           "title": "Exponential & logarithmic functions",
           "description": "Explore laws of logarithms, exponential growth and decay, and sketch related graphs.",
-          "status": "planned",
+          "status": "live",
           "tier": "non-foundation",
           "curriculumCoverage": {
             "DSE": "extension",
@@ -586,7 +586,7 @@
           "slug": "sequences-series",
           "title": "Sequences & series",
           "description": "Work with arithmetic and geometric sequences, sigma notation, and finite summation formulas.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "DSE": "core",
             "IGCSE": "core",
@@ -604,7 +604,7 @@
           "slug": "variations",
           "title": "Variations",
           "description": "Model direct, inverse, joint, and partial variation and solve combined variation problems.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "DSE": "core",
             "IB": "related",
@@ -618,7 +618,7 @@
           "slug": "linear-programming",
           "title": "Linear programming",
           "description": "Graph linear inequalities, identify feasible regions, and optimise objective functions in two variables.",
-          "status": "planned",
+          "status": "live",
           "tier": "non-foundation",
           "curriculumCoverage": {
             "DSE": "extension",

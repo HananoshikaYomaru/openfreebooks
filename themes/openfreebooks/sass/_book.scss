@@ -457,6 +457,19 @@ a.book-chapter-link:focus-visible {
   margin: 0.75rem 0 0;
 }
 
+.book-chapter__lastmod {
+  margin: 2.25rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.book-chapter__lastmod time {
+  color: var(--soft-ink);
+}
+
 .ratio-demo__bars {
   display: flex;
   width: 100%;

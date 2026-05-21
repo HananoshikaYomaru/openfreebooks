@@ -1,0 +1,106 @@
+<div class="book-prose">
+  <h2 id="history" class="book-prose__heading">History</h2>
+  <p>
+    Polynomial equations became central in algebra from the Renaissance onward, when mathematicians
+    studied systematic methods for solving cubic and quartic equations. As symbolic algebra matured,
+    methods for division and factor testing became standard tools.
+  </p>
+  <p>
+    What we now call the factor and remainder theorems are part of the broader
+    polynomial division framework developed in 18th–19th century algebra texts.
+    They remain important in modern high-school courses because they connect substitution,
+    division, and root-finding in one clear structure.
+  </p>
+
+  <h2 id="derivation" class="book-prose__heading">Derivation</h2>
+  <h3 id="from-division-algorithm" class="book-prose__heading">From the polynomial division algorithm</h3>
+  <p>
+    For any polynomial \(P(x)\), dividing by \((x-a)\) gives:
+    \[
+    P(x)=(x-a)Q(x)+R.
+    \]
+    Now substitute \(x=a\):
+    \[
+    P(a)=(a-a)Q(a)+R=R.
+    \]
+    So the remainder equals \(P(a)\), proving the Remainder Theorem.
+  </p>
+  <p>
+    If \((x-a)\) is a factor, remainder \(R=0\), so \(P(a)=0\). Conversely, if \(P(a)=0\), then
+    remainder is zero, so \((x-a)\) divides \(P(x)\). This proves the Factor Theorem.
+  </p>
+
+  <h2 id="checkpoints" class="book-prose__heading">Checkpoints</h2>
+  <p>
+    Pause and reason before continuing. Discuss with a classmate or write your reasoning in a
+    notebook.
+  </p>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Checkpoint</p>
+    <p>
+      Find the remainder when \(P(x)=3x^3-2x+7\) is divided by \((x-2)\).
+    </p>
+  </div>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Checkpoint</p>
+    <p>
+      Is \((x+2)\) a factor of \(x^3+4x^2+5x+2\)? Show the one-line test.
+    </p>
+  </div>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Checkpoint</p>
+    <p>
+      Given \(P(x)=2x^3+kx^2-8x-4\), if \((x-2)\) is a factor, find \(k\).
+    </p>
+  </div>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Checkpoint</p>
+    <p>
+      A polynomial leaves remainder \(5\) when divided by \((x-1)\). What is \(P(1)\)?
+    </p>
+  </div>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Checkpoint</p>
+    <p>
+      If \(P(3)=0\) and \(P(-1)=0\) for a cubic \(P(x)\), what two linear factors must appear?
+    </p>
+  </div>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Checkpoint</p>
+    <p>
+      Why is synthetic division especially useful after you already know one root?
+    </p>
+  </div>
+
+  <h2 id="applications" class="book-prose__heading">Applications</h2>
+  <h3 id="curve-intercepts" class="book-prose__heading">Graph intercepts and curve sketching</h3>
+  <p>
+    Solving \(P(x)=0\) gives x-intercepts of polynomial graphs. Factor Theorem helps find those
+    intercepts quickly, then sketch end behavior and turning points more accurately.
+  </p>
+
+  <h3 id="model-constraints" class="book-prose__heading">Constraint values in models</h3>
+  <p>
+    In applied models, a condition like “output is zero at \(x=a\)” means \(P(a)=0\), so
+    \((x-a)\) must be a factor. This appears in physics calibration, optimization constraints, and
+    coding of polynomial approximations.
+  </p>
+
+  <h3 id="numerical-methods" class="book-prose__heading">Gateway to numerical methods</h3>
+  <p>
+    Understanding factor tests and polynomial reduction supports later methods such as Newton’s
+    method and polynomial interpolation, where roots and remainders are central ideas.
+  </p>
+
+  <h2 id="references" class="book-prose__heading">References</h2>
+  <ul>
+    <li>Standard high-school algebra curricula (IB, A-Level, DSE extension) on polynomial theorems.</li>
+    <li>Classical algebra texts covering polynomial division and root-factor relationships.</li>
+  </ul>
+</div>

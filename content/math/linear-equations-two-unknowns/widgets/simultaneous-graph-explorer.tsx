@@ -5,6 +5,7 @@ const VIEW_SIZE = 400;
 const UNIT = 20;
 const ORIGIN = VIEW_SIZE / 2;
 const X_RANGE = 10;
+const AXIS_LABEL_STEP = 2;
 const LINE_SAMPLE_STEP = 0.12;
 const INTERSECTION_HIT_SCREEN = 28;
 const LINE_HIT_SCREEN = 14;
@@ -267,6 +268,69 @@ function drawGraph(
   ctx.moveTo(0, ORIGIN);
   ctx.lineTo(VIEW_SIZE, ORIGIN);
   ctx.stroke();
+
+  // Axis arrowheads
+  const arrowSize = 8;
+  ctx.fillStyle = colors.axis;
+  // +x arrow
+  ctx.beginPath();
+  ctx.moveTo(VIEW_SIZE - 2, ORIGIN);
+  ctx.lineTo(VIEW_SIZE - arrowSize - 2, ORIGIN - 4);
+  ctx.lineTo(VIEW_SIZE - arrowSize - 2, ORIGIN + 4);
+  ctx.closePath();
+  ctx.fill();
+  // +y arrow
+  ctx.beginPath();
+  ctx.moveTo(ORIGIN, 2);
+  ctx.lineTo(ORIGIN - 4, arrowSize + 2);
+  ctx.lineTo(ORIGIN + 4, arrowSize + 2);
+  ctx.closePath();
+  ctx.fill();
+
+  // Graduations (ticks + labels)
+  ctx.strokeStyle = colors.axis;
+  ctx.fillStyle = colors.axis;
+  ctx.lineWidth = 1;
+  ctx.font = "11px IBM Plex Mono, monospace";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "top";
+  for (let i = -X_RANGE; i <= X_RANGE; i++) {
+    const px = toCanvasX(i);
+    const py = toCanvasY(i);
+    if (i !== 0) {
+      // x-axis ticks
+      ctx.beginPath();
+      ctx.moveTo(px, ORIGIN - 4);
+      ctx.lineTo(px, ORIGIN + 4);
+      ctx.stroke();
+      if (i % AXIS_LABEL_STEP === 0) {
+        ctx.fillText(String(i), px, ORIGIN + 8);
+      }
+
+      // y-axis ticks
+      ctx.beginPath();
+      ctx.moveTo(ORIGIN - 4, py);
+      ctx.lineTo(ORIGIN + 4, py);
+      ctx.stroke();
+      if (i % AXIS_LABEL_STEP === 0) {
+        ctx.textAlign = "right";
+        ctx.textBaseline = "middle";
+        ctx.fillText(String(i), ORIGIN - 8, py);
+        ctx.textAlign = "center";
+        ctx.textBaseline = "top";
+      }
+    }
+  }
+
+  // Axis labels
+  ctx.fillStyle = colors.axis;
+  ctx.font = "12px IBM Plex Mono, monospace";
+  ctx.textAlign = "right";
+  ctx.textBaseline = "bottom";
+  ctx.fillText("x", VIEW_SIZE - 8, ORIGIN - 6);
+  ctx.textAlign = "left";
+  ctx.textBaseline = "top";
+  ctx.fillText("y", ORIGIN + 6, 6);
 
   const drawLine = (
     m: number,

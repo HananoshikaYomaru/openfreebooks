@@ -38,6 +38,29 @@ function mountFooterYear() {
   }
 }
 
+function localizeChapterLastModified() {
+  const times = document.querySelectorAll<HTMLTimeElement>("time[data-localize-lastmod]");
+  if (times.length === 0) return;
+
+  const formatter = new Intl.DateTimeFormat(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZoneName: "short",
+  });
+
+  for (const timeEl of times) {
+    const iso = timeEl.getAttribute("datetime");
+    if (!iso) continue;
+
+    const date = new Date(iso);
+    if (Number.isNaN(date.getTime())) continue;
+    timeEl.textContent = formatter.format(date);
+  }
+}
+
 function scheduleBookMath() {
   void import("./lib/katex").then(({ renderBookMath }) => {
     requestAnimationFrame(() => renderBookMath());
@@ -150,6 +173,7 @@ function mountSubjectInit() {
 initBookMath();
 mountSubjectInit();
 mountChapterWidgets();
+localizeChapterLastModified();
 
 const catalogRoot = document.getElementById("catalog-app");
 if (catalogRoot) {

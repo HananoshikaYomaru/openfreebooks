@@ -1,0 +1,92 @@
+<div class="book-prose">
+  <p>
+    Linear programming finds the best value (maximum or minimum) of a linear objective under linear
+    constraints. In high school, we solve two-variable problems graphically.
+  </p>
+
+  <h2 id="core-idea" class="book-prose__heading">Core idea</h2>
+  <p>
+    Optimize an objective like
+    \[
+    P=ax+by
+    \]
+    subject to inequalities such as \(x+y\le 12\), \(x\ge0\), \(y\ge0\).
+  </p>
+
+  <h2 id="modeling" class="book-prose__heading">Modeling from context</h2>
+  <p>
+    Typical setup:
+  </p>
+  <ol>
+    <li>Define variables (\(x,y\)).</li>
+    <li>Write constraints from limits/resources.</li>
+    <li>Write objective function (profit, cost, time, etc.).</li>
+    <li>Graph constraints and find feasible region.</li>
+  </ol>
+
+  <h2 id="graphing-constraints" class="book-prose__heading">Graphing constraints</h2>
+  <p>
+    For each inequality:
+  </p>
+  <ul>
+    <li>Draw boundary line (use solid line for \(\le,\ge\); dashed for \(<,>\)).</li>
+    <li>Test a point (often origin) to choose correct side.</li>
+    <li>Combine all valid half-planes.</li>
+  </ul>
+  <p>
+    Include non-negativity constraints \(x\ge0,y\ge0\) unless problem states otherwise.
+  </p>
+
+  <h2 id="feasible-region" class="book-prose__heading">Feasible region</h2>
+  <p>
+    The feasible region is where all constraints hold at once. In school-level cases, it is usually a
+    polygon (possibly unbounded).
+  </p>
+
+  <h2 id="corner-point-principle" class="book-prose__heading">Corner-point principle</h2>
+  <p>
+    If an optimum exists for a bounded feasible region, it occurs at a vertex (corner point).
+  </p>
+  <p>
+    So compute all feasible vertices, then evaluate objective at each.
+  </p>
+
+  <h2 id="worked-example" class="book-prose__heading">Worked example</h2>
+  <p>
+    Maximize \(P=3x+2y\) subject to:
+  </p>
+  <p class="book-formula">\[
+    x+y\le 8,\quad x+3y\le 12,\quad x\ge0,\ y\ge0.
+  \]</p>
+  <p>
+    Vertices are \((0,0)\), \((8,0)\), \((0,4)\), and intersection of
+    \(x+y=8\) with \(x+3y=12\), which is \((6,2)\).
+  </p>
+  <p>
+    Evaluate:
+  </p>
+  <ul>
+    <li>\((0,0)\Rightarrow P=0\)</li>
+    <li>\((8,0)\Rightarrow P=24\)</li>
+    <li>\((0,4)\Rightarrow P=8\)</li>
+    <li>\((6,2)\Rightarrow P=22\)</li>
+  </ul>
+  <p>
+    Maximum is \(24\) at \((8,0)\).
+  </p>
+
+  <h2 id="special-cases" class="book-prose__heading">Special cases</h2>
+  <ul>
+    <li><strong>No feasible region:</strong> constraints are inconsistent.</li>
+    <li><strong>Unbounded region:</strong> objective may have no maximum/minimum.</li>
+    <li><strong>Multiple optima:</strong> objective line parallel to a feasible edge.</li>
+  </ul>
+
+  <h2 id="exam-strategy" class="book-prose__heading">Exam strategy</h2>
+  <ul>
+    <li>Label all boundary lines and intercepts clearly.</li>
+    <li>Show shading logic for each inequality.</li>
+    <li>List vertex coordinates before evaluating objective.</li>
+    <li>Give final answer with units and variable interpretation.</li>
+  </ul>
+</div>

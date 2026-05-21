@@ -1,0 +1,91 @@
+<div class="book-prose">
+  <p>
+    A <strong>sequence</strong> is an ordered list of numbers. A <strong>series</strong> is the sum of
+    terms in a sequence. These ideas are key in algebra, finance, and modeling.
+  </p>
+
+  <h2 id="sequence-notation" class="book-prose__heading">Sequence notation</h2>
+  <p>
+    Terms are often written \(u_1,u_2,u_3,\dots\) where \(u_n\) is the \(n\)-th term.
+  </p>
+  <p><strong>Example:</strong> \(2,5,8,11,\dots\) has \(u_1=2\), \(u_2=5\), \(u_3=8\).</p>
+
+  <h2 id="arithmetic-sequences" class="book-prose__heading">Arithmetic sequences</h2>
+  <p>
+    Difference between consecutive terms is constant \(d\).
+  </p>
+  <p class="book-formula">\[
+    u_n=a+(n-1)d
+  \]</p>
+  <p>
+    where \(a\) is first term.
+  </p>
+  <p><strong>Example:</strong> \(a=4,d=3\Rightarrow u_n=4+3(n-1)=3n+1\).</p>
+
+  <h2 id="arithmetic-series" class="book-prose__heading">Arithmetic series</h2>
+  <p>
+    Sum of first \(n\) terms:
+  </p>
+  <p class="book-formula">\[
+    S_n=\frac{n}{2}\big(2a+(n-1)d\big)=\frac{n}{2}(a+l)
+  \]</p>
+  <p>
+    where \(l\) is the \(n\)-th term.
+  </p>
+
+  <h2 id="geometric-sequences" class="book-prose__heading">Geometric sequences</h2>
+  <p>
+    Ratio between consecutive terms is constant \(r\).
+  </p>
+  <p class="book-formula">\[
+    u_n=ar^{n-1}
+  \]</p>
+  <p><strong>Example:</strong> \(3,6,12,24,\dots\) has \(a=3,r=2\).</p>
+
+  <h2 id="geometric-series" class="book-prose__heading">Geometric series</h2>
+  <p>
+    For \(r\ne1\), sum of first \(n\) terms:
+  </p>
+  <p class="book-formula">\[
+    S_n=a\frac{1-r^n}{1-r}
+  \]</p>
+  <p>
+    Equivalent form: \(S_n=a\frac{r^n-1}{r-1}\).
+  </p>
+
+  <h2 id="infinite-geometric" class="book-prose__heading">Infinite geometric series</h2>
+  <p>
+    If \(|r|&lt;1\), the sum to infinity exists:
+  </p>
+  <p class="book-formula">\[
+    S_\infty=\frac{a}{1-r}.
+  \]</p>
+  <p>
+    If \(|r|\ge1\), no finite sum to infinity.
+  </p>
+
+  <h2 id="sigma-notation" class="book-prose__heading">Sigma notation</h2>
+  <p>
+    \[
+    \sum_{k=1}^{n} f(k)
+    \]
+    means add values of \(f(k)\) from \(k=1\) to \(k=n\).
+  </p>
+  <p><strong>Example:</strong> \(\sum_{k=1}^{4}(2k+1)=3+5+7+9=24.\)</p>
+
+  <h2 id="problem-solving" class="book-prose__heading">Typical problem-solving workflow</h2>
+  <ol>
+    <li>Identify arithmetic or geometric behavior.</li>
+    <li>Find key parameters (\(a,d\) or \(a,r\)).</li>
+    <li>Use \(u_n\) for term questions, \(S_n\) for sum questions.</li>
+    <li>Check reasonableness (growth/decay, sign, size).</li>
+  </ol>
+
+  <h2 id="exam-strategy" class="book-prose__heading">Exam strategy</h2>
+  <ul>
+    <li>Do not mix \(u_n\) and \(S_n\) formulas.</li>
+    <li>For geometric sums, check \(r\ne1\) before applying formula.</li>
+    <li>For infinity sums, always test \(|r|&lt;1\).</li>
+    <li>Define variables clearly before solving word problems.</li>
+  </ul>
+</div>

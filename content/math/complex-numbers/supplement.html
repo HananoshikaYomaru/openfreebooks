@@ -1,0 +1,107 @@
+<div class="book-prose">
+  <h2 id="history" class="book-prose__heading">History</h2>
+  <p>
+    Complex numbers first appeared when mathematicians tried to solve cubic equations in the
+    16th century. Algebraic formulas sometimes produced square roots of negative numbers, even when
+    final answers were real.
+  </p>
+  <p>
+    Mathematicians like <strong>Cardano</strong>, <strong>Bombelli</strong>, and later
+    <strong>Euler</strong> developed rules for these numbers. What began as a formal trick became a
+    major mathematical system used in engineering, physics, and signal processing.
+  </p>
+
+  <h2 id="derivation" class="book-prose__heading">Derivation</h2>
+  <h3 id="why-conjugate-works" class="book-prose__heading">Why the conjugate removes \(i\) in denominators</h3>
+  <p>
+    For \(c+di\):
+    \[
+    (c+di)(c-di)=c^2-d^2i^2=c^2+d^2,
+    \]
+    which is real and positive (unless \(c=d=0\)). This is why multiplying by conjugates converts
+    complex division into standard real-number division.
+  </p>
+
+  <h3 id="modulus-link" class="book-prose__heading">Why \(|z|^2=z\overline{z}\)</h3>
+  <p>
+    For \(z=a+bi\):
+    \[
+    z\overline{z}=(a+bi)(a-bi)=a^2+b^2=|z|^2.
+    \]
+    So modulus is directly linked to conjugation and the Pythagorean distance in the Argand plane.
+  </p>
+
+  <h2 id="checkpoints" class="book-prose__heading">Checkpoints</h2>
+  <p>
+    Pause and reason before continuing. Discuss with a classmate or write your reasoning in a
+    notebook.
+  </p>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Checkpoint</p>
+    <p>
+      Simplify \(i^{23}\) using the 4-step power cycle.
+    </p>
+  </div>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Checkpoint</p>
+    <p>
+      Compute \((4-3i)+(2+5i)\) and \((4-3i)-(2+5i)\).
+    </p>
+  </div>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Checkpoint</p>
+    <p>
+      Expand and simplify \((1+2i)(3-i)\) into \(a+bi\) form.
+    </p>
+  </div>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Checkpoint</p>
+    <p>
+      Find \(\overline{z}\) and \(|z|\) when \(z=-5+12i\).
+    </p>
+  </div>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Checkpoint</p>
+    <p>
+      Write \(\dfrac{2-i}{1+3i}\) in \(a+bi\) form.
+    </p>
+  </div>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Checkpoint</p>
+    <p>
+      Solve \(x^2-6x+13=0\). Why are the roots complex?
+    </p>
+  </div>
+
+  <h2 id="applications" class="book-prose__heading">Applications</h2>
+  <h3 id="ac-circuits" class="book-prose__heading">AC circuits and impedance</h3>
+  <p>
+    Electrical engineers model alternating-current circuits with complex numbers because amplitude
+    and phase are naturally represented together as one complex quantity.
+  </p>
+
+  <h3 id="waves-signals" class="book-prose__heading">Waves and signals</h3>
+  <p>
+    Sound, radio, and image-processing systems use complex numbers to describe oscillations and
+    frequency content efficiently (e.g., Fourier methods).
+  </p>
+
+  <h3 id="rotation-geometry" class="book-prose__heading">Geometry and rotations</h3>
+  <p>
+    Multiplying by certain complex numbers corresponds to rotating and scaling points in the plane,
+    making complex numbers useful in geometry and computer graphics.
+  </p>
+
+  <h2 id="references" class="book-prose__heading">References</h2>
+  <ul>
+    <li>Bombelli, R. (1572). <em>L'Algebra</em> (early systematic rules for imaginary numbers).</li>
+    <li>Euler, L. (18th century works) connecting complex numbers with trigonometry and exponentials.</li>
+    <li>Standard high-school extension algebra curricula on Cartesian form, conjugates, and division.</li>
+  </ul>
+</div>

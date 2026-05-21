@@ -4,19 +4,68 @@
     <title>Open Free Books</title>
     <link>https://openfreebooks.org/</link>
     <description>Recent updates to Open Free Books pages and live chapters.</description>
-    <lastBuildDate>Thu, 21 May 2026 06:54:29 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 21 May 2026 07:32:39 GMT</lastBuildDate>
+    <item>
+      <title>Linear programming</title>
+      <link>https://openfreebooks.org/math/linear-programming/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/linear-programming/</guid>
+      <pubDate>Thu, 21 May 2026 07:32:39 GMT</pubDate>
+      <description>Graph linear inequalities, identify feasible regions, and optimise objective functions in two variables.</description>
+    </item>
+    <item>
+      <title>Factor &amp; remainder theorems</title>
+      <link>https://openfreebooks.org/math/factor-remainder-theorems/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/factor-remainder-theorems/</guid>
+      <pubDate>Thu, 21 May 2026 07:32:39 GMT</pubDate>
+      <description>Use the factor and remainder theorems to factorise higher-degree polynomials and solve related equations.</description>
+    </item>
+    <item>
+      <title>Exponential &amp; logarithmic functions</title>
+      <link>https://openfreebooks.org/math/exponential-logarithmic/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/exponential-logarithmic/</guid>
+      <pubDate>Thu, 21 May 2026 07:32:39 GMT</pubDate>
+      <description>Use exponential and logarithmic models, apply log laws, and solve growth and decay equations.</description>
+    </item>
+    <item>
+      <title>Complex numbers</title>
+      <link>https://openfreebooks.org/math/complex-numbers/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/complex-numbers/</guid>
+      <pubDate>Thu, 21 May 2026 07:32:39 GMT</pubDate>
+      <description>Represent complex numbers in Cartesian form and perform operations including conjugates and division.</description>
+    </item>
+    <item>
+      <title>Functions &amp; graphs</title>
+      <link>https://openfreebooks.org/math/functions-graphs/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/functions-graphs/</guid>
+      <pubDate>Thu, 21 May 2026 07:32:39 GMT</pubDate>
+      <description>Model input-output rules, work with domain and range, and sketch key function graphs and transformations.</description>
+    </item>
+    <item>
+      <title>Sequences &amp; series</title>
+      <link>https://openfreebooks.org/math/sequences-series/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/sequences-series/</guid>
+      <pubDate>Thu, 21 May 2026 07:32:39 GMT</pubDate>
+      <description>Work with arithmetic and geometric sequences, sigma notation, and finite summation formulas.</description>
+    </item>
+    <item>
+      <title>Variations</title>
+      <link>https://openfreebooks.org/math/variations/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/variations/</guid>
+      <pubDate>Thu, 21 May 2026 07:32:39 GMT</pubDate>
+      <description>Model direct, inverse, joint, and partial variation and solve combined variation problems.</description>
+    </item>
     <item>
       <title>Laws of indices</title>
       <link>https://openfreebooks.org/math/laws-of-indices/</link>
       <guid isPermaLink="true">https://openfreebooks.org/math/laws-of-indices/</guid>
-      <pubDate>Thu, 21 May 2026 06:54:29 GMT</pubDate>
+      <pubDate>Thu, 21 May 2026 06:54:57 GMT</pubDate>
       <description>Apply index laws to simplify expressions with integer and rational exponents.</description>
     </item>
     <item>
       <title>Linear inequalities in one unknown</title>
       <link>https://openfreebooks.org/math/linear-inequalities-one-unknown/</link>
       <guid isPermaLink="true">https://openfreebooks.org/math/linear-inequalities-one-unknown/</guid>
-      <pubDate>Thu, 21 May 2026 06:33:43 GMT</pubDate>
+      <pubDate>Thu, 21 May 2026 06:54:57 GMT</pubDate>
       <description>Solve, represent, and apply linear inequalities in one unknown using number lines and interval notation.</description>
     </item>
     <item>

@@ -50,6 +50,7 @@ bun run build       # production: JS + Zola + pagefind → public/
 | Chapter URLs | `/{subjectId}/{chapter-slug}/` (e.g. `/math/quadratic-equations/`) |
 | Map | Mermaid DAG view (`?view=tree`) driven by `graph.edges` |
 | Graph | `graph.edges` must be **acyclic**; builder throws on cycles |
+| Chart axes (all widgets) | Every coordinate chart must render **x/y axis labels, positive-direction arrowheads, and visible graduations (ticks + scale labels)**. Apply this consistently across all subjects/widgets. |
 | Accessibility | Avoid decorative characters that may render as emoji on mobile. Prefer broadly supported symbols/text so desktop and mobile stay visually consistent. |
 
 ## Common tasks → where to edit
@@ -129,6 +130,8 @@ Live chapters live under `content/{subject}/{slug}/`:
 6. `templates/chapter.html` loads subject CSS then chapter CSS; `main.tsx` runs subject init then mounts widgets
 
 **Checkpoints (all subjects):** use `book-question`, `book-question__prompt`, `book-question__solution` (styled in theme `_book.scss`). Never use `book-question__answer`.
+
+**Charts (all subjects):** coordinate charts in chapter widgets must include axis labels, arrowheads, and graduation/tick scale by default. Do not ship unlabeled axes.
 
 **Math checkpoints / dots:** follow [math-chapter-patterns.md](math-chapter-patterns.md); shared dot classes in `content/math/subject.scss`.
 

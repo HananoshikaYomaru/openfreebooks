@@ -1,0 +1,66 @@
+<div class="book-prose">
+  <h2 id="history" class="book-prose__heading">History</h2>
+  <p>
+    Sequences and sums appear in ancient mathematics, including arithmetic progressions used for
+    counting and trade. Later, geometric series became central in finance and calculus.
+  </p>
+
+  <h2 id="derivation" class="book-prose__heading">Derivation and reasoning</h2>
+  <h3 id="derive-arithmetic-sum" class="book-prose__heading">Why the arithmetic sum formula works</h3>
+  <p>
+    Write \(S_n=a+(a+d)+\dots+l\) and reverse it. Adding line-by-line gives \(2S_n=n(a+l)\), so
+    \(S_n=\frac{n}{2}(a+l)\).
+  </p>
+  <h3 id="derive-geometric-sum" class="book-prose__heading">Why the geometric sum formula works</h3>
+  <p>
+    Let \(S_n=a+ar+\dots+ar^{n-1}\). Multiply by \(r\), subtract, and simplify:
+    \[
+    (1-r)S_n=a(1-r^n).
+    \]
+  </p>
+
+  <h2 id="checkpoints" class="book-prose__heading">Checkpoints</h2>
+  <details class="book-question">
+    <summary class="book-question__prompt">Find the 20th term of \(5,8,11,\dots\).</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> \(u_{20}=5+19(3)=62\).</p>
+    </div>
+  </details>
+  <details class="book-question">
+    <summary class="book-question__prompt">Find \(S_{30}\) for \(2,5,8,\dots\).</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> \(a=2,d=3\Rightarrow S_{30}=\frac{30}{2}[2(2)+29(3)]=1365\).</p>
+    </div>
+  </details>
+  <details class="book-question">
+    <summary class="book-question__prompt">For \(3,6,12,\dots\), find the 8th term.</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> \(u_8=3\cdot2^7=384\).</p>
+    </div>
+  </details>
+  <details class="book-question">
+    <summary class="book-question__prompt">Compute \(1+\frac12+\frac14+\frac18+\dots\).</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> \(a=1,r=\frac12\Rightarrow S_\infty=\frac{1}{1-1/2}=2\).</p>
+    </div>
+  </details>
+  <details class="book-question">
+    <summary class="book-question__prompt">Evaluate \(\sum_{k=1}^{5}(k+2)\).</summary>
+    <div class="book-question__solution">
+      <p><strong>Answer:</strong> \(3+4+5+6+7=25\).</p>
+    </div>
+  </details>
+
+  <h2 id="applications" class="book-prose__heading">Applications</h2>
+  <ul>
+    <li><strong>Savings plans:</strong> recurring deposits form sequences and cumulative sums.</li>
+    <li><strong>Population models:</strong> repeated growth can be modeled geometrically.</li>
+    <li><strong>Computer science:</strong> loops and algorithm costs often use summation notation.</li>
+  </ul>
+
+  <h2 id="references" class="book-prose__heading">References</h2>
+  <ul>
+    <li>Standard high-school algebra curricula on arithmetic and geometric progressions.</li>
+    <li>Precalculus texts on sigma notation and finite/infinite geometric series.</li>
+  </ul>
+</div>
