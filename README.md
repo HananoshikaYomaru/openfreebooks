@@ -19,7 +19,7 @@ Free, open-source textbooks for every learner — from elementary school through
 | Search | [Pagefind](https://pagefind.app/) (post-build index, Component UI) |
 | Hosting | Cloudflare Workers (static assets via Wrangler) |
 
-Chapter content is **HTML partials** in the theme today (not Markdown). Canvas maps use the [JSON Canvas](https://jsoncanvas.org/) standard (Obsidian-compatible) via [json-canvas-viewer](https://github.com/Hesprs/JSON-Canvas-Viewer).
+Chapter content is **HTML partials** in the theme today (not Markdown). Catalog maps use a Mermaid-powered interactive tree view (pan/zoom).
 
 **Contributing curriculum, subjects, or chapters?** See [CONTRIBUTING.md](CONTRIBUTING.md).
 
@@ -52,15 +52,13 @@ Install JS dependencies:
 bun install
 ```
 
-Build the Solid bundle, index search (once per session or after content changes), then start Zola’s dev server:
+For day-to-day local development, run JS watch + Zola serve together:
 
 ```bash
-bun run build:js
-bun run index:search
-zola serve
+bun run dev
 ```
 
-Open [http://127.0.0.1:1111](http://127.0.0.1:1111). Re-run `bun run build:js` (or `bun run dev:js` in another terminal) when you change `frontend/`. Re-run `bun run index:search` when you change chapter HTML or add pages so search stays up to date.
+Open [http://127.0.0.1:1111](http://127.0.0.1:1111). Re-run `bun run index:search` when you change chapter HTML or add pages so search stays up to date.
 
 Search UI is available immediately; results require the index step above (`static/pagefind/` is gitignored and copied from the build output).
 
@@ -97,38 +95,6 @@ The visual design is inspired by [manlung.work](https://manlung.work/): paper ba
 ## Contributor experience — known friction (task list)
 
 These issues make contributions harder than they should be. PRs that fix any item are welcome.
-
-### Catalog & data
-
-- [ ] **Auto-wire subjects in `catalog.html`** — stop hardcoding `if subject.id == "math"`; load `data/{id}-curriculum.json` by subject `id` convention.
-- [ ] **Single source for subjects** — merge `catalog.json` subject stubs and `{subject}-curriculum.json` or generate one from the other at build time.
-- [ ] **`scripts/validate-curriculum.ts`** — JSON schema check: slugs, `curriculums` ⊆ global list, live chapters have `content/`, `graph.edges` acyclic.
-- [ ] **Document or script new curriculum labels** — today requires `catalog.json`, Sass badge, and TS `curriculumBadgeClass()` mapping.
-
-### Chapters & content
-
-- [x] **Colocated chapter folders** — `content/{subject}/{slug}/` with `sync:chapters`, generic `chapter.html`, auto widget registry.
-- [x] **Strand kicker from front matter** — `[extra] strand` in `_index.md`.
-- [ ] **Subject-agnostic catalog load in chapter template** — breadcrumb still loads `math-curriculum.json` literally until more subjects go live.
-- [ ] **Markdown chapters (optional)** — README/spec disagree on format; if staying HTML, document clearly everywhere.
-- [ ] **Defuddle “copy as Markdown”** — spec calls for it on every page; not implemented.
-
-### Site & discoverability
-
-- [ ] **Data-driven homepage cards** — “Browse by subject” / featured blocks duplicate manual edits in `index.html`.
-- [x] **Pagefind search** — `/search/`, header modal (⌘K), `bun run index:search` for local dev.
-- [ ] **CONTRIBUTING wizard or checklist in CI** — fail PR if live chapter missing partial or catalog entry.
-
-### Build & repo hygiene
-
-- [ ] **Prevent stale theme `static/**/*.html`** — committed copies under `themes/openfreebooks/static/` override Zola output (index, catalog, math); add CI check or pre-commit.
-- [ ] **Clarify package manager** — project uses **Bun** (`bun run build`); align docs/tooling if pnpm is preferred elsewhere.
-- [ ] **`dev` one-liner** — e.g. `bun run dev` running `vite build --watch` + `zola serve` together.
-
-### New subject onboarding
-
-- [ ] **Subject scaffold command** — e.g. `bun run scaffold:subject science` creating `data/science-curriculum.json`, `content/science/_index.md`, and catalog entry.
-- [ ] **Redirect template generic** — `math-redirect.html` → `subject-redirect.html` using `?subject=` from section path.
 
 ## Agent skills
 

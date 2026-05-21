@@ -6,11 +6,14 @@
   "scripts": {
     "sync:chapters": "bun scripts/sync-chapters.ts",
     "build:js": "bun run sync:chapters && vite build",
-    "build": "find themes/openfreebooks/static -name '*.html' -delete && rm -f themes/openfreebooks/static/main.css public/main.css && bun run build:js && zola build && bun run index:search",
+    "build": "bun run check:static-html && bun run validate:curriculum && rm -f themes/openfreebooks/static/main.css public/main.css && bun run build:js && zola build && bun run index:search",
     "index:search": "pagefind --site public --glob \"**/index.html\" && rm -rf static/pagefind && cp -R public/pagefind static/pagefind",
     "dev:js": "bun run sync:chapters && vite build --watch",
+    "dev": "bash scripts/dev.sh",
+    "check:static-html": "bash scripts/check-static-html.sh",
     "scan:size": "bun scripts/scan-output-size.ts",
-    "test": "bun test frontend/src/lib"
+    "test": "bun test",
+    "validate:curriculum": "bun scripts/validate-curriculum.ts"
   },
   "dependencies": {
     "defuddle": "^0.18.1",

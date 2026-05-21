@@ -2,7 +2,7 @@
 name: ofb
 description: >-
   Develop Open Free Books (OFB): Zola static site, catalog/curriculum JSON,
-  HTML chapters, Solid.js, JSON Canvas maps, Sass. Use when editing openfreebooks,
+  HTML chapters, Solid.js, Mermaid catalog maps, Sass. Use when editing openfreebooks,
   adding subjects/chapters/curriculum, catalog, math content, or deploying to
   Cloudflare.
 ---
@@ -20,8 +20,8 @@ data/catalog.json          → subject list + global curriculum filter chips
 data/{subject}-curriculum.json → strands, chapters, curriculums[], graph.edges
 content/{subject}/…        → Zola sections (chapter pages at /{subject}/{slug}/)
 themes/…/partials/{subject}/ → chapter HTML bodies (not Markdown today)
-frontend/                  → catalog-app, canvas viewer, site chrome
-/catalog/                  → browse UI (list + JSON Canvas map)
+frontend/                  → catalog-app, Mermaid map view, site chrome
+/catalog/                  → browse UI (list + Mermaid map)
 ```
 
 **Catalog is the subject index.** `/math/` redirects to `/catalog/?subject=math`. Do not revive a separate book index unless asked.
@@ -47,7 +47,7 @@ bun run build       # production: JS + Zola + pagefind → public/
 | Theme static | **Only** commit `themes/openfreebooks/static/js/bundle.js` (+ fonts if any). **Never** commit `public/` or stale HTML under theme `static/` |
 | Tera | Never name a loaded JSON variable `math` (reserved). Use `math_catalog`, etc. |
 | Chapter URLs | `/{subjectId}/{chapter-slug}/` (e.g. `/math/quadratic-equations/`) |
-| Canvas | [JSON Canvas 1.0](https://jsoncanvas.org/spec/1.0/); viewer: `json-canvas-viewer` (full build, lazy-loaded on catalog) |
+| Map | Mermaid DAG view (`?view=tree`) driven by `graph.edges` |
 | Graph | `graph.edges` must be **acyclic**; builder throws on cycles |
 
 ## Common tasks → where to edit
@@ -55,7 +55,7 @@ bun run build       # production: JS + Zola + pagefind → public/
 | Task | Files |
 |------|--------|
 | New global curriculum chip (e.g. GCSE) | `data/catalog.json` → `curriculums[]`; `_catalog.scss` badge; `frontend/src/lib/catalog-badge.ts`; rebuild |
-| New subject (sidebar) | `data/catalog.json` → `subjects[]`; `data/{id}-curriculum.json`; **wire catalog template** (today: manual `if subject.id` in `catalog.html` — prefer fixing per [CONTRIBUTING.md](../../../CONTRIBUTING.md)) |
+| New subject (sidebar) | `data/catalog.json` → `subjects[]`; `data/{id}-curriculum.json` (catalog template auto-loads by `id`) |
 | New chapter (planned) | `{subject}-curriculum.json` strand entry; optional `graph.edges` |
 | New chapter (live) | Above + `content/{subject}/{slug}/_index.md` + HTML partial + `chapter.html` wiring + `main.tsx` widget mount if interactive |
 | Homepage subject card | `themes/.../templates/index.html` (not yet data-driven) |
@@ -78,16 +78,16 @@ bun run build       # production: JS + Zola + pagefind → public/
 
 Detailed checklists: [curriculum-data.md](curriculum-data.md). Human-facing guide: [CONTRIBUTING.md](../../../CONTRIBUTING.md).
 
-## Catalog / canvas
+## Catalog / map
 
 | Piece | Path |
 |-------|------|
 | Shell UI (subject, filters, list/map toggle) | `frontend/src/components/catalog-app.tsx` |
 | Shared chapter card (list + map markup) | `frontend/src/components/catalog-chapter-card.tsx` |
-| Map viewer (json-canvas-viewer) | `frontend/src/components/catalog-canvas-view.tsx` (lazy chunk) |
-| Canvas layout (strands as columns, DAG levels, node positions) | `frontend/src/lib/catalog-to-canvas.ts` |
-| Card height measure + post-render fit | `frontend/src/lib/catalog-chapter-card-layout.ts` |
-| Viewer theme (light/dark hex colors) | `frontend/src/lib/catalog-canvas-theme.ts` |
+| Map viewer (Mermaid) | `frontend/src/components/catalog-mermaid-view.tsx` (lazy chunk) |
+| Mermaid source builder | `frontend/src/lib/catalog-to-mermaid.ts` |
+| Mermaid theme (light/dark hex colors) | `frontend/src/lib/catalog-mermaid-theme.ts` |
+| Theme-mode helpers used by map | `frontend/src/lib/catalog-canvas-theme.ts` |
 | Curriculum badge CSS class map | `frontend/src/lib/catalog-badge.ts` |
 | Types | `data/catalog.types.ts` |
 | Styles | `themes/openfreebooks/sass/_catalog.scss` |
@@ -97,11 +97,11 @@ Detailed checklists: [curriculum-data.md](curriculum-data.md). Human-facing guid
 
 **List view:** full-card link for live chapters; number + title row on wide screens.
 
-**Map view:** custom `nodeComponents.text` renders the same card DOM as list (`catalog-chapter-card--map`). Only the **title** is a link (with `→` and animated underline on hover/focus). Planned chapters are non-clickable. Do not make the whole card an `<a>`.
+**Map view:** `CatalogMermaidView` renders a Mermaid DAG from `graph.edges`. Only live chapter titles become links; planned chapters are non-clickable.
 
-**Map layout:** one column per strand; Y from DAG level + per-level max card height. Node width `300px` (`CHAPTER_NODE_WIDTH`). Heights: off-screen `scrollHeight` per card, then after viewer paints, `measureRenderedMapChapterCards()` + `relayoutCanvasChapterHeights()` once if any node was too short. Waits for `document.fonts.ready` before first layout.
+**Map layout:** generated in `catalog-to-mermaid.ts` with strand subgraphs + edges from curriculum DAG data.
 
-**Canvas viewer quirks:** use `container.get(internal.InteractionHandler).onClick` (not `viewer.onClick`); edge colors must be 8-digit hex (no `rgba` on node/edge color fields); wheel on map uses capture-phase `stopPropagation` unless Ctrl/Cmd so the page can scroll.
+**Mermaid quirks:** use `theme: "base"` + hex `themeVariables`; Mermaid applies inline fills, so cluster fills are controlled in Mermaid config, not plain Sass overrides.
 
 Prerequisites: **only** `graph.edges` (required, global DAG, cross-strand OK). Longest-path levels. No implicit strand-list chains. List order ≠ map order.
 
@@ -136,10 +136,10 @@ bun run build
 
 ## Planned / not implemented (do not assume)
 
-- Defuddle “copy as Markdown” on chapters
-- Markdown-based chapters (spec says HTML; README may be outdated)
+- Defuddle “copy as Markdown” on non-chapter pages
 - Data-driven homepage cards
-- Single-file subject registration (catalog template still special-cases `math`)
+- Single source for subject metadata (`catalog.json` + `*-curriculum.json`)
+- Subject scaffold command (`scaffold:subject`)
 
 See README **Contributor experience** task list for tracked fixes.
 

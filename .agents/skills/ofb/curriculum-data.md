@@ -89,15 +89,15 @@ Example: `data/math-curriculum.json`.
 
 ### Wiring into catalog
 
-`themes/openfreebooks/templates/catalog.html` must expose strands + graph in `#catalog-data`. **Today only `math` is wired** — adding a subject requires a Tera block like:
+`themes/openfreebooks/templates/catalog.html` exposes strands + graph in `#catalog-data` by loading `data/{subject.id}-curriculum.json` for each catalog subject.
 
 ```tera
-{% set subject_catalog = load_data(path="data/science-curriculum.json", format="json") %}
+{% for subject in catalog.subjects %}
+{% set subject_curriculum = load_data(path="data/" ~ subject.id ~ "-curriculum.json", format="json") %}
 ...
-"strands": {% if subject.id == "science" %}{{ subject_catalog.strands | json_encode() | safe }}{% else %}[]{% endif %}
+"strands": {{ subject_curriculum.strands | default(value=[]) | json_encode() | safe }}
+{% endfor %}
 ```
-
-**Goal (tracked in README):** auto-load `data/{id}-curriculum.json` by subject id.
 
 ## Status: planned vs live
 
@@ -106,7 +106,7 @@ Example: `data/math-curriculum.json`.
 | `planned` | Shown, “Coming soon” badge | Card shown; title not linked | Only JSON entry |
 | `live` | Full card links to chapter | Title links to chapter (`→` + underline); rest of card not clickable | `content/` + HTML partial + template wiring |
 
-Map nodes are `type: "text"` in JSON Canvas; the viewer renders custom HTML via `catalog-chapter-card.tsx` (`renderCatalogChapterCardElement`), not markdown.
+Map view is Mermaid-based (`CatalogMermaidView` + `catalog-to-mermaid.ts`) and uses `graph.edges` as the source-of-truth DAG.
 
 ## Adding a curriculum label
 
@@ -117,18 +117,15 @@ Map nodes are `type: "text"` in JSON Canvas; the viewer renders custom HTML via 
 
 ## Map card heights (agents)
 
-Do not use fixed node heights or font-metrics libraries for layout. The pipeline is:
+Do not hand-place map node positions. The pipeline is:
 
-1. `measureAllMapChapterCardHeights()` — render each card off-screen; read `scrollHeight`.
-2. `subjectToCanvas()` — assign node `height` and column Y from DAG levels.
-3. After `json-canvas-viewer` paints, `measureRenderedMapChapterCards()` + `relayoutCanvasChapterHeights()` — bump any node still too short and reflow Y / strand groups.
+1. `subjectToMermaid()` builds Mermaid source from strands + `graph.edges`.
+2. `CatalogMermaidView` renders with Mermaid (`theme: "base"` + hex theme variables).
+3. `enhanceStrandClusterHeaders()` post-processes strand header chrome in SVG.
 
 Card markup must stay in sync between `catalog-chapter-card.tsx` (Solid + `renderCatalogChapterCardElement`) and `_catalog.scss` (especially `.catalog-chapter-card--map`).
 
-## Validation (manual until scripted)
+## Validation
 
-- JSON parses (`jq . data/math-curriculum.json`).
-- Every `live` slug has `content/{subject}/{slug}/_index.md`.
-- Every `curriculums[]` value is listed in `catalog.json`.
-- Graph edges reference existing slugs; no cycles (open catalog map view).
+- `bun run validate:curriculum` (scripted checks for slugs, curricula labels, live content paths, and DAG acyclicity).
 - `bun run build` succeeds.
