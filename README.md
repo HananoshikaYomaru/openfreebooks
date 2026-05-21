@@ -1,5 +1,7 @@
 # Open Free Books
 
+> Work in Progress. I am looking for contributors to help build this project. Educators welcome. 
+
 Free, open-source textbooks for every learner — from elementary school through university. The site is fully static, open on GitHub, and deployed to Cloudflare.
 
 **Live site:** [openfreebooks.org](https://openfreebooks.org)

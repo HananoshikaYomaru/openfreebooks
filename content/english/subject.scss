@@ -1,0 +1,10 @@
+// Shared styles for English chapters.
+// Keep chapter-specific rules in each chapter folder's chapter.scss.
+
+.english-key-term {
+  padding: 0.05rem 0.32rem;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  font-family: var(--mono);
+  font-size: 0.85em;
+}

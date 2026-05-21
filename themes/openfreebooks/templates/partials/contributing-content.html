@@ -41,6 +41,7 @@ content/{subject}/{slug}/      → live page (one folder)
       <li><strong>Compare</strong> (<code>?view=compare</code>, Mathematics only) — curricula comparison doc (HTML partial, not JSON).</li>
       <li>Curriculum names (DSE, IB, …) appear <strong>only in the catalog</strong>, never inside lesson prose.</li>
       <li>Every chapter needs a <code>description</code> (1–2 sentences; map clamps to three lines).</li>
+      <li>Adding a subject should only require updates in <code>data/</code> and <code>content/</code>; templates stay unchanged.</li>
     </ul>
   </div>
 
@@ -77,7 +78,7 @@ content/{subject}/{slug}/      → live page (one folder)
     <h3 class="contributing-section__subtitle">2. Chapter folder</h3>
     <p>Add <code>_index.md</code>, <code>core.html</code>, optional <code>supplement.html</code>, <code>assets/</code>, <code>widgets/*.tsx</code>. Copy <code>content/math/quadratic-equations/</code>.</p>
     <h3 class="contributing-section__subtitle">3. Build</h3>
-    <p><code>bun run build:js</code> syncs HTML and bundles widgets — no theme or <code>main.tsx</code> edits.</p>
+    <p><code>bun run build:js</code> syncs HTML and bundles widgets — no theme template or <code>main.tsx</code> edits.</p>
   </div>
 
   <aside class="contributing-card-demo" aria-label="Map chapter card example">

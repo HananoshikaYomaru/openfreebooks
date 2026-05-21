@@ -1,0 +1,215 @@
+{
+  "title": "Physics",
+  "intro": "HKDSE-aligned physics pathways across compulsory and elective modules.",
+  "graph": {
+    "edges": [
+      { "from": "thermal-energy-temperature", "to": "heat-transfer-and-insulation" },
+      { "from": "heat-transfer-and-insulation", "to": "change-of-state-latent-heat" },
+      { "from": "change-of-state-latent-heat", "to": "gas-laws-kinetic-theory" },
+      { "from": "kinematics-motion-graphs", "to": "force-newtons-laws" },
+      { "from": "force-newtons-laws", "to": "momentum-impulse-collisions" },
+      { "from": "force-newtons-laws", "to": "work-energy-power" },
+      { "from": "force-newtons-laws", "to": "uniform-circular-motion-gravitation" },
+      { "from": "wave-basics-superposition", "to": "light-optics" },
+      { "from": "wave-basics-superposition", "to": "sound-doppler-effect" },
+      { "from": "electrostatics-electric-fields", "to": "circuits-domestic-electricity" },
+      { "from": "circuits-domestic-electricity", "to": "electromagnetism-induction" },
+      { "from": "radioactivity-half-life", "to": "nuclear-energy-fission-fusion" },
+      { "from": "uniform-circular-motion-gravitation", "to": "astronomy-and-space-science" },
+      { "from": "work-energy-power", "to": "energy-and-use-of-energy" },
+      { "from": "gas-laws-kinetic-theory", "to": "atomic-world-quantum-intro" },
+      { "from": "nuclear-energy-fission-fusion", "to": "atomic-world-quantum-intro" },
+      { "from": "electromagnetism-induction", "to": "medical-physics" },
+      { "from": "nuclear-energy-fission-fusion", "to": "medical-physics" }
+    ]
+  },
+  "strands": [
+    {
+      "id": "heat-and-gases",
+      "title": "I. Heat and Gases",
+      "chapters": [
+        {
+          "slug": "thermal-energy-temperature",
+          "title": "Thermal energy, temperature, and internal energy",
+          "description": "Distinguish heat, temperature, and internal energy using particle and energy models.",
+          "status": "planned",
+          "curriculumCoverage": { "DSE": "core", "IGCSE": "core", "A-Level": "core", "AP": "related" }
+        },
+        {
+          "slug": "heat-transfer-and-insulation",
+          "title": "Heat transfer: conduction, convection, and radiation",
+          "description": "Compare thermal transfer processes and evaluate insulation strategies in real systems.",
+          "status": "planned",
+          "curriculumCoverage": { "DSE": "core", "IGCSE": "core", "A-Level": "core", "AP": "core" }
+        },
+        {
+          "slug": "change-of-state-latent-heat",
+          "title": "Change of state and latent heat",
+          "description": "Model phase changes with heating curves and latent heat calculations.",
+          "status": "planned",
+          "curriculumCoverage": { "DSE": "core", "IGCSE": "core", "A-Level": "core", "AP": "core" }
+        },
+        {
+          "slug": "gas-laws-kinetic-theory",
+          "title": "Gas laws and kinetic theory",
+          "description": "Connect Boyle's and Charles's laws to particle motion and absolute temperature.",
+          "status": "planned",
+          "curriculumCoverage": { "DSE": "core", "IB": "core", "A-Level": "core", "AP": "core" }
+        }
+      ]
+    },
+    {
+      "id": "force-and-motion",
+      "title": "II. Force and Motion",
+      "chapters": [
+        {
+          "slug": "kinematics-motion-graphs",
+          "title": "Position, velocity, acceleration, and motion graphs",
+          "description": "Interpret and connect displacement-time, velocity-time, and acceleration-time graphs.",
+          "status": "planned",
+          "curriculumCoverage": { "DSE": "core", "IB": "core", "A-Level": "core", "AP": "core" }
+        },
+        {
+          "slug": "force-newtons-laws",
+          "title": "Force and Newton's laws",
+          "description": "Use free-body diagrams and Newton's laws to predict acceleration and motion changes.",
+          "status": "live",
+          "curriculumCoverage": { "DSE": "core", "IB": "core", "A-Level": "core", "AP": "core" }
+        },
+        {
+          "slug": "momentum-impulse-collisions",
+          "title": "Momentum, impulse, and collisions",
+          "description": "Apply conservation of momentum to collisions and recoil situations.",
+          "status": "planned",
+          "curriculumCoverage": { "DSE": "core", "IB": "core", "A-Level": "core", "AP": "core" }
+        },
+        {
+          "slug": "work-energy-power",
+          "title": "Work, energy, and power",
+          "description": "Relate force to energy transfer and analyze efficiency and power in systems.",
+          "status": "planned",
+          "curriculumCoverage": { "DSE": "core", "IB": "core", "A-Level": "core", "AP": "core" }
+        },
+        {
+          "slug": "uniform-circular-motion-gravitation",
+          "title": "Uniform circular motion and gravitation",
+          "description": "Model circular motion and gravitational attraction in satellites and planetary systems.",
+          "status": "planned",
+          "curriculumCoverage": { "DSE": "core", "IB": "extension", "A-Level": "core", "AP": "related" }
+        }
+      ]
+    },
+    {
+      "id": "wave-motion",
+      "title": "III. Wave Motion",
+      "chapters": [
+        {
+          "slug": "wave-basics-superposition",
+          "title": "Wave properties and superposition",
+          "description": "Describe wave quantities and apply reflection, refraction, diffraction, and interference.",
+          "status": "planned",
+          "curriculumCoverage": { "DSE": "core", "IB": "core", "A-Level": "core", "AP": "core" }
+        },
+        {
+          "slug": "light-optics",
+          "title": "Light, lenses, and optical models",
+          "description": "Use ray and wave models to analyze image formation and optical instruments.",
+          "status": "planned",
+          "curriculumCoverage": { "DSE": "core", "IB": "core", "A-Level": "core", "AP": "core" }
+        },
+        {
+          "slug": "sound-doppler-effect",
+          "title": "Sound, pitch, loudness, and Doppler effect",
+          "description": "Connect sound wave behavior to frequency, intensity, and moving-source effects.",
+          "status": "planned",
+          "curriculumCoverage": { "DSE": "core", "IB": "core", "A-Level": "core", "AP": "related" }
+        }
+      ]
+    },
+    {
+      "id": "electricity-and-magnetism",
+      "title": "IV. Electricity and Magnetism",
+      "chapters": [
+        {
+          "slug": "electrostatics-electric-fields",
+          "title": "Electrostatics, electric fields, and potential",
+          "description": "Model electric forces and potential differences in static-charge systems.",
+          "status": "planned",
+          "curriculumCoverage": { "DSE": "core", "IB": "core", "A-Level": "core", "AP": "core" }
+        },
+        {
+          "slug": "circuits-domestic-electricity",
+          "title": "Circuits and domestic electricity",
+          "description": "Analyze circuit behavior, power consumption, and safety in household systems.",
+          "status": "planned",
+          "curriculumCoverage": { "DSE": "core", "IGCSE": "core", "A-Level": "core", "AP": "core" }
+        },
+        {
+          "slug": "electromagnetism-induction",
+          "title": "Magnetism and electromagnetic induction",
+          "description": "Explain magnetic effects of current and induction in generators and transformers.",
+          "status": "planned",
+          "curriculumCoverage": { "DSE": "core", "IB": "core", "A-Level": "core", "AP": "core" }
+        }
+      ]
+    },
+    {
+      "id": "radioactivity-and-nuclear-energy",
+      "title": "V. Radioactivity and Nuclear Energy",
+      "chapters": [
+        {
+          "slug": "radioactivity-half-life",
+          "title": "Radiation, radioactivity, and half-life",
+          "description": "Classify ionizing radiation and model radioactive decay quantitatively.",
+          "status": "planned",
+          "curriculumCoverage": { "DSE": "core", "IB": "core", "A-Level": "core", "AP": "core" }
+        },
+        {
+          "slug": "nuclear-energy-fission-fusion",
+          "title": "Nuclear models, fission, and fusion",
+          "description": "Compare fission and fusion through binding energy and mass-energy conversion.",
+          "status": "planned",
+          "curriculumCoverage": { "DSE": "core", "IB": "extension", "A-Level": "core", "AP": "core" }
+        }
+      ]
+    },
+    {
+      "id": "elective-part",
+      "title": "Elective Part (choose two)",
+      "chapters": [
+        {
+          "slug": "astronomy-and-space-science",
+          "title": "Astronomy and space science",
+          "description": "Study celestial coordinates, orbital motion, and cosmology foundations.",
+          "status": "planned",
+          "tier": "non-foundation",
+          "curriculumCoverage": { "DSE": "extension", "IB": "core", "A-Level": "related", "AP": "related" }
+        },
+        {
+          "slug": "atomic-world-quantum-intro",
+          "title": "Atomic world and quantum foundations",
+          "description": "Bridge atomic models, photoelectric effect, and wave-particle duality.",
+          "status": "planned",
+          "tier": "non-foundation",
+          "curriculumCoverage": { "DSE": "extension", "IB": "core", "A-Level": "core", "AP": "core" }
+        },
+        {
+          "slug": "energy-and-use-of-energy",
+          "title": "Energy and use of energy",
+          "description": "Evaluate energy resources, efficiency, and sustainability trade-offs.",
+          "status": "planned",
+          "tier": "non-foundation",
+          "curriculumCoverage": { "DSE": "extension", "IB": "related", "A-Level": "core", "AP": "related" }
+        },
+        {
+          "slug": "medical-physics",
+          "title": "Medical physics",
+          "description": "Connect imaging technologies and radiation safety to physics principles.",
+          "status": "planned",
+          "tier": "non-foundation",
+          "curriculumCoverage": { "DSE": "extension", "IB": "related", "A-Level": "related", "AP": "related" }
+        }
+      ]
+    }
+  ]
+}

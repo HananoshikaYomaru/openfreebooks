@@ -15,12 +15,13 @@
   "curriculums": {{ catalog.curriculums | json_encode() | safe }},
   "subjects": [
     {% for subject in catalog.subjects %}
+    {% set subject_curriculum = load_data(path="data/" ~ subject.id ~ "-curriculum.json", format="json") %}
     {
       "id": {{ subject.id | json_encode() | safe }},
       "name": {{ subject.name | json_encode() | safe }}{% if subject.banner %},
       "banner": {{ subject.banner | json_encode() | safe }}{% endif %},
-      "strands": {% if subject.id == "math" %}{{ math_catalog.strands | json_encode() | safe }}{% else %}[]{% endif %}{% if subject.id == "math" and math_catalog.graph %},
-      "graph": {{ math_catalog.graph | json_encode() | safe }}{% endif %}
+      "strands": {{ subject_curriculum.strands | default(value=[]) | json_encode() | safe }}{% if subject_curriculum.graph %},
+      "graph": {{ subject_curriculum.graph | json_encode() | safe }}{% endif %}
     }{% if not loop.last %},{% endif %}
     {% endfor %}
   ]

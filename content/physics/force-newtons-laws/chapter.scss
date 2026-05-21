@@ -1,0 +1,201 @@
+.physics-widget {
+  margin: 20px 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card-bg);
+  padding: 14px;
+}
+
+.physics-widget__layout {
+  display: grid;
+  gap: 12px;
+}
+
+.physics-widget__section {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--paper) 72%, transparent);
+  padding: 10px;
+}
+
+.physics-widget__title {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.physics-slider-row {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.physics-slider-row label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 0.86rem;
+}
+
+.physics-slider-row input[type="range"] {
+  width: 100%;
+}
+
+.physics-value {
+  font-family: var(--mono);
+  font-weight: 700;
+}
+
+.force-lab__summary {
+  margin: 8px 0 0;
+  font-size: 0.9rem;
+}
+
+.force-lab__status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.force-lab__state-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, #f59e0b 40%, var(--line));
+  background: color-mix(in srgb, #f59e0b 16%, transparent);
+  color: color-mix(in srgb, #b45309 70%, var(--ink));
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.force-lab__state-pill--moving {
+  border-color: color-mix(in srgb, #10b981 45%, var(--line));
+  background: color-mix(in srgb, #10b981 18%, transparent);
+  color: color-mix(in srgb, #065f46 74%, var(--ink));
+}
+
+.force-lab__time {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--soft-ink);
+}
+
+.force-lab__diagram-wrap {
+  margin: 0;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+}
+
+.force-lab__canvas {
+  --force-canvas-bg: color-mix(in srgb, var(--paper) 90%, #e2e8f0);
+  --force-canvas-grid: color-mix(in srgb, var(--line) 72%, transparent);
+  --force-canvas-ink: color-mix(in srgb, var(--ink) 90%, #111827);
+
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  background: var(--force-canvas-bg);
+}
+
+.force-lab__timeline {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+}
+
+.force-lab__btn {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card-bg);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.42rem 0.62rem;
+  cursor: pointer;
+}
+
+.force-lab__btn--play {
+  border-color: color-mix(in srgb, #2563eb 50%, var(--line));
+  background: color-mix(in srgb, #2563eb 14%, transparent);
+}
+
+.force-lab__scrubber {
+  width: 100%;
+}
+
+.motion-lab__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.motion-lab__stat {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px;
+  background: color-mix(in srgb, var(--paper) 70%, transparent);
+}
+
+.motion-lab__stat-label {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--soft-ink);
+}
+
+.motion-lab__stat-value {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--mono);
+  font-weight: 700;
+}
+
+.motion-lab__plot {
+  width: 100%;
+  max-width: 520px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+}
+
+.motion-lab__legend {
+  margin: 8px 0 0;
+  font-size: 0.76rem;
+  color: var(--soft-ink);
+}
+
+.motion-lab__legend-line {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 12px;
+}
+
+.motion-lab__legend-line::before {
+  content: "";
+  width: 18px;
+  height: 2px;
+  margin-right: 6px;
+}
+
+.motion-lab__legend-line--velocity::before {
+  background: #0ea5e9;
+}
+
+.motion-lab__legend-line--position::before {
+  background: #f59e0b;
+}
+
+@media (min-width: 900px) {
+  .physics-widget__layout {
+    grid-template-columns: minmax(260px, 1fr) minmax(0, 1.2fr);
+    align-items: start;
+  }
+}

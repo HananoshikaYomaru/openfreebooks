@@ -97,8 +97,9 @@
       "type": "standard",
       "question": "Is the content AI-generated?",
       "answer": [
-        "No. Chapters are authored HTML with care: figures, interactives, and maps where they help understanding — not bulk-generated slop or print PDFs pasted online.",
-        "Core curriculum changes slowly; one carefully reviewed book, shared openly, beats regenerating the same chapter thousands of times in a data center."
+        "We use AI as a drafting and editing tool, but we do not rely on AI chat tokens as the final product layer. We publish reviewed, hand-curated chapters as open HTML so learning materials stay readable without paid AI access.",
+        "Token costs matter. Today some companies appear to offer \"free\" AI access, but that is often market-share strategy in an early stage. If prices rise later, learners with less money or weaker infrastructure could lose access.",
+        "The open web is more durable: HTML and JavaScript are stable foundations likely to remain usable for decades. Building high-quality, future-proof educational materials now — with AI assistance but web-native outputs — is the practical long-term approach."
       ]
     },
     {

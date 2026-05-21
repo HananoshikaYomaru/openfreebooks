@@ -158,10 +158,29 @@ Add edges in `data/{subject}-curriculum.json`:
 
 ## Add a new subject
 
-1. `data/catalog.json` — add to `subjects`.
-2. Create `data/{id}-curriculum.json` (copy structure from `math-curriculum.json`).
-3. Wire the subject in `themes/openfreebooks/templates/catalog.html` (until auto-wire lands).
-4. Add `content/{subject}/` when you have chapters.
+1. `data/catalog.json` — add the subject to `subjects`.
+2. Create `data/{id}-curriculum.json` (same schema as `math-curriculum.json`; `strands` + optional `graph.edges`).
+3. Add `content/{subject}/` when you have live chapters.
+4. Run `bun run build:js` (this syncs chapter content and auto-registers subject CSS/JS modules).
+
+### Subject scaffold (copyable)
+
+```text
+data/
+  {subject}-curriculum.json
+content/{subject}/
+  subject.scss                # optional shared styles
+  subject.ts                  # optional shared JS init
+  {chapter-slug}/
+    _index.md                 # template = "chapter.html", extra.subject = "{subject}"
+    core.html                 # required
+    supplement.html           # optional
+    chapter.scss              # optional chapter-only styles
+    assets/                   # optional
+    widgets/*.tsx             # optional
+```
+
+No catalog/chapter template edits are required for new subjects when the subject is present in `data/catalog.json` and `data/{subject}-curriculum.json` exists.
 
 ---
 
