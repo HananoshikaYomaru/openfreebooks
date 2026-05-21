@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "sync:chapters": "bun scripts/sync-chapters.ts",
+    "sync:sponsors": "bun scripts/fetch-github-sponsors.ts",
     "generate:site-metadata": "bun scripts/generate-site-metadata.ts",
     "build:js": "bun run sync:chapters && vite build",
     "build:site": "bun run generate:site-metadata && zola build && bun run index:search",

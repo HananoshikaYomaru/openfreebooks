@@ -345,6 +345,28 @@ h3 {
   margin-bottom: 12px;
 }
 
+.sponsors-intro {
+  max-width: 680px;
+  margin: -10px 0 20px;
+  color: var(--soft-ink);
+}
+
+.sponsors-cta {
+  margin: 12px 0 0;
+  color: var(--soft-ink);
+  font-size: 0.95rem;
+}
+
+.sponsors-cta a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.sponsors-cta a:hover,
+.sponsors-cta a:focus-visible {
+  text-decoration: underline;
+}
+
 .tree-cta {
   min-height: clamp(680px, 92vh, 980px);
   display: flex;

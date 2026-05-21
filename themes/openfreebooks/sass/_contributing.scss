@@ -7,6 +7,30 @@
   margin-bottom: 16px;
 }
 
+.contributing-page__thanks {
+  max-width: var(--prose-width);
+  margin: 0 0 24px;
+  color: var(--soft-ink);
+  font-size: 1rem;
+  line-height: 1.7;
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
 .contributing-page__lead {
   margin: 0 0 36px;
   max-width: var(--prose-width);

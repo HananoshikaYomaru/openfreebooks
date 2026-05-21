@@ -15,7 +15,7 @@
       "id": "how-different",
       "type": "comparison",
       "question": "How is Open Free Books different from LibreTexts, Open Textbook Library, Project Gutenberg, and OpenStax?",
-      "intro": "We respect these projects — they solve different problems. On many platforms, you find lots of different books for a single subject. With Open Free Books, there's just one textbook per subject—designed to be comprehensive so people everywhere can use it for any curriculum. That way, you don't need to pick between competing choices—you can just focus on learning. Oh, so this platform usually only provides static HTML without any interaction or just a PDF, but in OpenFreeBooks we have interactive demos An alleged map that are tailor made to visualize complex idea in simple ways.",
+      "intro": "We respect these projects — they solve different problems. On many platforms, you find lots of different books for a single subject. With Open Free Books, there's just one textbook per subject—designed to be comprehensive so people everywhere can use it for any curriculum. That way, you don't need to pick between competing choices—you can just focus on learning. Also these platforms usually only provide static HTML without any interaction or just PDFs, but in OpenFreeBooks we have interactive demos and knowledge maps that are tailor made to visualize complex idea in simple ways.",
       "peers": [
         {
           "name": "LibreTexts",

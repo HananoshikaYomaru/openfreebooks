@@ -1,0 +1,42 @@
+{% set sponsors_data = load_data(path="data/github-sponsors.json", format="json") %}
+
+<section id="github-sponsors">
+  <div class="container">
+    <p class="section-kicker">Support</p>
+    <h2 class="section-title">{{ sponsors_data.title }}</h2>
+    <p class="sponsors-intro">{{ sponsors_data.intro }}</p>
+
+    {% if sponsors_data.sponsors and sponsors_data.sponsors | length > 0 %}
+    <ul class="contributors-avatar-grid sponsors-avatar-grid" role="list" data-scroll-reveal>
+      {% for sponsor in sponsors_data.sponsors %}
+      <li class="contributors-avatar-item" data-scroll-reveal-card>
+        <a
+          href="{{ sponsor.url | safe }}"
+          class="contributor-avatar-btn"
+          rel="noopener noreferrer"
+          aria-label="GitHub sponsor {{ sponsor.name }}"
+          title="{{ sponsor.name }}"
+        >
+          <img
+            class="contributor-avatar-img"
+            src="{{ sponsor.avatar | safe }}"
+            alt=""
+            width="48"
+            height="48"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    <p class="sponsors-cta">
+      <a href="{{ sponsors_data.profile_url | safe }}" rel="noopener noreferrer">Thank you to all sponsors</a>
+    </p>
+    {% else %}
+    <p class="sponsors-cta">
+      No public sponsors listed yet. <a href="{{ sponsors_data.profile_url | safe }}" rel="noopener noreferrer">Sponsor on GitHub</a>.
+    </p>
+    {% endif %}
+  </div>
+</section>

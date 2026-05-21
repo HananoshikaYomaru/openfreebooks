@@ -8,7 +8,11 @@
 {% block content %}
 <section class="contributing-page">
   <div class="container">
+    {% if page.content %}
+    <div class="contributing-page__thanks">{{ page.content | safe }}</div>
+    {% endif %}
     {% include "partials/contributing-content.html" %}
   </div>
 </section>
+{% include "partials/sponsors-section.html" %}
 {% endblock content %}

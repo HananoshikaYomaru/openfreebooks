@@ -1,4 +1,5 @@
 {% set credits = load_data(path="data/credits.json", format="json") %}
+{% set sponsors_data = load_data(path="data/github-sponsors.json", format="json") %}
 {% set libraries = credits.libraries | sort(attribute="name") %}
 
 <div class="credits-prose">
@@ -6,6 +7,10 @@
   <p class="credits-contributors-note">
     {{ credits.contributors_note }}
     <a href="{{ get_url(path='/') | safe }}#contributors">View contributors</a>.
+  </p>
+  <p class="credits-contributors-note">
+    Special thanks to our GitHub Sponsors for helping keep this project free and open.
+    <a href="{{ sponsors_data.profile_url | safe }}" rel="noopener noreferrer">Sponsor Open Free Books</a>.
   </p>
 
   <section class="credits-block" aria-labelledby="credits-project-heading">
