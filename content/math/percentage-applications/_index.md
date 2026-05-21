@@ -11,24 +11,134 @@ strand = "Number & Algebra"
 
 <div class="book-prose">
   <p>
-    Percent means “per hundred.” This chapter connects percent, fraction, and decimal forms and
-    applies them in everyday contexts.
-  </p>
-
-  <h2 id="representations" class="book-prose__heading">Percent, fraction, decimal</h2>
-  <p class="book-formula">
-    \(35\% = \frac{35}{100}=0.35\)
+    A <strong>percentage</strong> (percent) means <strong>“per hundred”</strong>. It is a way to
+    describe a ratio out of 100, written with the symbol <strong>%</strong>.
   </p>
   <p>
-    Convert by multiplying or dividing by 100 as needed.
+    Percentages are used to compare parts to a total in finance, science, population data, discounts,
+    tax, growth, and error rates.
+  </p>
+
+  <h2 id="meaning" class="book-prose__heading">What percent means</h2>
+  <p class="book-formula">
+    \[
+      p\% = \frac{p}{100}.
+    \]
+  </p>
+  <p>
+    For example:
+  </p>
+  <p class="book-formula">
+    \[
+      45\%=\frac{45}{100}=0.45.
+    \]
+  </p>
+  <p>
+    So 45% means “45 out of every 100.”
+  </p>
+
+  <h2 id="representations" class="book-prose__heading">Percent, fraction, and decimal forms</h2>
+  <p class="book-formula">
+    \[
+      35\%=\frac{35}{100}=0.35.
+    \]
+  </p>
+  <ul>
+    <li>Percent \(\to\) decimal: divide by 100.</li>
+    <li>Decimal \(\to\) percent: multiply by 100 and add \(%\).</li>
+    <li>Fraction \(\to\) percent: convert to denominator 100 or decimal, then multiply by 100.</li>
+  </ul>
+
+  <h2 id="examples" class="book-prose__heading">Core examples</h2>
+  <h3 class="book-prose__heading">Example 1: class composition</h3>
+  <p>
+    If 50% of students in a class are male, that means 50 out of every 100 students are male. If
+    there are 500 students:
+  </p>
+  <p class="book-formula">
+    \[
+      50\%\text{ of }500 = 0.50\times500 = 250.
+    \]
+  </p>
+  <p>
+    So 250 students are male.
+  </p>
+
+  <h3 class="book-prose__heading">Example 2: price increase</h3>
+  <p>
+    A price rises by \$0.15 from \$2.50. The fractional increase is:
+  </p>
+  <p class="book-formula">
+    \[
+      \frac{0.15}{2.50}=0.06.
+    \]
+  </p>
+  <p>
+    So the price increase is <strong>6%</strong>.
+  </p>
+
+  <div class="book-callout" role="note">
+    <p class="book-callout__label">Range of percentages</p>
+    <p>
+      Percentages are not limited to 0% to 100%. In practice, values like 111% or -35% can appear,
+      especially for percent change.
+    </p>
+    <p class="book-formula">
+      \[
+        200\%\text{ of }40 = 2.00\times40 = 80.
+      \]
+    </p>
+    <p>
+      So 200% means <strong>twice</strong> the reference amount.
+    </p>
+  </div>
+
+  <h2 id="history" class="book-prose__heading">Short history</h2>
+  <p>
+    Before decimal notation became standard, many calculations were done with fractions out of 100.
+    In Roman contexts, some taxes were set as hundredth fractions.
+  </p>
+  <p>
+    Through the late Middle Ages and early modern period, denominator-100 arithmetic became common in
+    trade, profit/loss, and interest calculations. By the 17th century, quoting rates in hundredths
+    was standard in many settings.
+  </p>
+
+  <h2 id="percent-sign" class="book-prose__heading">Percent sign (%)</h2>
+  <p>
+    The word “percent” comes from Latin <em>per centum</em>, meaning “by the hundred.” Over time,
+    written abbreviations of “per cento” contracted into the modern <strong>%</strong> symbol.
   </p>
 
   <h2 id="part-whole" class="book-prose__heading">Finding part and whole</h2>
   <p>
-    To find \(p\%\) of a quantity \(Q\), use \(\frac{p}{100}\times Q\).
+    To find \(p\%\) of a quantity \(Q\):
   </p>
   <p class="book-formula">
-    \(18\%\text{ of }250 = 0.18\times250 = 45\)
+    \[
+      \frac{p}{100}\times Q.
+    \]
+  </p>
+  <p class="book-formula">
+    \[
+      18\%\text{ of }250 = 0.18\times250 = 45.
+    \]
+  </p>
+  <p>
+    To find what percent one number is of another:
+  </p>
+  <p class="book-formula">
+    \[
+      \text{percent}=\frac{\text{part}}{\text{whole}}\times100\%.
+    \]
+  </p>
+  <p>
+    Example: 50 apples as a percentage of 1250 apples:
+  </p>
+  <p class="book-formula">
+    \[
+      \frac{50}{1250}=0.04,\quad 0.04\times100\%=4\%.
+    \]
   </p>
 
   <h2 id="change" class="book-prose__heading">Percent increase and decrease</h2>
@@ -37,7 +147,7 @@ strand = "Number & Algebra"
   </p>
   <p class="book-formula">
     \[
-    \%\text{ change}=\frac{\text{new}-\text{original}}{\text{original}}\times 100\%.
+      \%\text{ change}=\frac{\text{new}-\text{original}}{\text{original}}\times100\%.
     \]
   </p>
   <p>
@@ -48,15 +158,73 @@ strand = "Number & Algebra"
     <li>Decrease by \(r\%\): multiply by \(1-\frac{r}{100}\).</li>
   </ul>
 
+  <h2 id="percent-of-percent" class="book-prose__heading">Percentage of a percentage</h2>
+  <p>
+    Convert both percentages to fractions (or decimals), then multiply:
+  </p>
+  <p class="book-formula">
+    \[
+      50\%\text{ of }40\%=\frac{50}{100}\times\frac{40}{100}=0.20=20\%.
+    \]
+  </p>
+  <p>
+    Avoid double-dividing by 100. For example:
+  </p>
+  <p class="book-formula">
+    \[
+      25\%=0.25,\text{ not }\frac{25\%}{100}.
+    \]
+  </p>
+
+  <h2 id="relative-base" class="book-prose__heading">Always state “of what?”</h2>
+  <p>
+    A percentage must be tied to a reference total (what counts as 100%).
+  </p>
+  <p>
+    Example:
+  </p>
+  <ul>
+    <li>60% of all students are female.</li>
+    <li>10% of all students are computer science majors.</li>
+    <li>5% of female students are computer science majors.</li>
+  </ul>
+  <p>
+    Female CS majors as a percentage of all students:
+  </p>
+  <p class="book-formula">
+    \[
+      60\%\times5\%=3\%.
+    \]
+  </p>
+  <p>
+    As a percentage of CS majors:
+  </p>
+  <p class="book-formula">
+    \[
+      \frac{3\%}{10\%}=30\%.
+    \]
+  </p>
+  <p>
+    So <strong>30% of CS majors are female</strong>.
+  </p>
+
   <h2 id="applications" class="book-prose__heading">Real-world applications</h2>
   <p>
     Discounts, tax, markups, interest, and error rates are all percentage models.
   </p>
+  <p>
+    Reversing expressions does not change multiplication results:
+  </p>
+  <p class="book-formula">
+    \[
+      50\%\text{ of }20=10,\qquad 20\%\text{ of }50=10.
+    \]
+  </p>
 
   <details class="book-question">
-    <summary class="book-question__prompt">Checkpoint: 25% off a \$80 item</summary>
+    <summary class="book-question__prompt">Checkpoint: 25% off a US$80 item</summary>
     <div class="book-question__solution">
-      <p>Discount \(=0.25\times80=20\), so sale price is \$60.</p>
+      <p>\(\text{Discount}=0.25\times80=20\), so sale price is US$60.</p>
     </div>
   </details>
 
@@ -64,6 +232,20 @@ strand = "Number & Algebra"
     <summary class="book-question__prompt">Checkpoint: increase 200 by 12%</summary>
     <div class="book-question__solution">
       <p>\(200\times1.12=224\).</p>
+    </div>
+  </details>
+
+  <details class="book-question">
+    <summary class="book-question__prompt">Checkpoint: find 30% of 450</summary>
+    <div class="book-question__solution">
+      <p>\(0.30\times450=135\).</p>
+    </div>
+  </details>
+
+  <details class="book-question">
+    <summary class="book-question__prompt">Checkpoint: what percent is 18 out of 120?</summary>
+    <div class="book-question__solution">
+      <p>\(\frac{18}{120}\times100\%=15\%\).</p>
     </div>
   </details>
 </div>

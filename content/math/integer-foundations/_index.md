@@ -11,36 +11,103 @@ strand = "Number & Algebra"
 
 <div class="book-prose">
   <p>
-    Integers extend whole numbers to include values below zero. They are useful for temperature,
-    elevation, and money balances.
+    Integers extend whole numbers so we can model values above, below, and exactly at a reference
+    point. They appear in temperature, sea level, game scores, electricity, and money balances.
+    Without integers, many real situations would be awkward to calculate.
   </p>
 
-  <h2 id="number-line" class="book-prose__heading">Directed numbers on a number line</h2>
+  <h2 id="history" class="book-prose__heading">A short history of the number line idea</h2>
   <p>
-    Positive numbers are to the right of zero, negative numbers are to the left. Moving right
-    increases value; moving left decreases value.
+    The modern number line grew over time. Early printed works arranged numbers in order, and later
+    mathematicians described arithmetic as movement along a line. By the late 1600s, this “walk
+    forward / backward” idea was used to explain addition and subtraction in a geometric way.
+  </p>
+  <p>
+    The key shift was not just drawing numbers in order, but treating position on a line as a model
+    for operations. That model is now foundational in school mathematics.
+  </p>
+
+  <h2 id="number-line" class="book-prose__heading">Drawing and reading a number line</h2>
+  <p>
+    A number line is a straight line with equally spaced marks. Numbers increase to the right and
+    decrease to the left. Zero is the center reference point for positive and negative values.
+  </p>
+  <ul>
+    <li><strong>Right of 0:</strong> positive integers (\(+1, +2, +3, \dots\)).</li>
+    <li><strong>Left of 0:</strong> negative integers (\(-1, -2, -3, \dots\)).</li>
+    <li><strong>At 0:</strong> neither positive nor negative.</li>
+  </ul>
+  <p>
+    In coordinate graphs, both axes are number lines: the horizontal \(x\)-axis and vertical
+    \(y\)-axis.
   </p>
   <div class="book-callout book-callout--formula" role="note">
     <p class="book-callout__label">Compare quickly</p>
     <p class="book-formula">\(a &gt; b\) means \(a\) is to the right of \(b\) on the number line.</p>
   </div>
 
-  <h2 id="absolute-value" class="book-prose__heading">Absolute value and opposites</h2>
+  <h2 id="compare" class="book-prose__heading">Comparing integers with position</h2>
   <p>
-    Absolute value is distance from zero: \(|-7|=7\). Opposites have equal distance from zero and
-    opposite signs, such as \(+5\) and \(-5\).
-  </p>
-
-  <h2 id="add-subtract" class="book-prose__heading">Adding and subtracting integers</h2>
-  <p>
-    You can think of addition and subtraction as movement on the number line.
+    Position gives order immediately:
   </p>
   <ul>
-    <li>\(a+b\): start at \(a\), move by \(b\).</li>
-    <li>\(a-b = a+(-b)\): subtracting is adding the opposite.</li>
+    <li>If \(a\) is to the right of \(b\), then \(a &gt; b\).</li>
+    <li>If \(a\) is to the left of \(b\), then \(a &lt; b\).</li>
   </ul>
   <p>
-    Example: \(6-(-4)=6+4=10\).
+    Example: \(-2 &gt; -5\) because \(-2\) is to the right of \(-5\), even though both are negative.
+  </p>
+  <div class="math-widget-mount" data-widget="integer-compare-demo" data-pagefind-ignore></div>
+
+  <h2 id="absolute-value" class="book-prose__heading">Absolute value and opposites</h2>
+  <p>
+    Absolute value means distance from zero, so it is never negative: \(|-7|=7\), \(|7|=7\).
+    Opposite numbers are equally far from zero in opposite directions, such as \(+5\) and \(-5\).
+  </p>
+  <p>
+    Distance between two integers can be read from the line:
+    \[
+      \text{distance between } a \text{ and } b = |a-b|.
+    \]
+    For example, the distance from \(-4\) to \(3\) is \(|-4-3|=7\).
+  </p>
+
+  <h2 id="operations" class="book-prose__heading">Operations as movement and grouping</h2>
+  <h3 class="book-prose__heading">Addition and subtraction</h3>
+  <p>
+    Think of arithmetic as moves on the line:
+  </p>
+  <ul>
+    <li>\(a+b\): start at \(a\), move \(b\) units (right if \(b&gt;0\), left if \(b&lt;0\)).</li>
+    <li>\(a-b = a+(-b)\): subtracting means adding the opposite.</li>
+  </ul>
+  <p>
+    Examples:
+    \[
+      -3+8=5,\qquad 4-9=-5,\qquad 6-(-4)=10.
+    \]
+  </p>
+  <h3 class="book-prose__heading">Multiplication</h3>
+  <p>
+    Multiplication can be seen as repeated equal jumps. For instance, \(5\times3\) means three jumps
+    of length 5 to the right, ending at 15.
+  </p>
+  <p>
+    Sign rules come from direction:
+  </p>
+  <ul>
+    <li>\((+)\times(+)=+\)</li>
+    <li>\((+)\times(-)=-\)</li>
+    <li>\((-)\times(+)=-\)</li>
+    <li>\((-)\times(-)=+\)</li>
+  </ul>
+  <h3 class="book-prose__heading">Division</h3>
+  <p>
+    Division asks how many equal lengths fit into another length. For example, \(6\div2=3\) because
+    three jumps of 2 reach 6. Integer sign rules mirror multiplication:
+    \[
+      (+)\div(+)=+,\quad (+)\div(-)=-,\quad (-)\div(+)=-,\quad (-)\div(-)=+.
+    \]
   </p>
 
   <h2 id="zero-principle" class="book-prose__heading">Zero principle with tiles</h2>
@@ -71,4 +138,23 @@ strand = "Number & Algebra"
       </p>
     </div>
   </details>
+
+  <h2 id="why-zero-negative" class="book-prose__heading">Why zero and negatives matter</h2>
+  <p>
+    Zero and negative numbers make arithmetic coherent. Before negatives were accepted, people often
+    restricted results to non-negative values, which forced case-by-case rules and extra wording.
+  </p>
+  <p>
+    With integers, one set of laws works smoothly:
+  </p>
+  <ul>
+    <li>Subtraction is always possible: \(a-b=a+(-b)\).</li>
+    <li>Opposites are explicit: every \(a\) has \(-a\), and \(a+(-a)=0\).</li>
+    <li>Distributive structure stays consistent across signs:
+      \(k(a+b)=ka+kb\), even when values are negative.</li>
+  </ul>
+  <p>
+    This consistency is why integer arithmetic is not just “extra symbols”; it is the foundation for
+    algebra, equations, and later topics like vectors and coordinate geometry.
+  </p>
 </div>
