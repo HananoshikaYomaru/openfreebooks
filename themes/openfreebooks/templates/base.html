@@ -33,7 +33,7 @@
     ></script>
     {% block extra_head %}{% endblock extra_head %}
   </head>
-  <body>
+  <body class="{% block body_class %}{% endblock body_class %}">
     <script id="site-config" type="application/json">
       {
         "brand": {{ config.extra.site_title | json_encode() | safe }},

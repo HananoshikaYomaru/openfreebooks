@@ -4,7 +4,14 @@
     <title>Open Free Books</title>
     <link>https://openfreebooks.org/</link>
     <description>Recent updates to Open Free Books pages and live chapters.</description>
-    <lastBuildDate>Thu, 21 May 2026 17:54:08 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 21 May 2026 18:40:42 GMT</lastBuildDate>
+    <item>
+      <title>Contribute</title>
+      <link>https://openfreebooks.org/contributing/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/contributing/</guid>
+      <pubDate>Thu, 21 May 2026 18:40:42 GMT</pubDate>
+      <description>Contribute</description>
+    </item>
     <item>
       <title>Integer arithmetic</title>
       <link>https://openfreebooks.org/math/integer-arithmetic/</link>
@@ -305,13 +312,6 @@
       <guid isPermaLink="true">https://openfreebooks.org/search/</guid>
       <pubDate>Tue, 19 May 2026 19:29:49 GMT</pubDate>
       <description>Search</description>
-    </item>
-    <item>
-      <title>Contribute</title>
-      <link>https://openfreebooks.org/contributing/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/contributing/</guid>
-      <pubDate>Tue, 19 May 2026 12:34:25 GMT</pubDate>
-      <description>Contribute</description>
     </item>
     <item>
       <title>Mathematics</title>
