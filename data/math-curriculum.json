@@ -45,14 +45,6 @@
       },
       {
         "from": "integer-arithmetic",
-        "to": "directed-numbers-rates"
-      },
-      {
-        "from": "ratios-and-rates-foundation",
-        "to": "directed-numbers-rates"
-      },
-      {
-        "from": "directed-numbers-rates",
         "to": "polynomials-expansion-factorisation"
       },
       {
@@ -172,7 +164,7 @@
         "to": "loci"
       },
       {
-        "from": "directed-numbers-rates",
+        "from": "ratios-and-rates-foundation",
         "to": "statistical-charts-averages"
       },
       {
@@ -304,7 +296,7 @@
           "slug": "integer-foundations",
           "title": "Integer foundations",
           "description": "Model directed magnitude on number lines; use the zero principle and tiles to add and subtract integers, and see subtraction as adding an opposite.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "Foundation": "core",
             "IGCSE": "core",
@@ -322,7 +314,7 @@
           "slug": "integer-arithmetic",
           "title": "Integer arithmetic",
           "description": "Multiply and divide integers from models to symbolic rules; apply order of operations with signed numbers in multi-step expressions.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "Foundation": "core",
             "IGCSE": "core",
@@ -340,7 +332,7 @@
           "slug": "rational-number-operations",
           "title": "Fractions and decimals",
           "description": "Convert between fractions, terminating decimals, and repeating decimals; add, subtract, multiply, and divide rational numbers and mixed numbers.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "Foundation": "core",
             "IGCSE": "core",
@@ -358,7 +350,7 @@
           "slug": "percentage-applications",
           "title": "Percentage applications",
           "description": "Relate fractions and decimals to base-100 ratios; calculate percent increase and decrease in financial and real-world contexts.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "Foundation": "core",
             "IGCSE": "core",
@@ -376,7 +368,7 @@
           "slug": "ratios-and-rates-foundation",
           "title": "Ratios & rates foundations",
           "description": "Formulate part-to-part and part-to-whole ratios, find equivalent ratios, compute unit rates, and graph proportional relationships.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "Foundation": "core",
             "IGCSE": "core",
@@ -387,24 +379,6 @@
             "A-Level": "related",
             "AP": "related",
             "DSE": "related",
-            "Gaokao": "related"
-          }
-        },
-        {
-          "slug": "directed-numbers-rates",
-          "title": "Directed numbers, rates & ratios",
-          "description": "Operate with negative numbers and solve ratio, rate, and proportion problems in context.",
-          "status": "live",
-          "curriculumCoverage": {
-            "DSE": "core",
-            "IGCSE": "core",
-            "Common Core": "core",
-            "Singapore": "core",
-            "UK GCSE": "core",
-            "Foundation": "related",
-            "IB": "related",
-            "A-Level": "related",
-            "AP": "related",
             "Gaokao": "related"
           }
         },

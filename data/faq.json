@@ -14,26 +14,32 @@
     {
       "id": "how-different",
       "type": "comparison",
-      "question": "How is Open Free Books different from GeoGebra, Math is Fun, and Wikipedia?",
-      "intro": "We respect these projects — they solve different problems. Open Free Books is a free, open-source textbook library on the web.",
+      "question": "How is Open Free Books different from LibreTexts, Open Textbook Library, Project Gutenberg, and OpenStax?",
+      "intro": "We respect these projects — they solve different problems. On many platforms, you find lots of different books for a single subject. With Open Free Books, there's just one textbook per subject—designed to be comprehensive so people everywhere can use it for any curriculum. That way, you don't need to pick between competing choices—you can just focus on learning. Oh, so this platform usually only provides static HTML without any interaction or just a PDF, but in OpenFreeBooks we have interactive demos An alleged map that are tailor made to visualize complex idea in simple ways.",
       "peers": [
         {
-          "name": "GeoGebra",
-          "url": "https://www.geogebra.org/",
-          "role": "Interactive geometry and algebra tools, activities, and classroom apps.",
-          "contrast": "Open Free Books publishes structured textbook chapters and learning paths, not a general-purpose construction sandbox."
+          "name": "LibreTexts",
+          "url": "https://libretexts.org/",
+          "role": "Open educational resource platform with broad textbook collections and institutional adoption.",
+          "contrast": "Open Free Books is a focused open textbook library with curriculum-shaped pathways, lightweight static delivery, and contributor-driven book structure."
         },
         {
-          "name": "Math is Fun",
-          "url": "https://www.mathsisfun.com/",
-          "role": "Friendly reference pages, games, and explanations across many topics.",
-          "contrast": "Open Free Books is curriculum-shaped: ordered chapters, prerequisites in the catalog map, and authored books — not a grab-bag of articles."
+          "name": "Open Textbook Library",
+          "url": "https://open.umn.edu/opentextbooks",
+          "role": "A catalog and discovery hub for openly licensed textbooks with reviews and adoption support.",
+          "contrast": "Open Free Books publishes and maintains textbooks directly in the open repository, including chapter sequencing and prerequisite maps."
         },
         {
-          "name": "Wikipedia",
-          "url": "https://www.wikipedia.org/",
-          "role": "Encyclopedic, community-edited reference on almost everything.",
-          "contrast": "Not a wiki-style fact pile. We publish opinionated paths from prerequisite to mastery — structure on purpose, not everything about X."
+          "name": "Project Gutenberg: Free eBooks",
+          "url": "https://www.gutenberg.org/",
+          "role": "A public library of free eBooks, especially classic works and historical texts.",
+          "contrast": "Open Free Books is built for active learning: modern textbook chapters, guided progression, and curriculum alignment rather than archival eBook distribution."
+        },
+        {
+          "name": "OpenStax",
+          "url": "https://openstax.org/",
+          "role": "Peer-reviewed open textbooks for major school and college subjects.",
+          "contrast": "Open Free Books emphasizes community-authored web textbooks with transparent GitHub workflows and adaptable chapter-level contribution."
         }
       ],
       "ofb": "Free forever, no ads, no commercial upsell, and open on GitHub for anyone to fix or extend."
@@ -100,6 +106,16 @@
         "We use AI as a drafting and editing tool, but we do not rely on AI chat tokens as the final product layer. We publish reviewed, hand-curated chapters as open HTML so learning materials stay readable without paid AI access.",
         "Token costs matter. Today some companies appear to offer \"free\" AI access, but that is often market-share strategy in an early stage. If prices rise later, learners with less money or weaker infrastructure could lose access.",
         "The open web is more durable: HTML and JavaScript are stable foundations likely to remain usable for decades. Building high-quality, future-proof educational materials now — with AI assistance but web-native outputs — is the practical long-term approach."
+      ]
+    },
+    {
+      "id": "content-perfect",
+      "type": "standard",
+      "question": "Why isn’t the content perfect?",
+      "answer": [
+        "No textbook is perfect — whether it’s a PDF, a printed book, or an online resource. Learning evolves, and so does our understanding of what makes content useful and accurate.",
+        "Open Free Books may not be flawless, but it’s built on lasting web standards: HTML, JavaScript, and CSS. This means chapters are readable on any device, by anyone, anywhere — making them among the most accessible textbooks in the world.",
+        "We set high standards for academic quality, and the catalog is always improving. Every chapter is open for review and enhancement by contributors, so progress never stops."
       ]
     },
     {

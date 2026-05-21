@@ -1,0 +1,74 @@
++++
+title = "Integer foundations"
+description = "Model directed magnitude on number lines; use the zero principle and tiles to add and subtract integers, and see subtraction as adding an opposite."
+template = "chapter.html"
+weight = 8
+[extra]
+subject = "math"
+chapter_id = "integer-foundations"
+strand = "Number & Algebra"
++++
+
+<div class="book-prose">
+  <p>
+    Integers extend whole numbers to include values below zero. They are useful for temperature,
+    elevation, and money balances.
+  </p>
+
+  <h2 id="number-line" class="book-prose__heading">Directed numbers on a number line</h2>
+  <p>
+    Positive numbers are to the right of zero, negative numbers are to the left. Moving right
+    increases value; moving left decreases value.
+  </p>
+  <div class="book-callout book-callout--formula" role="note">
+    <p class="book-callout__label">Compare quickly</p>
+    <p class="book-formula">\(a &gt; b\) means \(a\) is to the right of \(b\) on the number line.</p>
+  </div>
+
+  <h2 id="absolute-value" class="book-prose__heading">Absolute value and opposites</h2>
+  <p>
+    Absolute value is distance from zero: \(|-7|=7\). Opposites have equal distance from zero and
+    opposite signs, such as \(+5\) and \(-5\).
+  </p>
+
+  <h2 id="add-subtract" class="book-prose__heading">Adding and subtracting integers</h2>
+  <p>
+    You can think of addition and subtraction as movement on the number line.
+  </p>
+  <ul>
+    <li>\(a+b\): start at \(a\), move by \(b\).</li>
+    <li>\(a-b = a+(-b)\): subtracting is adding the opposite.</li>
+  </ul>
+  <p>
+    Example: \(6-(-4)=6+4=10\).
+  </p>
+
+  <h2 id="zero-principle" class="book-prose__heading">Zero principle with tiles</h2>
+  <p>
+    A positive tile and a negative tile form a zero pair. Add or remove zero pairs to simplify
+    without changing value.
+  </p>
+
+  <details class="book-question">
+    <summary class="book-question__prompt">Checkpoint: evaluate \(-3 + 8\)</summary>
+    <div class="book-question__solution">
+      <p>\(-3 + 8 = 5\). Start at \(-3\), move 8 units right.</p>
+    </div>
+  </details>
+
+  <details class="book-question">
+    <summary class="book-question__prompt">Checkpoint: evaluate \(4 - 9\)</summary>
+    <div class="book-question__solution">
+      <p>\(4 - 9 = -5\). Equivalent to \(4 + (-9)\).</p>
+    </div>
+  </details>
+
+  <details class="book-question">
+    <summary class="book-question__prompt">Checkpoint: explain why \(2-(-2)=4\)</summary>
+    <div class="book-question__solution">
+      <p>
+        Subtracting \(-2\) means adding its opposite \(+2\), so \(2-(-2)=2+2=4\).
+      </p>
+    </div>
+  </details>
+</div>

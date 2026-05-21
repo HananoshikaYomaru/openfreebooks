@@ -4,7 +4,42 @@
     <title>Open Free Books</title>
     <link>https://openfreebooks.org/</link>
     <description>Recent updates to Open Free Books pages and live chapters.</description>
-    <lastBuildDate>Thu, 21 May 2026 16:54:30 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 21 May 2026 17:43:39 GMT</lastBuildDate>
+    <item>
+      <title>Integer foundations</title>
+      <link>https://openfreebooks.org/math/integer-foundations/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/integer-foundations/</guid>
+      <pubDate>Thu, 21 May 2026 17:43:39 GMT</pubDate>
+      <description>Model directed magnitude on number lines; use the zero principle and tiles to add and subtract integers, and see subtraction as adding an opposite.</description>
+    </item>
+    <item>
+      <title>Integer arithmetic</title>
+      <link>https://openfreebooks.org/math/integer-arithmetic/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/integer-arithmetic/</guid>
+      <pubDate>Thu, 21 May 2026 17:43:39 GMT</pubDate>
+      <description>Multiply and divide integers from models to symbolic rules; apply order of operations with signed numbers in multi-step expressions.</description>
+    </item>
+    <item>
+      <title>Percentage applications</title>
+      <link>https://openfreebooks.org/math/percentage-applications/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/percentage-applications/</guid>
+      <pubDate>Thu, 21 May 2026 17:43:39 GMT</pubDate>
+      <description>Relate fractions and decimals to base-100 ratios; calculate percent increase and decrease in financial and real-world contexts.</description>
+    </item>
+    <item>
+      <title>Fractions and decimals</title>
+      <link>https://openfreebooks.org/math/rational-number-operations/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/rational-number-operations/</guid>
+      <pubDate>Thu, 21 May 2026 17:43:39 GMT</pubDate>
+      <description>Convert between fractions, terminating decimals, and repeating decimals; add, subtract, multiply, and divide rational numbers and mixed numbers.</description>
+    </item>
+    <item>
+      <title>Ratios &amp; rates foundations</title>
+      <link>https://openfreebooks.org/math/ratios-and-rates-foundation/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/ratios-and-rates-foundation/</guid>
+      <pubDate>Thu, 21 May 2026 17:43:39 GMT</pubDate>
+      <description>Formulate part-to-part and part-to-whole ratios, find equivalent ratios, compute unit rates, and graph proportional relationships.</description>
+    </item>
     <item>
       <title>Advanced trigonometry</title>
       <link>https://openfreebooks.org/math/advanced-trigonometry/</link>
@@ -242,13 +277,6 @@
       <guid isPermaLink="true">https://openfreebooks.org/math/algebraic-fractions-formulas/</guid>
       <pubDate>Wed, 20 May 2026 20:17:25 GMT</pubDate>
       <description>Simplify and combine algebraic fractions; rearrange formulas in science contexts.</description>
-    </item>
-    <item>
-      <title>Directed numbers, rates &amp; ratios</title>
-      <link>https://openfreebooks.org/math/directed-numbers-rates/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/directed-numbers-rates/</guid>
-      <pubDate>Wed, 20 May 2026 20:17:25 GMT</pubDate>
-      <description>Operate with negative numbers and solve ratio, rate, and proportion problems in context.</description>
     </item>
     <item>
       <title>Polynomials: expansion &amp; factorisation</title>

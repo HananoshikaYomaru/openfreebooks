@@ -1,0 +1,69 @@
++++
+title = "Percentage applications"
+description = "Relate fractions and decimals to base-100 ratios; calculate percent increase and decrease in financial and real-world contexts."
+template = "chapter.html"
+weight = 11
+[extra]
+subject = "math"
+chapter_id = "percentage-applications"
+strand = "Number & Algebra"
++++
+
+<div class="book-prose">
+  <p>
+    Percent means “per hundred.” This chapter connects percent, fraction, and decimal forms and
+    applies them in everyday contexts.
+  </p>
+
+  <h2 id="representations" class="book-prose__heading">Percent, fraction, decimal</h2>
+  <p class="book-formula">
+    \(35\% = \frac{35}{100}=0.35\)
+  </p>
+  <p>
+    Convert by multiplying or dividing by 100 as needed.
+  </p>
+
+  <h2 id="part-whole" class="book-prose__heading">Finding part and whole</h2>
+  <p>
+    To find \(p\%\) of a quantity \(Q\), use \(\frac{p}{100}\times Q\).
+  </p>
+  <p class="book-formula">
+    \(18\%\text{ of }250 = 0.18\times250 = 45\)
+  </p>
+
+  <h2 id="change" class="book-prose__heading">Percent increase and decrease</h2>
+  <p>
+    Percent change compares new and original values.
+  </p>
+  <p class="book-formula">
+    \[
+    \%\text{ change}=\frac{\text{new}-\text{original}}{\text{original}}\times 100\%.
+    \]
+  </p>
+  <p>
+    New values can also be found with multipliers:
+  </p>
+  <ul>
+    <li>Increase by \(r\%\): multiply by \(1+\frac{r}{100}\).</li>
+    <li>Decrease by \(r\%\): multiply by \(1-\frac{r}{100}\).</li>
+  </ul>
+
+  <h2 id="applications" class="book-prose__heading">Real-world applications</h2>
+  <p>
+    Discounts, tax, markups, interest, and error rates are all percentage models.
+  </p>
+
+  <details class="book-question">
+    <summary class="book-question__prompt">Checkpoint: 25% off a \$80 item</summary>
+    <div class="book-question__solution">
+      <p>Discount \(=0.25\times80=20\), so sale price is \$60.</p>
+    </div>
+  </details>
+
+  <details class="book-question">
+    <summary class="book-question__prompt">Checkpoint: increase 200 by 12%</summary>
+    <div class="book-question__solution">
+      <p>\(200\times1.12=224\).</p>
+    </div>
+  </details>
+</div>
