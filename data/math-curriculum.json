@@ -638,7 +638,7 @@
           "slug": "coordinate-geometry-foundations",
           "title": "Coordinate geometry foundations",
           "description": "Plot points, find distances and midpoints, and work with slopes of lines in the Cartesian plane.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "DSE": "core",
             "IGCSE": "core",
@@ -655,7 +655,7 @@
           "slug": "deductive-geometry",
           "title": "Deductive geometry",
           "description": "Prove angle and side relationships for intersecting lines, triangles, and polygons.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "DSE": "core",
             "IGCSE": "core",
@@ -671,7 +671,7 @@
           "slug": "congruence-similarity",
           "title": "Congruence & similarity",
           "description": "Apply congruence and similarity criteria to justify properties of triangles and scale figures.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "DSE": "core",
             "IGCSE": "core",
@@ -687,7 +687,7 @@
           "slug": "pythagoras-theorem",
           "title": "Pythagoras' theorem",
           "description": "Use Pythagoras' theorem and its converse in 2D problems and coordinate settings.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "DSE": "core",
             "IGCSE": "core",
@@ -704,7 +704,7 @@
           "slug": "introduction-trigonometry",
           "title": "Introduction to trigonometry",
           "description": "Define sine, cosine, and tangent ratios and solve right-angled triangle problems.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "DSE": "core",
             "IGCSE": "core",
@@ -721,7 +721,7 @@
           "slug": "mensuration-3d",
           "title": "Mensuration in 3D",
           "description": "Find volumes and surface areas of prisms, cylinders, pyramids, cones, and spheres.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "DSE": "core",
             "IGCSE": "core",
@@ -737,7 +737,7 @@
           "slug": "coordinate-circles",
           "title": "Coordinate geometry of circles",
           "description": "Find equations of circles, tangents, and intersections using coordinate methods and distance.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "DSE": "core",
             "IGCSE": "related",
@@ -752,7 +752,7 @@
           "slug": "advanced-trigonometry",
           "title": "Advanced trigonometry",
           "description": "Use sine and cosine rules, radians, and trigonometric graphs in 2D and 3D applications.",
-          "status": "planned",
+          "status": "live",
           "tier": "non-foundation",
           "curriculumCoverage": {
             "DSE": "extension",
@@ -770,7 +770,7 @@
           "slug": "circle-properties",
           "title": "Properties of circles",
           "description": "Apply chord, tangent, and angle theorems in circles to prove results and solve geometry problems.",
-          "status": "planned",
+          "status": "live",
           "tier": "non-foundation",
           "curriculumCoverage": {
             "DSE": "extension",
@@ -786,7 +786,7 @@
           "slug": "loci",
           "title": "Loci",
           "description": "Describe and construct loci in the plane, linking geometric constraints to algebraic equations.",
-          "status": "planned",
+          "status": "live",
           "tier": "non-foundation",
           "curriculumCoverage": {
             "DSE": "extension",
@@ -806,7 +806,7 @@
           "slug": "statistical-charts-averages",
           "title": "Charts & averages",
           "description": "Organise data with tables and charts and calculate mean, median, and mode.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "DSE": "core",
             "IGCSE": "core",
@@ -823,7 +823,7 @@
           "slug": "measures-dispersion",
           "title": "Measures of dispersion",
           "description": "Interpret range, interquartile range, variance, and standard deviation for comparing data sets.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "DSE": "core",
             "IGCSE": "core",
@@ -840,7 +840,7 @@
           "slug": "basic-probability",
           "title": "Basic probability",
           "description": "Calculate theoretical and experimental probabilities for simple events and complements.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "DSE": "core",
             "IGCSE": "core",
@@ -857,7 +857,7 @@
           "slug": "permutations-combinations-probability",
           "title": "Permutations, combinations & probability",
           "description": "Count outcomes with permutations and combinations, then compute probabilities in finite sample spaces.",
-          "status": "planned",
+          "status": "live",
           "tier": "non-foundation",
           "curriculumCoverage": {
             "DSE": "extension",
@@ -873,7 +873,7 @@
           "slug": "normal-distribution-z-scores",
           "title": "Normal distribution & z-scores",
           "description": "Model continuous data with the normal curve, standardise with z-scores, and read probabilities from tables.",
-          "status": "planned",
+          "status": "live",
           "tier": "non-foundation",
           "curriculumCoverage": {
             "DSE": "extension",
@@ -889,7 +889,7 @@
           "slug": "statistical-literacy",
           "title": "Statistical literacy",
           "description": "Evaluate claims in media and research: sampling bias, correlation versus causation, and misleading charts.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "DSE": "core",
             "IB": "related",

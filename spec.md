@@ -18,7 +18,9 @@ we need to have a question bank feature. since this is purely static sites, ques
 
 question bank not only show answer but also steps, explanation, calcultion.
 
-best practice for creating chapters: correctness > completeness > order and structure > accessibility > optimization
+best practice for creating chapters: correctness (knowledge wise) > completeness > order and structure > accessibility > optimization > correctness of everything else (credits, reference etc.)
+
+a textbook should only start when someone owns it and capable of completing it. 
 
 ## Chapters requirements 
 

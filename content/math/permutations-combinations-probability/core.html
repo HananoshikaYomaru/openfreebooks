@@ -1,0 +1,45 @@
+<div class="book-prose">
+  <p>
+    Counting methods make probability efficient when listing all outcomes is impractical.
+  </p>
+
+  <h2 id="factorial" class="book-prose__heading">Factorial</h2>
+  <p class="book-formula">\[
+    n!=n(n-1)(n-2)\cdots 1,\quad 0!=1.
+  \]</p>
+
+  <h2 id="permutations" class="book-prose__heading">Permutations (order matters)</h2>
+  <p class="book-formula">\[
+    {}_nP_r=\frac{n!}{(n-r)!}.
+  \]</p>
+  <p>
+    Use for arrangements where position/order is important.
+  </p>
+
+  <h2 id="combinations" class="book-prose__heading">Combinations (order not important)</h2>
+  <p class="book-formula">\[
+    {}_nC_r=\frac{n!}{r!(n-r)!}.
+  \]</p>
+  <p>
+    Use for selections/groups.
+  </p>
+
+  <h2 id="probability-counting" class="book-prose__heading">Probability with counting</h2>
+  <p class="book-formula">\[
+    P(E)=\frac{\text{count of favorable outcomes}}{\text{count of all outcomes}}.
+  \]</p>
+
+  <h2 id="with-without-replacement" class="book-prose__heading">With/without replacement</h2>
+  <ul>
+    <li><strong>With replacement:</strong> probabilities stay same each draw.</li>
+    <li><strong>Without replacement:</strong> probabilities change each draw.</li>
+  </ul>
+
+  <h2 id="exam-strategy" class="book-prose__heading">Exam strategy</h2>
+  <ul>
+    <li>First decide: arrangement or selection?</li>
+    <li>Check if repetitions are allowed.</li>
+    <li>Use structured counting (tree/cases) for restrictions.</li>
+    <li>Simplify probability fractions at end.</li>
+  </ul>
+</div>

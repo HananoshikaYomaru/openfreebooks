@@ -37,6 +37,10 @@
     <lastmod>2026-05-19T10:55:50.000Z</lastmod>
   </url>
   <url>
+    <loc>https://openfreebooks.org/math/advanced-trigonometry/</loc>
+    <lastmod>2026-05-21T16:43:43.537Z</lastmod>
+  </url>
+  <url>
     <loc>https://openfreebooks.org/math/algebraic-fractions-formulas/</loc>
     <lastmod>2026-05-20T20:17:25.000Z</lastmod>
   </url>
@@ -45,12 +49,36 @@
     <lastmod>2026-05-21T01:07:39.000Z</lastmod>
   </url>
   <url>
+    <loc>https://openfreebooks.org/math/basic-probability/</loc>
+    <lastmod>2026-05-21T16:43:43.535Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openfreebooks.org/math/circle-properties/</loc>
+    <lastmod>2026-05-21T16:43:43.537Z</lastmod>
+  </url>
+  <url>
     <loc>https://openfreebooks.org/math/complex-numbers/</loc>
-    <lastmod>2026-05-21T07:32:39.566Z</lastmod>
+    <lastmod>2026-05-21T07:33:01.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openfreebooks.org/math/congruence-similarity/</loc>
+    <lastmod>2026-05-21T16:43:43.137Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openfreebooks.org/math/coordinate-circles/</loc>
+    <lastmod>2026-05-21T16:43:43.536Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openfreebooks.org/math/coordinate-geometry-foundations/</loc>
+    <lastmod>2026-05-21T16:43:43.663Z</lastmod>
   </url>
   <url>
     <loc>https://openfreebooks.org/math/counting-and-numbers/</loc>
     <lastmod>2026-05-21T05:05:38.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openfreebooks.org/math/deductive-geometry/</loc>
+    <lastmod>2026-05-21T16:43:43.537Z</lastmod>
   </url>
   <url>
     <loc>https://openfreebooks.org/math/directed-numbers-rates/</loc>
@@ -58,15 +86,19 @@
   </url>
   <url>
     <loc>https://openfreebooks.org/math/exponential-logarithmic/</loc>
-    <lastmod>2026-05-21T07:32:39.567Z</lastmod>
+    <lastmod>2026-05-21T07:33:01.000Z</lastmod>
   </url>
   <url>
     <loc>https://openfreebooks.org/math/factor-remainder-theorems/</loc>
-    <lastmod>2026-05-21T07:32:39.697Z</lastmod>
+    <lastmod>2026-05-21T07:33:01.000Z</lastmod>
   </url>
   <url>
     <loc>https://openfreebooks.org/math/functions-graphs/</loc>
-    <lastmod>2026-05-21T07:32:39.566Z</lastmod>
+    <lastmod>2026-05-21T07:33:01.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openfreebooks.org/math/introduction-trigonometry/</loc>
+    <lastmod>2026-05-21T16:43:43.931Z</lastmod>
   </url>
   <url>
     <loc>https://openfreebooks.org/math/laws-of-indices/</loc>
@@ -74,7 +106,7 @@
   </url>
   <url>
     <loc>https://openfreebooks.org/math/linear-equations-two-unknowns/</loc>
-    <lastmod>2026-05-21T05:05:38.000Z</lastmod>
+    <lastmod>2026-05-21T07:33:01.000Z</lastmod>
   </url>
   <url>
     <loc>https://openfreebooks.org/math/linear-inequalities-one-unknown/</loc>
@@ -82,7 +114,27 @@
   </url>
   <url>
     <loc>https://openfreebooks.org/math/linear-programming/</loc>
-    <lastmod>2026-05-21T07:32:39.831Z</lastmod>
+    <lastmod>2026-05-21T07:33:01.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openfreebooks.org/math/loci/</loc>
+    <lastmod>2026-05-21T16:43:43.932Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openfreebooks.org/math/measures-dispersion/</loc>
+    <lastmod>2026-05-21T16:43:43.662Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openfreebooks.org/math/mensuration-3d/</loc>
+    <lastmod>2026-05-21T16:43:43.798Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openfreebooks.org/math/normal-distribution-z-scores/</loc>
+    <lastmod>2026-05-21T16:43:43.798Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openfreebooks.org/math/permutations-combinations-probability/</loc>
+    <lastmod>2026-05-21T16:43:43.799Z</lastmod>
   </url>
   <url>
     <loc>https://openfreebooks.org/math/polynomials-expansion-factorisation/</loc>
@@ -93,16 +145,28 @@
     <lastmod>2026-05-20T20:17:25.000Z</lastmod>
   </url>
   <url>
+    <loc>https://openfreebooks.org/math/pythagoras-theorem/</loc>
+    <lastmod>2026-05-21T16:43:43.137Z</lastmod>
+  </url>
+  <url>
     <loc>https://openfreebooks.org/math/quadratic-equations/</loc>
     <lastmod>2026-05-20T20:17:25.000Z</lastmod>
   </url>
   <url>
     <loc>https://openfreebooks.org/math/sequences-series/</loc>
-    <lastmod>2026-05-21T07:32:39.286Z</lastmod>
+    <lastmod>2026-05-21T07:33:01.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openfreebooks.org/math/statistical-charts-averages/</loc>
+    <lastmod>2026-05-21T16:43:43.394Z</lastmod>
+  </url>
+  <url>
+    <loc>https://openfreebooks.org/math/statistical-literacy/</loc>
+    <lastmod>2026-05-21T16:43:43.394Z</lastmod>
   </url>
   <url>
     <loc>https://openfreebooks.org/math/variations/</loc>
-    <lastmod>2026-05-21T07:32:39.286Z</lastmod>
+    <lastmod>2026-05-21T07:33:01.000Z</lastmod>
   </url>
   <url>
     <loc>https://openfreebooks.org/math/written-calculation/</loc>
