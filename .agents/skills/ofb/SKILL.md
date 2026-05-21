@@ -33,6 +33,7 @@ frontend/                  → catalog-app, Mermaid map view, site chrome
 ```bash
 bun install
 bun run build:js    # after frontend/ changes
+bun run generate:site-metadata  # regenerate static/sitemap.xml + static/feed.xml from content + git log
 bun run index:search  # once per dev session (copies public/pagefind → static/pagefind)
 zola serve          # http://127.0.0.1:1111
 bun run build       # production: JS + Zola + pagefind → public/
@@ -59,9 +60,19 @@ bun run build       # production: JS + Zola + pagefind → public/
 | New subject (sidebar) | `data/catalog.json` → `subjects[]`; `data/{id}-curriculum.json` (catalog template auto-loads by `id`) |
 | New chapter (planned) | `{subject}-curriculum.json` strand entry; optional `graph.edges` |
 | New chapter (live) | Above + `content/{subject}/{slug}/_index.md` + HTML partial + `chapter.html` wiring + `main.tsx` widget mount if interactive |
+| Sitemap/feed coverage | `scripts/generate-site-metadata.ts`, `static/sitemap.xml`, `static/feed.xml`, `package.json` build script |
 | Homepage subject card | `themes/.../templates/index.html` (not yet data-driven) |
 | Browse / nav URL | `zola.toml` `[extra] browse_url` + `base.html` site-config + `main.tsx` fallback |
 | Search UI / index | `base.html` (Pagefind assets + modal), `content/search.md`, `_search.scss`; `bun run index:search` for dev |
+
+## Sitemap / feed auto-generation
+
+- `bun run generate:site-metadata` generates:
+  - `static/sitemap.xml` (all user-facing built pages + live chapters)
+  - `static/feed.xml` (RSS 2.0 for pages + live chapters)
+- URL timestamps come from `git log -1` on content-source paths. If a page/chapter has no commit yet, generator falls back to filesystem mtime.
+- Build pipeline runs this automatically before `zola build` via `package.json`.
+- Include only resolvable pages; planned chapters without live content are excluded.
 
 ## Search (Pagefind)
 

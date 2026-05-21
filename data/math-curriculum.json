@@ -466,7 +466,7 @@
           "slug": "linear-inequalities-one-unknown",
           "title": "Linear inequalities in one unknown",
           "description": "Solve and represent linear inequalities on the number line and in word problems.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "DSE": "core",
             "IGCSE": "core",
@@ -483,7 +483,7 @@
           "slug": "laws-of-indices",
           "title": "Laws of indices",
           "description": "Apply index laws to simplify expressions with integer and rational exponents.",
-          "status": "planned",
+          "status": "live",
           "curriculumCoverage": {
             "DSE": "core",
             "IGCSE": "core",
