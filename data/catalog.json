@@ -3,9 +3,36 @@
   "subtitle": "Browse chapters by subject and curriculum",
   "curriculums": ["Foundation", "DSE", "IB", "A-Level", "AP", "IGCSE", "Common Core"],
   "subjects": [
-    { "id": "math", "name": "Mathematics", "banner": "/catalog/banners/math.webp" },
-    { "id": "english", "name": "English" },
-    { "id": "physics", "name": "Physics", "banner": "/catalog/banners/physics.jpg" },
+    {
+      "id": "math",
+      "name": "Mathematics",
+      "banner": "/catalog/banners/math.webp",
+      "contributors": [
+        {
+          "id": "man-lung-yeung",
+          "name": "Man Lung Yeung",
+          "avatar": "/contributors/manlung.png",
+          "job_title": "EdTech specialist / software engineer",
+          "education": "BEng in Computer Science (HKUST) + BBA (HKUST)",
+          "contributions": ["Project Creator", "Math textbook", "Physics textbook"]
+        }
+      ]
+    },
+    {
+      "id": "physics",
+      "name": "Physics",
+      "banner": "/catalog/banners/physics.jpg",
+      "contributors": [
+        {
+          "id": "man-lung-yeung",
+          "name": "Man Lung Yeung",
+          "avatar": "/contributors/manlung.png",
+          "job_title": "EdTech specialist / software engineer",
+          "education": "BEng in Computer Science (HKUST) + BBA (HKUST)",
+          "contributions": ["Project Creator", "Math textbook", "Physics textbook"]
+        }
+      ]
+    },
     { "id": "science", "name": "Science" },
     { "id": "humanities", "name": "Humanities" },
     { "id": "computing", "name": "Computing" }

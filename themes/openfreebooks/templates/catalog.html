@@ -19,7 +19,8 @@
     {
       "id": {{ subject.id | json_encode() | safe }},
       "name": {{ subject.name | json_encode() | safe }}{% if subject.banner %},
-      "banner": {{ subject.banner | json_encode() | safe }}{% endif %},
+      "banner": {{ subject.banner | json_encode() | safe }}{% endif %}{% if subject.contributors %},
+      "contributors": {{ subject.contributors | json_encode() | safe }}{% endif %},
       "strands": {{ subject_curriculum.strands | default(value=[]) | json_encode() | safe }}{% if subject_curriculum.graph %},
       "graph": {{ subject_curriculum.graph | json_encode() | safe }}{% endif %}
     }{% if not loop.last %},{% endif %}

@@ -34,11 +34,21 @@ export type CatalogGraph = {
   edges: CatalogGraphEdge[];
 };
 
+export type CatalogSubjectContributor = {
+  id: string;
+  name: string;
+  avatar: string;
+  job_title?: string;
+  education?: string;
+  contributions?: string[];
+};
+
 export type CatalogSubject = {
   id: string;
   name: string;
   /** Root-relative URL, e.g. /catalog/banners/math.webp */
   banner?: string;
+  contributors?: CatalogSubjectContributor[];
   strands: CatalogStrand[];
   graph?: CatalogGraph;
 };

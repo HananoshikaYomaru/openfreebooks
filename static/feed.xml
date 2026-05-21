@@ -4,118 +4,118 @@
     <title>Open Free Books</title>
     <link>https://openfreebooks.org/</link>
     <description>Recent updates to Open Free Books pages and live chapters.</description>
-    <lastBuildDate>Thu, 21 May 2026 16:43:43 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 21 May 2026 16:54:30 GMT</lastBuildDate>
     <item>
-      <title>Loci</title>
-      <link>https://openfreebooks.org/math/loci/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/loci/</guid>
-      <pubDate>Thu, 21 May 2026 16:43:43 GMT</pubDate>
-      <description>Describe and construct loci in the plane, linking geometric constraints to algebraic equations.</description>
+      <title>Advanced trigonometry</title>
+      <link>https://openfreebooks.org/math/advanced-trigonometry/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/advanced-trigonometry/</guid>
+      <pubDate>Thu, 21 May 2026 16:54:30 GMT</pubDate>
+      <description>Use sine and cosine rules, radians, and trigonometric graphs in 2D and 3D applications.</description>
+    </item>
+    <item>
+      <title>Basic probability</title>
+      <link>https://openfreebooks.org/math/basic-probability/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/basic-probability/</guid>
+      <pubDate>Thu, 21 May 2026 16:54:30 GMT</pubDate>
+      <description>Calculate theoretical and experimental probabilities for simple events and complements.</description>
+    </item>
+    <item>
+      <title>Properties of circles</title>
+      <link>https://openfreebooks.org/math/circle-properties/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/circle-properties/</guid>
+      <pubDate>Thu, 21 May 2026 16:54:30 GMT</pubDate>
+      <description>Apply chord, tangent, and angle theorems in circles to prove results and solve geometry problems.</description>
+    </item>
+    <item>
+      <title>Congruence &amp; similarity</title>
+      <link>https://openfreebooks.org/math/congruence-similarity/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/congruence-similarity/</guid>
+      <pubDate>Thu, 21 May 2026 16:54:30 GMT</pubDate>
+      <description>Apply congruence and similarity criteria to justify properties of triangles and scale figures.</description>
+    </item>
+    <item>
+      <title>Coordinate geometry of circles</title>
+      <link>https://openfreebooks.org/math/coordinate-circles/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/coordinate-circles/</guid>
+      <pubDate>Thu, 21 May 2026 16:54:30 GMT</pubDate>
+      <description>Find equations of circles, tangents, and intersections using coordinate methods and distance.</description>
+    </item>
+    <item>
+      <title>Coordinate geometry foundations</title>
+      <link>https://openfreebooks.org/math/coordinate-geometry-foundations/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/coordinate-geometry-foundations/</guid>
+      <pubDate>Thu, 21 May 2026 16:54:30 GMT</pubDate>
+      <description>Plot points, find distances and midpoints, and work with slopes of lines in the Cartesian plane.</description>
+    </item>
+    <item>
+      <title>Deductive geometry</title>
+      <link>https://openfreebooks.org/math/deductive-geometry/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/deductive-geometry/</guid>
+      <pubDate>Thu, 21 May 2026 16:54:30 GMT</pubDate>
+      <description>Prove angle and side relationships for intersecting lines, triangles, and polygons.</description>
     </item>
     <item>
       <title>Introduction to trigonometry</title>
       <link>https://openfreebooks.org/math/introduction-trigonometry/</link>
       <guid isPermaLink="true">https://openfreebooks.org/math/introduction-trigonometry/</guid>
-      <pubDate>Thu, 21 May 2026 16:43:43 GMT</pubDate>
+      <pubDate>Thu, 21 May 2026 16:54:30 GMT</pubDate>
       <description>Define sine, cosine, and tangent ratios and solve right-angled triangle problems.</description>
     </item>
     <item>
-      <title>Permutations, combinations &amp; probability</title>
-      <link>https://openfreebooks.org/math/permutations-combinations-probability/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/permutations-combinations-probability/</guid>
-      <pubDate>Thu, 21 May 2026 16:43:43 GMT</pubDate>
-      <description>Count outcomes with permutations and combinations, then compute probabilities in finite sample spaces.</description>
+      <title>Loci</title>
+      <link>https://openfreebooks.org/math/loci/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/loci/</guid>
+      <pubDate>Thu, 21 May 2026 16:54:30 GMT</pubDate>
+      <description>Describe and construct loci in the plane, linking geometric constraints to algebraic equations.</description>
+    </item>
+    <item>
+      <title>Measures of dispersion</title>
+      <link>https://openfreebooks.org/math/measures-dispersion/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/measures-dispersion/</guid>
+      <pubDate>Thu, 21 May 2026 16:54:30 GMT</pubDate>
+      <description>Interpret range, interquartile range, variance, and standard deviation for comparing data sets.</description>
     </item>
     <item>
       <title>Mensuration in 3D</title>
       <link>https://openfreebooks.org/math/mensuration-3d/</link>
       <guid isPermaLink="true">https://openfreebooks.org/math/mensuration-3d/</guid>
-      <pubDate>Thu, 21 May 2026 16:43:43 GMT</pubDate>
+      <pubDate>Thu, 21 May 2026 16:54:30 GMT</pubDate>
       <description>Find volumes and surface areas of prisms, cylinders, pyramids, cones, and spheres.</description>
     </item>
     <item>
       <title>Normal distribution &amp; z-scores</title>
       <link>https://openfreebooks.org/math/normal-distribution-z-scores/</link>
       <guid isPermaLink="true">https://openfreebooks.org/math/normal-distribution-z-scores/</guid>
-      <pubDate>Thu, 21 May 2026 16:43:43 GMT</pubDate>
+      <pubDate>Thu, 21 May 2026 16:54:30 GMT</pubDate>
       <description>Model continuous data with the normal curve, standardise with z-scores, and read probabilities from tables.</description>
     </item>
     <item>
-      <title>Coordinate geometry foundations</title>
-      <link>https://openfreebooks.org/math/coordinate-geometry-foundations/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/coordinate-geometry-foundations/</guid>
-      <pubDate>Thu, 21 May 2026 16:43:43 GMT</pubDate>
-      <description>Plot points, find distances and midpoints, and work with slopes of lines in the Cartesian plane.</description>
+      <title>Permutations, combinations &amp; probability</title>
+      <link>https://openfreebooks.org/math/permutations-combinations-probability/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/permutations-combinations-probability/</guid>
+      <pubDate>Thu, 21 May 2026 16:54:30 GMT</pubDate>
+      <description>Count outcomes with permutations and combinations, then compute probabilities in finite sample spaces.</description>
     </item>
     <item>
-      <title>Measures of dispersion</title>
-      <link>https://openfreebooks.org/math/measures-dispersion/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/measures-dispersion/</guid>
-      <pubDate>Thu, 21 May 2026 16:43:43 GMT</pubDate>
-      <description>Interpret range, interquartile range, variance, and standard deviation for comparing data sets.</description>
-    </item>
-    <item>
-      <title>Advanced trigonometry</title>
-      <link>https://openfreebooks.org/math/advanced-trigonometry/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/advanced-trigonometry/</guid>
-      <pubDate>Thu, 21 May 2026 16:43:43 GMT</pubDate>
-      <description>Use sine and cosine rules, radians, and trigonometric graphs in 2D and 3D applications.</description>
-    </item>
-    <item>
-      <title>Properties of circles</title>
-      <link>https://openfreebooks.org/math/circle-properties/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/circle-properties/</guid>
-      <pubDate>Thu, 21 May 2026 16:43:43 GMT</pubDate>
-      <description>Apply chord, tangent, and angle theorems in circles to prove results and solve geometry problems.</description>
-    </item>
-    <item>
-      <title>Deductive geometry</title>
-      <link>https://openfreebooks.org/math/deductive-geometry/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/deductive-geometry/</guid>
-      <pubDate>Thu, 21 May 2026 16:43:43 GMT</pubDate>
-      <description>Prove angle and side relationships for intersecting lines, triangles, and polygons.</description>
-    </item>
-    <item>
-      <title>Coordinate geometry of circles</title>
-      <link>https://openfreebooks.org/math/coordinate-circles/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/coordinate-circles/</guid>
-      <pubDate>Thu, 21 May 2026 16:43:43 GMT</pubDate>
-      <description>Find equations of circles, tangents, and intersections using coordinate methods and distance.</description>
-    </item>
-    <item>
-      <title>Basic probability</title>
-      <link>https://openfreebooks.org/math/basic-probability/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/basic-probability/</guid>
-      <pubDate>Thu, 21 May 2026 16:43:43 GMT</pubDate>
-      <description>Calculate theoretical and experimental probabilities for simple events and complements.</description>
+      <title>Pythagoras&apos; theorem</title>
+      <link>https://openfreebooks.org/math/pythagoras-theorem/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/pythagoras-theorem/</guid>
+      <pubDate>Thu, 21 May 2026 16:54:30 GMT</pubDate>
+      <description>Use Pythagoras&apos; theorem and its converse in 2D problems and coordinate settings.</description>
     </item>
     <item>
       <title>Charts &amp; averages</title>
       <link>https://openfreebooks.org/math/statistical-charts-averages/</link>
       <guid isPermaLink="true">https://openfreebooks.org/math/statistical-charts-averages/</guid>
-      <pubDate>Thu, 21 May 2026 16:43:43 GMT</pubDate>
+      <pubDate>Thu, 21 May 2026 16:54:30 GMT</pubDate>
       <description>Organise data with tables and charts and calculate mean, median, and mode.</description>
     </item>
     <item>
       <title>Statistical literacy</title>
       <link>https://openfreebooks.org/math/statistical-literacy/</link>
       <guid isPermaLink="true">https://openfreebooks.org/math/statistical-literacy/</guid>
-      <pubDate>Thu, 21 May 2026 16:43:43 GMT</pubDate>
+      <pubDate>Thu, 21 May 2026 16:54:30 GMT</pubDate>
       <description>Evaluate claims in media and research: sampling bias, correlation versus causation, and misleading charts.</description>
-    </item>
-    <item>
-      <title>Congruence &amp; similarity</title>
-      <link>https://openfreebooks.org/math/congruence-similarity/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/congruence-similarity/</guid>
-      <pubDate>Thu, 21 May 2026 16:43:43 GMT</pubDate>
-      <description>Apply congruence and similarity criteria to justify properties of triangles and scale figures.</description>
-    </item>
-    <item>
-      <title>Pythagoras&apos; theorem</title>
-      <link>https://openfreebooks.org/math/pythagoras-theorem/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/pythagoras-theorem/</guid>
-      <pubDate>Thu, 21 May 2026 16:43:43 GMT</pubDate>
-      <description>Use Pythagoras&apos; theorem and its converse in 2D problems and coordinate settings.</description>
     </item>
     <item>
       <title>Complex numbers</title>
@@ -200,20 +200,6 @@
       <guid isPermaLink="true">https://openfreebooks.org/math/written-calculation/</guid>
       <pubDate>Thu, 21 May 2026 05:05:38 GMT</pubDate>
       <description>Add, subtract, multiply, and divide whole numbers using vertical written form: align columns, regroup, and read the result.</description>
-    </item>
-    <item>
-      <title>English</title>
-      <link>https://openfreebooks.org/english/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/english/</guid>
-      <pubDate>Thu, 21 May 2026 02:10:55 GMT</pubDate>
-      <description>Browse English chapters in the curriculum catalog.</description>
-    </item>
-    <item>
-      <title>Reading comprehension foundations</title>
-      <link>https://openfreebooks.org/english/reading-comprehension-foundations/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/english/reading-comprehension-foundations/</guid>
-      <pubDate>Thu, 21 May 2026 02:10:55 GMT</pubDate>
-      <description>Find the main idea, key details, and evidence in short texts.</description>
     </item>
     <item>
       <title>FAQ</title>

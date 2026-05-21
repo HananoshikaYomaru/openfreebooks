@@ -8,6 +8,7 @@ import type {
   CatalogChapter,
   CatalogData,
   CatalogStrand,
+  CatalogSubjectContributor,
   CatalogSubject,
   CatalogViewMode,
 } from "../../../data/catalog.types";
@@ -33,6 +34,7 @@ function normalizeChapter(chapter: CatalogChapter): CatalogChapter {
 function normalizeSubject(subject: CatalogSubject): CatalogSubject {
   return {
     ...subject,
+    contributors: subject.contributors ?? [],
     strands: (subject.strands ?? []).map((strand) => ({
       ...strand,
       chapters: (strand.chapters ?? []).map(normalizeChapter),
@@ -94,6 +96,20 @@ function syncUrl(subjectId: string, viewMode: CatalogViewMode) {
   window.history.replaceState(null, "", url);
 }
 
+function openDialogById(id: string) {
+  const dialog = document.getElementById(id);
+  if (dialog instanceof HTMLDialogElement) {
+    dialog.showModal();
+  }
+}
+
+function closeDialogById(id: string) {
+  const dialog = document.getElementById(id);
+  if (dialog instanceof HTMLDialogElement) {
+    dialog.close();
+  }
+}
+
 export function CatalogApp() {
   const data = readCatalogData();
   if (!data) {
@@ -140,6 +156,37 @@ export function CatalogApp() {
       filters.size === 0 ? "all" : `filtered (${Array.from(filters).join(", ")})`;
     return `Showing ${count} ${filterText} chapter${count === 1 ? "" : "s"}`;
   });
+
+  const subjectContributors = createMemo<CatalogSubjectContributor[]>(
+    () => currentSubject()?.contributors ?? []
+  );
+
+  const contributorsPickerDialogId = createMemo(
+    () => `catalog-contributors-picker-dialog-${currentSubjectId()}`
+  );
+
+  const contributorDialogId = (contributorId: string) =>
+    `catalog-contributor-dialog-${currentSubjectId()}-${contributorId}`;
+
+  const openContributorsPickerDialog = () => {
+    openDialogById(contributorsPickerDialogId());
+  };
+
+  const openContributorDialog = (contributorId: string) => {
+    openDialogById(contributorDialogId(contributorId));
+  };
+
+  const openContributorFromPicker = (contributorId: string) => {
+    closeDialogById(contributorsPickerDialogId());
+    openDialogById(contributorDialogId(contributorId));
+  };
+
+  const closeContributorsDialogOnBackdrop = (event: MouseEvent) => {
+    if (!(event.currentTarget instanceof HTMLDialogElement)) return;
+    if (event.target === event.currentTarget) {
+      event.currentTarget.close();
+    }
+  };
 
   const selectSubject = (subjectId: string) => {
     if (subjectId !== "math" && viewMode() === "compare") {
@@ -244,6 +291,151 @@ export function CatalogApp() {
             <div class="catalog-header__intro">
               <h1 class="catalog-header__title">{currentSubject()?.name ?? "Catalog"}</h1>
               <p class="catalog-header__stats">{statsLabel()}</p>
+              <Show when={subjectContributors().length > 0}>
+                <div class="catalog-subject-contributors">
+                  <ul
+                    class="catalog-avatar-group"
+                    role="list"
+                    aria-label={`${currentSubject()?.name ?? "Subject"} contributors`}
+                  >
+                    <For each={subjectContributors()}>
+                      {(person) => (
+                        <li class="catalog-avatar-group__item">
+                          <button
+                            type="button"
+                            class="catalog-avatar-group__button"
+                            aria-label={`View contributor: ${person.name}`}
+                            aria-haspopup="dialog"
+                            aria-controls={contributorDialogId(person.id)}
+                            onClick={() => openContributorDialog(person.id)}
+                          >
+                            <img
+                              src={person.avatar}
+                              alt={person.name}
+                              width={36}
+                              height={36}
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          </button>
+                        </li>
+                      )}
+                    </For>
+                  </ul>
+                  <button
+                    type="button"
+                    class="catalog-subject-contributors__info"
+                    aria-haspopup="dialog"
+                    aria-controls={contributorsPickerDialogId()}
+                    onClick={openContributorsPickerDialog}
+                  >
+                    Contributors
+                  </button>
+                  <dialog
+                    id={contributorsPickerDialogId()}
+                    class="contributor-dialog catalog-contributors-dialog"
+                    onClick={closeContributorsDialogOnBackdrop}
+                  >
+                    <form
+                      method="dialog"
+                      class="contributor-dialog-panel catalog-contributors-dialog__panel"
+                    >
+                      <button
+                        type="submit"
+                        class="contributor-dialog-close"
+                        aria-label="Close contributors dialog"
+                      >
+                        ×
+                      </button>
+                      <div class="contributor-dialog-header">
+                        <h2 class="catalog-contributors-dialog__title">
+                          {currentSubject()?.name} contributors
+                        </h2>
+                      </div>
+                      <div class="catalog-contributors-dialog__contributions">
+                        <span class="contributor-meta-label">Contributors</span>
+                        <ul class="catalog-contributors-dialog__list" role="list">
+                          <For each={subjectContributors()}>
+                            {(person) => (
+                              <li>
+                                <button
+                                  type="button"
+                                  class="catalog-contributors-dialog__item"
+                                  aria-controls={contributorDialogId(person.id)}
+                                  onClick={() => openContributorFromPicker(person.id)}
+                                >
+                                  <img
+                                    class="catalog-contributors-dialog__avatar"
+                                    src={person.avatar}
+                                    alt=""
+                                    width={40}
+                                    height={40}
+                                    loading="lazy"
+                                    decoding="async"
+                                  />
+                                  <span>{person.name}</span>
+                                </button>
+                              </li>
+                            )}
+                          </For>
+                        </ul>
+                      </div>
+                      <div class="contributor-dialog-connect" />
+                    </form>
+                  </dialog>
+                  <For each={subjectContributors()}>
+                    {(person) => (
+                      <dialog
+                        id={contributorDialogId(person.id)}
+                        class="contributor-dialog catalog-contributors-dialog"
+                        onClick={closeContributorsDialogOnBackdrop}
+                      >
+                        <form method="dialog" class="contributor-dialog-panel">
+                          <button
+                            type="submit"
+                            class="contributor-dialog-close"
+                            aria-label={`Close ${person.name} dialog`}
+                          >
+                            ×
+                          </button>
+                          <div class="contributor-dialog-header">
+                            <img
+                              class="contributor-dialog-avatar"
+                              src={person.avatar}
+                              alt=""
+                              width={80}
+                              height={80}
+                              decoding="async"
+                            />
+                            <div class="contributor-dialog-identity">
+                              <h2 class="contributor-dialog-name">{person.name}</h2>
+                              <Show when={person.job_title}>
+                                <p class="contributor-dialog-job">{person.job_title}</p>
+                              </Show>
+                            </div>
+                          </div>
+                          <Show when={person.education}>
+                            <p class="contributor-dialog-meta">
+                              <span class="contributor-meta-label">Education</span>
+                              {person.education}
+                            </p>
+                          </Show>
+                          <Show when={person.contributions && person.contributions.length > 0}>
+                            <div class="contributor-dialog-contributions">
+                              <span class="contributor-meta-label">Contributes</span>
+                              <ul class="contributor-contribution-list" role="list">
+                                <For each={person.contributions}>
+                                  {(item) => <li>{item}</li>}
+                                </For>
+                              </ul>
+                            </div>
+                          </Show>
+                        </form>
+                      </dialog>
+                    )}
+                  </For>
+                </div>
+              </Show>
             </div>
             <div class="catalog-view-toggle" role="tablist" aria-label="Chapter layout">
               <button

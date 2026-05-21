@@ -265,6 +265,120 @@
   color: var(--muted);
 }
 
+.catalog-subject-contributors {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.catalog-avatar-group {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.catalog-avatar-group__item {
+  width: 36px;
+  height: 36px;
+  margin-left: -8px;
+  border: 2px solid var(--card-bg);
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--card-bg);
+  box-shadow: 0 2px 8px var(--shadow-soft);
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.catalog-avatar-group__button {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.catalog-subject-contributors__info {
+  display: none;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.catalog-contributors-dialog {
+  max-width: min(92vw, 420px);
+}
+
+.catalog-contributors-dialog__title {
+  margin: 0;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.catalog-contributors-dialog__contributions {
+  margin: 0 0 14px;
+  color: var(--soft-ink);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.catalog-contributors-dialog__list {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.catalog-contributors-dialog__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px 10px;
+  color: var(--ink);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.catalog-contributors-dialog__item:hover,
+.catalog-contributors-dialog__item:focus-visible {
+  border-color: var(--accent);
+  background: var(--paper);
+  outline: none;
+}
+
+.catalog-contributors-dialog__avatar {
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--card-border);
+  background: var(--paper);
+}
+
 .catalog-view-toggle {
   display: inline-flex;
   align-self: flex-end;
@@ -1309,6 +1423,16 @@ a.catalog-chapter-card {
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .catalog-avatar-group {
+    display: none;
+  }
+
+  .catalog-subject-contributors__info {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .catalog-view-toggle {
