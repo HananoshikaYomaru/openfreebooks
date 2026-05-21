@@ -14,7 +14,12 @@
 {% set slug = section.extra.chapter_id | default(value=section.slug) %}
 {% set chapter_key = subject ~ "/" ~ slug %}
 {% set chapters_meta = load_data(path="data/_generated/chapters-meta.json", format="json") %}
+{% set subjects_meta = load_data(path="data/_generated/subjects-meta.json", format="json") %}
 {% set chapter_meta = chapters_meta.chapters[chapter_key] %}
+{% set subject_meta = subjects_meta.subjects[subject] | default(value=false) %}
+{% if subject_meta and subject_meta.hasCss %}
+<link rel="stylesheet" href="{{ get_url(path='css/subjects/' ~ subject ~ '.css', trailing_slash=false) | safe }}" />
+{% endif %}
 {% if chapter_meta.hasCss %}
 <link rel="stylesheet" href="{{ get_url(path='css/chapters/' ~ subject ~ '-' ~ slug ~ '.css', trailing_slash=false) | safe }}" />
 {% endif %}

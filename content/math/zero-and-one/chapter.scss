@@ -1,0 +1,123 @@
+// Dot pictures: counting-dots in subject.scss
+
+.zero-one-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 20px 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card-bg);
+}
+
+.zero-one-compare__cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.zero-one-compare__cell--zero {
+  background: rgba(100, 116, 139, 0.08);
+  border: 1px dashed var(--line);
+}
+
+.zero-one-compare__cell--one {
+  background: rgba(20, 184, 166, 0.1);
+  border: 1px solid rgba(15, 118, 110, 0.35);
+}
+
+.zero-one-compare__digit {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.zero-one-compare__word {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--soft-ink);
+}
+
+.zero-one-compare__hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--soft-ink);
+}
+
+.zero-one-board__scenario {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+
+.zero-one-board__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+  margin: 12px 0;
+  padding: 16px;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  background: var(--card-bg);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.zero-one-board__visual--correct {
+  border-color: rgba(15, 118, 110, 0.55);
+  background: rgba(20, 184, 166, 0.08);
+}
+
+.zero-one-board__visual--incorrect {
+  border-color: rgba(180, 83, 9, 0.45);
+  background: rgba(234, 88, 12, 0.06);
+}
+
+.zero-one-board__count {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.zero-one-board__choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.zero-one-board__choice--active {
+  border-color: #0f766e;
+  background: rgba(20, 184, 166, 0.15);
+  font-weight: 700;
+}
+
+.zero-one-board__feedback {
+  margin: 12px 0 0;
+  min-height: 1.4em;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--soft-ink);
+}
+
+.zero-one-board__feedback--ok {
+  color: #0f766e;
+  font-weight: 600;
+}
+
+.zero-one-board__feedback--nope {
+  color: #9a3412;
+  font-weight: 600;
+}

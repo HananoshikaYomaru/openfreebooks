@@ -87,14 +87,17 @@ In `data/{subject}-curriculum.json`, set `"status": "live"` and include `descrip
 Create `content/{subject}/{slug}/`:
 
 ```text
-content/math/your-chapter-slug/
-├── _index.md           # page metadata (see below)
-├── core.html           # required — main lesson HTML
-├── supplement.html     # optional — history, checkpoints, extra demos
-├── chapter.scss        # optional — chapter-specific styles
-├── assets/             # optional — images (synced to static/chapters/…)
-└── widgets/            # optional — Solid widgets (auto-mounted)
-    └── my-widget.tsx   # default export; use data-widget="my-widget" in HTML
+content/math/                    # subject folder (mathematics today)
+├── subject.scss                 # shared CSS for all math chapters → /css/subjects/math.css
+├── subject.ts                   # shared JS init for all math chapters
+└── your-chapter-slug/
+    ├── _index.md                # page metadata (see below)
+    ├── core.html                # required — main lesson HTML
+    ├── supplement.html          # optional — history, checkpoints, extra demos
+    ├── chapter.scss             # optional — styles for this chapter only
+    ├── assets/                  # optional — images (synced to static/chapters/…)
+    └── widgets/                 # optional — Solid widgets (auto-mounted)
+        └── my-widget.tsx        # default export; data-widget="my-widget" in HTML
 ```
 
 **`_index.md` front matter** (page fields only — catalog fields stay in JSON):
@@ -115,6 +118,8 @@ strand = "Number & Algebra"
 ### 3. HTML and widgets
 
 - Use shared classes: `book-prose`, `book-prose__heading`, `book-callout`, etc. Copy from `content/math/quadratic-equations/`.
+- **Checkpoints:** `<details class="book-question">` with `book-question__prompt` and `book-question__solution` (not `__answer`). See `.agents/skills/ofb/math-chapter-patterns.md`.
+- Put styles reused across several chapters in `content/{subject}/subject.scss`, not in each `chapter.scss`.
 - **Do not** mention DSE, IB, or other curriculum names in chapter HTML.
 - Mount widgets with `<div class="math-widget-mount" data-widget="widget-name" data-pagefind-ignore></div>` (filename without `.tsx` = `data-widget` value).
 - **Math (KaTeX):** write `\( … \)` and `\[ … \]` in HTML; prose is auto-rendered on chapter load. In widgets use `import { renderLatex } from "@ofb/katex"` — do not add a per-widget `renderLatex` helper.
@@ -131,7 +136,7 @@ zola serve
 - `/math/your-chapter-slug/` — page renders.
 - `bun run build` — full production build.
 
-No theme edits, no `main.tsx` edits, no per-chapter template branches.
+New subjects with shared CSS/JS: add `content/{subject}/subject.scss` and/or `subject.ts`; `sync:chapters` wires them automatically. No per-chapter template branches.
 
 ---
 

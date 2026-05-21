@@ -240,6 +240,18 @@ a.book-chapter-link:focus-visible {
   margin: 0 0 1.1em;
 }
 
+.book-prose a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+
+.book-prose a:hover,
+.book-prose a:focus-visible {
+  text-decoration: underline;
+}
+
 .book-prose__heading {
   margin: 2em 0 0.6em;
 }
@@ -430,6 +442,18 @@ a.book-chapter-link:focus-visible {
 }
 
 .book-question__solution p {
+  margin: 0.75rem 0 0;
+}
+
+// Legacy/alternate markup — prefer book-question__solution in chapter HTML
+.book-question__answer {
+  padding: 0 18px 16px;
+  border-top: 1px solid var(--card-border);
+  font-size: 0.95rem;
+  color: var(--soft-ink);
+}
+
+.book-question__answer p {
   margin: 0.75rem 0 0;
 }
 

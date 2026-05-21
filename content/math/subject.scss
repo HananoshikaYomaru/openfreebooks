@@ -1,0 +1,106 @@
+// Shared styles for all mathematics chapters (compiled to /css/subjects/math.css).
+// Chapter-specific rules stay in each chapter's chapter.scss.
+
+// --- Figurative dot pictures (counting, zero/one, tables) ---
+.counting-dots {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  vertical-align: middle;
+}
+
+.counting-dots__dot {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #0f766e;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
+}
+
+.counting-dots--empty .counting-dots__none {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.counting-dots--compare {
+  max-width: 100px;
+}
+
+.counting-dots--pair {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 200px;
+}
+
+.counting-dots__pair {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  background: rgba(20, 184, 166, 0.12);
+  border: 1px dashed rgba(15, 118, 110, 0.35);
+}
+
+.counting-dots--odd {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  max-width: 220px;
+}
+
+.counting-dots__singleton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(234, 88, 12, 0.14);
+  border: 2px solid rgba(180, 83, 9, 0.45);
+}
+
+.counting-dots__singleton .counting-dots__dot {
+  background: #c2410c;
+}
+
+.counting-pattern-ladder--odd .counting-pattern-step {
+  background: rgba(234, 88, 12, 0.06);
+}
+
+.counting-number-table td:last-child {
+  min-width: 110px;
+}
+
+// --- Notation chapter dot chains ---
+.notation-dots {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  vertical-align: middle;
+}
+
+.notation-dots__dot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #0f766e;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
+}
+
+.notation-dots--chain {
+  max-width: 88px;
+  justify-content: center;
+}
+
+.notation-dots--decimal .notation-dots__dot {
+  width: 14px;
+  height: 14px;
+}

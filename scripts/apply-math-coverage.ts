@@ -13,6 +13,18 @@ const JSON_PATH = path.join(ROOT, "data/math-curriculum.json");
 
 /** slug → framework label → role */
 const COVERAGE_BY_SLUG: Record<string, Coverage> = {
+  "zero-and-one": {
+    Foundation: "core",
+    IGCSE: "core",
+    "Common Core": "core",
+    Singapore: "core",
+    "UK GCSE": "core",
+    DSE: "related",
+    IB: "related",
+    "A-Level": "related",
+    AP: "related",
+    Gaokao: "related",
+  },
   "counting-and-numbers": {
     Foundation: "core",
     IGCSE: "core",

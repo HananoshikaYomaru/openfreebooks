@@ -4,6 +4,10 @@
   "graph": {
     "edges": [
       {
+        "from": "zero-and-one",
+        "to": "counting-and-numbers"
+      },
+      {
         "from": "counting-and-numbers",
         "to": "basic-math-notation"
       },
@@ -207,9 +211,27 @@
       "title": "Number & Algebra",
       "chapters": [
         {
+          "slug": "zero-and-one",
+          "title": "Zero and one",
+          "description": "0 is nothing; 1 is one. Learn to tell them apart — the same skill as telling false from true — before counting larger amounts.",
+          "status": "live",
+          "curriculumCoverage": {
+            "Foundation": "core",
+            "IGCSE": "core",
+            "Common Core": "core",
+            "Singapore": "core",
+            "UK GCSE": "core",
+            "DSE": "related",
+            "IB": "related",
+            "A-Level": "related",
+            "AP": "related",
+            "Gaokao": "related"
+          }
+        },
+        {
           "slug": "counting-and-numbers",
           "title": "Counting and numbers",
-          "description": "Count from zero, spot patterns, add, multiply, and divide; then meet place value and big numbers from hundreds to billions.",
+          "description": "Count objects, spot patterns, add, multiply, and divide; then meet place value and big numbers from hundreds to billions.",
           "status": "live",
           "curriculumCoverage": {
             "Foundation": "core",

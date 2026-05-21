@@ -110,10 +110,15 @@ Prerequisites: **only** `graph.edges` (required, global DAG, cross-strand OK). L
 Live chapters live under `content/{subject}/{slug}/`:
 
 1. `data/{subject}-curriculum.json` — catalog metadata (`status`, `curriculums`, `graph.edges`)
-2. `_index.md` — front matter only (`template = "chapter.html"`, `[extra] subject`, `chapter_id`, `strand`)
-3. `core.html` (required), optional `supplement.html`, `assets/`, `widgets/*.tsx`, optional `chapter.scss`
-4. `bun run sync:chapters` merges HTML into `_index.md`, copies assets to `static/chapters/…`, generates `frontend/src/generated/chapter-widgets.ts`
-5. `templates/chapter.html` renders `{{ section.content | safe }}`; widgets use `data-widget` + auto-mount in `main.tsx`
+2. **Subject shared** (when a subject has multiple chapters): `content/{subject}/subject.scss` → `/css/subjects/{subject}.css`; `content/{subject}/subject.ts` → `initSubject()` via `frontend/src/generated/subject-modules.ts`. Math HTML conventions: [math-chapter-patterns.md](math-chapter-patterns.md).
+3. `_index.md` — front matter only (`template = "chapter.html"`, `[extra] subject`, `chapter_id`, `strand`)
+4. `core.html` (required), optional `supplement.html`, `assets/`, `widgets/*.tsx`, optional `chapter.scss` (chapter-only styles — do not duplicate subject.scss)
+5. `bun run sync:chapters` merges HTML into `_index.md`, copies assets to `static/chapters/…`, compiles subject + chapter CSS, generates `chapter-widgets.ts` and `subject-modules.ts`, writes `data/_generated/subjects-meta.json`
+6. `templates/chapter.html` loads subject CSS then chapter CSS; `main.tsx` runs subject init then mounts widgets
+
+**Checkpoints (all subjects):** use `book-question`, `book-question__prompt`, `book-question__solution` (styled in theme `_book.scss`). Never use `book-question__answer`.
+
+**Math checkpoints / dots:** follow [math-chapter-patterns.md](math-chapter-patterns.md); shared dot classes in `content/math/subject.scss`.
 
 Reference: `content/math/quadratic-equations/`.
 

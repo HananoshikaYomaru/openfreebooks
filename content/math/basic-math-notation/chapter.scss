@@ -37,34 +37,7 @@
   color: var(--muted);
 }
 
-// Dot pictures for compare chains (same idea as counting chapter)
-.notation-dots {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px;
-  vertical-align: middle;
-}
-
-.notation-dots__dot {
-  display: block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #0f766e;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
-  flex-shrink: 0;
-}
-
-.notation-dots--chain {
-  max-width: 88px;
-  justify-content: center;
-}
-
-.notation-dots--decimal .notation-dots__dot {
-  width: 14px;
-  height: 14px;
-}
+// notation-dots: content/math/subject.scss
 
 .notation-compare-chain {
   margin: 1.25rem 0;

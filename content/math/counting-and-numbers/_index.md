@@ -1,8 +1,8 @@
 +++
 title = "Counting and numbers"
-description = "Count from zero, spot patterns, add, multiply, and divide; then meet place value and big numbers from hundreds to billions."
+description = "Count objects, spot patterns, add, multiply, and divide; then meet place value and big numbers from hundreds to billions."
 template = "chapter.html"
-weight = 0
+weight = 1
 [extra]
 subject = "math"
 chapter_id = "counting-and-numbers"
@@ -11,10 +11,11 @@ strand = "Number & Algebra"
 
 <div class="book-prose">
   <p>
-    Look around you. How many birds? How many cups? You can answer by
-    <strong>counting</strong> — pointing at one thing at a time until everything has been pointed at.
-    This chapter uses <strong>pictures of dots</strong> to stand for real things, like marbles or
-    fingers.
+    You already met <strong>0</strong> and <strong>1</strong> in
+    <a href="/math/zero-and-one/">Zero and one</a>. Now look around: how many birds? how many cups?
+    You answer by <strong>counting</strong> — pointing at one thing at a time until everything has
+    been pointed at. This chapter uses <strong>pictures of dots</strong> to stand for real things,
+    like marbles or fingers.
   </p>
 
   <h2 id="what-is-counting" class="book-prose__heading">What is counting?</h2>
@@ -27,20 +28,13 @@ strand = "Number & Algebra"
     the number of fingers matches the number of objects.
   </p>
 
-  <h2 id="zero" class="book-prose__heading">Zero</h2>
+  <h2 id="zero" class="book-prose__heading">Zero and one (recap)</h2>
   <p>
-    When there is <strong>nothing</strong> to point at, we write <strong>0</strong> and say
-    <strong>zero</strong>. An empty plate, no toys in the box — zero dots:
+    <strong>0</strong> means nothing to count; <strong>1</strong> means exactly one. When you count
+    aloud you still say zero before one, then two, and so on. If you want the full picture of
+    nothing versus one — and how that pairs with false and true — revisit
+    <a href="/math/zero-and-one/#zero">Zero and one</a>.
   </p>
-  <p class="counting-dots counting-dots--empty" aria-label="zero dots">
-    <span class="counting-dots__none">(none)</span>
-  </p>
-  <p>Zero comes before one when we count: first nothing, then one, then two, and so on.</p>
-
-  <div class="book-callout" role="note">
-    <p class="book-callout__label">Remember</p>
-    <p>Zero means “none here,” not “forgot to count.”</p>
-  </div>
 
   <h2 id="numbers-one-to-ten" class="book-prose__heading">Numbers 1 to 10</h2>
   <p>

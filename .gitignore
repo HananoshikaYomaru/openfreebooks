@@ -28,5 +28,5 @@ themes/openfreebooks/static/
 # Chapter sync output (bun run sync:chapters)
 frontend/src/generated/
 data/_generated/
-static/css/chapters/
+static/css/
 static/chapters/

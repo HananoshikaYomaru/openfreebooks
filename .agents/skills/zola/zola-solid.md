@@ -72,6 +72,19 @@ Mounted from `catalog.html` via `catalog-app.tsx` (in main bundle). Map view laz
 
 **Mermaid theming:** use `theme: "base"` and hex `themeVariables` only; CSS cannot override Mermaid’s inline cluster fills. See [zola-catalog.md](zola-catalog.md).
 
+## Subject shared assets (chapters)
+
+For subjects with multiple chapters (e.g. mathematics), colocate shared code under `content/{subject}/`:
+
+| File | Build output | Loaded by |
+|------|----------------|-----------|
+| `subject.scss` | `static/css/subjects/{subject}.css` | `chapter.html` when `subjects-meta.json` has `hasCss` |
+| `subject.ts` | chunk via Vite | `main.tsx` → `generated/subject-modules.ts` → `initSubject(article)` |
+
+Run `bun run sync:chapters` to compile CSS and regenerate `subject-modules.ts` + `data/_generated/subjects-meta.json`. Chapter-only styles stay in `content/{subject}/{slug}/chapter.scss`.
+
+Math conventions: `.agents/skills/ofb/math-chapter-patterns.md`.
+
 ## KaTeX (math)
 
 | Use case | API | Where |

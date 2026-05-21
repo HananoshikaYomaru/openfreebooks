@@ -134,7 +134,21 @@ if (chapterNavRoot) {
   });
 }
 
+function mountSubjectInit() {
+  const article = document.querySelector<HTMLElement>("[data-chapter]");
+  const chapterKey = article?.dataset.chapter;
+  if (!article || !chapterKey) return;
+
+  const subject = chapterKey.split("/")[0];
+  void import("./generated/subject-modules").then(({ subjectInitLoaders }) => {
+    const loader = subjectInitLoaders[subject];
+    if (!loader) return;
+    void loader().then((mod) => mod.initSubject(article));
+  });
+}
+
 initBookMath();
+mountSubjectInit();
 mountChapterWidgets();
 
 const catalogRoot = document.getElementById("catalog-app");
