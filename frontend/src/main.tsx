@@ -82,20 +82,20 @@ function mountChapterWidgets() {
 
   if (mounts.length === 0) return;
 
-  void import("./generated/chapter-widgets").then(({ chapterWidgetLoaders }) => {
+  void import("./generated/chapter-widgets").then(({ chapterWidgetUrls }) => {
     const loadPromises: Promise<void>[] = [];
 
     for (const el of mounts) {
       const widget = el.dataset.widget;
       if (!widget) continue;
       const loaderKey = `${chapterKey}/${widget}`;
-      const loader = chapterWidgetLoaders[loaderKey];
-      if (!loader) {
-        console.warn(`No widget loader registered for ${loaderKey}`);
+      const moduleUrl = chapterWidgetUrls[loaderKey];
+      if (!moduleUrl) {
+        console.warn(`No widget module URL registered for ${loaderKey}`);
         continue;
       }
       loadPromises.push(
-        loader().then((mod) => {
+        import(/* @vite-ignore */ moduleUrl).then((mod) => {
           render(() => mod.default({}), el);
         })
       );

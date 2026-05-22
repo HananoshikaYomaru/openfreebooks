@@ -97,14 +97,24 @@ async function readJsonFile<T>(path: string): Promise<T | null> {
   }
 }
 
-async function main() {
+export async function validateCurriculum(): Promise<{
+  curriculumFileCount: number;
+  errors: ValidationError[];
+}> {
   const errors: ValidationError[] = [];
 
   const catalogPath = join(DATA_DIR, "catalog.json");
   const catalog = await readJsonFile<CatalogFile>(catalogPath);
   if (!catalog || !Array.isArray(catalog.curriculums)) {
-    console.error("Cannot validate curriculums: data/catalog.json must contain a curriculums array.");
-    process.exit(1);
+    return {
+      curriculumFileCount: 0,
+      errors: [
+        {
+          file: "catalog.json",
+          message: "Cannot validate curriculums: data/catalog.json must contain a curriculums array.",
+        },
+      ],
+    };
   }
 
   const globalCurriculums = new Set(
@@ -263,15 +273,21 @@ async function main() {
     }
   }
 
-  if (errors.length > 0) {
-    console.error(`\n✖ Curriculum validation failed with ${errors.length} error(s):`);
-    for (const error of errors) {
+  return { curriculumFileCount: curriculumFiles.length, errors };
+}
+
+async function main() {
+  const result = await validateCurriculum();
+  if (result.errors.length > 0) {
+    console.error(`\n✖ Curriculum validation failed with ${result.errors.length} error(s):`);
+    for (const error of result.errors) {
       console.error(`- [${error.file}] ${error.message}`);
     }
     process.exit(1);
   }
-
-  console.log(`✓ Curriculum validation passed for ${curriculumFiles.length} curriculum file(s).`);
+  console.log(`✓ Curriculum validation passed for ${result.curriculumFileCount} curriculum file(s).`);
 }
 
-main();
+if (import.meta.main) {
+  void main();
+}

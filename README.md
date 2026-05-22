@@ -55,29 +55,37 @@ Install JS dependencies:
 bun install
 ```
 
-For day-to-day local development, run JS watch + Zola serve together:
+Serve locally:
 
 ```bash
 bun run dev
 ```
 
-Open [http://127.0.0.1:1111](http://127.0.0.1:1111). Re-run `bun run index:search` when you change chapter HTML or add pages so search stays up to date.
+Open [http://127.0.0.1:1111](http://127.0.0.1:1111).
 
-Use `bun run dev:full` when you want to force a full chapter sync before starting dev servers.
+Search UI is available in local serve; run a build command to refresh the search index (`static/pagefind/` is gitignored and copied from build output).
 
-Search UI is available immediately; results require the index step above (`static/pagefind/` is gitignored and copied from the build output).
-
-## Production build
+## Build commands
 
 ```bash
-bun run build
+bun run build:chapter math/measures-dispersion math/loci
+bun run build:chapter math/*
+bun run build:chapter   # auto-detect changed chapters, list them, ask for confirmation
+bun run build:site      # full site build (includes sponsor sync when GITHUB_TOKEN is set)
+bun run build           # alias of build:site
 ```
 
-`bun run build` is smart/incremental for local development:
-- first run (or missing cache) behaves like a full build,
-- repeat runs skip unchanged steps.
+`build:chapter` updates chapter sync, chapter widget JS (targeted), metadata, site output, and search index.
 
-Use `bun run build:full` for a deterministic full rebuild (recommended for CI/release validation).
+In non-interactive environments, `build:chapter` requires explicit chapter arguments.
+
+## Testing
+
+```bash
+bun test
+```
+
+`bun test` includes curriculum validation.
 
 ## Deploy to Cloudflare
 

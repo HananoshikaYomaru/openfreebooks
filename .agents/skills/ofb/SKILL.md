@@ -32,11 +32,13 @@ frontend/                  → catalog-app, Mermaid map view, site chrome
 
 ```bash
 bun install
-bun run build:js    # after frontend/ changes
-bun run generate:site-metadata  # regenerate static/sitemap.xml + static/feed.xml from content + git log
-bun run index:search  # once per dev session (copies public/pagefind → static/pagefind)
-zola serve          # http://127.0.0.1:1111
-bun run build       # production: JS + Zola + pagefind → public/
+bun run dev                      # instant local serve (zola only)
+bun run build:chapter math/measures-dispersion math/loci
+bun run build:chapter math/*
+bun run build:chapter   # auto-detect changed chapters (interactive confirm)
+bun run build:site      # full rebuild (sync external data + all chapters + site)
+bun run build           # alias of build:site
+bun test
 ```
 
 ## Non-negotiables
@@ -65,7 +67,7 @@ bun run build       # production: JS + Zola + pagefind → public/
 | Sitemap/feed coverage | `scripts/generate-site-metadata.ts`, `static/sitemap.xml`, `static/feed.xml`, `package.json` build script |
 | Homepage subject card | `themes/.../templates/index.html` (not yet data-driven) |
 | Browse / nav URL | `zola.toml` `[extra] browse_url` + `base.html` site-config + `main.tsx` fallback |
-| Search UI / index | `base.html` (Pagefind assets + modal), `content/search.md`, `_search.scss`; `bun run index:search` for dev |
+| Search UI / index | `base.html` (Pagefind assets + modal), `content/search.md`, `_search.scss`; chapter/site builds refresh Pagefind |
 
 ## Sitemap / feed auto-generation
 
@@ -73,7 +75,7 @@ bun run build       # production: JS + Zola + pagefind → public/
   - `static/sitemap.xml` (all user-facing built pages + live chapters)
   - `static/feed.xml` (RSS 2.0 for pages + live chapters)
 - URL timestamps come from `git log -1` on content-source paths. If a page/chapter has no commit yet, generator falls back to filesystem mtime.
-- Build pipeline runs this automatically before `zola build` via `package.json`.
+- Build pipeline runs this automatically before `zola build`.
 - Include only resolvable pages; planned chapters without live content are excluded.
 
 ## Search (Pagefind)
@@ -87,7 +89,7 @@ bun run build       # production: JS + Zola + pagefind → public/
 | Theming | `themes/.../sass/_search.scss` (`--pf-*` → site tokens) |
 
 - **Component UI** only (`pagefind-component-ui.js`), not legacy `pagefind-ui.js`.
-- Index runs **after** `zola build`. Production: `bun run build`. Dev: `bun run index:search` copies bundle to `static/pagefind/` (gitignored) for `zola serve`.
+- Index runs **after** `zola build` in build commands (`build:chapter`/`build:site`).
 - v1 indexes **live chapter pages only** (`data-pagefind-body` on `templates/chapter.html`); home, about, catalog, credits, and other site pages are excluded.
 
 Detailed checklists: [curriculum-data.md](curriculum-data.md). Human-facing guide: [CONTRIBUTING.md](../../../CONTRIBUTING.md).

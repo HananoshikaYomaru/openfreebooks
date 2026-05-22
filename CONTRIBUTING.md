@@ -19,11 +19,11 @@ Thank you for helping grow free, open textbooks.
 | Add a **catalog subject banner** | [§ Catalog subject banner](#catalog-subject-banner) |
 | Add a **curriculum** filter (e.g. GCSE) | [§ New curriculum label](#add-a-curriculum-label) |
 
-**Browse the catalog locally:** `bun run build:js && zola serve` → [http://127.0.0.1:1111/catalog/](http://127.0.0.1:1111/catalog/)
+**Browse the catalog locally:** `bun run dev` → [http://127.0.0.1:1111/catalog/](http://127.0.0.1:1111/catalog/)
 
-**Search locally:** After `bun run build:js`, run `bun run index:search` once (or again after changing chapter HTML), then `zola serve`. Try [http://127.0.0.1:1111/search/](http://127.0.0.1:1111/search/) or press ⌘K / Ctrl+K.
+**Search locally:** Run `bun run build:chapter ...` or `bun run build:site` after content changes to refresh the index, then use `bun run dev`. Try [http://127.0.0.1:1111/search/](http://127.0.0.1:1111/search/) or press ⌘K / Ctrl+K.
 
-**Build modes:** `bun run build` is smart/incremental for local iteration; use `bun run build:full` for a deterministic full rebuild (CI/release checks).
+**Build modes:** use `bun run build:chapter` for targeted chapter builds and `bun run build:site` for full rebuilds.
 
 ---
 
@@ -37,7 +37,7 @@ content/{subject}/{slug}/       → everything for the live page (one folder)
 
 - **Catalog** (`/catalog/`) — list, map (`?view=tree`), and for Mathematics a Compare doc (`?view=compare`, HTML partial `themes/openfreebooks/templates/partials/math-curricula-compare.html`). Curriculum names (DSE, IB, …) appear only in the catalog — not inside chapter prose ([spec.md](spec.md)).
 - Every chapter needs a **`description`** in curriculum JSON (map clamps to three lines).
-- **`bun run sync:chapters`** (also run automatically by `bun run build:js`) merges `core.html` + `supplement.html` into `_index.md` for Zola. Edit the HTML files, not the merged body in `_index.md`.
+- Chapter sync (merging `core.html` + `supplement.html` into `_index.md`) runs automatically in build commands. Edit HTML sources, not merged `_index.md`.
 
 ### Map graph rules (summary)
 
@@ -130,15 +130,15 @@ strand = "Number & Algebra"
 ### 4. Build and check
 
 ```bash
-bun run build:js    # sync:chapters + Vite bundle
-zola serve
+bun run build:chapter math/your-chapter-slug
+bun run dev
 ```
 
 - `/catalog/?subject=math` — chapter appears and links correctly.
 - `/math/your-chapter-slug/` — page renders.
 - `bun run build` — full production build.
 
-New subjects with shared CSS/JS: add `content/{subject}/subject.scss` and/or `subject.ts`; `sync:chapters` wires them automatically. No per-chapter template branches.
+New subjects with shared CSS/JS: add `content/{subject}/subject.scss` and/or `subject.ts`; chapter sync during build wires them automatically. No per-chapter template branches.
 
 ---
 
@@ -163,7 +163,7 @@ Add edges in `data/{subject}-curriculum.json`:
 1. `data/catalog.json` — add the subject to `subjects`.
 2. Create `data/{id}-curriculum.json` (same schema as `math-curriculum.json`; `strands` + optional `graph.edges`).
 3. Add `content/{subject}/` when you have live chapters.
-4. Run `bun run build:js` (this syncs chapter content and auto-registers subject CSS/JS modules).
+4. Run `bun run build:chapter {subject}/*` (this syncs chapters, rebuilds relevant widgets, and updates global outputs).
 
 ### Subject scaffold (copyable)
 
@@ -210,7 +210,7 @@ cwebp -resize 1400 0 -q 82 your-banner.jpg -o static/catalog/banners/math.webp
 { "id": "math", "name": "Mathematics", "banner": "/catalog/banners/math.webp" }
 ```
 
-4. Check locally: `bun run build:js && zola serve` → `/catalog/?subject=math`
+4. Check locally: `bun run build:chapter math/* && bun run dev` → `/catalog/?subject=math`
 
 Omit `banner` for subjects that should stay unchanged (e.g. roadmap-only placeholders).
 
@@ -228,14 +228,13 @@ Omit `banner` for subjects that should stay unchanged (e.g. roadmap-only placeho
 
 ```bash
 bun install
-bun run sync:chapters  # after content/ chapter changes
-bun run build:js       # sync + Vite
-bun run dev            # incremental sync + watch + zola serve
-bun run dev:full       # force full sync before dev
-zola serve
+bun run dev
+bun run build:chapter math/measures-dispersion math/loci
+bun run build:chapter math/*
+bun run build:chapter   # auto-detect changed chapters, list, confirm
+bun run build:site
 bun test
 bun run build
-bun run build:full
 ```
 
 - Do **not** commit `themes/openfreebooks/static/` (Vite output).

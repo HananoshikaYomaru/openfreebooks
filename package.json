@@ -4,21 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "sync:chapters": "bun scripts/sync-chapters.ts",
-    "sync:sponsors": "bun scripts/fetch-github-sponsors.ts",
-    "generate:site-metadata": "bun scripts/generate-site-metadata.ts",
-    "build:js": "bun run sync:chapters && vite build",
-    "build:site": "bun run generate:site-metadata && zola build && bun run index:search",
-    "build:full": "bun run check:static-html && bun run validate:curriculum && rm -f themes/openfreebooks/static/main.css public/main.css && bun run sync:chapters -- --full && vite build && bun run build:site",
-    "build": "bun scripts/build-smart.ts",
-    "index:search": "pagefind --site public --glob \"**/index.html\" && rm -rf static/pagefind && cp -R public/pagefind static/pagefind",
-    "dev:js": "vite build --watch",
-    "dev:full": "bash scripts/dev.sh --full",
-    "dev": "bash scripts/dev.sh",
-    "check:static-html": "bash scripts/check-static-html.sh",
-    "scan:size": "bun scripts/scan-output-size.ts",
-    "test": "bun test",
-    "validate:curriculum": "bun scripts/validate-curriculum.ts"
+    "build:chapter": "bun scripts/build-chapter.ts",
+    "build:site": "bun scripts/build-site.ts",
+    "build": "bun run build:site",
+    "dev": "zola serve",
+    "test": "bun test"
   },
   "dependencies": {
     "defuddle": "^0.18.1",
@@ -33,6 +23,7 @@
     "pagefind": "^1.5.0",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
-    "vite-plugin-solid": "^2.11.6"
+    "vite-plugin-solid": "^2.11.6",
+    "@types/bun": "^1.3.14"
   }
 }

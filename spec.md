@@ -36,3 +36,13 @@ each chapter needs to have the following other than the core content:
 6. reference (if any)
 
 the order can be adjustable base on importance. 
+
+## Non-functional requirements
+
+### Dev experience and performance
+
+1. `bun run dev` must start fast and directly run `zola serve` only (no implicit sync/build/watch pipeline).
+2. Chapter build workflow must prioritize fast feedback for content edits:
+   - avoid full frontend bundle rebuild unless frontend/site-shell code actually changed,
+   - keep chapter core rebuild path as lightweight as possible.
+3. `build:chapter` is the default iterative workflow for chapter updates; it should minimize unnecessary I/O and avoid rebuilding unrelated assets.
