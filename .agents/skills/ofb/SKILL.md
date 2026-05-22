@@ -135,6 +135,18 @@ Live chapters live under `content/{subject}/{slug}/`:
 
 **Math checkpoints / dots:** follow [math-chapter-patterns.md](math-chapter-patterns.md); shared dot classes in `content/math/subject.scss`.
 
+### Interactive demo technology choices
+
+Interactive demos can use different technologies based on the learning goal and interaction type:
+
+- **Vanilla JavaScript / Solid widget**: default for lightweight chapter interactions and custom canvas/SVG behavior.
+- **JSXGraph**: geometric constructions (points, lines, labeled angles, right-angle markers, draggable Euclidean figures).
+- **Plotly.js**: data-heavy charts, coordinate plots, and quick interactive graphing.
+- **D3**: custom data visualizations where fine-grained control over rendering/animation is needed.
+- **three.js**: 3D scenes, spatial intuition demos, and rotation/perspective interactions.
+
+Choose the simplest tool that satisfies the pedagogy, performance, and accessibility needs of the chapter.
+
 Reference: `content/math/quadratic-equations/`.
 
 ## Verify before PR

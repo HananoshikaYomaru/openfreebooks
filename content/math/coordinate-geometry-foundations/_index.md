@@ -28,12 +28,53 @@ strand = "Measures, Shape & Space"
     <li>Q3: \((-,-)\)</li>
     <li>Q4: \((+,-)\)</li>
   </ul>
+  <figure class="coord-empty-plane">
+    <svg
+      viewBox="0 0 360 360"
+      width="360"
+      height="360"
+      role="img"
+      aria-label="Empty Cartesian plane with x-axis, y-axis, and quadrant labels"
+    >
+      <defs>
+        <pattern id="coord-grid-small" width="18" height="18" patternUnits="userSpaceOnUse">
+          <path d="M 18 0 L 0 0 0 18" fill="none" class="coord-empty-plane__grid-small" />
+        </pattern>
+        <pattern id="coord-grid-major" width="90" height="90" patternUnits="userSpaceOnUse">
+          <rect width="90" height="90" fill="url(#coord-grid-small)" />
+          <path d="M 90 0 L 0 0 0 90" fill="none" class="coord-empty-plane__grid-major" />
+        </pattern>
+        <marker id="coord-arrow-end" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" class="coord-empty-plane__axis-arrow" />
+        </marker>
+      </defs>
+      <rect x="10" y="10" width="340" height="340" class="coord-empty-plane__bg" />
+      <rect x="10" y="10" width="340" height="340" fill="url(#coord-grid-major)" />
+      <line x1="180" y1="16" x2="180" y2="344" class="coord-empty-plane__axis" marker-start="url(#coord-arrow-end)" marker-end="url(#coord-arrow-end)" />
+      <line x1="16" y1="180" x2="344" y2="180" class="coord-empty-plane__axis" marker-start="url(#coord-arrow-end)" marker-end="url(#coord-arrow-end)" />
+      <text x="312" y="172" class="coord-empty-plane__axis-label">x-axis</text>
+      <text x="188" y="30" class="coord-empty-plane__axis-label">y-axis</text>
+      <text x="188" y="198" class="coord-empty-plane__origin-label">O</text>
+      <text x="258" y="62" class="coord-empty-plane__quad-title">Quadrant I</text>
+      <text x="268" y="86" class="coord-empty-plane__quad-sign">(+,+)</text>
+      <text x="46" y="62" class="coord-empty-plane__quad-title">Quadrant II</text>
+      <text x="58" y="86" class="coord-empty-plane__quad-sign">(-,+)</text>
+      <text x="42" y="324" class="coord-empty-plane__quad-title">Quadrant III</text>
+      <text x="58" y="300" class="coord-empty-plane__quad-sign">(-,-)</text>
+      <text x="250" y="324" class="coord-empty-plane__quad-title">Quadrant IV</text>
+      <text x="268" y="300" class="coord-empty-plane__quad-sign">(+,-)</text>
+    </svg>
+    <figcaption class="math-widget__caption">
+      Empty Cartesian plane with axis directions and quadrant signs.
+    </figcaption>
+  </figure>
 
   <h2 id="plot-points" class="book-prose__heading">Plotting and reading points</h2>
   <p>
     Ordered pair \((a,b)\) means move \(a\) units along \(x\), then \(b\) units along \(y\).
   </p>
   <p><strong>Example:</strong> \((-3,2)\) lies in Quadrant II.</p>
+  <div class="math-widget-mount" data-widget="plane-relations-demo" data-pagefind-ignore></div>
 
   <h2 id="distance-formula" class="book-prose__heading">Distance between two points</h2>
   <p>
@@ -89,6 +130,41 @@ strand = "Measures, Shape & Space"
     <li>Perpendicular lines satisfy \(m_1m_2=-1\) (when both slopes are defined).</li>
   </ul>
 
+  <h2 id="why-these-formulas-work" class="book-prose__heading">Why these formulas work (derivation)</h2>
+  <h3 id="distance-proof" class="book-prose__heading">Distance formula from Pythagoras</h3>
+  <p>
+    Between \(A(x_1,y_1)\) and \(B(x_2,y_2)\), horizontal change is
+    \(\Delta x=x_2-x_1\) and vertical change is \(\Delta y=y_2-y_1\). These are the
+    legs of a right triangle, and segment \(AB\) is its hypotenuse.
+  </p>
+  <p class="book-formula">\[
+    AB^2=(\Delta x)^2+(\Delta y)^2
+  \]</p>
+  <p class="book-formula">\[
+    AB=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}
+  \]</p>
+
+  <h3 id="midpoint-proof" class="book-prose__heading">Midpoint as averaging coordinates</h3>
+  <p>
+    A midpoint lies exactly halfway in both horizontal and vertical directions, so each coordinate is
+    an average of the endpoints:
+  </p>
+  <p class="book-formula">\[
+    M\left(\frac{x_1+x_2}{2},\frac{y_1+y_2}{2}\right)
+  \]</p>
+
+  <h3 id="slope-proof" class="book-prose__heading">Slope formula from rise over run</h3>
+  <p>
+    Slope measures steepness: rise divided by run. For two points, rise is \(y_2-y_1\) and run is
+    \(x_2-x_1\), giving:
+  </p>
+  <p class="book-formula">\[
+    m=\frac{y_2-y_1}{x_2-x_1}
+  \]</p>
+  <p>
+    This is why vertical lines (\(x_2=x_1\)) have undefined slope: the denominator becomes zero.
+  </p>
+
   <h2 id="exam-strategy" class="book-prose__heading">Exam strategy</h2>
   <ul>
     <li>Write coordinates clearly before substituting formulas.</li>
@@ -106,10 +182,43 @@ strand = "Measures, Shape & Space"
   </p>
 
   <h2 id="derivation" class="book-prose__heading">Derivation and reasoning</h2>
-  <h3 id="distance-derivation" class="book-prose__heading">Why the distance formula works</h3>
+  <h3 id="distance-derivation" class="book-prose__heading">Distance formula (step by step)</h3>
+  <p>Let \(A(x_1,y_1)\) and \(B(x_2,y_2)\).</p>
+  <ol>
+    <li>Construct a right triangle by drawing horizontal and vertical guide lines.</li>
+    <li>Its horizontal leg is \(|x_2-x_1|\), and vertical leg is \(|y_2-y_1|\).</li>
+    <li>By Pythagoras, \(AB^2=(x_2-x_1)^2+(y_2-y_1)^2\).</li>
+    <li>Take the positive square root because distance is nonnegative.</li>
+  </ol>
+  <p class="book-formula">\[
+    AB=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}
+  \]</p>
+
+  <h3 id="midpoint-derivation" class="book-prose__heading">Midpoint formula (step by step)</h3>
   <p>
-    Horizontal change is \(\Delta x=x_2-x_1\), vertical change is \(\Delta y=y_2-y_1\). These form
-    a right triangle, so distance is \(\sqrt{(\Delta x)^2+(\Delta y)^2}\).
+    A midpoint splits a segment into two equal parts in both directions. So the \(x\)-coordinate is
+    halfway between \(x_1\) and \(x_2\), and the \(y\)-coordinate is halfway between \(y_1\) and \(y_2\).
+  </p>
+  <p class="book-formula">\[
+    M\left(\frac{x_1+x_2}{2},\frac{y_1+y_2}{2}\right)
+  \]</p>
+
+  <h3 id="slope-derivation" class="book-prose__heading">Slope formula and line forms</h3>
+  <p>
+    Slope is rise over run. For points \(A(x_1,y_1)\) and \(B(x_2,y_2)\):
+  </p>
+  <p class="book-formula">\[
+    m=\frac{y_2-y_1}{x_2-x_1}
+  \]</p>
+  <p>
+    Rearranging the same idea for a generic point \((x,y)\) on the line through \((x_1,y_1)\)
+    gives point-slope form:
+  </p>
+  <p class="book-formula">\[
+    y-y_1=m(x-x_1)
+  \]</p>
+  <p>
+    Expanding gives slope-intercept form \(y=mx+c\), where \(c\) is the \(y\)-intercept.
   </p>
 
   <h2 id="checkpoints" class="book-prose__heading">Checkpoints</h2>
@@ -141,6 +250,24 @@ strand = "Measures, Shape & Space"
     <summary class="book-question__prompt">Line with slope \(3\) through \((1,4)\): find equation.</summary>
     <div class="book-question__solution">
       <p><strong>Answer:</strong> \(y-4=3(x-1)\Rightarrow y=3x+1\).</p>
+    </div>
+  </details>
+  <details class="book-question">
+    <summary class="book-question__prompt">Explain in one sentence why the distance formula has a square root.</summary>
+    <div class="book-question__solution">
+      <p>
+        <strong>Answer:</strong> Pythagoras gives \(AB^2\), so we take the positive square root to get
+        the actual distance \(AB\).
+      </p>
+    </div>
+  </details>
+  <details class="book-question">
+    <summary class="book-question__prompt">Why is slope undefined for a vertical line?</summary>
+    <div class="book-question__solution">
+      <p>
+        <strong>Answer:</strong> For a vertical line, \(\Delta x=0\), so
+        \(m=\frac{\Delta y}{\Delta x}\) would require division by zero.
+      </p>
     </div>
   </details>
 

@@ -1,0 +1,166 @@
+.pyth-proof-demo__figure {
+  margin: 0 0 1rem;
+}
+
+.pyth-proof-demo svg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--paper) 75%, #f8fafc 25%);
+}
+
+.pyth-proof-demo__outer {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.4;
+}
+
+.pyth-proof-demo__tri {
+  stroke: var(--soft-ink);
+  stroke-width: 1.3;
+}
+
+.pyth-proof-demo__tri--1,
+.pyth-proof-demo__tri--3 {
+  fill: color-mix(in srgb, #2b6cb0 16%, transparent);
+}
+
+.pyth-proof-demo__tri--2,
+.pyth-proof-demo__tri--4 {
+  fill: color-mix(in srgb, #059669 16%, transparent);
+}
+
+.pyth-proof-demo__center {
+  fill: color-mix(in srgb, #c2410c 18%, transparent);
+  stroke: #c2410c;
+  stroke-width: 1.6;
+}
+
+.pyth-proof-demo__label {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  text-anchor: middle;
+  fill: var(--soft-ink);
+}
+
+.pyth-proof-demo__label--vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.pyth-proof-demo__center-label {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-anchor: middle;
+  fill: var(--ink);
+}
+
+.pyth-proof-demo__controls {
+  display: grid;
+  gap: 1rem;
+  margin-top: 0.9rem;
+}
+
+@media (min-width: 640px) {
+  .pyth-proof-demo__controls {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.pyth-proof-demo__label-a {
+  color: #2563eb;
+}
+
+.pyth-proof-demo__label-b {
+  color: #059669;
+}
+
+.pyth-proof-demo__slider-a {
+  accent-color: #2563eb;
+}
+
+.pyth-proof-demo__slider-b {
+  accent-color: #059669;
+}
+
+.pyth-proof-demo__equations {
+  margin-top: 1rem;
+}
+
+.pyth-proof-demo__equation-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.45rem;
+}
+
+.pyth-proof-demo__toggle {
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--soft-ink);
+  cursor: pointer;
+}
+
+.pyth-proof-demo__toggle:hover,
+.pyth-proof-demo__toggle:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.pyth-proof-demo__areas {
+  margin: 0.45rem 0 0;
+  font-size: 0.93rem;
+  color: var(--soft-ink);
+}
+
+[data-theme="dark"] .pyth-proof-demo svg {
+  background: #0f172a;
+  border-color: rgba(148, 163, 184, 0.5);
+}
+
+[data-theme="dark"] .pyth-proof-demo__outer {
+  stroke: #e2e8f0;
+}
+
+[data-theme="dark"] .pyth-proof-demo__tri {
+  stroke: #cbd5e1;
+}
+
+[data-theme="dark"] .pyth-proof-demo__center-label,
+[data-theme="dark"] .pyth-proof-demo__label,
+[data-theme="dark"] .pyth-proof-demo__areas {
+  fill: #e2e8f0;
+  color: #e2e8f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .pyth-proof-demo svg {
+    background: #0f172a;
+    border-color: rgba(148, 163, 184, 0.5);
+  }
+
+  :root:not([data-theme="light"]) .pyth-proof-demo__outer {
+    stroke: #e2e8f0;
+  }
+
+  :root:not([data-theme="light"]) .pyth-proof-demo__tri {
+    stroke: #cbd5e1;
+  }
+
+  :root:not([data-theme="light"]) .pyth-proof-demo__center-label,
+  :root:not([data-theme="light"]) .pyth-proof-demo__label,
+  :root:not([data-theme="light"]) .pyth-proof-demo__areas {
+    fill: #e2e8f0;
+    color: #e2e8f0;
+  }
+}

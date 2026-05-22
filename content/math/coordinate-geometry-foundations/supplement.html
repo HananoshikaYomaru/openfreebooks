@@ -6,10 +6,43 @@
   </p>
 
   <h2 id="derivation" class="book-prose__heading">Derivation and reasoning</h2>
-  <h3 id="distance-derivation" class="book-prose__heading">Why the distance formula works</h3>
+  <h3 id="distance-derivation" class="book-prose__heading">Distance formula (step by step)</h3>
+  <p>Let \(A(x_1,y_1)\) and \(B(x_2,y_2)\).</p>
+  <ol>
+    <li>Construct a right triangle by drawing horizontal and vertical guide lines.</li>
+    <li>Its horizontal leg is \(|x_2-x_1|\), and vertical leg is \(|y_2-y_1|\).</li>
+    <li>By Pythagoras, \(AB^2=(x_2-x_1)^2+(y_2-y_1)^2\).</li>
+    <li>Take the positive square root because distance is nonnegative.</li>
+  </ol>
+  <p class="book-formula">\[
+    AB=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}
+  \]</p>
+
+  <h3 id="midpoint-derivation" class="book-prose__heading">Midpoint formula (step by step)</h3>
   <p>
-    Horizontal change is \(\Delta x=x_2-x_1\), vertical change is \(\Delta y=y_2-y_1\). These form
-    a right triangle, so distance is \(\sqrt{(\Delta x)^2+(\Delta y)^2}\).
+    A midpoint splits a segment into two equal parts in both directions. So the \(x\)-coordinate is
+    halfway between \(x_1\) and \(x_2\), and the \(y\)-coordinate is halfway between \(y_1\) and \(y_2\).
+  </p>
+  <p class="book-formula">\[
+    M\left(\frac{x_1+x_2}{2},\frac{y_1+y_2}{2}\right)
+  \]</p>
+
+  <h3 id="slope-derivation" class="book-prose__heading">Slope formula and line forms</h3>
+  <p>
+    Slope is rise over run. For points \(A(x_1,y_1)\) and \(B(x_2,y_2)\):
+  </p>
+  <p class="book-formula">\[
+    m=\frac{y_2-y_1}{x_2-x_1}
+  \]</p>
+  <p>
+    Rearranging the same idea for a generic point \((x,y)\) on the line through \((x_1,y_1)\)
+    gives point-slope form:
+  </p>
+  <p class="book-formula">\[
+    y-y_1=m(x-x_1)
+  \]</p>
+  <p>
+    Expanding gives slope-intercept form \(y=mx+c\), where \(c\) is the \(y\)-intercept.
   </p>
 
   <h2 id="checkpoints" class="book-prose__heading">Checkpoints</h2>
@@ -41,6 +74,24 @@
     <summary class="book-question__prompt">Line with slope \(3\) through \((1,4)\): find equation.</summary>
     <div class="book-question__solution">
       <p><strong>Answer:</strong> \(y-4=3(x-1)\Rightarrow y=3x+1\).</p>
+    </div>
+  </details>
+  <details class="book-question">
+    <summary class="book-question__prompt">Explain in one sentence why the distance formula has a square root.</summary>
+    <div class="book-question__solution">
+      <p>
+        <strong>Answer:</strong> Pythagoras gives \(AB^2\), so we take the positive square root to get
+        the actual distance \(AB\).
+      </p>
+    </div>
+  </details>
+  <details class="book-question">
+    <summary class="book-question__prompt">Why is slope undefined for a vertical line?</summary>
+    <div class="book-question__solution">
+      <p>
+        <strong>Answer:</strong> For a vertical line, \(\Delta x=0\), so
+        \(m=\frac{\Delta y}{\Delta x}\) would require division by zero.
+      </p>
     </div>
   </details>
 

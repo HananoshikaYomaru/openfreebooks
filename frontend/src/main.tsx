@@ -61,9 +61,16 @@ function localizeChapterLastModified() {
   }
 }
 
+let stopMathObserver: (() => void) | null = null;
+
 function scheduleBookMath() {
-  void import("./lib/katex").then(({ renderBookMath }) => {
-    requestAnimationFrame(() => renderBookMath());
+  void import("./lib/katex").then(({ observeMathAutoRender, renderBookMath }) => {
+    requestAnimationFrame(() => {
+      renderBookMath(document, { force: true });
+      if (!stopMathObserver) {
+        stopMathObserver = observeMathAutoRender(document);
+      }
+    });
   });
 }
 

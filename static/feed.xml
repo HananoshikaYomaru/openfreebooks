@@ -4,7 +4,28 @@
     <title>Open Free Books</title>
     <link>https://openfreebooks.org/</link>
     <description>Recent updates to Open Free Books pages and live chapters.</description>
-    <lastBuildDate>Thu, 21 May 2026 18:40:42 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 21 May 2026 23:42:19 GMT</lastBuildDate>
+    <item>
+      <title>Basic math notation</title>
+      <link>https://openfreebooks.org/math/basic-math-notation/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/basic-math-notation/</guid>
+      <pubDate>Thu, 21 May 2026 23:42:19 GMT</pubDate>
+      <description>Learn the names and meanings of plus, minus, times, divide, equals, brackets, and other signs used in number sentences.</description>
+    </item>
+    <item>
+      <title>Integer foundations</title>
+      <link>https://openfreebooks.org/math/integer-foundations/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/integer-foundations/</guid>
+      <pubDate>Thu, 21 May 2026 23:42:19 GMT</pubDate>
+      <description>Model directed magnitude on number lines; use the zero principle and tiles to add and subtract integers, and see subtraction as adding an opposite.</description>
+    </item>
+    <item>
+      <title>Percentage applications</title>
+      <link>https://openfreebooks.org/math/percentage-applications/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/percentage-applications/</guid>
+      <pubDate>Thu, 21 May 2026 23:42:19 GMT</pubDate>
+      <description>Relate fractions and decimals to base-100 ratios; calculate percent increase and decrease in financial and real-world contexts.</description>
+    </item>
     <item>
       <title>Contribute</title>
       <link>https://openfreebooks.org/contributing/</link>
@@ -18,20 +39,6 @@
       <guid isPermaLink="true">https://openfreebooks.org/math/integer-arithmetic/</guid>
       <pubDate>Thu, 21 May 2026 17:54:08 GMT</pubDate>
       <description>Multiply and divide integers from models to symbolic rules; apply order of operations with signed numbers in multi-step expressions.</description>
-    </item>
-    <item>
-      <title>Integer foundations</title>
-      <link>https://openfreebooks.org/math/integer-foundations/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/integer-foundations/</guid>
-      <pubDate>Thu, 21 May 2026 17:54:08 GMT</pubDate>
-      <description>Model directed magnitude on number lines; use the zero principle and tiles to add and subtract integers, and see subtraction as adding an opposite.</description>
-    </item>
-    <item>
-      <title>Percentage applications</title>
-      <link>https://openfreebooks.org/math/percentage-applications/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/percentage-applications/</guid>
-      <pubDate>Thu, 21 May 2026 17:54:08 GMT</pubDate>
-      <description>Relate fractions and decimals to base-100 ratios; calculate percent increase and decrease in financial and real-world contexts.</description>
     </item>
     <item>
       <title>Fractions and decimals</title>
@@ -263,13 +270,6 @@
       <guid isPermaLink="true">https://openfreebooks.org/physics/force-newtons-laws/</guid>
       <pubDate>Thu, 21 May 2026 02:10:55 GMT</pubDate>
       <description>Use free-body diagrams, F = ma, and motion graphs to predict how objects move.</description>
-    </item>
-    <item>
-      <title>Basic math notation</title>
-      <link>https://openfreebooks.org/math/basic-math-notation/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/basic-math-notation/</guid>
-      <pubDate>Thu, 21 May 2026 01:07:39 GMT</pubDate>
-      <description>Learn the names and meanings of plus, minus, times, divide, equals, brackets, and other signs used in number sentences.</description>
     </item>
     <item>
       <title>Zero and one</title>
