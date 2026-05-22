@@ -135,6 +135,8 @@ Live chapters live under `content/{subject}/{slug}/`:
 
 **Math checkpoints / dots:** follow [math-chapter-patterns.md](math-chapter-patterns.md); shared dot classes in `content/math/subject.scss`.
 
+**Math equation layout (all subjects):** for chained calculations, **always prefer multi-line KaTeX** and **always align at the equal sign** using `aligned` (e.g. `\begin{aligned} ... &= ... \\ ... \end{aligned}`). Do not write long one-line chains; aligned multi-line steps are the default for readability and mobile layout.
+
 ### Interactive demo technology choices
 
 Interactive demos can use different technologies based on the learning goal and interaction type:

@@ -7,6 +7,20 @@ Use these conventions in `core.html` and `supplement.html` so every math chapter
 - Wrapper: `<div class="book-prose">`
 - Section titles: `<h2 id="…" class="book-prose__heading">`
 - In-chapter links: plain `<a href="/math/…/">` inside `.book-prose` (theme styles them)
+- For chained calculations, prefer aligned multi-line KaTeX:
+
+```html
+<p class="book-formula">\[
+  \begin{aligned}
+    b &= \sqrt{c^2-a^2} \\
+      &= \sqrt{13^2-5^2} \\
+      &= \sqrt{144} \\
+      &= 12
+  \end{aligned}
+\]</p>
+```
+
+This keeps equal signs aligned and avoids long single-line equations on mobile.
 
 ## Checkpoints (required shape)
 

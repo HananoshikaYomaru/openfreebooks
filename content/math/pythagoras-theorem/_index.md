@@ -54,31 +54,37 @@ strand = "Measures, Shape & Space"
   <h3 id="find-hypotenuse" class="book-prose__heading">Find the hypotenuse</h3>
   <p><strong>Example.</strong> If \(a=9\) and \(b=12\), find \(c\).</p>
   <p class="book-formula">\[
-    c = \sqrt{9^2 + 12^2}
-    = \sqrt{81 + 144}
-    = \sqrt{225}
-    = 15
+    \begin{aligned}
+      c &= \sqrt{9^2 + 12^2} \\
+        &= \sqrt{81 + 144} \\
+        &= \sqrt{225} \\
+        &= 15
+    \end{aligned}
   \]</p>
   <p>The third side is 15 ft.</p>
 
   <h3 id="find-leg" class="book-prose__heading">Find a missing leg</h3>
   <p><strong>Example.</strong> If \(c=13\) and \(a=5\), find \(b\).</p>
   <p class="book-formula">\[
-    b = \sqrt{c^2 - a^2}
-    = \sqrt{13^2 - 5^2}
-    = \sqrt{169 - 25}
-    = \sqrt{144}
-    = 12
+    \begin{aligned}
+      b &= \sqrt{c^2 - a^2} \\
+        &= \sqrt{13^2 - 5^2} \\
+        &= \sqrt{169 - 25} \\
+        &= \sqrt{144} \\
+        &= 12
+    \end{aligned}
   \]</p>
 
   <h3 id="radical-form" class="book-prose__heading">Leave answers in simplest radical form</h3>
   <p><strong>Example.</strong> If \(c=10\) and \(a=2\), find \(b\).</p>
   <p class="book-formula">\[
-    b = \sqrt{10^2 - 2^2}
-    = \sqrt{100 - 4}
-    = \sqrt{96}
-    = \sqrt{16 \cdot 6}
-    = 4\sqrt{6}
+    \begin{aligned}
+      b &= \sqrt{10^2 - 2^2} \\
+        &= \sqrt{100 - 4} \\
+        &= \sqrt{96} \\
+        &= \sqrt{16 \cdot 6} \\
+        &= 4\sqrt{6}
+    \end{aligned}
   \]</p>
 
   <h2 id="common-pitfall" class="book-prose__heading">Common pitfall</h2>

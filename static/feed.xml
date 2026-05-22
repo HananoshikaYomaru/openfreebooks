@@ -4,7 +4,21 @@
     <title>Open Free Books</title>
     <link>https://openfreebooks.org/</link>
     <description>Recent updates to Open Free Books pages and live chapters.</description>
-    <lastBuildDate>Thu, 21 May 2026 23:42:19 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 05:18:34 GMT</lastBuildDate>
+    <item>
+      <title>Coordinate geometry foundations</title>
+      <link>https://openfreebooks.org/math/coordinate-geometry-foundations/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/coordinate-geometry-foundations/</guid>
+      <pubDate>Fri, 22 May 2026 05:18:34 GMT</pubDate>
+      <description>Plot points, find distances and midpoints, and work with slopes of lines in the Cartesian plane.</description>
+    </item>
+    <item>
+      <title>Pythagoras&apos; theorem</title>
+      <link>https://openfreebooks.org/math/pythagoras-theorem/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/pythagoras-theorem/</guid>
+      <pubDate>Fri, 22 May 2026 05:18:34 GMT</pubDate>
+      <description>Use Pythagoras&apos; theorem and its converse in 2D problems and coordinate settings.</description>
+    </item>
     <item>
       <title>Basic math notation</title>
       <link>https://openfreebooks.org/math/basic-math-notation/</link>
@@ -90,13 +104,6 @@
       <description>Find equations of circles, tangents, and intersections using coordinate methods and distance.</description>
     </item>
     <item>
-      <title>Coordinate geometry foundations</title>
-      <link>https://openfreebooks.org/math/coordinate-geometry-foundations/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/coordinate-geometry-foundations/</guid>
-      <pubDate>Thu, 21 May 2026 16:54:30 GMT</pubDate>
-      <description>Plot points, find distances and midpoints, and work with slopes of lines in the Cartesian plane.</description>
-    </item>
-    <item>
       <title>Deductive geometry</title>
       <link>https://openfreebooks.org/math/deductive-geometry/</link>
       <guid isPermaLink="true">https://openfreebooks.org/math/deductive-geometry/</guid>
@@ -144,13 +151,6 @@
       <guid isPermaLink="true">https://openfreebooks.org/math/permutations-combinations-probability/</guid>
       <pubDate>Thu, 21 May 2026 16:54:30 GMT</pubDate>
       <description>Count outcomes with permutations and combinations, then compute probabilities in finite sample spaces.</description>
-    </item>
-    <item>
-      <title>Pythagoras&apos; theorem</title>
-      <link>https://openfreebooks.org/math/pythagoras-theorem/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/pythagoras-theorem/</guid>
-      <pubDate>Thu, 21 May 2026 16:54:30 GMT</pubDate>
-      <description>Use Pythagoras&apos; theorem and its converse in 2D problems and coordinate settings.</description>
     </item>
     <item>
       <title>Charts &amp; averages</title>
