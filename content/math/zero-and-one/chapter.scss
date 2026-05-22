@@ -61,12 +61,12 @@
 }
 
 .zero-one-board__visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 72px;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  min-height: 140px;
   margin: 12px 0;
-  padding: 16px;
+  padding: 14px;
   border: 1px dashed var(--line);
   border-radius: 10px;
   background: var(--card-bg);
@@ -86,9 +86,27 @@
 .zero-one-board__count {
   margin: 0;
   font-family: var(--mono);
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--ink);
+  font-size: 0.95rem;
+  color: var(--soft-ink);
+}
+
+.zero-one-board__image {
+  width: min(100%, 540px);
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #f8fafc;
+  object-fit: cover;
+}
+
+[data-theme="dark"] .zero-one-board__image {
+  border-color: rgba(148, 163, 184, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .zero-one-board__image {
+    border-color: rgba(148, 163, 184, 0.5);
+  }
 }
 
 .zero-one-board__choices {

@@ -1,54 +1,47 @@
-import { createMemo, createSignal, For } from "solid-js";
+import { createMemo, createSignal } from "solid-js";
 
 type Scenario = {
   id: string;
   prompt: string;
+  imageSrc: string;
+  imageAlt: string;
   correctAmount: 0 | 1;
-  showTruth?: boolean;
-  correctTruth?: boolean;
 };
 
 const SCENARIOS: Scenario[] = [
   {
     id: "empty-box",
     prompt: "The box has no marbles inside.",
+    imageSrc: "/chapters/math/zero-and-one/empty-box-std.jpg",
+    imageAlt: "An empty box with nothing inside",
     correctAmount: 0,
   },
   {
     id: "one-apple",
     prompt: "There is exactly one apple on the plate.",
+    imageSrc: "/chapters/math/zero-and-one/app-plate-std.jpg",
+    imageAlt: "A plate with one apple",
     correctAmount: 1,
   },
   {
     id: "light-off",
     prompt: "The lamp is off — no light showing.",
+    imageSrc: "/chapters/math/zero-and-one/lamp-off-std.jpg",
+    imageAlt: "A lamp switched off",
     correctAmount: 0,
   },
   {
     id: "light-on",
     prompt: "The lamp is on — one steady light.",
+    imageSrc: "/chapters/math/zero-and-one/lamp-on-std.jpg",
+    imageAlt: "A lamp switched on",
     correctAmount: 1,
-  },
-  {
-    id: "statement-false",
-    prompt: "Statement: “The door is open.” (The door is shut.)",
-    correctAmount: 0,
-    showTruth: true,
-    correctTruth: false,
-  },
-  {
-    id: "statement-true",
-    prompt: "Statement: “There is one bell ringing.” (You hear one bell.)",
-    correctAmount: 1,
-    showTruth: true,
-    correctTruth: true,
   },
 ];
 
 function ZeroOneBoard() {
   const [index, setIndex] = createSignal(0);
   const [picked, setPicked] = createSignal<0 | 1 | null>(null);
-  const [truthPicked, setTruthPicked] = createSignal<boolean | null>(null);
 
   const scenario = createMemo(() => SCENARIOS[index() % SCENARIOS.length]);
   const atEnd = createMemo(() => index() >= SCENARIOS.length - 1);
@@ -58,21 +51,9 @@ function ZeroOneBoard() {
     return p !== null && p === scenario().correctAmount;
   });
 
-  const truthCorrect = createMemo(() => {
-    const s = scenario();
-    if (!s.showTruth) return true;
-    const t = truthPicked();
-    return t !== null && t === s.correctTruth;
-  });
+  const answered = createMemo(() => picked() !== null);
 
-  const answered = createMemo(() => {
-    const s = scenario();
-    if (picked() === null) return false;
-    if (s.showTruth && truthPicked() === null) return false;
-    return true;
-  });
-
-  const allCorrect = createMemo(() => answered() && amountCorrect() && truthCorrect());
+  const allCorrect = createMemo(() => answered() && amountCorrect());
 
   const feedback = createMemo(() => {
     if (!answered()) return "Choose how many, then Next when you are ready.";
@@ -86,17 +67,11 @@ function ZeroOneBoard() {
         ? "Not quite — this situation is one, not zero."
         : "Not quite — this situation is zero, not one.";
     }
-    return truthPicked() === true
-      ? "Check the statement again — it does not match the world (false)."
-      : "Check the statement again — it matches the world (true).";
+    return "Try again.";
   });
 
   const pickAmount = (n: 0 | 1) => {
     setPicked(n);
-  };
-
-  const pickTruth = (value: boolean) => {
-    setTruthPicked(value);
   };
 
   const goNext = () => {
@@ -104,13 +79,11 @@ function ZeroOneBoard() {
     if (atEnd()) return;
     setIndex((i) => i + 1);
     setPicked(null);
-    setTruthPicked(null);
   };
 
   const resetAll = () => {
     setIndex(0);
     setPicked(null);
-    setTruthPicked(null);
   };
 
   return (
@@ -120,8 +93,7 @@ function ZeroOneBoard() {
       </h2>
       <div class="math-widget__body">
         <p class="math-widget__caption">
-          Situation {index() + 1} of {SCENARIOS.length}. Pick the amount that fits. When a statement
-          is shown, also pick true or false.
+          Situation {index() + 1} of {SCENARIOS.length}. Pick the amount that fits the image.
         </p>
         <p class="zero-one-board__scenario">{scenario().prompt}</p>
 
@@ -133,17 +105,17 @@ function ZeroOneBoard() {
           }}
           aria-live="polite"
         >
+          <img
+            src={scenario().imageSrc}
+            alt={scenario().imageAlt}
+            width="640"
+            height="400"
+            class="zero-one-board__image"
+            loading="lazy"
+          />
           <p class="zero-one-board__count">
-            {picked() === null ? "?" : picked()}
+            Your pick: <strong>{picked() === null ? "?" : picked()}</strong>
           </p>
-          <span class="counting-dots" role="img" aria-hidden="true">
-            <For each={picked() === 1 ? [0] : []}>
-              {() => <span class="counting-dots__dot" />}
-            </For>
-            {picked() === 0 ? (
-              <span class="counting-dots__none">none</span>
-            ) : null}
-          </span>
         </div>
 
         <div class="zero-one-board__choices" role="group" aria-label="How many?">
@@ -164,27 +136,6 @@ function ZeroOneBoard() {
             One (1)
           </button>
         </div>
-
-        {scenario().showTruth ? (
-          <div class="zero-one-board__choices" role="group" aria-label="True or false?">
-            <button
-              type="button"
-              class="scenario-demo__btn zero-one-board__choice"
-              classList={{ "zero-one-board__choice--active": truthPicked() === false }}
-              onClick={() => pickTruth(false)}
-            >
-              False
-            </button>
-            <button
-              type="button"
-              class="scenario-demo__btn scenario-demo__btn--primary zero-one-board__choice"
-              classList={{ "zero-one-board__choice--active": truthPicked() === true }}
-              onClick={() => pickTruth(true)}
-            >
-              True
-            </button>
-          </div>
-        ) : null}
 
         <p
           class="zero-one-board__feedback"
