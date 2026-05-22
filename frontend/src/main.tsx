@@ -66,7 +66,7 @@ let stopMathObserver: (() => void) | null = null;
 function scheduleBookMath() {
   void import("./lib/katex").then(({ observeMathAutoRender, renderBookMath }) => {
     requestAnimationFrame(() => {
-      renderBookMath(document, { force: true });
+      renderBookMath(document);
       if (!stopMathObserver) {
         stopMathObserver = observeMathAutoRender(document);
       }

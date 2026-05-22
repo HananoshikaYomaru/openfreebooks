@@ -27,6 +27,8 @@ function BigNumbersScale() {
     const soundToggle = byId<HTMLButtonElement>("soundToggle");
     const soundIcon = byId<HTMLSpanElement>("soundIcon");
     const soundText = byId<HTMLSpanElement>("soundText");
+    const controlsToggleBtn = byId<HTMLButtonElement>("controlsToggleBtn");
+    const controlsDialog = byId<HTMLDialogElement>("controlsDialog");
     const presetStepsContainer = byId<HTMLDivElement>("presetStepsContainer");
 
     if (
@@ -49,6 +51,8 @@ function BigNumbersScale() {
       !soundToggle ||
       !soundIcon ||
       !soundText ||
+      !controlsToggleBtn ||
+      !controlsDialog ||
       !presetStepsContainer
     ) {
       return;
@@ -121,11 +125,6 @@ function BigNumbersScale() {
       currentTierIdx: 0,
       visualMode: "NORMAL" as VisualMode,
       transitionProgress: 0,
-      panX: 0,
-      panY: 0,
-      isDragging: false,
-      startX: 0,
-      startY: 0,
       particles: [] as Particle[],
       ambientStars: [] as CosmicStar[],
       shockwaves: [] as Shockwave[],
@@ -555,8 +554,8 @@ function BigNumbersScale() {
       ctx.fillStyle = canvasBg;
       ctx.fillRect(0, 0, width, height);
 
-      const cx = width / 2 + state.panX;
-      const cy = height / 2 + state.panY;
+      const cx = width / 2;
+      const cy = height / 2;
 
       state.ambientStars.forEach((s) => s.draw(cx, cy, starColor));
 
@@ -566,8 +565,8 @@ function BigNumbersScale() {
       const gridSpacing = 40;
       const gridCols = Math.ceil(width / gridSpacing);
       const gridRows = Math.ceil(height / gridSpacing);
-      const startX = state.panX % gridSpacing;
-      const startY = state.panY % gridSpacing;
+      const startX = 0;
+      const startY = 0;
       for (let i = 0; i < gridCols; i += 1) {
         ctx.beginPath();
         ctx.moveTo(startX + i * gridSpacing, 0);
@@ -711,47 +710,33 @@ function BigNumbersScale() {
       }
     });
 
-    const toLocal = (evtX: number, evtY: number) => {
-      const rect = canvas.getBoundingClientRect();
-      return { x: evtX - rect.left, y: evtY - rect.top };
+    const isMobileControlsMode = () => window.matchMedia("(max-width: 959px)").matches;
+
+    const onControlsToggleClick = () => {
+      if (!isMobileControlsMode()) return;
+      if (!controlsDialog.open) {
+        controlsDialog.showModal();
+      }
     };
 
-    canvas.addEventListener("mousedown", (e) => {
-      state.isDragging = true;
-      const p = toLocal(e.clientX, e.clientY);
-      state.startX = p.x - state.panX;
-      state.startY = p.y - state.panY;
-    });
+    const onControlsDialogClick = (event: MouseEvent) => {
+      if (event.target === controlsDialog) {
+        controlsDialog.close();
+        return;
+      }
+      if (!isMobileControlsMode()) return;
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+      const clickedButton = target.closest("button");
+      if (!clickedButton) return;
+      if (clickedButton.id === "controlsToggleBtn") return;
+      requestAnimationFrame(() => {
+        if (controlsDialog.open) controlsDialog.close();
+      });
+    };
 
-    canvas.addEventListener("mousemove", (e) => {
-      if (!state.isDragging) return;
-      const p = toLocal(e.clientX, e.clientY);
-      state.panX = p.x - state.startX;
-      state.panY = p.y - state.startY;
-    });
-
-    window.addEventListener("mouseup", () => {
-      state.isDragging = false;
-    });
-
-    canvas.addEventListener("touchstart", (e) => {
-      if (e.touches.length !== 1) return;
-      state.isDragging = true;
-      const p = toLocal(e.touches[0]!.clientX, e.touches[0]!.clientY);
-      state.startX = p.x - state.panX;
-      state.startY = p.y - state.panY;
-    });
-
-    canvas.addEventListener("touchmove", (e) => {
-      if (!state.isDragging || e.touches.length !== 1) return;
-      const p = toLocal(e.touches[0]!.clientX, e.touches[0]!.clientY);
-      state.panX = p.x - state.startX;
-      state.panY = p.y - state.startY;
-    });
-
-    canvas.addEventListener("touchend", () => {
-      state.isDragging = false;
-    });
+    controlsToggleBtn.addEventListener("click", onControlsToggleClick);
+    controlsDialog.addEventListener("click", onControlsDialogClick);
 
     let rafId = 0;
     let lastTime = performance.now();
@@ -786,6 +771,8 @@ function BigNumbersScale() {
     onCleanup(() => {
       cancelAnimationFrame(rafId);
       window.removeEventListener("resize", resizeCanvas);
+      controlsToggleBtn.removeEventListener("click", onControlsToggleClick);
+      controlsDialog.removeEventListener("click", onControlsDialogClick);
     });
   });
 
@@ -800,6 +787,16 @@ function BigNumbersScale() {
             <button id="soundToggle" type="button" class="big-numbers-scale__tool-btn">
               <span id="soundIcon">🔇</span>
               <span id="soundText">Muted</span>
+            </button>
+            <button
+              id="controlsToggleBtn"
+              type="button"
+              class="big-numbers-scale__tool-btn big-numbers-scale__controls-toggle"
+              aria-label="Open controls panel"
+              aria-haspopup="dialog"
+              aria-controls="controlsDialog"
+            >
+              ⚙
             </button>
             <span id="speedIndicatorText" class="big-numbers-scale__badge">
               Speed: Normal
@@ -840,49 +837,64 @@ function BigNumbersScale() {
           </div>
         </div>
 
-        <div class="big-numbers-scale__controls">
-          <div class="big-numbers-scale__section">
-            <h3 class="big-numbers-scale__section-title">Mathematical milestones</h3>
-            <div id="presetStepsContainer" class="big-numbers-scale__preset-grid" />
-          </div>
-          <div class="big-numbers-scale__section">
-            <h3 class="big-numbers-scale__section-title">Motion control</h3>
-            <div class="big-numbers-scale__speed-grid">
-              <button type="button" class="speed-btn" data-speed="slow">
-                Slow
-              </button>
-              <button type="button" class="speed-btn speed-btn--active" data-speed="normal">
-                Normal
-              </button>
-              <button type="button" class="speed-btn" data-speed="fast">
-                Fast
+        <dialog id="controlsDialog" class="big-numbers-scale__controls-dialog contributor-dialog">
+          <div class="big-numbers-scale__controls-dialog__sheet contributor-dialog-panel">
+            <div class="big-numbers-scale__controls-dialog__header">
+              <h3 class="big-numbers-scale__controls-dialog__title">Controls</h3>
+              <button
+                type="button"
+                class="contributor-dialog-close"
+                aria-label="Close controls panel"
+              >
+                ×
               </button>
             </div>
-            <div class="big-numbers-scale__nav-row">
-              <button id="btnPrevStep" type="button" class="big-numbers-scale__tool-btn">
-                Down step
-              </button>
-              <button id="btnPlayPause" type="button" class="big-numbers-scale__autoplay-btn">
-                Auto Increment
-              </button>
-              <button id="btnNextStep" type="button" class="big-numbers-scale__tool-btn">
-                Up step
-              </button>
+
+            <div class="big-numbers-scale__controls">
+              <div class="big-numbers-scale__section">
+                <h3 class="big-numbers-scale__section-title">Mathematical milestones</h3>
+                <div id="presetStepsContainer" class="big-numbers-scale__preset-grid" />
+              </div>
+              <div class="big-numbers-scale__section">
+                <h3 class="big-numbers-scale__section-title">Motion control</h3>
+                <div class="big-numbers-scale__speed-grid">
+                  <button type="button" class="speed-btn" data-speed="slow">
+                    Slow
+                  </button>
+                  <button type="button" class="speed-btn speed-btn--active" data-speed="normal">
+                    Normal
+                  </button>
+                  <button type="button" class="speed-btn" data-speed="fast">
+                    Fast
+                  </button>
+                </div>
+                <div class="big-numbers-scale__nav-row">
+                  <button id="btnPrevStep" type="button" class="big-numbers-scale__tool-btn">
+                    Down step
+                  </button>
+                  <button id="btnPlayPause" type="button" class="big-numbers-scale__autoplay-btn">
+                    Auto Increment
+                  </button>
+                  <button id="btnNextStep" type="button" class="big-numbers-scale__tool-btn">
+                    Up step
+                  </button>
+                </div>
+              </div>
+              <div class="big-numbers-scale__section big-numbers-scale__stats">
+                <h3 class="big-numbers-scale__section-title">Time to count individually</h3>
+                <p class="big-numbers-scale__stat-text">
+                  Counting to <span id="analogyValueText">1</span> at one number per second takes:
+                </p>
+                <div id="timeStatValue" class="big-numbers-scale__stat-value">
+                  1 Second
+                </div>
+                <p id="analogyText" class="big-numbers-scale__analogy">
+                  "A single heartbeat. The primary unit of all structures."
+                </p>
+              </div>
             </div>
           </div>
-          <div class="big-numbers-scale__section big-numbers-scale__stats">
-            <h3 class="big-numbers-scale__section-title">Time to count individually</h3>
-            <p class="big-numbers-scale__stat-text">
-              Counting to <span id="analogyValueText">1</span> at one number per second takes:
-            </p>
-            <div id="timeStatValue" class="big-numbers-scale__stat-value">
-              1 Second
-            </div>
-            <p id="analogyText" class="big-numbers-scale__analogy">
-              "A single heartbeat. The primary unit of all structures."
-            </p>
-          </div>
-        </div>
+        </dialog>
       </div>
     </section>
   );

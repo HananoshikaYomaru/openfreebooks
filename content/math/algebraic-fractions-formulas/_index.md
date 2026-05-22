@@ -59,13 +59,26 @@ strand = "Number & Algebra"
   <p>
     Factorise: \(x^2 - 1 = (x-1)(x+1)\) and \(x^2 + x = x(x+1)\). Cancel the common factor
     \((x+1)\):
-    \[ \frac{(x-1)(x+1)}{x(x+1)} = \frac{x-1}{x}, \quad x \neq 0,\; x \neq -1. \]
+    \[
+      \begin{aligned}
+        \frac{(x-1)(x+1)}{x(x+1)}
+          &= \frac{x-1}{x}, \\
+        x &\neq 0,\; x \neq -1
+      \end{aligned}
+    \]
     The restrictions matter: at \(x = -1\) the original denominator is zero.
   </p>
 
   <p><strong>Example.</strong> Simplify \(\dfrac{2x^2 - 8}{x^2 - 4}\).</p>
   <p>
-    \[ \frac{2(x^2-4)}{x^2-4} = \frac{2(x-2)(x+2)}{(x-2)(x+2)} = 2, \quad x \neq 2,\; x \neq -2. \]
+    \[
+      \begin{aligned}
+        \frac{2(x^2-4)}{x^2-4}
+          &= \frac{2(x-2)(x+2)}{(x-2)(x+2)} \\
+          &= 2, \\
+        x &\neq 2,\; x \neq -2
+      \end{aligned}
+    \]
   </p>
 
   <h2 id="add-subtract" class="book-prose__heading">Adding and subtracting</h2>
@@ -77,13 +90,26 @@ strand = "Number & Algebra"
   <p><strong>Example.</strong> \(\dfrac{2}{x} + \dfrac{3}{x+1}\).</p>
   <p>
     LCD is \(x(x+1)\):
-    \[ \frac{2}{x} + \frac{3}{x+1} = \frac{2(x+1) + 3x}{x(x+1)} = \frac{5x+2}{x(x+1)}, \quad x \neq 0,\; x \neq -1. \]
+    \[
+      \begin{aligned}
+        \frac{2}{x} + \frac{3}{x+1}
+          &= \frac{2(x+1) + 3x}{x(x+1)} \\
+          &= \frac{5x+2}{x(x+1)}, \\
+        x &\neq 0,\; x \neq -1
+      \end{aligned}
+    \]
   </p>
 
   <p><strong>Example.</strong> \(\dfrac{1}{x-2} - \dfrac{3}{x^2 - 4}\).</p>
   <p>
     Note \(x^2 - 4 = (x-2)(x+2)\). With LCD \((x-2)(x+2)\):
-    \[ \frac{x+2}{(x-2)(x+2)} - \frac{3}{(x-2)(x+2)} = \frac{x-1}{(x-2)(x+2)}, \quad x \neq 2,\; x \neq -2. \]
+    \[
+      \begin{aligned}
+        \frac{x+2}{(x-2)(x+2)} - \frac{3}{(x-2)(x+2)}
+          &= \frac{x-1}{(x-2)(x+2)}, \\
+        x &\neq 2,\; x \neq -2
+      \end{aligned}
+    \]
   </p>
 
   <h2 id="multiply-divide" class="book-prose__heading">Multiplying and dividing</h2>
@@ -101,12 +127,25 @@ strand = "Number & Algebra"
 
   <p><strong>Example.</strong> \(\dfrac{x^2 - 9}{2x} \times \dfrac{4}{x+3}\).</p>
   <p>
-    \[ \frac{(x-3)(x+3)}{2x} \times \frac{4}{x+3} = \frac{4(x-3)}{2x} = \frac{2(x-3)}{x}, \quad x \neq 0,\; x \neq -3. \]
+    \[
+      \begin{aligned}
+        \frac{(x-3)(x+3)}{2x} \times \frac{4}{x+3}
+          &= \frac{4(x-3)}{2x} \\
+          &= \frac{2(x-3)}{x}, \\
+        x &\neq 0,\; x \neq -3
+      \end{aligned}
+    \]
   </p>
 
   <p><strong>Example.</strong> \(\dfrac{x^2 - 1}{x+1} \div \dfrac{x-1}{2}\).</p>
   <p>
-    \[ \frac{(x-1)(x+1)}{x+1} \times \frac{2}{x-1} = 2, \quad x \neq -1,\; x \neq 1. \]
+    \[
+      \begin{aligned}
+        \frac{(x-1)(x+1)}{x+1} \times \frac{2}{x-1}
+          &= 2, \\
+        x &\neq -1,\; x \neq 1
+      \end{aligned}
+    \]
   </p>
 
   <h2 id="harder-cases" class="book-prose__heading">Harder examples</h2>
@@ -273,8 +312,16 @@ strand = "Number & Algebra"
   <h3 id="uniform-motion" class="book-prose__heading">Uniform motion</h3>
   <p>
     For constant speed, distance \(d\), speed \(v\), and time \(t\) are related by \(v = d/t\). If a
-    train travels \(240\) km in \(3\) h, then \(v = 240/3 = 80\) km/h. If you know \(v\) and \(t\)
-  but need distance, rearrange to \(d = vt\).
+    train travels \(240\) km in \(3\) h, then:
+  </p>
+  <p class="book-formula">\[
+    \begin{aligned}
+      v &= \frac{240}{3} \\
+        &= 80\ \text{km/h}
+    \end{aligned}
+  \]</p>
+  <p>
+    If you know \(v\) and \(t\) but need distance, rearrange to \(d = vt\).
   </p>
 
   <div class="math-widget-mount" data-widget="formula-rearrange-demo" data-pagefind-ignore></div>
@@ -282,8 +329,16 @@ strand = "Number & Algebra"
   <h3 id="density" class="book-prose__heading">Density</h3>
   <p>
     Density \(\rho\) (rho) is mass per unit volume: \(\rho = m/V\). A block of mass \(2.7\) kg with
-    volume \(0.001\) m³ has \(\rho = 2.7/0.001 = 2700\) kg/m³. To find mass from \(\rho\) and \(V\),
-    use \(m = \rho V\).
+    volume \(0.001\) m³ has:
+  </p>
+  <p class="book-formula">\[
+    \begin{aligned}
+      \rho &= \frac{2.7}{0.001} \\
+           &= 2700\ \text{kg/m}^3
+    \end{aligned}
+  \]</p>
+  <p>
+    To find mass from \(\rho\) and \(V\), use \(m = \rho V\).
   </p>
 
   <h3 id="pressure-circuits" class="book-prose__heading">Pressure and electric circuits</h3>
@@ -408,7 +463,14 @@ strand = "Number & Algebra"
   <details class="book-question">
     <summary class="book-question__prompt">Make \(t\) the subject of \(v = \dfrac{d}{t}\) and then find \(t\) when \(d = 150\) km and \(v = 75\) km/h.</summary>
     <div class="book-question__solution">
-      <p><strong>Answer:</strong> \(t = d/v = 2\) h.</p>
+      <p><strong>Answer:</strong></p>
+      <p class="book-formula">\[
+        \begin{aligned}
+          t &= \frac{d}{v} \\
+            &= \frac{150}{75} \\
+            &= 2\ \text{h}
+        \end{aligned}
+      \]</p>
       <p><strong>Steps:</strong> \(vt = d \Rightarrow t = d/v\); substitute values.</p>
     </div>
   </details>
@@ -424,7 +486,20 @@ strand = "Number & Algebra"
   <details class="book-question">
     <summary class="book-question__prompt">A formula is \(P = \dfrac{F}{A}\). The force is \(120\) N and the area is \(0.05\) m². Find \(P\), then make \(F\) the subject and verify your force value.</summary>
     <div class="book-question__solution">
-      <p><strong>Answer:</strong> \(P = 120/0.05 = 2400\) Pa; \(F = PA = 2400 \times 0.05 = 120\) N.</p>
+      <p><strong>Answer:</strong></p>
+      <p class="book-formula">\[
+        \begin{aligned}
+          P &= \frac{120}{0.05} \\
+            &= 2400\ \text{Pa}
+        \end{aligned}
+      \]</p>
+      <p class="book-formula">\[
+        \begin{aligned}
+          F &= PA \\
+            &= 2400 \times 0.05 \\
+            &= 120\ \text{N}
+        \end{aligned}
+      \]</p>
       <p><strong>Explanation:</strong> Rearranging checks that the formula is consistent.</p>
     </div>
   </details>

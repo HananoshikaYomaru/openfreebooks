@@ -102,14 +102,45 @@ export function observeMathAutoRender(root: ParentNode = document) {
 
   let scheduled = false;
   let rendering = false;
+  const pendingTargets = new Set<HTMLElement>();
+
+  const queueTargetFromNode = (node: Node) => {
+    if (nodeInsideKatex(node)) return;
+
+    if (node instanceof HTMLElement) {
+      if (node.matches(AUTO_RENDER_TARGETS)) {
+        pendingTargets.add(node);
+      }
+      node.querySelectorAll<HTMLElement>(AUTO_RENDER_TARGETS).forEach((el) => {
+        pendingTargets.add(el);
+      });
+      return;
+    }
+
+    if (node instanceof DocumentFragment) {
+      node.querySelectorAll<HTMLElement>(AUTO_RENDER_TARGETS).forEach((el) => {
+        pendingTargets.add(el);
+      });
+      return;
+    }
+
+    const parent = node.parentElement;
+    if (!parent || nodeInsideKatex(parent)) return;
+    const host = parent.closest<HTMLElement>(AUTO_RENDER_TARGETS);
+    if (host) pendingTargets.add(host);
+  };
 
   const scheduleRender = () => {
     if (scheduled) return;
     scheduled = true;
     requestAnimationFrame(() => {
       scheduled = false;
+      if (pendingTargets.size === 0) return;
+
       rendering = true;
-      renderBookMath(root, { force: true });
+      const targets = Array.from(pendingTargets);
+      pendingTargets.clear();
+      targets.forEach((el) => renderMathInContainer(el));
       rendering = false;
     });
   };
@@ -118,11 +149,19 @@ export function observeMathAutoRender(root: ParentNode = document) {
     if (rendering) return;
     const hasExternalChange = mutations.some((mutation) => {
       if (nodeInsideKatex(mutation.target)) return false;
-      if (mutation.type === "characterData") return true;
-      if (mutation.addedNodes.length === 0 && mutation.removedNodes.length === 0) return false;
-      const addedInsideKatex = Array.from(mutation.addedNodes).every(nodeInsideKatex);
-      const removedInsideKatex = Array.from(mutation.removedNodes).every(nodeInsideKatex);
-      return !(addedInsideKatex && removedInsideKatex);
+
+      if (mutation.type === "characterData") {
+        const parent = mutation.target.parentElement;
+        if (!parent || nodeInsideKatex(parent)) return false;
+        const host = parent.closest<HTMLElement>(AUTO_RENDER_TARGETS);
+        if (!host) return false;
+        delete host.dataset.katexRendered;
+        pendingTargets.add(host);
+        return true;
+      }
+
+      mutation.addedNodes.forEach((node) => queueTargetFromNode(node));
+      return mutation.addedNodes.length > 0;
     });
     if (hasExternalChange) scheduleRender();
   });
