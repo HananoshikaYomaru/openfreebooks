@@ -2,6 +2,7 @@ import { existsSync } from "node:fs";
 import { mkdir, readdir, readFile, rm, writeFile, copyFile } from "node:fs/promises";
 import { basename, dirname, join, relative } from "node:path";
 import { $ } from "bun";
+import { fingerprintPaths } from "./build-change-detector";
 
 const ROOT = join(import.meta.dir, "..");
 const CONTENT = join(ROOT, "content");
@@ -10,6 +11,7 @@ const GENERATED_NAV = join(ROOT, "data/_generated/chapter-nav.json");
 const GENERATED_WIDGETS = join(ROOT, "frontend/src/generated/chapter-widgets.ts");
 const GENERATED_SUBJECT_MODULES = join(ROOT, "frontend/src/generated/subject-modules.ts");
 const GENERATED_SUBJECTS_META = join(ROOT, "data/_generated/subjects-meta.json");
+const SYNC_CACHE_PATH = join(ROOT, "data/_generated/sync-chapters-cache.json");
 const STATIC_ROOT = join(ROOT, "static");
 const CHAPTER_CSS_DIR = join(STATIC_ROOT, "css/chapters");
 const SUBJECT_CSS_DIR = join(STATIC_ROOT, "css/subjects");
@@ -54,6 +56,23 @@ type SubjectMeta = {
 
 type SubjectsMetaFile = {
   subjects: Record<string, SubjectMeta>;
+};
+
+type ChapterCacheEntry = {
+  fingerprint: string;
+  meta: ChapterMeta;
+  widgets: string[];
+};
+
+type SubjectCacheEntry = {
+  fingerprint: string;
+  meta: SubjectMeta;
+};
+
+type SyncCacheFile = {
+  version: 1;
+  chapters: Record<string, ChapterCacheEntry>;
+  subjects: Record<string, SubjectCacheEntry>;
 };
 
 function parseChapterTemplate(markdown: string): boolean {
@@ -159,6 +178,10 @@ async function syncSubject(subject: { id: string; dir: string }): Promise<Subjec
   return { hasCss, hasJs };
 }
 
+async function computeSubjectFingerprint(subject: { id: string; dir: string }): Promise<string> {
+  return fingerprintPaths(ROOT, [join(subject.dir, "subject.scss"), join(subject.dir, "subject.ts")]);
+}
+
 function buildSubjectModuleRegistry(
   subjects: Array<{ id: string; dir: string; hasJs: boolean }>
 ): string {
@@ -234,13 +257,18 @@ async function syncChapter(chapter: {
   const indexPath = join(dir, "_index.md");
   const indexRaw = await readFile(indexPath, "utf8");
   const { frontMatter } = splitFrontMatter(indexRaw);
-  await writeFile(indexPath, `${frontMatter}\n\n${mergedBody}`);
+  const nextIndex = `${frontMatter}\n\n${mergedBody}`;
+  if (indexRaw !== nextIndex) {
+    await writeFile(indexPath, nextIndex);
+  }
 
   const assetsDir = join(dir, "assets");
   const staticAssetsDir = join(STATIC_ROOT, "chapters", subject, slug);
   if (existsSync(assetsDir)) {
     await rm(staticAssetsDir, { recursive: true, force: true });
     await copyDir(assetsDir, staticAssetsDir);
+  } else {
+    await rm(staticAssetsDir, { recursive: true, force: true });
   }
 
   const scssPath = join(dir, "chapter.scss");
@@ -261,6 +289,35 @@ async function syncChapter(chapter: {
   }
 
   return { key, meta: { hasSupplement, hasCss }, widgets };
+}
+
+async function computeChapterFingerprint(chapter: {
+  subject: string;
+  slug: string;
+  dir: string;
+}): Promise<string> {
+  return fingerprintPaths(ROOT, [
+    join(chapter.dir, "core.html"),
+    join(chapter.dir, "supplement.html"),
+    join(chapter.dir, "chapter.scss"),
+    join(chapter.dir, "assets"),
+    join(chapter.dir, "widgets"),
+  ]);
+}
+
+async function readSyncCache(): Promise<SyncCacheFile> {
+  if (!existsSync(SYNC_CACHE_PATH)) {
+    return { version: 1, chapters: {}, subjects: {} };
+  }
+  try {
+    const parsed = JSON.parse(await readFile(SYNC_CACHE_PATH, "utf8")) as SyncCacheFile;
+    if (parsed.version !== 1) {
+      return { version: 1, chapters: {}, subjects: {} };
+    }
+    return parsed;
+  } catch {
+    return { version: 1, chapters: {}, subjects: {} };
+  }
 }
 
 async function buildChapterNav(
@@ -324,15 +381,34 @@ function buildWidgetRegistry(
 }
 
 async function main() {
+  const forceFull = process.argv.includes("--full");
+  const prevCache = forceFull ? { version: 1, chapters: {}, subjects: {} } : await readSyncCache();
+  const nextCache: SyncCacheFile = { version: 1, chapters: {}, subjects: {} };
   const chapters = await discoverChapters();
   const metaFile: ChaptersMetaFile = { chapters: {} };
   const widgetEntries: Array<{ key: string; widgets: string[]; dir: string }> = [];
 
   for (const chapter of chapters) {
-    const { key, meta, widgets } = await syncChapter(chapter);
+    const key = `${chapter.subject}/${chapter.slug}`;
+    const fingerprint = await computeChapterFingerprint(chapter);
+    const cached = prevCache.chapters[key];
+    let meta: ChapterMeta;
+    let widgets: string[];
+
+    if (!forceFull && cached && cached.fingerprint === fingerprint) {
+      meta = cached.meta;
+      widgets = cached.widgets;
+      console.log(`Unchanged chapter ${key} (skipped)`);
+    } else {
+      const synced = await syncChapter(chapter);
+      meta = synced.meta;
+      widgets = synced.widgets;
+      console.log(`Synced chapter ${key} (${widgets.length} widget(s))`);
+    }
+
+    nextCache.chapters[key] = { fingerprint, meta, widgets };
     metaFile.chapters[key] = meta;
     widgetEntries.push({ key, widgets, dir: chapter.dir });
-    console.log(`Synced chapter ${key} (${widgets.length} widget(s))`);
   }
 
   await mkdir(dirname(GENERATED_META), { recursive: true });
@@ -347,18 +423,34 @@ async function main() {
   const subjectEntries: Array<{ id: string; dir: string; hasJs: boolean }> = [];
   const subjectsMeta: SubjectsMetaFile = { subjects: {} };
   for (const subject of await discoverSubjects()) {
-    const meta = await syncSubject(subject);
+    const fingerprint = await computeSubjectFingerprint(subject);
+    const cached = prevCache.subjects[subject.id];
+    let meta: SubjectMeta;
+    if (!forceFull && cached && cached.fingerprint === fingerprint) {
+      meta = cached.meta;
+      if (meta.hasCss || meta.hasJs) {
+        console.log(
+          `Unchanged subject ${subject.id} (css: ${meta.hasCss ? "yes" : "no"}, js: ${meta.hasJs ? "yes" : "no"})`
+        );
+      }
+    } else {
+      meta = await syncSubject(subject);
+      if (meta.hasCss || meta.hasJs) {
+        console.log(
+          `Synced subject ${subject.id} (css: ${meta.hasCss ? "yes" : "no"}, js: ${meta.hasJs ? "yes" : "no"})`
+        );
+      }
+    }
+
+    nextCache.subjects[subject.id] = { fingerprint, meta };
     subjectsMeta.subjects[subject.id] = meta;
     subjectEntries.push({ id: subject.id, dir: subject.dir, hasJs: meta.hasJs });
-    if (meta.hasCss || meta.hasJs) {
-      console.log(
-        `Synced subject ${subject.id} (css: ${meta.hasCss ? "yes" : "no"}, js: ${meta.hasJs ? "yes" : "no"})`
-      );
-    }
   }
   await writeFile(GENERATED_SUBJECTS_META, `${JSON.stringify(subjectsMeta, null, 2)}\n`);
   await mkdir(dirname(GENERATED_SUBJECT_MODULES), { recursive: true });
   await writeFile(GENERATED_SUBJECT_MODULES, buildSubjectModuleRegistry(subjectEntries));
+  await mkdir(dirname(SYNC_CACHE_PATH), { recursive: true });
+  await writeFile(SYNC_CACHE_PATH, `${JSON.stringify(nextCache, null, 2)}\n`);
 
   console.log(`Synced ${chapters.length} chapter(s).`);
 }

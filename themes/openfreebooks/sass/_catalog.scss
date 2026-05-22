@@ -984,6 +984,22 @@ a.catalog-chapter-card {
   align-items: center;
   gap: 8px;
   padding-left: 0px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition:
+    max-height 220ms ease,
+    opacity 180ms ease,
+    transform 220ms ease;
+}
+
+.catalog-chapter-card:is(:hover, :focus-within, :active) .catalog-chapter-card__meta {
+  max-height: 120px;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 // -----------------------------------------------------------------------------

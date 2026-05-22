@@ -116,6 +116,36 @@ strand = "Measures, Shape & Space"
 </div>
 
 <div class="book-prose">
+  <h2 id="vocabulary" class="book-prose__heading">Vocabulary</h2>
+  <div class="book-table-wrap">
+    <table class="book-table">
+      <thead>
+        <tr>
+          <th>Term</th>
+          <th>Definition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Right triangle</strong></td>
+          <td>A triangle with one angle equal to \(90^\circ\).</td>
+        </tr>
+        <tr>
+          <td><strong>Legs</strong></td>
+          <td>The two sides that form the right angle.</td>
+        </tr>
+        <tr>
+          <td><strong>Hypotenuse</strong></td>
+          <td>The side opposite the right angle; the longest side in a right triangle.</td>
+        </tr>
+        <tr>
+          <td><strong>Pythagorean Theorem</strong></td>
+          <td>The relationship \(a^2+b^2=c^2\) for right triangles.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <h2 id="history" class="book-prose__heading">History</h2>
   <p>
     The theorem is associated with Pythagoras, but right-triangle relationships appeared in earlier
@@ -202,31 +232,4 @@ strand = "Measures, Shape & Space"
     </div>
   </details>
 
-  <h2 id="vocabulary" class="book-prose__heading">Vocabulary</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Term</th>
-        <th>Definition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Right triangle</strong></td>
-        <td>A triangle with one angle equal to \(90^\circ\).</td>
-      </tr>
-      <tr>
-        <td><strong>Legs</strong></td>
-        <td>The two sides that form the right angle.</td>
-      </tr>
-      <tr>
-        <td><strong>Hypotenuse</strong></td>
-        <td>The side opposite the right angle; the longest side in a right triangle.</td>
-      </tr>
-      <tr>
-        <td><strong>Pythagorean Theorem</strong></td>
-        <td>The relationship \(a^2+b^2=c^2\) for right triangles.</td>
-      </tr>
-    </tbody>
-  </table>
 </div>

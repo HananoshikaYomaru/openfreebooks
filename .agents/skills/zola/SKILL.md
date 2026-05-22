@@ -28,14 +28,23 @@ See [reference.md](reference.md) for Tera pitfalls and build checks.
 ## Commands
 
 ```bash
-bun run build:js   # Vite → themes/openfreebooks/static/js/ (bundle.js + lazy chunks)
+bun run build:js      # sync chapters + Vite build (JS/CSS bundle outputs)
+bun run build         # smart local build (incremental; uses build cache)
+bun run build:full    # full deterministic rebuild (use in CI / clean validation)
+bun run dev           # smart local dev startup (incremental chapter sync + watch + zola serve)
+bun run dev:full      # force full chapter sync before starting dev server
 zola build         # required before indexing
 bun run index:search  # pagefind on public/ → copies to static/pagefind/ for zola serve
-zola serve         # dev at http://127.0.0.1:1111
-bun run build      # build:js + zola build + index:search
+zola serve            # dev at http://127.0.0.1:1111
 ```
 
 After Sass or template changes, run `zola build` (or `zola serve`). Do **not** copy `public/` into `themes/openfreebooks/static/`.
+
+### Build mode behavior
+
+- **First clone / cold start:** `bun run build` behaves like a full pipeline because caches are absent.
+- **Continuous local development:** `bun run build` reuses caches and skips unchanged steps where possible.
+- **CI:** prefer `bun run build:full` for deterministic, correctness-first builds.
 
 **Search (Pagefind):** read [zola-pagefind.md](zola-pagefind.md) before changing search UI, indexing, or `data-pagefind-*` attributes.
 

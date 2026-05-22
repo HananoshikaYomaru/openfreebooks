@@ -23,6 +23,8 @@ Thank you for helping grow free, open textbooks.
 
 **Search locally:** After `bun run build:js`, run `bun run index:search` once (or again after changing chapter HTML), then `zola serve`. Try [http://127.0.0.1:1111/search/](http://127.0.0.1:1111/search/) or press ⌘K / Ctrl+K.
 
+**Build modes:** `bun run build` is smart/incremental for local iteration; use `bun run build:full` for a deterministic full rebuild (CI/release checks).
+
 ---
 
 ## How the catalog fits together
@@ -228,9 +230,12 @@ Omit `banner` for subjects that should stay unchanged (e.g. roadmap-only placeho
 bun install
 bun run sync:chapters  # after content/ chapter changes
 bun run build:js       # sync + Vite
+bun run dev            # incremental sync + watch + zola serve
+bun run dev:full       # force full sync before dev
 zola serve
 bun test
 bun run build
+bun run build:full
 ```
 
 - Do **not** commit `themes/openfreebooks/static/` (Vite output).

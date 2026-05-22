@@ -29,7 +29,7 @@
       },
       {
         "from": "integer-foundations",
-        "to": "integer-arithmetic"
+        "to": "polynomials-expansion-factorisation"
       },
       {
         "from": "rational-number-operations",
@@ -42,10 +42,6 @@
       {
         "from": "percentage-applications",
         "to": "ratios-and-rates-foundation"
-      },
-      {
-        "from": "integer-arithmetic",
-        "to": "polynomials-expansion-factorisation"
       },
       {
         "from": "polynomials-expansion-factorisation",
@@ -296,24 +292,6 @@
           "slug": "integer-foundations",
           "title": "Integer foundations",
           "description": "Model directed magnitude on number lines; use the zero principle and tiles to add and subtract integers, and see subtraction as adding an opposite.",
-          "status": "live",
-          "curriculumCoverage": {
-            "Foundation": "core",
-            "IGCSE": "core",
-            "Common Core": "core",
-            "Singapore": "core",
-            "UK GCSE": "core",
-            "IB": "related",
-            "A-Level": "related",
-            "AP": "related",
-            "DSE": "related",
-            "Gaokao": "related"
-          }
-        },
-        {
-          "slug": "integer-arithmetic",
-          "title": "Integer arithmetic",
-          "description": "Multiply and divide integers from models to symbolic rules; apply order of operations with signed numbers in multi-step expressions.",
           "status": "live",
           "curriculumCoverage": {
             "Foundation": "core",

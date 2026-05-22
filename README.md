@@ -63,6 +63,8 @@ bun run dev
 
 Open [http://127.0.0.1:1111](http://127.0.0.1:1111). Re-run `bun run index:search` when you change chapter HTML or add pages so search stays up to date.
 
+Use `bun run dev:full` when you want to force a full chapter sync before starting dev servers.
+
 Search UI is available immediately; results require the index step above (`static/pagefind/` is gitignored and copied from the build output).
 
 ## Production build
@@ -71,7 +73,11 @@ Search UI is available immediately; results require the index step above (`stati
 bun run build
 ```
 
-This runs `vite build` (outputs to `themes/openfreebooks/static/js/bundle.js`), `zola build` (outputs to `public/`), then Pagefind (`public/pagefind/`).
+`bun run build` is smart/incremental for local development:
+- first run (or missing cache) behaves like a full build,
+- repeat runs skip unchanged steps.
+
+Use `bun run build:full` for a deterministic full rebuild (recommended for CI/release validation).
 
 ## Deploy to Cloudflare
 

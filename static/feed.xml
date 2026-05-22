@@ -4,20 +4,41 @@
     <title>Open Free Books</title>
     <link>https://openfreebooks.org/</link>
     <description>Recent updates to Open Free Books pages and live chapters.</description>
-    <lastBuildDate>Fri, 22 May 2026 05:18:34 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 06:25:20 GMT</lastBuildDate>
+    <item>
+      <title>Algebraic fractions &amp; formulas</title>
+      <link>https://openfreebooks.org/math/algebraic-fractions-formulas/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/algebraic-fractions-formulas/</guid>
+      <pubDate>Fri, 22 May 2026 06:25:20 GMT</pubDate>
+      <description>Simplify and combine algebraic fractions; rearrange formulas in science contexts.</description>
+    </item>
+    <item>
+      <title>Counting and numbers</title>
+      <link>https://openfreebooks.org/math/counting-and-numbers/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/counting-and-numbers/</guid>
+      <pubDate>Fri, 22 May 2026 06:25:20 GMT</pubDate>
+      <description>Count objects, spot patterns, add, multiply, and divide; then meet place value and big numbers from hundreds to billions.</description>
+    </item>
+    <item>
+      <title>Zero and one</title>
+      <link>https://openfreebooks.org/math/zero-and-one/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/zero-and-one/</guid>
+      <pubDate>Fri, 22 May 2026 05:57:59 GMT</pubDate>
+      <description>0 is nothing; 1 is one. Learn to tell them apart — the same skill as telling false from true — before counting larger amounts.</description>
+    </item>
+    <item>
+      <title>Pythagoras&apos; theorem</title>
+      <link>https://openfreebooks.org/math/pythagoras-theorem/</link>
+      <guid isPermaLink="true">https://openfreebooks.org/math/pythagoras-theorem/</guid>
+      <pubDate>Fri, 22 May 2026 05:22:44 GMT</pubDate>
+      <description>Use Pythagoras&apos; theorem and its converse in 2D problems and coordinate settings.</description>
+    </item>
     <item>
       <title>Coordinate geometry foundations</title>
       <link>https://openfreebooks.org/math/coordinate-geometry-foundations/</link>
       <guid isPermaLink="true">https://openfreebooks.org/math/coordinate-geometry-foundations/</guid>
       <pubDate>Fri, 22 May 2026 05:18:34 GMT</pubDate>
       <description>Plot points, find distances and midpoints, and work with slopes of lines in the Cartesian plane.</description>
-    </item>
-    <item>
-      <title>Pythagoras&apos; theorem</title>
-      <link>https://openfreebooks.org/math/pythagoras-theorem/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/pythagoras-theorem/</guid>
-      <pubDate>Fri, 22 May 2026 05:18:34 GMT</pubDate>
-      <description>Use Pythagoras&apos; theorem and its converse in 2D problems and coordinate settings.</description>
     </item>
     <item>
       <title>Basic math notation</title>
@@ -46,13 +67,6 @@
       <guid isPermaLink="true">https://openfreebooks.org/contributing/</guid>
       <pubDate>Thu, 21 May 2026 18:40:42 GMT</pubDate>
       <description>Contribute</description>
-    </item>
-    <item>
-      <title>Integer arithmetic</title>
-      <link>https://openfreebooks.org/math/integer-arithmetic/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/integer-arithmetic/</guid>
-      <pubDate>Thu, 21 May 2026 17:54:08 GMT</pubDate>
-      <description>Multiply and divide integers from models to symbolic rules; apply order of operations with signed numbers in multi-step expressions.</description>
     </item>
     <item>
       <title>Fractions and decimals</title>
@@ -237,13 +251,6 @@
       <description>Solve, represent, and apply linear inequalities in one unknown using number lines and interval notation.</description>
     </item>
     <item>
-      <title>Counting and numbers</title>
-      <link>https://openfreebooks.org/math/counting-and-numbers/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/counting-and-numbers/</guid>
-      <pubDate>Thu, 21 May 2026 05:05:38 GMT</pubDate>
-      <description>Count objects, spot patterns, add, multiply, and divide; then meet place value and big numbers from hundreds to billions.</description>
-    </item>
-    <item>
       <title>Written calculation</title>
       <link>https://openfreebooks.org/math/written-calculation/</link>
       <guid isPermaLink="true">https://openfreebooks.org/math/written-calculation/</guid>
@@ -270,20 +277,6 @@
       <guid isPermaLink="true">https://openfreebooks.org/physics/force-newtons-laws/</guid>
       <pubDate>Thu, 21 May 2026 02:10:55 GMT</pubDate>
       <description>Use free-body diagrams, F = ma, and motion graphs to predict how objects move.</description>
-    </item>
-    <item>
-      <title>Zero and one</title>
-      <link>https://openfreebooks.org/math/zero-and-one/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/zero-and-one/</guid>
-      <pubDate>Thu, 21 May 2026 01:07:39 GMT</pubDate>
-      <description>0 is nothing; 1 is one. Learn to tell them apart — the same skill as telling false from true — before counting larger amounts.</description>
-    </item>
-    <item>
-      <title>Algebraic fractions &amp; formulas</title>
-      <link>https://openfreebooks.org/math/algebraic-fractions-formulas/</link>
-      <guid isPermaLink="true">https://openfreebooks.org/math/algebraic-fractions-formulas/</guid>
-      <pubDate>Wed, 20 May 2026 20:17:25 GMT</pubDate>
-      <description>Simplify and combine algebraic fractions; rearrange formulas in science contexts.</description>
     </item>
     <item>
       <title>Polynomials: expansion &amp; factorisation</title>

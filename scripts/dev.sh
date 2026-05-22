@@ -9,6 +9,12 @@ cleanup() {
 
 trap cleanup EXIT INT TERM
 
+if [[ "${1:-}" == "--full" ]]; then
+  bun run sync:chapters -- --full
+else
+  bun run sync:chapters
+fi
+
 bun run dev:js &
 JS_PID=$!
 
