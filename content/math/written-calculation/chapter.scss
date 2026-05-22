@@ -39,7 +39,7 @@
 .va-workbench__shell {
   display: flex;
   flex-direction: column;
-  min-height: 28rem;
+  min-height: 24rem;
   border: 1px solid var(--va-panel-border);
   border-radius: 14px;
   overflow: hidden;
@@ -52,6 +52,20 @@
     flex-direction: row;
     min-height: 32rem;
   }
+}
+
+.va-workbench__mobile-toggle {
+  display: none;
+  width: 100%;
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.75rem 1rem;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 50%, var(--card-bg));
+  color: var(--ink);
+  cursor: pointer;
 }
 
 .va-workbench__sidebar {
@@ -294,37 +308,38 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-height: 16rem;
+  min-height: 18rem;
   background: var(--va-stage-bg);
   position: relative;
 }
 
 .va-workbench__message-box {
-  position: absolute;
-  top: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  width: min(92%, 32rem);
-  padding: 0.85rem 1.1rem;
-  text-align: center;
-  border: 1px solid var(--line);
-  border-radius: 0.75rem;
-  background: color-mix(in srgb, var(--card-bg) 92%, transparent);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 8px 24px var(--shadow-soft);
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 80%, var(--card-bg));
 }
 
 .va-workbench__message-box--error .va-workbench__message {
   color: var(--va-error);
 }
 
+.va-workbench__message-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
 .va-workbench__message {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--ink);
-  margin: 0 0 0.5rem;
+  margin: 0;
   line-height: 1.4;
+  text-align: left;
 }
 
 .va-workbench__progress-track {
@@ -342,9 +357,10 @@
 }
 
 .va-workbench__step-counter {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--muted);
-  margin: 0.35rem 0 0;
+  margin: 0;
+  white-space: nowrap;
 }
 
 .va-workbench__canvas-wrap {
@@ -354,6 +370,51 @@
   background-color: var(--va-stage-bg);
   background-image: radial-gradient(var(--va-canvas-dot) 1px, transparent 1px);
   background-size: 20px 20px;
+}
+
+@media (max-width: 767px) {
+  .va-workbench {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .va-workbench__mobile-toggle {
+    display: block;
+  }
+
+  .va-workbench__sidebar {
+    gap: 0;
+    max-height: 0;
+    padding: 0 1rem;
+    border-bottom: 0;
+    overflow: hidden;
+    transition: max-height 0.24s ease;
+  }
+
+  .va-workbench__sidebar--open {
+    gap: 0.85rem;
+    max-height: 42rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--line);
+    overflow-y: auto;
+  }
+
+  .va-workbench__stage {
+    min-height: 14rem;
+  }
+
+  .va-workbench__message-head {
+    flex-wrap: wrap;
+    row-gap: 0.2rem;
+  }
+
+  .va-workbench__message {
+    font-size: 0.88rem;
+  }
+
+  .va-workbench__canvas-wrap {
+    min-height: 12rem;
+  }
 }
 
 .va-workbench__canvas {

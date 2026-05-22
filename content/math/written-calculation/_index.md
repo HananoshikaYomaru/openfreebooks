@@ -117,6 +117,27 @@ strand = "Number & Algebra"
     dividend? Write that digit in the quotient, multiply, subtract, then bring down the next digit. If
     the division is not exact, the amount left is the <strong>remainder</strong>.
   </p>
+  <p>
+    To calculate and check a remainder, always use
+    \( \text{dividend} = \text{divisor} \times \text{quotient} + \text{remainder} \), with
+    \(0 \le \text{remainder} < \text{divisor}\). For example:
+  </p>
+  <p>
+    \[
+    \begin{aligned}
+    157 \div 12 &= 13 \text{ remainder } 1 \\
+    157 &= 12 \times 13 + 1
+    \end{aligned}
+    \]
+  </p>
+  <p>
+    The remainder can also be written as a fraction of the divisor:
+    \[
+    \begin{aligned}
+    157 \div 12 &= 13 + \frac{1}{12}
+    \end{aligned}
+    \]
+  </p>
 
   <h2 id="terminology" class="book-prose__heading">Names of the parts</h2>
   <div class="book-table-wrap">
@@ -190,7 +211,6 @@ strand = "Number & Algebra"
     Subtraction is the inverse of addition: \(c = a - b\) means the same as \(c + b = a\). Borrowing
     moves one ten from the left so the subtraction in the current column matches that story.
   </p>
-
   <h2 id="checkpoints" class="book-prose__heading">Checkpoints</h2>
   <div class="book-callout" role="note">
     <p class="book-callout__label">Checkpoint</p>

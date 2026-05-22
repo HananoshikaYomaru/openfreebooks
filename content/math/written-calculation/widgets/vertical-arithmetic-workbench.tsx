@@ -96,6 +96,7 @@ function VerticalArithmeticWorkbench() {
   const [playing, setPlaying] = createSignal(false);
   const [speed, setSpeed] = createSignal(800);
   const [soundMuted, setSoundMuted] = createSignal(true);
+  const [controlsOpen, setControlsOpen] = createSignal(false);
 
   const sound = new WorkbenchSound();
   let lastStep = 0;
@@ -178,7 +179,21 @@ function VerticalArithmeticWorkbench() {
       </h2>
 
       <div class="va-workbench__shell">
-        <aside class="va-workbench__sidebar">
+        <button
+          type="button"
+          class="va-workbench__mobile-toggle"
+          aria-expanded={controlsOpen()}
+          aria-controls="va-workbench-controls"
+          onClick={() => setControlsOpen((open) => !open)}
+        >
+          {controlsOpen() ? "Hide controls" : "Show controls"}
+        </button>
+
+        <aside
+          id="va-workbench-controls"
+          class="va-workbench__sidebar"
+          classList={{ "va-workbench__sidebar--open": controlsOpen() }}
+        >
           <div class="va-workbench__brand">
             <span class="va-workbench__brand-icon" aria-hidden="true">
               ±
@@ -309,22 +324,21 @@ function VerticalArithmeticWorkbench() {
         </aside>
 
         <div class="va-workbench__stage">
-          <div
-            class="va-workbench__message-box"
-            classList={{ "va-workbench__message-box--error": isError() }}
-          >
-            <p class="va-workbench__message" aria-live="polite">
-              {message()}
-            </p>
+          <div class="va-workbench__message-box" classList={{ "va-workbench__message-box--error": isError() }}>
+            <div class="va-workbench__message-head">
+              <p class="va-workbench__message" aria-live="polite">
+                {message()}
+              </p>
+              <p class="va-workbench__step-counter">
+                Step {stepCurrent()} / {stepTotal()}
+              </p>
+            </div>
             <div class="va-workbench__progress-track">
               <div
                 class="va-workbench__progress-fill"
                 style={{ width: `${progress()}%` }}
               />
             </div>
-            <p class="va-workbench__step-counter">
-              Step {stepCurrent()} / {stepTotal()}
-            </p>
           </div>
 
           <div ref={canvasWrapRef} class="va-workbench__canvas-wrap">

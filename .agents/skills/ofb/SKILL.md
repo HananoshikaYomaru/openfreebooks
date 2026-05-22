@@ -52,6 +52,7 @@ bun run build       # production: JS + Zola + pagefind → public/
 | Graph | `graph.edges` must be **acyclic**; builder throws on cycles |
 | Chart axes (all widgets) | Every coordinate chart must render **x/y axis labels, positive-direction arrowheads, and visible graduations (ticks + scale labels)**. Apply this consistently across all subjects/widgets. |
 | Accessibility | Avoid decorative characters that may render as emoji on mobile. Prefer broadly supported symbols/text so desktop and mobile stay visually consistent. |
+| Demo responsiveness (all widgets) | Mobile-first: keep demo viewport short, reserve stage/canvas height up front to avoid CLS, and never let status/controls overlap or block the interactive area. Use collapsible/toggle controls on small screens when needed. |
 
 ## Common tasks → where to edit
 
@@ -138,6 +139,11 @@ Live chapters live under `content/{subject}/{slug}/`:
 **Math equation layout (all subjects):** for chained calculations, **always prefer multi-line KaTeX** and **always align at the equal sign** using `aligned` (e.g. `\begin{aligned} ... &= ... \\ ... \end{aligned}`). Do not write long one-line chains; aligned multi-line steps are the default for readability and mobile layout.
 
 **Dialog/modals in widgets:** when adding a `<dialog>` in chapter widgets, use the shared modal pattern and classes from `themes/openfreebooks/sass/_contributors.scss` (`contributor-dialog`, `contributor-dialog-panel`, `contributor-dialog-close`) as the base style, keep the dialog centered in modal mode, and only layer minimal widget-specific overrides on top.
+
+**Widget layout standards (all subjects):**
+- Keep the primary demo stage visible without long pre-scroll on mobile.
+- Reserve stage space from first render (`min-height`/fixed aspect) so hydration or assets do not shift nearby content.
+- Keep feedback UI (step badges, status, toolbars) outside the canvas interaction area, or anchored so they never occlude controls/content.
 
 ### Interactive demo technology choices
 

@@ -129,6 +129,9 @@ export class MathVisualizer {
         this.generateAddition(lines);
       } else {
         let current = lines[0];
+        const initialValue = BigInt(current);
+        const divisionDivisors: bigint[] = [];
+        const divisionRemainders: bigint[] = [];
         const finalStepFrames: Frame[] = [];
 
         for (let i = 1; i < lines.length; i++) {
@@ -159,12 +162,27 @@ export class MathVisualizer {
             this.generateMultiplication(current, next);
             current = (BigInt(current) * BigInt(next)).toString();
           } else if (this.operation === "/") {
-            if (BigInt(next) === 0n) throw new Error("Cannot divide by zero.");
+            const nextDivisor = BigInt(next);
+            if (nextDivisor === 0n) throw new Error("Cannot divide by zero.");
+            const currentValue = BigInt(current);
+            divisionDivisors.push(nextDivisor);
+            divisionRemainders.push(currentValue % nextDivisor);
             this.generateDivision(current, next);
-            current = (BigInt(current) / BigInt(next)).toString();
+            current = (currentValue / nextDivisor).toString();
           }
 
           finalStepFrames.push(this.cloneGrid(this.frames[this.frames.length - 1]));
+        }
+
+        if (this.operation === "/" && divisionDivisors.length > 0 && this.frames.length > 0) {
+          const resultFrame = this.cloneGrid(this.frames[this.frames.length - 1]);
+          resultFrame.message = this.buildDivisionResultMessage(
+            initialValue,
+            BigInt(current),
+            divisionDivisors,
+            divisionRemainders
+          );
+          this.frames.push(resultFrame);
         }
 
         if (finalStepFrames.length > 1) {
@@ -200,6 +218,49 @@ export class MathVisualizer {
 
   private getCell(frame: Frame, x: number, y: number): CellData | null {
     return frame.cells[`${x},${y}`] ?? null;
+  }
+
+  private rationalToDecimalString(numerator: bigint, denominator: bigint, maxDigits = 9) {
+    const integerPart = numerator / denominator;
+    let remainder = numerator % denominator;
+    if (remainder === 0n) return integerPart.toString();
+
+    let fractional = "";
+    for (let i = 0; i < maxDigits && remainder !== 0n; i++) {
+      remainder *= 10n;
+      fractional += (remainder / denominator).toString();
+      remainder %= denominator;
+    }
+    if (remainder !== 0n) fractional += "...";
+    return `${integerPart.toString()}.${fractional}`;
+  }
+
+  private buildDivisionResultMessage(
+    originalDividend: bigint,
+    finalQuotient: bigint,
+    divisors: bigint[],
+    remainders: bigint[]
+  ) {
+    const totalDivisor = divisors.reduce((acc, d) => acc * d, 1n);
+    const decimalValue = this.rationalToDecimalString(originalDividend, totalDivisor);
+
+    if (remainders.every((r) => r === 0n)) {
+      return `Result: ${finalQuotient.toString()} (exact division).`;
+    }
+
+    const terms: string[] = [];
+    for (let i = remainders.length - 1; i >= 0; i--) {
+      const remainder = remainders[i];
+      const denomFactors = divisors
+        .slice(i)
+        .map((d) => d.toString())
+        .reverse();
+      const denominatorText =
+        denomFactors.length === 1 ? denomFactors[0] : denomFactors.join(" x ");
+      terms.push(`${remainder.toString()}/${denominatorText}`);
+    }
+
+    return `Result: ${finalQuotient.toString()} + ${terms.join(" + ")} = ${decimalValue}`;
   }
 
   private mergeFramesToSummary(finalFrames: Frame[]): Frame {
@@ -661,7 +722,7 @@ export class MathVisualizer {
         qFrame.message = `${div} goes into ${currentVal} exactly ${qDigit} times.`;
         this.frames.push(qFrame);
 
-        if (qDigit > 0 || i === dividendArr.length - 1) {
+        if (qDigit > 0) {
           const subVal = qDigit * div;
           const subStr = subVal.toString();
           const subFrame = this.cloneGrid(this.frames[this.frames.length - 1]);
@@ -695,9 +756,14 @@ export class MathVisualizer {
           }
           resFrame.message = `Remainder is ${currentVal}.`;
           this.frames.push(resFrame);
+        } else if (i === dividendArr.length - 1) {
+          const zeroFrame = this.cloneGrid(this.frames[this.frames.length - 1]);
+          zeroFrame.message = `${div} does not fit into ${currentVal}. Quotient digit is 0; remainder stays ${currentVal}.`;
+          this.frames.push(zeroFrame);
         }
       }
     }
+
   }
 
   render() {
